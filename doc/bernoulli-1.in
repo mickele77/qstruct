@@ -1,0 +1,47 @@
+; script da eseguire con mathomatic
+; mathomatic timoshenko.in
+; equazioni degli spostamenti di una trave di Timoshenko
+
+clear all
+
+p = p_1 + Dp * x / l            ;#1
+q = q_1 + Dq * x / l            ;#2
+m = m_1 + Dm * x / l            ;#3
+derivative x                    ;#4
+M'' = - q - m'                  ;#5
+eliminate q, m'
+w'''' = - M'' / (E*J)        ;#6
+eliminate M'' using 5
+simplify
+integrate constant x            ;#7   w'''
+integrate constant x            ;#8   w''
+integrate constant x            ;#9   w'
+integrate constant x            ;#10  w
+
+theta = - w'                    ;#11
+eliminate w' using 9
+simplify
+
+N' = -p                         ;#12
+eliminate p
+integrate constant x            ;#13
+u' = N / (E * A)                ;#14
+eliminate N
+simplify
+integrate constant x            ;#15  u
+
+M = - E * J * w''               ;#16
+eliminate w'' using 8
+simplify
+
+derivative x                    ;#17 M'
+
+T = M' + m                      ;#18
+eliminate M' using 17, m using 3
+simplify
+
+15
+derivative x                    ;#19
+N = E * A * u'                  ;#20
+eliminate u' using 19
+simplify

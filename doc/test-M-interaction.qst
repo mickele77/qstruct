@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QStructure version="0.1">
+    <UnitMeasure>
+        <noDimension scale="1" string="-" richString="-"/>
+        <percent scale="100" string="%" richString="%"/>
+        <length scale="1" string="m" richString="m"/>
+        <area scale="1" string="m²" richString="m&amp;lt;span style=&amp;quot; vertical-align:super;&amp;quot;&amp;gt;2&amp;lt;/span&amp;gt;"/>
+        <volume scale="1" string="m³" richString="m&amp;lt;span style=&amp;quot; vertical-align:super;&amp;quot;&amp;gt;3&amp;lt;/span&amp;gt;"/>
+        <angle scale="57.2958" string="°" richString="°"/>
+        <time scale="1" string="s" richString="s"/>
+        <tension scale="1e-06" string="MPa" richString="MPa"/>
+        <deformation scale="100" string="%" richString="%"/>
+        <curvature scale="0.1" string="% mm⁻¹" richString="% mm&amp;lt;span style=&amp;quot; vertical-align:super;&amp;quot;&amp;gt;-1&amp;lt;/span&amp;gt;)"/>
+        <sectL scale="1000" string="mm" richString="mm"/>
+        <sectL2 scale="1e+06" string="mm²" richString="mm&amp;lt;span style=&amp;quot; vertical-align:super;&amp;quot;&amp;gt;2&amp;lt;/span&amp;gt;"/>
+        <sectL3 scale="1e+09" string="mm³" richString="mm&amp;lt;span style=&amp;quot; vertical-align:super;&amp;quot;&amp;gt;3&amp;lt;/span&amp;gt;"/>
+        <sectL4 scale="1e+12" string="mm⁴" richString="mm&amp;lt;span style=&amp;quot; vertical-align:super;&amp;quot;&amp;gt;4&amp;lt;/span&amp;gt;"/>
+        <sectL5 scale="1e+15" string="mm⁵" richString="mm&amp;lt;span style=&amp;quot; vertical-align:super;&amp;quot;&amp;gt;5&amp;lt;/span&amp;gt;"/>
+        <sectL6 scale="1e+18" string="mm⁶" richString="mm&amp;lt;span style=&amp;quot; vertical-align:super;&amp;quot;&amp;gt;6&amp;lt;/span&amp;gt;"/>
+        <alphaTemp scale="1" string="K⁻¹" richString="K&amp;lt;span style=&amp;quot; vertical-align:super;&amp;quot;&amp;gt;-1&amp;lt;/span&amp;gt;"/>
+        <loadF scale="0.001" string="kN" richString="kN"/>
+        <loadFLine scale="0.001" string="kN/m" richString="kN/m"/>
+        <loadFArea scale="0.001" string="kN/m²" richString="kN/m&amp;lt;span style=&amp;quot; vertical-align:super;&amp;quot;&amp;gt;2&amp;lt;/span&amp;gt;"/>
+        <loadFVolume scale="0.001" string="kN/m²" richString="kN/m&amp;lt;span style=&amp;quot; vertical-align:super;&amp;quot;&amp;gt;2&amp;lt;/span&amp;gt;"/>
+        <loadM scale="0.001" string="kN m" richString="kN m"/>
+        <loadMLine scale="0.001" string="kN m/m" richString="kN m/m"/>
+    </UnitMeasure>
+    <MaterialModel>
+        <Concrete E="auto" Ecm="auto" G="auto" Rck="3.5e+07" alpha="1e-05" alphaCC="0.85" epsC1="auto" epsC2="auto" epsC3="auto" epsC4="auto" epsCU1="auto" epsCU2="auto" epsCU3="auto" epsCU4="auto" fcPermanentRed="auto" fcRara="auto" fcRaraRed="auto" fcd="auto" fcdRed="auto" fcfm="auto" fck="2.8e+07" fcm="auto" fctd="auto" fctdRed="auto" fctk="auto" fctk95="auto" fctm="auto" gammaC="1.5" gammaW="25000" id="1" modelfEpsSection="SectionParabolaRectangle" name="C28/35" nu="0.3" ratioEEcm="1"/>
+        <SteelCncr E="2e+11" G="0" alpha="1e-05" epsUd="auto" epsUk="0.075" epsYd="auto" fRare="auto" ftk="5.4e+08" fud="auto" fyd="auto" fyk="4.5e+08" gammaS="1.15" gammaW="78500" id="2" k="1.15" modelfEps="auto" name="B450C" nu="0" ratioEpsUdEpsUk="0.9"/>
+    </MaterialModel>
+    <SectionModel>
+        <SectionRCncr A="auto" G="auto" GCncr="auto" GSteelCncr="auto" ICyy="auto" ICyz="auto" ICzz="auto" IGxx="auto" IGy="auto" IGyz="auto" IGzz="auto" IT="0" Ixx="auto" Iyy="auto" Iyz="auto" Izz="auto" Sy="auto" Sy2zDyDz="auto" Sy3DyDz="auto" Syz2DyDz="auto" Sz="auto" Sz3DyDz="auto" applyRoundOff="yes" id="1" iy="auto" iz="auto" name="Sezione in C.A." pW="auto" thetaC="auto" ty="1.2" tyz="0" tz="1.2">
+            <MultiSectionCncrModel>
+                <SectionCncr A="auto" G="auto" ICyy="auto" ICyz="auto" ICzz="auto" IGxx="auto" IGy="auto" IGyz="auto" IGzz="auto" IT="0" Ixx="auto" Iyy="auto" Iyz="auto" Izz="auto" Sy="auto" Sy2zDyDz="auto" Sy3DyDz="auto" Syz2DyDz="auto" Sz="auto" Sz3DyDz="auto" applyRoundOff="yes" id="1" iy="auto" iz="auto" name="Cls" pW="auto" thetaC="auto" ty="1.2" tyz="0" tz="1.2" material="1">
+                    <Point2DPlusModel>
+                        <Point2d name="P" y="0.15" z="0.2"/>
+                        <Point2d name="P" y="-0.15" z="0.2"/>
+                        <Point2d name="P" y="-0.15" z="-0.2"/>
+                        <Point2d name="P" y="0.15" z="-0.2"/>
+                    </Point2DPlusModel>
+                </SectionCncr>
+            </MultiSectionCncrModel>
+            <MultiSectionSteelCncrModel>
+                <SectionSteelCncr A="0.000314" G="auto" ICyy="auto" ICyz="auto" ICzz="auto" IGxx="auto" IGy="auto" IGyz="auto" IGzz="auto" IT="0" Ixx="auto" Iyy="auto" Iyz="auto" Izz="auto" P="(0.115;0.165)" Sy="auto" Sy2zDyDz="auto" Sy3DyDz="auto" Syz2DyDz="auto" Sz="auto" Sz3DyDz="auto" applyRoundOff="yes" id="1" iy="auto" iz="auto" name="Acciaio" pW="auto" thetaC="auto" ty="1.2" tyz="0" tz="1.2" material="2"/>
+                <SectionSteelCncr A="0.000314" G="auto" ICyy="auto" ICyz="auto" ICzz="auto" IGxx="auto" IGy="auto" IGyz="auto" IGzz="auto" IT="0" Ixx="auto" Iyy="auto" Iyz="auto" Izz="auto" P="(0;0.165)" Sy="auto" Sy2zDyDz="auto" Sy3DyDz="auto" Syz2DyDz="auto" Sz="auto" Sz3DyDz="auto" applyRoundOff="yes" id="2" iy="auto" iz="auto" name="Acciaio" pW="auto" thetaC="auto" ty="1.2" tyz="0" tz="1.2" material="2"/>
+                <SectionSteelCncr A="0.000314" G="auto" ICyy="auto" ICyz="auto" ICzz="auto" IGxx="auto" IGy="auto" IGyz="auto" IGzz="auto" IT="0" Ixx="auto" Iyy="auto" Iyz="auto" Izz="auto" P="(-0.115;0.165)" Sy="auto" Sy2zDyDz="auto" Sy3DyDz="auto" Syz2DyDz="auto" Sz="auto" Sz3DyDz="auto" applyRoundOff="yes" id="3" iy="auto" iz="auto" name="Acciaio" pW="auto" thetaC="auto" ty="1.2" tyz="0" tz="1.2" material="2"/>
+                <SectionSteelCncr A="0.000314" G="auto" ICyy="auto" ICyz="auto" ICzz="auto" IGxx="auto" IGy="auto" IGyz="auto" IGzz="auto" IT="0" Ixx="auto" Iyy="auto" Iyz="auto" Izz="auto" P="(0.115;-0.165)" Sy="auto" Sy2zDyDz="auto" Sy3DyDz="auto" Syz2DyDz="auto" Sz="auto" Sz3DyDz="auto" applyRoundOff="yes" id="4" iy="auto" iz="auto" name="Acciaio" pW="auto" thetaC="auto" ty="1.2" tyz="0" tz="1.2" material="2"/>
+                <SectionSteelCncr A="0.000314" G="auto" ICyy="auto" ICyz="auto" ICzz="auto" IGxx="auto" IGy="auto" IGyz="auto" IGzz="auto" IT="0" Ixx="auto" Iyy="auto" Iyz="auto" Izz="auto" P="(0;-0.165)" Sy="auto" Sy2zDyDz="auto" Sy3DyDz="auto" Syz2DyDz="auto" Sz="auto" Sz3DyDz="auto" applyRoundOff="yes" id="5" iy="auto" iz="auto" name="Acciaio" pW="auto" thetaC="auto" ty="1.2" tyz="0" tz="1.2" material="2"/>
+                <SectionSteelCncr A="0.000314" G="auto" ICyy="auto" ICyz="auto" ICzz="auto" IGxx="auto" IGy="auto" IGyz="auto" IGzz="auto" IT="0" Ixx="auto" Iyy="auto" Iyz="auto" Izz="auto" P="(-0.115;-0.165)" Sy="auto" Sy2zDyDz="auto" Sy3DyDz="auto" Syz2DyDz="auto" Sz="auto" Sz3DyDz="auto" applyRoundOff="yes" id="6" iy="auto" iz="auto" name="Acciaio" pW="auto" thetaC="auto" ty="1.2" tyz="0" tz="1.2" material="2"/>
+            </MultiSectionSteelCncrModel>
+            <MultiSectionSteelModel/>
+        </SectionRCncr>
+    </SectionModel>
+    <TimberConnectionModel/>
+    <SoilModel/>
+    <RetainingWallModel/>
+</QStructure>

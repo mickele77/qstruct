@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/material.svg</file>
+        <file>images/section.svg</file>
+        <file>images/fem2d.svg</file>
+        <file>images/timberconnection.svg</file>
+        <file>images/soil.svg</file>
+        <file>images/retainingwall.svg</file>
+        <file>images/icon.svg</file>
+        <file>images/easycncr.svg</file>
+        <file>images/easy.svg</file>
+        <file>images/steelconnection.svg</file>
+        <file>images/soilsheet.svg</file>
+    </qresource>
+</RCC>

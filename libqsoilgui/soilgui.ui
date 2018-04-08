@@ -1,0 +1,1884 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SoilGUI</class>
+ <widget class="QWidget" name="SoilGUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>919</width>
+    <height>769</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_5">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="generaleDataGBox">
+     <property name="title">
+      <string>Dati generali</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabelRichName" name="nameLabel">
+        <property name="text">
+         <string>Denominazione</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLineEditValue" name="nameLEdit"/>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QLabelRichName" name="typeLabel">
+        <property name="text">
+         <string>Classificazione</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QComboBoxEnum" name="typeComboBox"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="ParametersTab">
+      <attribute name="title">
+       <string>Caratteristiche fisiche</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_23">
+       <item row="0" column="0">
+        <widget class="QSplitter" name="splitter">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <widget class="QWidget" name="layoutWidget">
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QGroupBox" name="kParametersGBox">
+             <property name="title">
+              <string>Parametri meccanici</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_8">
+              <item row="3" column="2">
+               <widget class="QLineEditValue" name="cUKLEdit"/>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabelRichName" name="gammaWLabel">
+                <property name="text">
+                 <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;w&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabelUnitMeasure" name="gammaWUMLabel">
+                <property name="text">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[N/m&lt;span style=&quot; vertical-align:super;&quot;&gt;3&lt;/span&gt;]
+&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLineEditValue" name="gammaWLEdit"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabelRichName" name="phiPrimeKLabel">
+                <property name="text">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+φ'&lt;span style=&quot; vertical-align:sub;&quot;&gt;k&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabelUnitMeasure" name="phiPrimeKUMLabel">
+                <property name="text">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[°]
+&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLineEditValue" name="phiPrimeKLEdit"/>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLineEditValue" name="cPrimeKLEdit"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabelRichName" name="cPrimeKLabel">
+                <property name="text">
+                 <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+c&lt;span style=&quot; vertical-align:sub;&quot;&gt;k&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabelUnitMeasure" name="cPrimeKUMLabel">
+                <property name="text">
+                 <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[Pa]
+&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabelRichName" name="cUKLabel">
+                <property name="text">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+c&lt;span style=&quot; vertical-align:sub;&quot;&gt;u,k&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabelUnitMeasure" name="cUKUMLabel">
+                <property name="text">
+                 <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[Pa]
+&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0" colspan="2">
+               <widget class="QLabelRichName" name="soilEQCategoryLabel">
+                <property name="text">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+Categoria sismica
+&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
+               <widget class="QComboBoxEnum" name="soilEQCategoryComboBox"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>219</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="layoutWidget">
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <widget class="QGroupBox" name="KGBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title">
+              <string>Spinta delle terre</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_22">
+              <item row="0" column="0">
+               <widget class="QGroupBox" name="KaGBox">
+                <property name="title">
+                 <string>Spinta attiva</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_21">
+                 <item row="0" column="0" colspan="2">
+                  <widget class="QLabelRichName" name="KaTheoryLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>Teoria</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QComboBoxEnum" name="KaTheoryComboBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QGroupBox" name="KpGBox">
+                <property name="title">
+                 <string>Spinta passiva</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_20">
+                 <item row="0" column="2">
+                  <widget class="QComboBoxEnum" name="KpTheoryComboBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0" colspan="2">
+                  <widget class="QLabelRichName" name="KpTheoryLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>Teoria</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>219</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <layout class="QVBoxLayout" name="verticalLayout"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="KTab">
+      <attribute name="title">
+       <string>Spinta delle terre</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_12">
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QGroupBox" name="KGeneralDataGBox">
+           <property name="title">
+            <string>Dati muro controterra</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_7">
+            <item row="0" column="0">
+             <widget class="QLabelRichName" name="KiLabel">
+              <property name="text">
+               <string>i</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabelUnitMeasure" name="KiUMLabel">
+              <property name="text">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[°]
+&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLineEditValue" name="KiLEdit"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabelRichName" name="KdeltaLabel">
+              <property name="text">
+               <string>δ</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLabelUnitMeasure" name="KdeltaUMLabel">
+              <property name="text">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[°]
+&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QLineEditValue" name="KdeltaLEdit"/>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabelRichName" name="KbetaLabel">
+              <property name="text">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+β
+&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLabelUnitMeasure" name="KbetaUMLabel">
+              <property name="text">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[°]
+&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QLineEditValue" name="KbetaLEdit"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="KDesignParametersGBox">
+           <property name="title">
+            <string>Parametri di progetto</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <item row="2" column="2">
+             <widget class="QLineEditValue" name="KPhiPrimeDLEdit"/>
+            </item>
+            <item row="1" column="2">
+             <widget class="QLineEditValue" name="KGammaTanPhiPrimeLEdit"/>
+            </item>
+            <item row="2" column="3">
+             <widget class="QCheckBoxReadOnly" name="KPhiPrimeDCheckBox">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLabelUnitMeasure" name="KPhiPrimeDUMLabel">
+              <property name="text">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[°]
+&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLabelUnitMeasure" name="KGammaTanPhiPrimeUMLabel">
+              <property name="text">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabelRichName" name="KPhiPrimeDLabel">
+              <property name="text">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+φ'&lt;span style=&quot; vertical-align:sub;&quot;&gt;d&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabelRichName" name="KGammaTanPhiPrimeLabel">
+              <property name="text">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;φ&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="1">
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QGroupBox" name="K_KGroup">
+           <property name="title">
+            <string>Spinta delle terre</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_24">
+            <item row="1" column="0">
+             <widget class="QGroupBox" name="K_KpGBox">
+              <property name="title">
+               <string>Spinta passiva</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_4">
+               <item row="0" column="0">
+                <widget class="QLabelRichName" name="KpLabel">
+                 <property name="text">
+                  <string>&lt;html&gt;&lt;head/&gt;
+&lt;body&gt;
+K&lt;span style=&quot; vertical-align:sub;&quot;&gt;p&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLineEditValue" name="KpLEdit"/>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabelUnitMeasure" name="KpUMLabel">
+                 <property name="text">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="K_KaGBox">
+              <property name="title">
+               <string>Spinta attiva</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_3">
+               <item row="1" column="2">
+                <widget class="QLineEditValue" name="KaLEdit"/>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLabelUnitMeasure" name="KaUMLabel">
+                 <property name="text">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabelRichName" name="KaLabel">
+                 <property name="text">
+                  <string>&lt;html&gt;&lt;head/&gt;
+&lt;body&gt;
+K&lt;span style=&quot; vertical-align:sub;&quot;&gt;a&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>17</width>
+             <height>37</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="QLimTab">
+      <attribute name="title">
+       <string>Capacità portante</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_15">
+       <item row="0" column="0" colspan="2">
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>863</width>
+            <height>988</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_16">
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="groupBox_3">
+             <property name="title">
+              <string>Dati fondazione</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_19">
+              <item row="1" column="1">
+               <spacer name="verticalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>538</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="0" column="0">
+               <layout class="QVBoxLayout" name="verticalLayout_5">
+                <item>
+                 <widget class="QGroupBox" name="QLimGeometricDataGBox">
+                  <property name="title">
+                   <string>Geometria</string>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_14">
+                   <item row="0" column="0">
+                    <widget class="QLabelRichName" name="QLimBLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+B&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimBUMLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[m]
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QLineEditValue" name="QLimBLEdit"/>
+                   </item>
+                   <item row="1" column="0" colspan="3">
+                    <layout class="QHBoxLayout" name="horizontalLayout">
+                     <item>
+                      <widget class="QLabelRichName" name="QLimLInfiniteLabel">
+                       <property name="text">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+Fondazione infinita&lt;/body&gt;&lt;/html&gt;</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QCheckBoxBool" name="QLimLInfiniteCheckBox">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabelRichName" name="QLimLLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+L&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimLUMLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[m]
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="2">
+                    <widget class="QLineEditValue" name="QLimLLEdit"/>
+                   </item>
+                   <item row="3" column="0">
+                    <widget class="QLabelRichName" name="QLimAlphaLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+α&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimAlphaUMLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+rad]
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="2">
+                    <widget class="QLineEditValue" name="QLimAlphaLEdit"/>
+                   </item>
+                   <item row="4" column="0">
+                    <widget class="QLabelRichName" name="QLimDLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+D&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimDUMLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[m]
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="2">
+                    <widget class="QLineEditValue" name="QLimDLEdit"/>
+                   </item>
+                   <item row="5" column="0">
+                    <widget class="QLabelRichName" name="QLimOmegaLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+ω&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimOmegaUMLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[rad]
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="2">
+                    <widget class="QLineEditValue" name="QLimOmegaLEdit"/>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="QLimDesignParametersGBox">
+                  <property name="title">
+                   <string>Parametri di progetto</string>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_9">
+                   <item row="0" column="2">
+                    <widget class="QLineEditValue" name="QLimGammaGammaWLEdit"/>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimGammaGammaWUMLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="2">
+                    <widget class="QLineEditValue" name="QLimPhiPrimeDLEdit"/>
+                   </item>
+                   <item row="2" column="2">
+                    <widget class="QLineEditValue" name="QLimGammaTanPhiPrimeLEdit"/>
+                   </item>
+                   <item row="3" column="3">
+                    <widget class="QCheckBoxReadOnly" name="QLimPhiPrimeDCheckBox">
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimPhiPrimeDUMLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[°]
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimGammaTanPhiPrimeUMLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="0">
+                    <widget class="QLabelRichName" name="QLimPhiPrimeDLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+φ'&lt;span style=&quot; vertical-align:sub;&quot;&gt;d&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabelRichName" name="QLimGammaTanPhiPrimeLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;φ&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="0">
+                    <widget class="QLabelRichName" name="QLimGammaCPrimeLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimGammaCPrimeUMLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="2">
+                    <widget class="QLineEditValue" name="QLimGammaCPrimeLEdit"/>
+                   </item>
+                   <item row="5" column="0">
+                    <widget class="QLabelRichName" name="QLimCPrimeDLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+c'&lt;span style=&quot; vertical-align:sub;&quot;&gt;d&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="3">
+                    <widget class="QCheckBoxReadOnly" name="QLimCPrimeDCheckBox">
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimCPrimeDUMLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[°]
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="2">
+                    <widget class="QLineEditValue" name="QLimCPrimeDLEdit"/>
+                   </item>
+                   <item row="0" column="0">
+                    <widget class="QLabelRichName" name="QLimGammaGammaWLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;γ&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabelRichName" name="QLimGammaWDLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ'&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimGammaWDUMLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[N/m&lt;span style=&quot; vertical-align:super;&quot;&gt;3&lt;/span&gt;]&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="2">
+                    <widget class="QLineEditValue" name="QLimGammaWDLEdit"/>
+                   </item>
+                   <item row="1" column="3">
+                    <widget class="QCheckBoxReadOnly" name="QLimGammaWDCheckBox">
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="QLimLoadGBox">
+                  <property name="title">
+                   <string>Azioni di progetto</string>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_13">
+                   <item row="0" column="0">
+                    <widget class="QLabelRichName" name="QLimVdLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+V&lt;span style=&quot; vertical-align:sub;&quot;&gt;d&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimVdUMLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[N]&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QLineEditValue" name="QLimVdLEdit"/>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabelRichName" name="QLimHydLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+H&lt;span style=&quot; vertical-align:sub;&quot;&gt;y,d&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimHydUMLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[N]&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="2">
+                    <widget class="QLineEditValue" name="QLimHydLEdit"/>
+                   </item>
+                   <item row="7" column="0">
+                    <widget class="QLabelRichName" name="QLimBPrimeLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+B'&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="7" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimBPrimeUMLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[m]&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="7" column="2">
+                    <widget class="QLineEditValue" name="QLimBPrimeLEdit"/>
+                   </item>
+                   <item row="7" column="3">
+                    <widget class="QCheckBoxReadOnly" name="QLimBPrimeCheckBox">
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="8" column="0">
+                    <widget class="QLabelRichName" name="QLimLPrimeLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+L'&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="8" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimLPrimeUMLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[m]&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="8" column="2">
+                    <widget class="QLineEditValue" name="QLimLPrimeLEdit"/>
+                   </item>
+                   <item row="8" column="3">
+                    <widget class="QCheckBoxReadOnly" name="QLimLPrimeCheckBox">
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabelRichName" name="QLimHxdLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+H&lt;span style=&quot; vertical-align:sub;&quot;&gt;x,d&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimHxdUMLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[N]&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="2">
+                    <widget class="QLineEditValue" name="QLimHxdLEdit"/>
+                   </item>
+                   <item row="5" column="0">
+                    <widget class="QLabelRichName" name="QLimMydLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+M&lt;span style=&quot; vertical-align:sub;&quot;&gt;y,d&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimMydUMLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[N m]&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="2">
+                    <widget class="QLineEditValue" name="QLimMydLEdit"/>
+                   </item>
+                   <item row="3" column="0">
+                    <widget class="QLabelRichName" name="QLimHdLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+H&lt;span style=&quot; vertical-align:sub;&quot;&gt;d&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimHdUMLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[N]&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="2">
+                    <widget class="QLineEditValue" name="QLimHdLEdit"/>
+                   </item>
+                   <item row="3" column="3">
+                    <widget class="QCheckBoxReadOnly" name="QLimHdCheckBox">
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="0">
+                    <widget class="QLabelRichName" name="QLimMxdLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+M&lt;span style=&quot; vertical-align:sub;&quot;&gt;x,d&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimMxdUMLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[N m]&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="2">
+                    <widget class="QLineEditValue" name="QLimMxdLEdit"/>
+                   </item>
+                   <item row="9" column="0">
+                    <widget class="QLabelRichName" name="QLimqPrimedLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+q'&lt;span style=&quot; vertical-align:sub;&quot;&gt;d&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="9" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimqPrimedUMLabel">
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[m]&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="9" column="2">
+                    <widget class="QLineEditValue" name="QLimqPrimedLEdit"/>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_7">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>199</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_4">
+                <item>
+                 <widget class="QGroupBox" name="QLimDrainedGBox">
+                  <property name="title">
+                   <string>Condizioni drenate</string>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_10">
+                   <item row="1" column="2">
+                    <widget class="QLineEditValue" name="QLimPrimeDLEdit"/>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLabelUnitMeasure" name="qLimPrimeDUMLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[Pa]
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <widget class="QLabelRichName" name="qLimPrimeDLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+q&lt;span style=&quot; vertical-align:sub;&quot;&gt;lim,d&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="0" colspan="3">
+                    <widget class="QGroupBox" name="QLimDrainedCGBox">
+                     <property name="title">
+                      <string>c'</string>
+                     </property>
+                     <layout class="QGridLayout" name="gridLayout_17">
+                      <item row="0" column="0">
+                       <widget class="QLabelRichName" name="NcPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+N&lt;span style=&quot; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="1">
+                       <widget class="QLabelUnitMeasure" name="NcPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="2">
+                       <widget class="QLineEditValue" name="NcPrimeLEdit"/>
+                      </item>
+                      <item row="2" column="0">
+                       <widget class="QLabelRichName" name="scPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+s&lt;span style=&quot; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QLabelUnitMeasure" name="scPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="2">
+                       <widget class="QLineEditValue" name="scPrimeLEdit"/>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabelRichName" name="icPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+i&lt;span style=&quot; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="1">
+                       <widget class="QLabelUnitMeasure" name="icPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="2">
+                       <widget class="QLineEditValue" name="icPrimeLEdit"/>
+                      </item>
+                      <item row="0" column="3">
+                       <widget class="QCheckBoxReadOnly" name="NcPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="3">
+                       <widget class="QCheckBoxReadOnly" name="scPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="3">
+                       <widget class="QCheckBoxReadOnly" name="icPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabelRichName" name="bcPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+b&lt;span style=&quot; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QLabelUnitMeasure" name="bcPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="2">
+                       <widget class="QLineEditValue" name="bcPrimeLEdit"/>
+                      </item>
+                      <item row="4" column="3">
+                       <widget class="QCheckBoxReadOnly" name="bcPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="0">
+                       <widget class="QLabelRichName" name="gcPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+g&lt;span style=&quot; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QLabelUnitMeasure" name="gcPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="2">
+                       <widget class="QLineEditValue" name="gcPrimeLEdit"/>
+                      </item>
+                      <item row="5" column="3">
+                       <widget class="QCheckBoxReadOnly" name="gcPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="0">
+                       <widget class="QLabelRichName" name="dcPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+d&lt;span style=&quot; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <widget class="QLabelUnitMeasure" name="dcPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="2">
+                       <widget class="QLineEditValue" name="dcPrimeLEdit"/>
+                      </item>
+                      <item row="6" column="3">
+                       <widget class="QCheckBoxReadOnly" name="dcPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item row="2" column="0" colspan="3">
+                    <widget class="QGroupBox" name="QLimDrainedGammaWGBox">
+                     <property name="title">
+                      <string>γ'</string>
+                     </property>
+                     <layout class="QGridLayout" name="gridLayout_6">
+                      <item row="0" column="0">
+                       <widget class="QLabelRichName" name="NGammaWPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+N&lt;span style=&quot; vertical-align:sub;&quot;&gt;γ&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="1">
+                       <widget class="QLabelUnitMeasure" name="NGammaWPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="2">
+                       <widget class="QLineEditValue" name="NGammaWPrimeLEdit"/>
+                      </item>
+                      <item row="2" column="0">
+                       <widget class="QLabelRichName" name="sGammaWPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+s&lt;span style=&quot; vertical-align:sub;&quot;&gt;γ&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QLabelUnitMeasure" name="sGammaWPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="2">
+                       <widget class="QLineEditValue" name="sGammaWPrimeLEdit"/>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabelRichName" name="iGammaWPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+i&lt;span style=&quot; vertical-align:sub;&quot;&gt;γ&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="1">
+                       <widget class="QLabelUnitMeasure" name="iGammaWPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="2">
+                       <widget class="QLineEditValue" name="iGammaWPrimeLEdit"/>
+                      </item>
+                      <item row="0" column="3">
+                       <widget class="QCheckBoxReadOnly" name="NGammaWPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="3">
+                       <widget class="QCheckBoxReadOnly" name="sGammaWPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="3">
+                       <widget class="QCheckBoxReadOnly" name="iGammaWPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabelRichName" name="bGammaWPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+b&lt;span style=&quot; vertical-align:sub;&quot;&gt;γ&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QLabelUnitMeasure" name="bGammaWPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="2">
+                       <widget class="QLineEditValue" name="bGammaWPrimeLEdit"/>
+                      </item>
+                      <item row="4" column="3">
+                       <widget class="QCheckBoxReadOnly" name="bGammaWPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="0">
+                       <widget class="QLabelRichName" name="gGammaWPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+g&lt;span style=&quot; vertical-align:sub;&quot;&gt;γ&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="3">
+                       <widget class="QCheckBoxReadOnly" name="gGammaWPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QLabelUnitMeasure" name="gGammaWPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="2">
+                       <widget class="QLineEditValue" name="gGammaWPrimeLEdit"/>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QLineEditValue" name="qLimPrimeDLEdit"/>
+                   </item>
+                   <item row="4" column="0" colspan="3">
+                    <widget class="QGroupBox" name="QLimDrainedQGBox">
+                     <property name="title">
+                      <string>q'</string>
+                     </property>
+                     <layout class="QGridLayout" name="gridLayout_18">
+                      <item row="0" column="0">
+                       <widget class="QLabelRichName" name="NqPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+N&lt;span style=&quot; vertical-align:sub;&quot;&gt;q&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="1">
+                       <widget class="QLabelUnitMeasure" name="NqPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="2">
+                       <widget class="QLineEditValue" name="NqPrimeLEdit"/>
+                      </item>
+                      <item row="2" column="0">
+                       <widget class="QLabelRichName" name="sqPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+s&lt;span style=&quot; vertical-align:sub;&quot;&gt;q&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QLabelUnitMeasure" name="sqPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="2">
+                       <widget class="QLineEditValue" name="sqPrimeLEdit"/>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabelRichName" name="iqPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+i&lt;span style=&quot; vertical-align:sub;&quot;&gt;q&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="1">
+                       <widget class="QLabelUnitMeasure" name="iqPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="2">
+                       <widget class="QLineEditValue" name="iqPrimeLEdit"/>
+                      </item>
+                      <item row="0" column="3">
+                       <widget class="QCheckBoxReadOnly" name="NqPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="3">
+                       <widget class="QCheckBoxReadOnly" name="sqPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="3">
+                       <widget class="QCheckBoxReadOnly" name="iqPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabelRichName" name="bqPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+b&lt;span style=&quot; vertical-align:sub;&quot;&gt;q&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QLabelUnitMeasure" name="bqPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="2">
+                       <widget class="QLineEditValue" name="bqPrimeLEdit"/>
+                      </item>
+                      <item row="4" column="3">
+                       <widget class="QCheckBoxReadOnly" name="bqPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="0">
+                       <widget class="QLabelRichName" name="gqPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+g&lt;span style=&quot; vertical-align:sub;&quot;&gt;q&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="1">
+                       <widget class="QLabelUnitMeasure" name="gqPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="5" column="2">
+                       <widget class="QLineEditValue" name="gqPrimeLEdit"/>
+                      </item>
+                      <item row="5" column="3">
+                       <widget class="QCheckBoxReadOnly" name="gqPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="0">
+                       <widget class="QLabelRichName" name="dqPrimeLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+d&lt;span style=&quot; vertical-align:sub;&quot;&gt;q&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="1">
+                       <widget class="QLabelUnitMeasure" name="dqPrimeUMLabel">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="6" column="2">
+                       <widget class="QLineEditValue" name="dqPrimeLEdit"/>
+                      </item>
+                      <item row="6" column="3">
+                       <widget class="QCheckBoxReadOnly" name="dqPrimeCheckBox">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabelRichName" name="QLimPrimeDLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+Q&lt;span style=&quot; vertical-align:sub;&quot;&gt;lim,d&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QLabelUnitMeasure" name="QLimPrimeDUMLabel">
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[Pa]
+&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="0">
+                    <widget class="QGroupBox" name="QLimNotDrainedGBox">
+                     <property name="title">
+                      <string>Condizioni non drenate</string>
+                     </property>
+                     <layout class="QGridLayout" name="gridLayout_11">
+                      <item row="0" column="0">
+                       <widget class="QLabelRichName" name="KbetaLabel_3">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+N&lt;span style=&quot; vertical-align:sub;&quot;&gt;γ&lt;/span&gt;°&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="1">
+                       <widget class="QLabelUnitMeasure" name="NGammaWUMLabel_2">
+                        <property name="text">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]
+&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="2">
+                       <widget class="QLineEditValue" name="NGammaWLEdit_2"/>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="2">
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <spacer name="verticalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QLabelRichName</class>
+   <extends>QLabel</extends>
+   <header>qlabelrichname.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QLabelUnitMeasure</class>
+   <extends>QLabel</extends>
+   <header>qlabelunitmeasure.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QLineEditValue</class>
+   <extends>QLineEdit</extends>
+   <header>qlineeditvalue.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QCheckBoxReadOnly</class>
+   <extends>QCheckBox</extends>
+   <header>qcheckboxreadonly.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QComboBoxEnum</class>
+   <extends>QComboBox</extends>
+   <header>qcomboboxenum.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QCheckBoxBool</class>
+   <extends>QCheckBox</extends>
+   <header location="global">qcheckboxbool.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

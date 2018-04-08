@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FRPGUI</class>
+ <widget class="QWidget" name="FRPGUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>631</width>
+    <height>719</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_16">
+   <item row="0" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>611</width>
+        <height>699</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_15">
+       <item row="0" column="0">
+        <widget class="QSplitter" name="mainVertSplitter">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <widget class="QWidget" name="layoutWidget">
+          <layout class="QVBoxLayout" name="leftVertLayout">
+           <item>
+            <widget class="QGroupBox" name="generalDataGroupBox">
+             <property name="title">
+              <string>Dati generali</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_7">
+              <item row="0" column="0">
+               <widget class="QLabelRichName" name="nameLabel">
+                <property name="text">
+                 <string>Nome</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEditValue" name="nameLineEdit"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabelRichName" name="fiberTypeLabel">
+                <property name="text">
+                 <string>fibra/matrice</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QComboBoxEnum" name="fiberTypeComboBox"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="gammafGroupBox">
+             <property name="title">
+              <string>Coefficienti sicurezza materiale</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="0" column="0">
+               <widget class="QLabelRichName" name="applicationTypeLabel">
+                <property name="text">
+                 <string>Tipo applicazione</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QComboBoxEnum" name="applicationTypeComboBox"/>
+              </item>
+              <item row="1" column="3">
+               <widget class="QCheckBoxReadOnly" name="gammafCheckBox">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabelRichName" name="gammafLabel">
+                <property name="text">
+                 <string>γ&lt;span style=&quot; font-size:8pt; vertical-align:sub;&quot;&gt;f&lt;/span&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLineEditValue" name="gammafLineEdit"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabelUnitMeasure" name="gammafUMLabel">
+                <property name="text">
+                 <string>[-]</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabelRichName" name="gammafdLabel">
+                <property name="text">
+                 <string>γ&lt;span style=&quot; font-size:8pt; vertical-align:sub;&quot;&gt;fd&lt;/span&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabelUnitMeasure" name="gammafdUMLabel">
+                <property name="text">
+                 <string>[-]</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLineEditValue" name="gammafdLineEdit"/>
+              </item>
+              <item row="2" column="3">
+               <widget class="QCheckBoxReadOnly" name="gammafdCheckBox">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="actionsGroupBox">
+             <property name="title">
+              <string>Azioni ambientali</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_11">
+              <item row="0" column="2">
+               <widget class="QComboBoxEnum" name="expositionComboBox"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabelRichName" name="etaaLabel">
+                <property name="text">
+                 <string>η&lt;span style=&quot; font-size:8pt; vertical-align:sub;&quot;&gt;a&lt;/span&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLineEditValue" name="etaaLineEdit"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabelUnitMeasure" name="etaaUMLabel">
+                <property name="text">
+                 <string>[-]</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0" colspan="2">
+               <widget class="QLabelRichName" name="expositionLabel">
+                <property name="text">
+                 <string>Condizioni di esposizione</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="3">
+               <widget class="QCheckBoxReadOnly" name="etaaCheckBox">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>13</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="layoutWidget">
+          <layout class="QVBoxLayout" name="rightVertLayout">
+           <item>
+            <widget class="QGroupBox" name="FRPFeatGroupBox">
+             <property name="title">
+              <string>Caratteristiche rinforzo FRP</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_13">
+              <item row="2" column="0">
+               <widget class="QLabelRichName" name="EfLabel">
+                <property name="text">
+                 <string>E&lt;span style=&quot; vertical-align:sub;&quot;&gt;f&lt;/span&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
+               <widget class="QLineEditValue" name="epsfkLineEdit"/>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabelUnitMeasure" name="EfUMLabel">
+                <property name="text">
+                 <string>[Pa]</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLabelUnitMeasure" name="epsfkUMLabel">
+                <property name="text">
+                 <string>[-]</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLineEditValue" name="EfLineEdit"/>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabelRichName" name="epsfkLabel">
+                <property name="text">
+                 <string>ε&lt;span style=&quot;vertical-align:sub;&quot;&gt;fk&lt;/span&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="3">
+               <widget class="QCheckBoxReadOnly" name="epsfkCheckBox">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabelRichName" name="ffkLabel">
+                <property name="text">
+                 <string>f&lt;span style=&quot;vertical-align:sub;&quot;&gt;fk&lt;/span&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabelUnitMeasure" name="ffkUMLabel">
+                <property name="text">
+                 <string>[Pa]</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QLineEditValue" name="ffkLineEdit"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="rightVertSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>106</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QLabelRichName</class>
+   <extends>QLabel</extends>
+   <header>qlabelrichname.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QLineEditValue</class>
+   <extends>QLineEdit</extends>
+   <header>qlineeditvalue.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QLabelUnitMeasure</class>
+   <extends>QLabel</extends>
+   <header>qlabelunitmeasure.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QComboBoxEnum</class>
+   <extends>QComboBox</extends>
+   <header>qcomboboxenum.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QCheckBoxReadOnly</class>
+   <extends>QCheckBox</extends>
+   <header>qcheckboxreadonly.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

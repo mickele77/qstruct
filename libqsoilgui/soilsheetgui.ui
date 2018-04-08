@@ -1,0 +1,1793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SoilSheetGUI</class>
+ <widget class="QWidget" name="SoilSheetGUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>654</width>
+    <height>1121</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_9">
+   <item row="0" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>634</width>
+        <height>1101</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_30">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="generalDataGBox">
+         <property name="title">
+          <string>Dati generali</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_32">
+          <item row="0" column="0">
+           <widget class="QLabelRichName" name="nameLabel">
+            <property name="text">
+             <string>Denominazione</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEditValue" name="nameLEdit"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="currentIndex">
+          <number>2</number>
+         </property>
+         <widget class="QWidget" name="inputTab">
+          <attribute name="title">
+           <string>Dati di Input</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_23">
+           <item row="2" column="0">
+            <widget class="QGroupBox" name="geometryGBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title">
+              <string>Geometria</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_20">
+              <item row="0" column="0">
+               <spacer name="geometryRightVSpacer">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>220</width>
+                  <height>187</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="soilGBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title">
+              <string>Terreno</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_34">
+              <item row="0" column="0">
+               <widget class="QGroupBox" name="soilDownGBox">
+                <property name="title">
+                 <string>a valle</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_33">
+                 <item row="0" column="0" colspan="2">
+                  <widget class="QLabel" name="soliDownNameLabel">
+                   <property name="text">
+                    <string>Denominazione</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QComboBox" name="soilDownNameComboBox"/>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabelRichName" name="soilDownZLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+z&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabelUnitMeasure" name="soilDownZUMLabel">
+                   <property name="text">
+                    <string>[m]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEditValue" name="soilDownZLEdit"/>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="soilDownDeltaLEdit"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="soilDownDeltaLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+δ&lt;span style=&quot; vertical-align:sub;&quot;&gt;valle,k&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="soilDownDeltaUMLabel">
+                   <property name="text">
+                    <string>[rad]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="3">
+                  <widget class="QCheckBoxReadOnly" name="soilDownDeltaCheckBox">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QGroupBox" name="soilUpGBox">
+                <property name="title">
+                 <string>a monte</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_14">
+                 <item row="0" column="0" colspan="2">
+                  <widget class="QLabel" name="soilUpNameLabel">
+                   <property name="text">
+                    <string>Denominazione</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QComboBox" name="soilUpNameComboBox"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="soilUpDeltaLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+δ&lt;span style=&quot; vertical-align:sub;&quot;&gt;monte,k&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="soilUpDeltaUMLabel">
+                   <property name="text">
+                    <string>[rad]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="soilUpDeltaLEdit"/>
+                 </item>
+                 <item row="1" column="3">
+                  <widget class="QCheckBoxReadOnly" name="soilUpDeltaCheckBox">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEditValue" name="soilUpILEdit"/>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabelRichName" name="soilUpILabel">
+                   <property name="text">
+                    <string>i</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabelUnitMeasure" name="soilUpIUMLabel">
+                   <property name="text">
+                    <string>[rad]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabelRichName" name="soilUpZLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+z&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QLabelUnitMeasure" name="soilUpZUMLabel">
+                   <property name="text">
+                    <string>[m]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QLineEditValue" name="soilUpZLEdit"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QGroupBox" name="loadGBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title">
+              <string>Carichi verticali a monte</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_27">
+              <item row="0" column="1">
+               <widget class="QGroupBox" name="QkGBox">
+                <property name="title">
+                 <string>Variabili</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_28">
+                 <item row="0" column="0">
+                  <widget class="QLabelRichName" name="QkLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+Q&lt;/span&gt;&lt;span style=&quot; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabelUnitMeasure" name="QkUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[N/m&lt;span style=&quot; vertical-align:super;&quot;&gt;2&lt;/span&gt;]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLineEditValue" name="QkLEdit"/>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="psi2QUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[-]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="psi2QLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+ψ&lt;/span&gt;&lt;span style=&quot; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="psi2QLEdit"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QGroupBox" name="Gk2GBox">
+                <property name="title">
+                 <string>Permanenti</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_29">
+                 <item row="0" column="0">
+                  <widget class="QLabelRichName" name="Gk2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+G&lt;/span&gt;&lt;span style=&quot; vertical-align:sub;&quot;&gt;k,2&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabelUnitMeasure" name="Gk2UMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[N/m&lt;span style=&quot; vertical-align:super;&quot;&gt;2&lt;/span&gt;]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLineEditValue" name="Gk2LEdit"/>
+                 </item>
+                 <item row="1" column="0" colspan="3">
+                  <spacer name="verticalSpacer_8">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="verifyTab">
+          <attribute name="title">
+           <string>SLU</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_25">
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="overturningGBox">
+             <property name="title">
+              <string>Ribaltamento - EQU-M2</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_36">
+              <item row="1" column="0" rowspan="2">
+               <widget class="QGroupBox" name="groupBox_2">
+                <property name="title">
+                 <string>Valle</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_31">
+                 <item row="2" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningSoilDownDeltaDUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[rad]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLineEditValue" name="overturningSoilDownPhiPrimeDLEdit"/>
+                 </item>
+                 <item row="0" column="3">
+                  <widget class="QCheckBoxReadOnly" name="overturningSoilDownPhiPrimeDCheckBox">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="3">
+                  <widget class="QCheckBoxReadOnly" name="overturningKpCheckBox">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabelRichName" name="overturningSoilDownPhiPrimeDLabel">
+                   <property name="text">
+                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+φ'&lt;span style=&quot; vertical-align:sub;&quot;&gt;valle,d&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabelRichName" name="overturningKpLabel">
+                   <property name="text">
+                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+K&lt;span style=&quot; vertical-align:sub;&quot;&gt;p&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEditValue" name="overturningSoilDownDeltaDLEdit"/>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabelRichName" name="overturningSoilDownDeltaDLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+δ&lt;span style=&quot; vertical-align:sub;&quot;&gt;d&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="3">
+                  <widget class="QCheckBoxReadOnly" name="overturningSoilDownDeltaDCheckBox">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningSoilDownPhiPrimeDUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[rad]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningKpUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;[-]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="2">
+                  <widget class="QLineEditValue" name="overturningKpLEdit"/>
+                 </item>
+                 <item row="6" column="0">
+                  <widget class="QLabelRichName" name="overturningKpRedLabel">
+                   <property name="text">
+                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+K&lt;span style=&quot; vertical-align:sub;&quot;&gt;p,red&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningKpRedUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;[-]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="2">
+                  <widget class="QLineEditValue" name="overturningKpRedLEdit"/>
+                 </item>
+                 <item row="6" column="3">
+                  <widget class="QCheckBoxReadOnly" name="overturningKpRedCheckBox">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabelRichName" name="overturningChiKpLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+χ&lt;span style=&quot; vertical-align:sub;&quot;&gt;kp&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningChiKpUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;[-]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QLineEditValue" name="overturningChiKpLEdit"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="overturningSoilDownCPrimeDLabel">
+                   <property name="text">
+                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+c'&lt;span style=&quot; vertical-align:sub;&quot;&gt;valle,d&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningSoilDownCPrimeDUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[Pa]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="overturningSoilDownCPrimeDLEdit"/>
+                 </item>
+                 <item row="1" column="3">
+                  <widget class="QCheckBoxReadOnly" name="overturningSoilDownCPrimeDCheckBox">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="1" column="1" rowspan="2">
+               <widget class="QGroupBox" name="groupBox">
+                <property name="title">
+                 <string>Monte</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_10">
+                 <item row="0" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningSoilUpPhiPrimeDUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[rad]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="3">
+                  <widget class="QCheckBoxReadOnly" name="overturningSoilUpPhiPrimeDCheckBox">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLineEditValue" name="overturningSoilUpPhiPrimeDLEdit"/>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabelRichName" name="overturningSoilUpPhiPrimeDLabel">
+                   <property name="text">
+                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+φ'&lt;span style=&quot; vertical-align:sub;&quot;&gt;monte,d&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabelRichName" name="overturningSoilUpDeltaDLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+δ&lt;span style=&quot; vertical-align:sub;&quot;&gt;d&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningSoilUpDeltaDUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[rad]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEditValue" name="overturningSoilUpDeltaDLEdit"/>
+                 </item>
+                 <item row="2" column="3">
+                  <widget class="QCheckBoxReadOnly" name="overturningSoilUpDeltaDCheckBox">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabelRichName" name="overturningKaLabel">
+                   <property name="text">
+                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+K&lt;span style=&quot; vertical-align:sub;&quot;&gt;a&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningKaUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;[-]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QLineEditValue" name="overturningKaLEdit"/>
+                 </item>
+                 <item row="3" column="3">
+                  <widget class="QCheckBoxReadOnly" name="overturningKaCheckBox">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0" colspan="4">
+                  <spacer name="verticalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="overturningSoilUpCPrimeDLabel">
+                   <property name="text">
+                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+c'&lt;span style=&quot; vertical-align:sub;&quot;&gt;monte,d&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningSoilUpCPrimeDUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[Pa]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="overturningSoilUpCPrimeDLEdit"/>
+                 </item>
+                 <item row="1" column="3">
+                  <widget class="QCheckBoxReadOnly" name="overturningSoilUpCPrimeDCheckBox">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QGroupBox" name="groupBox_3">
+                <property name="title">
+                 <string>Azione agente</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_37">
+                 <item row="0" column="0">
+                  <widget class="QLabelRichName" name="overturningYCLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+y&lt;span style=&quot; vertical-align:sub;&quot;&gt;C&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningYCUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[m]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLineEditValue" name="overturningYCLEdit"/>
+                 </item>
+                 <item row="0" column="3">
+                  <widget class="QCheckBoxReadOnly" name="overturningYCCheckBox">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="overturningZCLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+z&lt;span style=&quot; vertical-align:sub;&quot;&gt;C&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningZCUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[m]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="overturningZCLEdit"/>
+                 </item>
+                 <item row="1" column="3">
+                  <widget class="QCheckBoxReadOnly" name="overturningZCCheckBox">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabelRichName" name="overturningMEdLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+M&lt;span style=&quot; vertical-align:sub;&quot;&gt;Ed&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningMEdUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[N m]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEditValue" name="overturningMEdLEdit"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QGroupBox" name="overturningMRdGBox">
+                <property name="title">
+                 <string>Resistenza di progetto</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_19">
+                 <item row="0" column="0" colspan="3">
+                  <layout class="QHBoxLayout" name="overturningApplyKpHorLayout">
+                   <item>
+                    <widget class="QLabelRichName" name="overturningApplyKpLabel">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>Resistenza passiva</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBoxReadOnly" name="overturningApplyKpCheckBox">
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="overturningMRdLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+M&lt;span style=&quot; vertical-align:sub;&quot;&gt;Rd&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="overturningMRdUMLabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+[N m]&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="overturningMRdLEdit"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="0" column="0" colspan="3">
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <item>
+                 <widget class="QPushButton" name="overturningPushButton">
+                  <property name="text">
+                   <string>Verifica</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="overTurningCopyClipPButton">
+                  <property name="text">
+                   <string>Copia dati</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QTabWidget" name="QSTabWidget">
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="A1Tab">
+              <attribute name="title">
+               <string>Approccio 1</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_47">
+               <item row="1" column="0">
+                <widget class="QGroupBox" name="A1C1GBox">
+                 <property name="title">
+                  <string>Combinazione 1 - A1-M1-R1</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_24"/>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QGroupBox" name="A1C2GBox">
+                 <property name="title">
+                  <string>Combinazione 2 - A2-M2-R2</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_41"/>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <spacer name="verticalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="0" column="0">
+                <widget class="QPushButton" name="A1PushButton">
+                 <property name="text">
+                  <string>Verifica</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="A2Tab">
+              <attribute name="title">
+               <string>Aproccio 2</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_46">
+               <item row="0" column="0">
+                <widget class="QGroupBox" name="A2GBox">
+                 <property name="title">
+                  <string>Approccio 2 - A1-M1-R3</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_58"/>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <spacer name="verticalSpacer_7">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>603</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="gammaTab">
+          <attribute name="title">
+           <string>Coefficienti di sicurezza</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_15">
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="gammaRGBox">
+             <property name="title">
+              <string>R</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="0" column="2">
+               <widget class="QGroupBox" name="gammaR1GBox">
+                <property name="title">
+                 <string>R1</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_3">
+                 <item row="0" column="0">
+                  <widget class="QLabelRichName" name="gammaQLimR1Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;R&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaQLimR1UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLineEditValue" name="gammaQLimR1LEdit"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="gammaSlidingR1Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;R&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaSlidingR1UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="gammaSlidingR1LEdit"/>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabelRichName" name="gammaKpR1Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;R&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaKpR1UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEditValue" name="gammaKpR1LEdit"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="0" column="3">
+               <widget class="QGroupBox" name="gammaR2GBox">
+                <property name="title">
+                 <string>R2</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_4">
+                 <item row="1" column="2">
+                  <widget class="QLabelUnitMeasure" name="gammaSlidingR2UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="3">
+                  <widget class="QLineEditValue" name="gammaSlidingR2LEdit"/>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelRichName" name="gammaSlidingR2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;R&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabelRichName" name="gammaKpR2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;R&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLabelUnitMeasure" name="gammaKpR2UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="3">
+                  <widget class="QLineEditValue" name="gammaKpR2LEdit"/>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabelRichName" name="gammaQLimR2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;R&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLabelUnitMeasure" name="gammaQLimR2UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="3">
+                  <widget class="QLineEditValue" name="gammaQLimR2LEdit"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="0" column="4">
+               <widget class="QGroupBox" name="gammaR3GBox">
+                <property name="title">
+                 <string>R3</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_5">
+                 <item row="2" column="0">
+                  <widget class="QLabelRichName" name="gammaKpR3Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;R&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaKpR3UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEditValue" name="gammaKpR3LEdit"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="gammaSlidingR3Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;R&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaSlidingR3UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="gammaSlidingR3LEdit"/>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabelRichName" name="gammaQLimR3Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;R&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaQLimR3UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLineEditValue" name="gammaQLimR3LEdit"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QGroupBox" name="gammaMGBox">
+             <property name="title">
+              <string>M</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_2">
+              <item row="0" column="0">
+               <widget class="QGroupBox" name="gammaM1GBox">
+                <property name="title">
+                 <string>M1</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_6">
+                 <item row="0" column="0">
+                  <widget class="QLabelRichName" name="gammaTanPhiPrimeM1Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;φ'&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaTanPhiPrimeM1UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLineEditValue" name="gammaTanPhiPrimeM1LEdit"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="gammaCPrimeM1Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;c'&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaCPrimeM1UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="gammaCPrimeM1LEdit"/>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabelRichName" name="gammaCUM1Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;cu&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaCUM1UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEditValue" name="gammaCUM1LEdit"/>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabelRichName" name="gammaGammaWM1Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;γ&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaGammaWM1UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QLineEditValue" name="gammaGammaWM1LEdit"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QGroupBox" name="gammaM2GBox">
+                <property name="title">
+                 <string>M2</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_7">
+                 <item row="0" column="0">
+                  <widget class="QLabelRichName" name="gammaTanPhiPrimeM2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;φ'&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaTanPhiPrimeM2UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLineEditValue" name="gammaTanPhiPrimeM2LEdit"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="gammaCPrimeM2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;c'&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaCPrimeM2UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="gammaCPrimeM2LEdit"/>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabelRichName" name="gammaCUM2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;cu&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaCUM2UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEditValue" name="gammaCUM2LEdit"/>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabelRichName" name="gammaGammaWM2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;γ&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaGammaWM2UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QLineEditValue" name="gammaGammaWM2LEdit"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QGroupBox" name="gammaAGBox">
+             <property name="title">
+              <string>Azioni</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_8">
+              <item row="0" column="0">
+               <widget class="QGroupBox" name="gammaEQUGBox">
+                <property name="title">
+                 <string>EQU</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_11">
+                 <item row="0" column="0">
+                  <widget class="QLabelRichName" name="gammaG1MinEQULabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;G1,min&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaG1MinEQUUMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLineEditValue" name="gammaG1MinEQULEdit"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="gammaG1MaxEQULabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;G1,max&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaG1MaxEQUUMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="gammaG1MaxEQULEdit"/>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabelRichName" name="gammaG2MinEQULabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;G2,min&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaG2MinEQUUMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEditValue" name="gammaG2MinEQULEdit"/>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabelRichName" name="gammaG2MaxEQULabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;G2,max&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaG2MaxEQUUMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QLineEditValue" name="gammaG2MaxEQULEdit"/>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaQMinEQUUMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabelRichName" name="gammaQMinEQULabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;Q,min&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="2">
+                  <widget class="QLineEditValue" name="gammaQMinEQULEdit"/>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QLabelRichName" name="gammaQMaxEQULabel">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;Q,max&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaQMaxEQUUMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="2">
+                  <widget class="QLineEditValue" name="gammaQMaxEQULEdit"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QGroupBox" name="gammaA1GBox">
+                <property name="title">
+                 <string>A1</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_12">
+                 <item row="0" column="0">
+                  <widget class="QLabelRichName" name="gammaG1MinA1Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;G1,min&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaG1MinA1UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLineEditValue" name="gammaG1MinA1LEdit"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="gammaG1MaxA1Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;G1,max&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaG1MaxA1UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="gammaG1MaxA1LEdit"/>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabelRichName" name="gammaG2MinA1Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;G2,min&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaG2MinA1UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEditValue" name="gammaG2MinA1LEdit"/>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabelRichName" name="gammaG2MaxA1Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;G2,max&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaG2MaxA1UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QLineEditValue" name="gammaG2MaxA1LEdit"/>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaQMinA1UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabelRichName" name="gammaQMinA1Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;Q,min&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="2">
+                  <widget class="QLineEditValue" name="gammaQMinA1LEdit"/>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QLabelRichName" name="gammaQMaxA1Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;Q,max&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaQMaxA1UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="2">
+                  <widget class="QLineEditValue" name="gammaQMaxA1LEdit"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QGroupBox" name="gammaA2GBox">
+                <property name="title">
+                 <string>A2</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_13">
+                 <item row="0" column="0">
+                  <widget class="QLabelRichName" name="gammaG1MinA2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;G1,min&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaG1MinA2UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLineEditValue" name="gammaG1MinA2LEdit"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabelRichName" name="gammaG1MaxA2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;G1,max&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaG1MaxA2UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLineEditValue" name="gammaG1MaxA2LEdit"/>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabelRichName" name="gammaG2MinA2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;G2,min&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaG2MinA2UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEditValue" name="gammaG2MinA2LEdit"/>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabelRichName" name="gammaG2MaxA2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;G2,max&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaG2MaxA2UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QLineEditValue" name="gammaG2MaxA2LEdit"/>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaQMinA2UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabelRichName" name="gammaQMinA2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;Q,min&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="2">
+                  <widget class="QLineEditValue" name="gammaQMinA2LEdit"/>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QLabelRichName" name="gammaQMaxA2Label">
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;/head&gt;
+&lt;body&gt;
+γ&lt;span style=&quot; vertical-align:sub;&quot;&gt;Q,max&lt;/span&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QLabelUnitMeasure" name="gammaQMaxA2UMLabel">
+                   <property name="text">
+                    <string>[-]</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="2">
+                  <widget class="QLineEditValue" name="gammaQMaxA2LEdit"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <spacer name="gammaTabVSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QLabelRichName</class>
+   <extends>QLabel</extends>
+   <header>qlabelrichname.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QLineEditValue</class>
+   <extends>QLineEdit</extends>
+   <header>qlineeditvalue.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QCheckBoxReadOnly</class>
+   <extends>QCheckBox</extends>
+   <header>qcheckboxreadonly.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QLabelUnitMeasure</class>
+   <extends>QLabel</extends>
+   <header>qlabelunitmeasure.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

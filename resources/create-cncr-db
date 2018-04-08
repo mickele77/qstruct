@@ -1,0 +1,22 @@
+#!/bin/bash
+
+export DB_NAME=cncr.db
+export SQLCMD="/usr/bin/sqlite3 $DB_NAME"
+
+rm $DB_NAME
+
+$SQLCMD "create table cncr (id INTEGER PRIMARY KEY, name TEXT, fck DOUBLE, Rck DOUBLE);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C8/10', 8.0e+6, 1.0e+7);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C12/15', 1.2e+7, 1.5e+7);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C16/20', 1.6e+7, 2.0e+7);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C20/25', 2.0e+7, 2.5e+7);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C25/30', 2.5e+7, 3.0e+7);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C28/35', 2.8e+7, 3.5e+7);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C32/40', 3.2e+7, 4.0e+7);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C35/45', 3.5e+7, 4.5e+7);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C40/50', 4.0e+7, 5.0e+7);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C45/55', 4.5e+7, 5.5e+7);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C50/60', 5.0e+7, 6.0e+7);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C55/67', 5.5e+7, 6.7e+7);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C60/75', 6.0e+7, 7.5e+7);"
+$SQLCMD "insert into cncr (name, fck, Rck) values ('C70/85', 7.0e+7, 8.5e+7);"

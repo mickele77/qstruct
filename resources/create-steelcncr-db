@@ -1,0 +1,19 @@
+#!/bin/bash
+
+export DB_NAME=steelcncr.db
+export SQLCMD="/usr/bin/sqlite3 $DB_NAME"
+
+rm $DB_NAME
+
+$SQLCMD "create table type (idType INTEGER PRIMARY KEY, nameType TEXT);"
+$SQLCMD "insert into type (idType, nameType) values (1, 'Acciaio per c.a. ordinario');"
+$SQLCMD "insert into type (idType, nameType) values (2, 'Acciaio per c.a.p.');"
+
+$SQLCMD "create table steelcncr (id INTEGER PRIMARY KEY, name TEXT, fykName TEXT, fyk DOUBLE, ftkName TEXT, ftk DOUBLE, k DOUBLE, E DOUBLE, epsUk DOUBLE, ratioEpsUdEpsUk DOUBLE, type INTEGER);"
+$SQLCMD "insert into steelcncr (name, fykName, fyk, ftkName, ftk, k, E, epsUk, ratioEpsUdEpsUk, type) values ('B450C', 'f<span style=\" vertical-align:sub;\">yk</span>', 4.50e+8, 'f<span style=\" vertical-align:sub;\">tk</span>', 5.40e+8, 1.15, 2.0e+11, 0.075, 0.9, 1);"
+$SQLCMD "insert into steelcncr (name, fykName, fyk, ftkName, ftk, k, E, epsUk, ratioEpsUdEpsUk, type) values ('B450A', 'f<span style=\" vertical-align:sub;\">yk</span>', 4.50e+8, 'f<span style=\" vertical-align:sub;\">tk</span>', 5.40e+8, 1.05, 2.0e+11, 0.025, 0.9, 1);"
+$SQLCMD "insert into steelcncr (name, fykName, fyk, ftkName, ftk, k, E, epsUk, ratioEpsUdEpsUk, type) values ('Barre', 'f<span style=\" vertical-align:sub;\">pyk</span>', 8.0e+8, 'f<span style=\" vertical-align:sub;\">ptk</span>', 1.0e+9, 1.10, 2.05e+11, 0.035, 0.9, 2);"
+$SQLCMD "insert into steelcncr (name, fykName, fyk, ftkName, ftk, k, E, epsUk, ratioEpsUdEpsUk, type) values ('Fili', 'f<span style=\" vertical-align:sub;\">p(0.1)k</span>', 1.42e+9, 'f<span style=\" vertical-align:sub;\">ptk</span>', 1.57e+9, 1.10, 2.05e+11, 0.035, 0.9, 2);"
+$SQLCMD "insert into steelcncr (name, fykName, fyk, ftkName, ftk, k, E, epsUk, ratioEpsUdEpsUk, type) values ('Trefoli', 'f<span style=\" vertical-align:sub;\">p(1)k</span>', 1.67e+9, 'f<span style=\" vertical-align:sub;\">ptk</span>', 1.86e+9, 1.10, 1.95e+11, 0.035, 0.9, 2);"
+$SQLCMD "insert into steelcncr (name, fykName, fyk, ftkName, ftk, k, E, epsUk, ratioEpsUdEpsUk, type) values ('Trefoli a fili sagomati', 'f<span style=\" vertical-align:sub;\">p(1)k</span>', 1.62e+9, 'f<span style=\" vertical-align:sub;\">ptk</span>', 1.82e+9, 1.10, 1.95e+11, 0.035, 0.9, 2);"
+$SQLCMD "insert into steelcncr (name, fykName, fyk, ftkName, ftk, k, E, epsUk, ratioEpsUdEpsUk, type) values ('Trecce', 'f<span style=\" vertical-align:sub;\">p(1)k</span>', 1.90e+9, 'f<span style=\" vertical-align:sub;\">ptk</span>', 1.90e+9, 1.10, 1.95e+11, 0.035, 0.9, 2);"

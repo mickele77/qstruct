@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>glviewer-images/openfile.svg</file>
+        <file>glviewer-images/print.svg</file>
+        <file>glviewer-images/zoomwin.svg</file>
+        <file>glviewer-images/zoomundo.svg</file>
+        <file>glviewer-images/zoomredo.svg</file>
+        <file>glviewer-images/zoomout.svg</file>
+        <file>glviewer-images/zoomin.svg</file>
+        <file>glviewer-images/zoomall.svg</file>
+    </qresource>
+</RCC>

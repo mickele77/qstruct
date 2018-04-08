@@ -1,0 +1,27 @@
+; script da eseguire con mathomatic
+; mathomatic timoshenko-2b.in
+; calcolo costanti di integrazione imponendo condizioni cinematiche
+
+clear all
+
+;#1
+u = (((x*C_5) - (x^2*p_1/2) - (x^3*Dp/(6*l)))/(A*E)) + C_6
+
+;#2
+w = (((((x^5*Dq/120) + (x^4*Dm/24))/(J*E)) - (x^3*chi*Dq/(6*G*A)))/l) + (x^4*q_1/(24*E*J)) - (x^3*C_1/6) - (x^2*(C_2 + (chi*q_1/(G*A)))/2) + (x*C_3) + C_4
+
+;#3
+theta = (chi*((E*J*C_1) + m_1)/(A*G)) + (x*C_2) + (x^2*C_1/2) - (((4*x^3*q_1) + (((x^4*Dq) + (4*x^3*Dm))/l))/(24*J*E)) - C_3
+
+;#4
+x = l
+
+1
+eliminate x
+simplify
+2
+eliminate x
+simplify
+3
+eliminate x
+simplify

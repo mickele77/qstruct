@@ -1,0 +1,54 @@
+; script da eseguire con mathomatic
+; mathomatic timoshenko.in
+; equazioni degli spostamenti di una trave di Timoshenko
+
+clear all
+
+; imponiamo le condizioni al contorno cinematiche
+
+;#1
+eta_2 = C_4
+;#2
+eta_3 = (chi*((E*J*C_1) + m_1)/(G*A)) - C_3
+;#3
+eta_5 = (((l^4*((Dq/120) + (q_1/24))) + (l^3*Dm/24))/(J*E)) - (l^3*C_1/6) - (l^2*((C_2/2) + (chi*((q_1/2) + (Dq/6))/(G*A)))) + (l*C_3) + C_4
+;#4
+eta_6 = (chi*((J*E*C_1) + m_1)/(G*A)) + (l*C_2) + (l^2*C_1/2) - (((l^3*((4*q_1) + Dq)) + (4*l^2*Dm))/(24*J*E)) - C_3
+
+1
+solve for C_4
+3
+eliminate C_4
+eliminate C_3
+simplify
+4
+eliminate C_2, C_3
+solve for C_1
+simplify
+3
+eliminate C_1 using 4
+solve for C_2
+simplify
+2
+eliminate C_2 using 3, C_1 using 4
+solve for C_3
+simplify
+
+;#5
+eta_1 = C_6
+;#6
+eta_4 = (((l*C_5) - (l^2*((p_1/2) + (Dp/6))))/(E*A)) + C_6
+
+5
+solve for C_6
+6
+eliminate C_6 using 5
+solve for C_5
+simplify
+
+4
+3
+2
+1
+6
+5

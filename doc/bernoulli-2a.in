@@ -1,0 +1,25 @@
+; script da eseguire con mathomatic
+; mathomatic bernoulli-2a.in
+; equazioni degli spostamenti di una trave di Bernoulli
+
+clear all
+
+;#1
+u = (((x*C_5) - (x^2*p_1/2) - (x^3*Dp/(6*l)))/(A*E)) + C_6
+;#2
+w = (((x^4*q_1/24) + (((x^4*Dm/24) + (x^5*Dq/120))/l))/(J*E)) + (x^3*C_1/6) + (x^2*C_2/2) + (x*C_3) + C_4
+;#3
+theta = -1*((((((x^4*Dq) + (4*x^3*Dm))/l) + (4*x^3*q_1))/(24*J*E)) + C_3 + (x^2*C_1/2) + (x*C_2))
+
+;#4
+x = 0
+
+1
+eliminate x
+simplify
+2
+eliminate x
+simplify
+3
+eliminate x
+simplify
