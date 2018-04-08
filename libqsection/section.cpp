@@ -453,40 +453,16 @@ int Section::internalLoadPhase() {
     return -1;
 }
 
-double Section::NSLSNormal(double l, double my, double mz, QList<Point2DModel *> * sectsOut ){
-    Q_UNUSED(sectsOut);
-    if( m_material ){
-        return m_material->E->valueNormal() * ( l* A->valueNormal() + my * Sy->valueNormal() + mz * Sz->valueNormal());
-    }
-    return 0.0;
-}
-
-void Section::MSLSNormal( double *yRet, double * zRet,
+void Section::NMSLSNormal( double * NRet, double *MyRet, double * MzRet,
                           double l, double my, double mz, QList<Point2DModel *> * sects ){
     Q_UNUSED(sects);
-    *yRet = 0.0;
-    *zRet = 0.0;
+    *NRet = 0.0;
+    *MyRet = 0.0;
+    *MzRet = 0.0;
     if( m_material ){
-        *yRet = m_material->E->valueNormal() * (l * Sy->valueNormal() + my * Iyy->valueNormal() + mz * Iyz->valueNormal());
-        *zRet =  - (m_material->E->valueNormal() * (l * Sz->valueNormal() + my * Iyz->valueNormal() + mz * Izz->valueNormal()));
-    }
-}
-
-double Section::NULSNormal( double l, double my, QList<Point2DModel *> * sects ){
-    Q_UNUSED(sects);
-    if( m_material ){
-        return m_material->E->valueNormal() * ( l* A->valueNormal() + my * Sy->valueNormal() );
-    }
-    return 0.0;
-}
-
-void Section::MULSNormal( double *yRet, double * zRet, double l, double m, QList<Point2DModel *> * sects ){
-    Q_UNUSED(sects);
-    *yRet = 0.0;
-    *zRet = 0.0;
-    if( m_material ){
-        *yRet = m_material->E->valueNormal() * (l * Sy->valueNormal() + m * Iyy->valueNormal());
-        *zRet =  - (m_material->E->valueNormal() * (l * Sz->valueNormal() + m * Iyz->valueNormal()));
+        *NRet = m_material->E->valueNormal() * ( l* A->valueNormal() + my * Sy->valueNormal() + mz * Sz->valueNormal());
+        *MyRet = m_material->E->valueNormal() * (l * Sy->valueNormal() + my * Iyy->valueNormal() + mz * Iyz->valueNormal());
+        *MzRet =  - (m_material->E->valueNormal() * (l * Sz->valueNormal() + my * Iyz->valueNormal() + mz * Izz->valueNormal()));
     }
 }
 
@@ -498,10 +474,6 @@ double Section::NULSNormal( double l, double my, double mz, QList<Point2DModel *
     return 0.0;
 }
 
-void Section::NULS( DoublePlus * ret, double l, double m, QList<Point2DModel *> * sects ){
-    ret->setValueNormal( NULSNormal(l, m, sects ) );
-}
-
 void Section::MULSNormal( double *yRet, double * zRet,
                           double l, double my, double mz, QList<Point2DModel *> * sects ){
     Q_UNUSED(sects);
@@ -511,13 +483,6 @@ void Section::MULSNormal( double *yRet, double * zRet,
         *yRet = m_material->E->valueNormal() * (l * Sy->valueNormal() + my * Iyy->valueNormal() + mz * Iyz->valueNormal());
         *zRet =  - (m_material->E->valueNormal() * (l * Sz->valueNormal() + my * Iyz->valueNormal() + mz * Izz->valueNormal()));
     }
-}
-
-void Section::MULS( DoublePlus * yRet, DoublePlus * zRet, double l, double m, QList<Point2DModel *> * sects ){
-    double y = 0.0, z = 0.0;
-    MULSNormal( &y, &z, l, m, sects );
-    yRet->setValueNormal( y );
-    zRet->setValueNormal( z );
 }
 
 QPolygonF Section::MULSyMULSz( DoublePlus * NSd, Point2DPlus * cen, int propNP){

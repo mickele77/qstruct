@@ -203,17 +203,17 @@ double MultiSection::pWNormal(){
     }
 }
 
-double MultiSection::NULSNormal(double l, double m, QList<Point2DModel *> *sects ){
+double MultiSection::NULSNormal(double l, double my, double mz, QList<Point2DModel *> *sects ){
     if( m_model ){
-        return m_model->NULSNormal( l, m, sects );
+        return m_model->NULSNormal( l, my, mz, sects );
     } else {
         return 0.0;
     }
 }
 
-void MultiSection::MULSNormal( double *yRet, double * zRet, double l, double m, QList<Point2DModel *> * sects ){
+void MultiSection::MULSNormal( double *yRet, double * zRet, double l, double my, double mz, QList<Point2DModel *> * sects ){
     if( m_model ){
-        m_model->MULSNormal(yRet, zRet, l, m, sects );
+        m_model->MULSNormal(yRet, zRet, l, my, mz, sects );
     }
 }
 

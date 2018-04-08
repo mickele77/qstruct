@@ -94,14 +94,14 @@ public:
         alphaULS->setRichName( QObject::trUtf8("α<span style=\" vertical-align:sub;\">Sd</span>"));
         addVarToContainer( alphaULS );
 
-        cenULS = new Point2DPlus( "cenULS", "yCCenULS", 0.0, "zCCenULS", 0.0, m_unitMeasure, UnitMeasure::sectL);
-        addVarToContainer( cenULS );
-        cenULS->y->setToolTip( QObject::trUtf8("Ascissa del polo attorno a cui si calcola il momento"));
-        cenULS->y->setRichName( QObject::trUtf8("y<span style=\"vertical-align:sub;\">M</span>"));
-        cenULS->y->setReadOnly( true );
-        cenULS->z->setToolTip( QObject::trUtf8("Ordinata del polo attorno a cui si calcola il momento"));
-        cenULS->z->setRichName( QObject::trUtf8("z<span style=\"vertical-align:sub;\">M</span>"));
-        cenULS->z->setReadOnly( true );
+        NCenULS = new Point2DPlus( "NCenULS", "NCenULSY", 0.0, "NCenULSZ", 0.0, m_unitMeasure, UnitMeasure::sectL);
+        addVarToContainer( NCenULS );
+        NCenULS->y->setToolTip( QObject::trUtf8("Ascissa del polo attorno a cui si calcola il momento"));
+        NCenULS->y->setRichName( QObject::trUtf8("y<span style=\"vertical-align:sub;\">N</span>"));
+        NCenULS->y->setReadOnly( true );
+        NCenULS->z->setToolTip( QObject::trUtf8("Ordinata del polo attorno a cui si calcola il momento"));
+        NCenULS->z->setRichName( QObject::trUtf8("z<span style=\"vertical-align:sub;\">N</span>"));
+        NCenULS->z->setReadOnly( true );
 
         MULSy = new DoublePlus(0.0, "MULSy", m_unitMeasure, UnitMeasure::loadM, true );
         MULSy->setToolTip( QObject::trUtf8("Componente y del momento resistente"));
@@ -157,6 +157,44 @@ public:
         LSPlusmzULS->setRichName( QObject::trUtf8("μ<span style=\"vertical-align:sub;\">z</span>"));
         addVarToContainer( LSPlusmzULS );
 
+        NSLS = new DoublePlus(0.0, "NSLS", m_unitMeasure, UnitMeasure::loadF );
+        NSLS->setToolTip( QObject::trUtf8("Sforzo normale agente") );
+        NSLS->setRichName( QObject::trUtf8("N"));
+        addVarToContainer( NSLS );
+
+        NCenSLS = new Point2DPlus( "NCenSLS", "NCenYSLS", 0.0, "NCenZSLS", 0.0, m_unitMeasure, UnitMeasure::sectL);
+        addVarToContainer( NCenSLS );
+        NCenSLS->y->setToolTip( QObject::trUtf8("Ascissa del polo attorno a cui si calcola il momento"));
+        NCenSLS->y->setRichName( QObject::trUtf8("y<span style=\"vertical-align:sub;\">N</span>"));
+        NCenSLS->y->setReadOnly( true );
+        NCenSLS->z->setToolTip( QObject::trUtf8("Ordinata del polo attorno a cui si calcola il momento"));
+        NCenSLS->z->setRichName( QObject::trUtf8("z<span style=\"vertical-align:sub;\">N</span>"));
+        NCenSLS->z->setReadOnly( true );
+
+        MySLS = new DoublePlus(0.0, "MySLS", m_unitMeasure, UnitMeasure::loadM );
+        MySLS->setToolTip( QObject::trUtf8("Momento agente - componente y") );
+        MySLS->setRichName( QObject::trUtf8("M<span style=\"vertical-align:sub;\">y</span>"));
+        addVarToContainer( MySLS );
+
+        MzSLS = new DoublePlus(0.0, "MzSLS", m_unitMeasure, UnitMeasure::loadM );
+        MzSLS->setToolTip( QObject::trUtf8("Momento agente - componente z") );
+        MzSLS->setRichName( QObject::trUtf8("M<span style=\"vertical-align:sub;\">z</span>"));
+        addVarToContainer( MzSLS );
+
+        lSLS = new DoublePlus(0.0, "lSLS", m_unitMeasure, UnitMeasure::deformation );
+        lSLS->setToolTip( QObject::trUtf8("Deformazione nell'origine") );
+        lSLS->setRichName( QObject::trUtf8("λ"));
+        addVarToContainer( lSLS );
+
+        mySLS = new DoublePlus(0.0, "mySLS", m_unitMeasure, UnitMeasure::curvature );
+        mySLS->setToolTip( QObject::trUtf8("Curvatura - componente y") );
+        mySLS->setRichName( QObject::trUtf8("μ<span style=\"vertical-align:sub;\">y</span>"));
+        addVarToContainer( mySLS );
+
+        mzSLS = new DoublePlus(0.0, "mzSLS", m_unitMeasure, UnitMeasure::curvature );
+        mzSLS->setToolTip( QObject::trUtf8("Curvatura - componente z") );
+        mzSLS->setRichName( QObject::trUtf8("μ<span style=\"vertical-align:sub;\">z</span>"));
+        addVarToContainer( mzSLS );
     }
     ~SectionRCncrGUIPrivate(){
         delete ui;
@@ -198,8 +236,8 @@ public:
         VarPlusGUI::connectVar( hRect, ui->hRectLabel, ui->hRectLEdit, ui->hRectUMLabel );
         VarPlusGUI::connectVar( NULS, ui->NULSLabel, ui->NULSLEdit, ui->NULSUMLabel );
         VarPlusGUI::connectVar( alphaULS, ui->alphaULSLabel, ui->alphaULSLEdit, ui->alphaULSUMLabel );
-        VarPlusGUI::connectVar( cenULS->y, ui->yCenULSLabel, ui->yCenULSLEdit, ui->yCenULSUMLabel, ui->yCenULSCheckBox );
-        VarPlusGUI::connectVar( cenULS->z, ui->zCenULSLabel, ui->zCenULSLEdit, ui->zCenULSUMLabel, ui->zCenULSCheckBox );
+        VarPlusGUI::connectVar( NCenULS->y, ui->yCenULSLabel, ui->yCenULSLEdit, ui->yCenULSUMLabel, ui->yCenULSCheckBox );
+        VarPlusGUI::connectVar( NCenULS->z, ui->zCenULSLabel, ui->zCenULSLEdit, ui->zCenULSUMLabel, ui->zCenULSCheckBox );
         VarPlusGUI::connectVar( MULSy, ui->MULSyLabel, ui->MULSyLEdit, ui->MULSyUMLabel );
         VarPlusGUI::connectVar( MULSz, ui->MULSzLabel, ui->MULSzLEdit, ui->MULSzUMLabel  );
         VarPlusGUI::connectVar( MULSyMULSzKRed, ui->MULSyMULSzKRedLabel, ui->MULSyMULSzKRedLEdit, ui->MULSyMULSzKRedUMLabel  );
@@ -214,7 +252,15 @@ public:
         VarPlusGUI::connectVar( LSPluslULS, ui->LSPluslULSLabel, ui->LSPluslULSLineEdit, ui->LSPluslULSUMLabel );
         VarPlusGUI::connectVar( LSPlusmyULS, ui->LSPlusmyULSLabel, ui->LSPlusmyULSLineEdit, ui->LSPlusmyULSUMLabel );
         VarPlusGUI::connectVar( LSPlusmzULS, ui->LSPlusmzULSLabel, ui->LSPlusmzULSLineEdit, ui->LSPlusmzULSUMLabel );
-    }
+
+        VarPlusGUI::connectVar( NSLS, ui->NSLSLabel, ui->NSLSLEdit, ui->NSLSUMLabel );
+        VarPlusGUI::connectVar( NCenSLS->y, ui->NCenYSLSLabel, ui->NCenYSLSLEdit, ui->NCenYSLSUMLabel, ui->NCenYSLSCheckBox );
+        VarPlusGUI::connectVar( NCenSLS->z, ui->NCenZSLSLabel, ui->NCenZSLSLEdit, ui->NCenZSLSUMLabel, ui->NCenZSLSCheckBox );
+        VarPlusGUI::connectVar( MySLS, ui->MySLSLabel, ui->MySLSLEdit, ui->MySLSUMLabel );
+        VarPlusGUI::connectVar( MzSLS, ui->MzSLSLabel, ui->MzSLSLEdit, ui->MzSLSUMLabel );
+        VarPlusGUI::connectVar( lSLS, ui->lSLSLabel, ui->lSLSLEdit, ui->lSLSUMLabel );
+        VarPlusGUI::connectVar( mySLS, ui->mySLSLabel, ui->mySLSLEdit, ui->mySLSUMLabel );
+        VarPlusGUI::connectVar( mzSLS, ui->mzSLSLabel, ui->mzSLSLEdit, ui->mzSLSUMLabel );    }
 
     Ui::SectionRCncrGUI * ui;
     SectionSteelGUI * sectionSteelGUI;
@@ -236,7 +282,7 @@ public:
     DoublePlus * hRect;
     DoublePlus * NULS;
     DoublePlus * alphaULS;
-    Point2DPlus * cenULS;
+    Point2DPlus * NCenULS;
     DoublePlus * MULSy;
     DoublePlus * MULSz;
     DoublePlus * MULSyMULSzKRed;
@@ -248,6 +294,15 @@ public:
     DoublePlus * LSPluslULS;
     DoublePlus * LSPlusmyULS;
     DoublePlus * LSPlusmzULS;
+
+    DoublePlus * NSLS;
+    Point2DPlus * NCenSLS;
+    DoublePlus * MySLS;
+    DoublePlus * MzSLS;
+
+    DoublePlus * lSLS;
+    DoublePlus * mySLS;
+    DoublePlus * mzSLS;
 
     QList<QGraphicsPolygonItem *> * sectsToView;
 };
@@ -281,15 +336,19 @@ SectionRCncrGUI::SectionRCncrGUI(UnitMeasure* ump, MaterialModel * matModel, con
     connect( m_d->ui->copyToClipboardMULSNPButton, &QPushButton::clicked, this, &SectionRCncrGUI::copyToClipboardMULSN );
     connect( m_d->ui->copyToFileMULSNPButton, &QPushButton::clicked, this, &SectionRCncrGUI::copyToFileMULSN );
     connect( m_d->ui->plotMULSNPButton, &QPushButton::clicked, this, &SectionRCncrGUI::plotMULSN );
+    connect( m_d->ui->SLSCalculatePButton, &QPushButton::clicked, this, &SectionRCncrGUI::SLSCalculate );
 
     connect( m_d->ui->SectionRectPushButton, &QPushButton::clicked, this, &SectionRCncrGUI::setSectionCncrRectangular );
 
-    connect( m_d->cenULS->y, &VarPlus::readOnlyChanged, this, &SectionRCncrGUI::setYCenULS );
-    connect( m_d->cenULS->z, &VarPlus::readOnlyChanged, this, &SectionRCncrGUI::setZCenULS );
+    connect( m_d->NCenULS->y, &VarPlus::readOnlyChanged, this, &SectionRCncrGUI::setNCenULSY );
+    connect( m_d->NCenULS->z, &VarPlus::readOnlyChanged, this, &SectionRCncrGUI::setNCenULSZ );
 
     connect( m_d->NULS, &VarPlus::valueChanged, this, &SectionRCncrGUI::calculateMULS );
     connect( m_d->alphaULS, &VarPlus::valueChanged, this, &SectionRCncrGUI::calculateMULS );
-    connect( m_d->cenULS, &VarPlus::valueChanged, this, &SectionRCncrGUI::calculateMULS );
+    connect( m_d->NCenULS, &VarPlus::valueChanged, this, &SectionRCncrGUI::calculateMULS );
+
+    connect( m_d->NCenSLS->y, &VarPlus::readOnlyChanged, this, &SectionRCncrGUI::setNCenSLSY );
+    connect( m_d->NCenSLS->z, &VarPlus::readOnlyChanged, this, &SectionRCncrGUI::setNCenSLSZ );
 
     connect( m_d->LSPlusNULS, &VarPlus::valueChanged, this, &SectionRCncrGUI::calculateNMULS );
     connect( m_d->LSPlusMyULS, &VarPlus::valueChanged, this, &SectionRCncrGUI::calculateNMULS );
@@ -345,10 +404,12 @@ void SectionRCncrGUI::setSection(Section * s){
         disconnect( m_d->ui->sectionsFRPTableView->selectionModel(), &QItemSelectionModel::currentRowChanged,
                     this, static_cast<void (SectionRCncrGUI::*)(const QModelIndex &, const QModelIndex &)>(&SectionRCncrGUI::setCurrentSectionFRP) );
         disconnect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::calculateMULS );
-        disconnect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setYCenULS );
-        disconnect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setZCenULS );
+        disconnect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setNCenULSY );
+        disconnect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setNCenULSZ );
         disconnect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setYLSPlusNCenULS );
         disconnect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setZLSPlusNCenULS );
+        disconnect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setNCenSLSY );
+        disconnect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setNCenSLSZ );
     }
 
     m_d->section = dynamic_cast<SectionRCncr *>(s);
@@ -374,8 +435,10 @@ void SectionRCncrGUI::setSection(Section * s){
         connect( m_d->ui->sectionsFRPTableView->selectionModel(), &QItemSelectionModel::currentRowChanged,
                  this, static_cast<void (SectionRCncrGUI::*)(const QModelIndex &, const QModelIndex &)>(&SectionRCncrGUI::setCurrentSectionFRP) );
         connect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::calculateMULS );
-        connect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setYCenULS );
-        connect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setZCenULS );
+        connect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setNCenULSY );
+        connect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setNCenULSZ );
+        connect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setNCenSLSY );
+        connect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setNCenSLSZ );
         connect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setYLSPlusNCenULS );
         connect( m_d->section, &Section::sectionChanged, this, &SectionRCncrGUI::setZLSPlusNCenULS );
 
@@ -383,10 +446,12 @@ void SectionRCncrGUI::setSection(Section * s){
         calculateNMULS();
     }
 
-    setYCenULS();
-    setZCenULS();
+    setNCenULSY();
+    setNCenULSZ();
     setYLSPlusNCenULS();
     setZLSPlusNCenULS();
+    setNCenSLSY();
+    setNCenSLSZ();
 }
 
 Material *SectionRCncrGUI::material() {
@@ -641,26 +706,50 @@ void SectionRCncrGUI::setSectionCncrRectangular(){
     }
 }
 
-void SectionRCncrGUI::setYCenULS(){
+void SectionRCncrGUI::setNCenSLSY(){
     if( m_d->section ){
-        if( m_d->cenULS->y->readOnly() ){
-            m_d->cenULS->y->setValueNormal( m_d->section->GCncr->y->valueNormal() );
+        if( m_d->NCenSLS->y->readOnly() ){
+            m_d->NCenSLS->y->setValueNormal( m_d->section->GCncr->y->valueNormal() );
         }
     } else {
-        if( m_d->cenULS->y->readOnly() ){
-            m_d->cenULS->y->setValueNormal( 0.0 );
+        if( m_d->NCenSLS->y->readOnly() ){
+            m_d->NCenSLS->y->setValueNormal( 0.0 );
         }
     }
 }
 
-void SectionRCncrGUI::setZCenULS(){
+void SectionRCncrGUI::setNCenSLSZ(){
     if( m_d->section ){
-        if( m_d->cenULS->z->readOnly() ){
-            m_d->cenULS->z->setValueNormal( m_d->section->GCncr->z->valueNormal() );
+        if( m_d->NCenSLS->z->readOnly() ){
+            m_d->NCenSLS->z->setValueNormal( m_d->section->GCncr->z->valueNormal() );
         }
     } else {
-        if( m_d->cenULS->z->readOnly() ){
-            m_d->cenULS->z->setValueNormal( 0.0 );
+        if( m_d->NCenSLS->z->readOnly() ){
+            m_d->NCenSLS->z->setValueNormal( 0.0 );
+        }
+    }
+}
+
+void SectionRCncrGUI::setNCenULSY(){
+    if( m_d->section ){
+        if( m_d->NCenULS->y->readOnly() ){
+            m_d->NCenULS->y->setValueNormal( m_d->section->GCncr->y->valueNormal() );
+        }
+    } else {
+        if( m_d->NCenULS->y->readOnly() ){
+            m_d->NCenULS->y->setValueNormal( 0.0 );
+        }
+    }
+}
+
+void SectionRCncrGUI::setNCenULSZ(){
+    if( m_d->section ){
+        if( m_d->NCenULS->z->readOnly() ){
+            m_d->NCenULS->z->setValueNormal( m_d->section->GCncr->z->valueNormal() );
+        }
+    } else {
+        if( m_d->NCenULS->z->readOnly() ){
+            m_d->NCenULS->z->setValueNormal( 0.0 );
         }
     }
 }
@@ -668,11 +757,11 @@ void SectionRCncrGUI::setZCenULS(){
 void SectionRCncrGUI::setYLSPlusNCenULS(){
     if( m_d->section ){
         if( m_d->LSPlusNCenULS->y->readOnly() ){
-            m_d->cenULS->y->setValueNormal( m_d->section->GCncr->y->valueNormal() );
+            m_d->NCenULS->y->setValueNormal( m_d->section->GCncr->y->valueNormal() );
         }
     } else {
         if( m_d->LSPlusNCenULS->y->readOnly() ){
-            m_d->cenULS->y->setValueNormal( 0.0 );
+            m_d->NCenULS->y->setValueNormal( 0.0 );
         }
     }
 }
@@ -702,7 +791,7 @@ void SectionRCncrGUI::calculateMULS(){
 
         QList<Point2DModel *> * pointsModel = new QList<Point2DModel *>;
 
-        m_d->section->MULS( m_d->MULSy, m_d->MULSz, m_d->NULS, m_d->cenULS, m_d->alphaULS, pointsModel );
+        m_d->section->MULS( m_d->MULSy, m_d->MULSz, m_d->NULS, m_d->NCenULS, m_d->alphaULS, pointsModel );
 
         QList<Point2DModel *>::iterator iter = pointsModel->begin();
         while( iter != pointsModel->end() ){
@@ -727,7 +816,7 @@ void SectionRCncrGUI::calculateNMULS(){
 
 void SectionRCncrGUI::copyToClipboardMULSyMULSz(){
     if( m_d->section ){
-        QPolygonF data = m_d->section->MULSyMULSz(m_d->NULS, m_d->cenULS, m_d->ui->MULSyMULSzAccuracySBox->value());
+        QPolygonF data = m_d->section->MULSyMULSz(m_d->NULS, m_d->NCenULS, m_d->ui->MULSyMULSzAccuracySBox->value());
         QString text;
         for( QPolygonF::iterator i = data.begin(); i != data.end(); ++i ){
             text += QString::number( i->x()*m_d->MULSyMULSzKRed->valueNormal() ) + QString("\t") + QString::number( i->y()*m_d->MULSyMULSzKRed->valueNormal() ) + QString("\n");
@@ -751,7 +840,7 @@ void SectionRCncrGUI::copyToFileMULSyMULSz(){
         }
         QTextStream stream( &file );
 
-        QPolygonF data = m_d->section->MULSyMULSz(m_d->NULS, m_d->cenULS, m_d->ui->MULSyMULSzAccuracySBox->value());
+        QPolygonF data = m_d->section->MULSyMULSz(m_d->NULS, m_d->NCenULS, m_d->ui->MULSyMULSzAccuracySBox->value());
         for( QPolygonF::iterator i = data.begin(); i != data.end(); ++i ){
             stream << QString::number( i->x()*m_d->MULSyMULSzKRed->valueNormal() ) + QString("\t") + QString::number( i->y()*m_d->MULSyMULSzKRed->valueNormal() ) + QString("\n");
         }
@@ -763,7 +852,7 @@ void SectionRCncrGUI::copyToFileMULSyMULSz(){
 void SectionRCncrGUI::plotMULSyMULSz(){
     if( m_d->section ){
         SimpleDataPlotterDialog d( trUtf8("Interazione My-Mz"), this );
-        QPolygonF plotData = m_d->section->MULSyMULSz(m_d->NULS, m_d->cenULS, m_d->ui->MULSyMULSzAccuracySBox->value());
+        QPolygonF plotData = m_d->section->MULSyMULSz(m_d->NULS, m_d->NCenULS, m_d->ui->MULSyMULSzAccuracySBox->value());
         for( QPolygonF::iterator i = plotData.begin(); i != plotData.end(); ++i ){
             (*i) *= m_d->MULSyMULSzKRed->valueNormal();
         }
@@ -774,7 +863,7 @@ void SectionRCncrGUI::plotMULSyMULSz(){
 
 void SectionRCncrGUI::copyToClipboardMULSN(){
     if( m_d->section ){
-        QPolygonF data = m_d->section->MULSN( m_d->cenULS, m_d->alphaULS, m_d->ui->MULSNAccuracySBox->value());
+        QPolygonF data = m_d->section->MULSN( m_d->NCenULS, m_d->alphaULS, m_d->ui->MULSNAccuracySBox->value());
         QString text;
         for( QPolygonF::iterator i = data.begin(); i != data.end(); ++i ){
             text += QString::number( i->x() ) + QString("\t") + QString::number( i->y() ) + QString("\n");
@@ -798,7 +887,7 @@ void SectionRCncrGUI::copyToFileMULSN(){
         }
         QTextStream stream( &file );
 
-        QPolygonF data = m_d->section->MULSN( m_d->cenULS, m_d->alphaULS, m_d->ui->MULSNAccuracySBox->value());
+        QPolygonF data = m_d->section->MULSN( m_d->NCenULS, m_d->alphaULS, m_d->ui->MULSNAccuracySBox->value());
         for( QPolygonF::iterator i = data.begin(); i != data.end(); ++i ){
             stream << QString::number( i->x() ) + QString("\t") + QString::number( i->y() ) + QString("\n");
         }
@@ -810,9 +899,15 @@ void SectionRCncrGUI::copyToFileMULSN(){
 void SectionRCncrGUI::plotMULSN(){
     if( m_d->section ){
         SimpleDataPlotterDialog d( trUtf8("Interazione N-M"), this );
-        d.setCurveData( 0, m_d->section->MULSN( m_d->cenULS, m_d->alphaULS, m_d->ui->MULSNAccuracySBox->value()) );
+        d.setCurveData( 0, m_d->section->MULSN( m_d->NCenULS, m_d->alphaULS, m_d->ui->MULSNAccuracySBox->value()) );
         d.setXAxisInverted( true );
         d.exec();
+    }
+}
+
+void SectionRCncrGUI::SLSCalculate(){
+    if( m_d->section ){
+        m_d->section->NMSLS( m_d->lSLS, m_d->mySLS, m_d->mzSLS, m_d->NSLS, m_d->MySLS, m_d->MzSLS, m_d->NCenSLS );
     }
 }
 

@@ -381,17 +381,7 @@ public:
     void beamNCr( DoublePlus * ret, DoublePlus * Ly, DoublePlus * Lz );
 
     /**
-    * Calcola lo sforzo normale allo SLE con deformazione data (deformazione piana e = l + m * z), unità di misura interne al programma
-    * @param l
-    * @param my
-    * @param mz
-    * @param sects sezioni reagenti
-    * @return lo sforzo normale allo stato limite di esercizio con deformazione data di parametri l, my e mz (unità di misura interne al programma)
-    */
-    virtual double NSLSNormal(double l, double my, double mz, QList<Point2DModel *> *sectsOut = NULL );
-
-    /**
-    * Momento allo SLE con deformazione data (deformazione piana e = l + my * z), unità di misura interne al programma
+    * Sforzo normale e momento allo SLE con deformazione data (deformazione piana e = l + my * z), unità di misura interne al programma
     * @param yRet puntatore alla variabile su cui viene scritta la componente y del momento allo SLU
     * @param zRet puntatore alla variabile su cui viene scritta la componente z del momento allo SLU
     * @param l
@@ -400,46 +390,7 @@ public:
     * @param sects sezioni reagenti
     * @return il momento allo stato limite di esercizio con deformazione data di parametri l, my e mz (unità di misura interne al programma)
     */
-    virtual void MSLSNormal(double *yRet, double * zRet, double l, double my, double mz, QList<Point2DModel *> *sects = NULL);
-
-    /**
-    * Calcola lo sforzo normale allo SLU con deformazione data (deformazione piana e = l + m * z), unità di misura interne al programma
-    * @param l
-    * @param my
-    * @param sects sezioni reagenti
-    * @return lo sforzo normale allo stato limite ultimo (unità di misura interne del programma)
-    */
-    virtual double NULSNormal(double l, double my, QList<Point2DModel *> * sects = NULL);
-
-    /**
-    * Calcola lo sforzo normale allo SLU con deformazione data (deformazione piana e = l + m * z)
-    * @param ret il puntatore alla variabile su cui viene scritto lo sforzo normale allo SLU
-    * @param l
-    * @param m
-    * @param sects sezioni reagenti
-    */
-    void NULS( DoublePlus * ret, double l, double m, QList<Point2DModel *> * sects = NULL);
-
-    /**
-    * Momento allo SLU con deformazione data (deformazione piana e = l + my * z), unità di misura interne al programma
-    * @param yRet puntatore alla variabile su cui viene scritta la componente y del momento allo SLU
-    * @param zRet puntatore alla variabile su cui viene scritta la componente z del momento allo SLU
-    * @param l
-    * @param my
-    * @param sects sezioni reagenti
-    * @return Il momento allo stato limite ultimo con deformazione data di parametri l e my (unità di misura interne al programma)
-    */
-    virtual void MULSNormal(double *yRet, double * zRet, double l, double my, QList<Point2DModel *> *sects = NULL);
-
-    /**
-    * Momento allo SLU con deformazione data (deformazione piana e = l + m * z)
-    * @param l
-    * @param m
-    * @param sect1 zona con andamento parabolico delle tensioni
-    * @param sect2 zona con andamento costante delle tensioni
-    * @return Il momento allo stato limite ultimo con deformazione data di parametri l e m
-    */
-    void MULS( DoublePlus * yRet, DoublePlus * zRet, double l, double m, QList<Point2DModel *> * sects = NULL);
+    virtual void NMSLSNormal(double *NRet, double * MyRet, double *MzRet, double l, double my, double mz, QList<Point2DModel *> *sects = NULL);
 
     /**
     * Calcola lo sforzo normale allo SLU con deformazione data (deformazione piana e = l + m * z), unità di misura interne al programma

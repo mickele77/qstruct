@@ -75,8 +75,8 @@ private slots:
     void setCurrentSectionSteel( const QModelIndex &, const QModelIndex & );
     void setCurrentSectionFRP( const QModelIndex &, const QModelIndex & );
 
-    void setYCenULS();
-    void setZCenULS();
+    void setNCenULSY();
+    void setNCenULSZ();
     void calculateMULS();
     void copyToClipboardMULSyMULSz();
     void copyToFileMULSN();
@@ -97,6 +97,10 @@ private slots:
     void LSPlusULSLoadStoryCalculate();
 
     void setCurrentSectionFRPNULL();
+
+    void setNCenSLSY();
+    void setNCenSLSZ();
+    void SLSCalculate();
 };
 
 #endif // SECTIONRCNCRGUI_H

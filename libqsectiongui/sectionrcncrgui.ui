@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>662</width>
-    <height>693</height>
+    <width>732</width>
+    <height>978</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -73,7 +73,7 @@ p&lt;span style=&quot; vertical-align:sub;&quot;&gt;w&lt;/span&gt;
    <item row="2" column="0" colspan="5">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="inputTab">
       <attribute name="title">
@@ -86,7 +86,7 @@ p&lt;span style=&quot; vertical-align:sub;&quot;&gt;w&lt;/span&gt;
           <enum>QTabWidget::West</enum>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="cncrPage">
           <attribute name="title">
@@ -103,158 +103,163 @@ p&lt;span style=&quot; vertical-align:sub;&quot;&gt;w&lt;/span&gt;
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>568</width>
-                <height>531</height>
+                <width>638</width>
+                <height>816</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22">
                <item row="0" column="0">
-                <layout class="QGridLayout" name="gridLayout_10">
-                 <item row="0" column="0">
-                  <widget class="QPushButton" name="addSectionCncrPButton">
-                   <property name="text">
-                    <string>+</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QPushButton" name="removeSectionCncrPButton">
-                   <property name="text">
-                    <string>-</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0" colspan="2">
-                  <widget class="QSplitter" name="splitter">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <widget class="QTableView" name="sectionsCncrTableView"/>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item row="0" column="1">
-                <widget class="QTabWidget" name="sectCncrPointsTabWidget">
-                 <property name="enabled">
-                  <bool>false</bool>
+                <widget class="QSplitter" name="splitter_5">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
                  </property>
-                 <property name="currentIndex">
-                  <number>0</number>
-                 </property>
-                 <widget class="QWidget" name="pointsTab">
-                  <attribute name="title">
-                   <string>per punti</string>
-                  </attribute>
-                  <layout class="QGridLayout" name="gridLayout">
-                   <item row="1" column="0" colspan="2">
-                    <widget class="QTableView" name="sectCncrPointsTableView"/>
-                   </item>
+                 <widget class="QWidget" name="">
+                  <layout class="QGridLayout" name="gridLayout_10">
                    <item row="0" column="0">
-                    <widget class="QPushButton" name="addSectCncrPointPButton">
+                    <widget class="QPushButton" name="addSectionCncrPButton">
                      <property name="text">
                       <string>+</string>
                      </property>
                     </widget>
                    </item>
                    <item row="0" column="1">
-                    <widget class="QPushButton" name="removeSectCncrPointPButton">
+                    <widget class="QPushButton" name="removeSectionCncrPButton">
                      <property name="text">
                       <string>-</string>
                      </property>
                     </widget>
                    </item>
+                   <item row="1" column="0" colspan="2">
+                    <widget class="QSplitter" name="splitter">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <widget class="QTableView" name="sectionsCncrTableView"/>
+                    </widget>
+                   </item>
                   </layout>
                  </widget>
-                 <widget class="QWidget" name="SectionRectTab">
-                  <attribute name="title">
-                   <string>semplificata</string>
-                  </attribute>
-                  <layout class="QVBoxLayout" name="verticalLayout_4">
-                   <item>
-                    <widget class="QGroupBox" name="SectionRectGroupBox">
-                     <property name="title">
-                      <string>Sezione rettangolare</string>
-                     </property>
-                     <layout class="QGridLayout" name="gridLayout_2">
-                      <item row="0" column="0">
-                       <widget class="QLabelRichName" name="bRectLabel">
-                        <property name="text">
-                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                 <widget class="QTabWidget" name="sectCncrPointsTabWidget">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="currentIndex">
+                   <number>0</number>
+                  </property>
+                  <widget class="QWidget" name="pointsTab">
+                   <attribute name="title">
+                    <string>per punti</string>
+                   </attribute>
+                   <layout class="QGridLayout" name="gridLayout">
+                    <item row="1" column="0" colspan="2">
+                     <widget class="QTableView" name="sectCncrPointsTableView"/>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QPushButton" name="addSectCncrPointPButton">
+                      <property name="text">
+                       <string>+</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QPushButton" name="removeSectCncrPointPButton">
+                      <property name="text">
+                       <string>-</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="SectionRectTab">
+                   <attribute name="title">
+                    <string>semplificata</string>
+                   </attribute>
+                   <layout class="QVBoxLayout" name="verticalLayout_4">
+                    <item>
+                     <widget class="QGroupBox" name="SectionRectGroupBox">
+                      <property name="title">
+                       <string>Sezione rettangolare</string>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_2">
+                       <item row="0" column="0">
+                        <widget class="QLabelRichName" name="bRectLabel">
+                         <property name="text">
+                          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
 &lt;body&gt;
 b
 &lt;/body&gt;
 &lt;/html&gt;</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="0" column="1">
-                       <widget class="QLabelUnitMeasure" name="bRectUMLabel">
-                        <property name="text">
-                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="1">
+                        <widget class="QLabelUnitMeasure" name="bRectUMLabel">
+                         <property name="text">
+                          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
 &lt;body&gt;
 [m]
 &lt;/body&gt;
 &lt;/html&gt;</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="0" column="2">
-                       <widget class="QLineEditValue" name="bRectLEdit"/>
-                      </item>
-                      <item row="1" column="0">
-                       <widget class="QLabelRichName" name="hRectLabel">
-                        <property name="text">
-                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="2">
+                        <widget class="QLineEditValue" name="bRectLEdit"/>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabelRichName" name="hRectLabel">
+                         <property name="text">
+                          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
 &lt;body&gt;
 h
 &lt;/body&gt;
 &lt;/html&gt;</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="1" column="1">
-                       <widget class="QLabelUnitMeasure" name="hRectUMLabel">
-                        <property name="text">
-                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="1">
+                        <widget class="QLabelUnitMeasure" name="hRectUMLabel">
+                         <property name="text">
+                          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
 &lt;body&gt;
 [m]
 &lt;/body&gt;
 &lt;/html&gt;</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="1" column="2">
-                       <widget class="QLineEditValue" name="hRectLEdit"/>
-                      </item>
-                      <item row="2" column="2">
-                       <widget class="QPushButton" name="SectionRectPushButton">
-                        <property name="text">
-                         <string>Crea</string>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </widget>
-                   </item>
-                   <item>
-                    <spacer name="verticalSpacer_2">
-                     <property name="orientation">
-                      <enum>Qt::Vertical</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>20</width>
-                       <height>146</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                  </layout>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="2">
+                        <widget class="QLineEditValue" name="hRectLEdit"/>
+                       </item>
+                       <item row="2" column="2">
+                        <widget class="QPushButton" name="SectionRectPushButton">
+                         <property name="text">
+                          <string>Crea</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="verticalSpacer_2">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>146</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </widget>
                  </widget>
                 </widget>
                </item>
@@ -919,11 +924,11 @@ h
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>606</width>
-            <height>608</height>
+            <width>690</width>
+            <height>838</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_13">
+          <layout class="QGridLayout" name="gridLayout_39">
            <item row="0" column="0">
             <widget class="QGroupBox" name="ULSGBox">
              <property name="title">
@@ -1327,122 +1332,239 @@ N punti
              </layout>
             </widget>
            </item>
+           <item row="0" column="1">
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>452</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
            <item row="1" column="0">
-            <widget class="QGroupBox" name="ELSGBox">
+            <widget class="QGroupBox" name="SLSGBox">
              <property name="title">
               <string>SLE</string>
              </property>
-             <layout class="QGridLayout" name="gridLayout_11">
+             <layout class="QGridLayout" name="gridLayout_13">
               <item row="0" column="0">
                <widget class="QSplitter" name="splitter_3">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
-                <widget class="QGroupBox" name="ELSActionsGBox">
-                 <property name="minimumSize">
-                  <size>
-                   <width>250</width>
-                   <height>0</height>
-                  </size>
-                 </property>
-                 <property name="title">
-                  <string>Azioni agenti</string>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_17">
-                  <item row="0" column="0">
-                   <widget class="QLabelRichName" name="NELSLabel">
-                    <property name="text">
-                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
-&lt;body&gt;
-N
-&lt;/body&gt;&lt;/html&gt;</string>
+                <widget class="QWidget" name="">
+                 <layout class="QVBoxLayout" name="verticalLayout_8">
+                  <item>
+                   <widget class="QGroupBox" name="SLSActionsGBox">
+                    <property name="minimumSize">
+                     <size>
+                      <width>250</width>
+                      <height>0</height>
+                     </size>
                     </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QLabelUnitMeasure" name="NELSUMLabel">
-                    <property name="text">
-                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
-&lt;body&gt;
-[N]
-&lt;/body&gt;&lt;/html&gt;</string>
+                    <property name="title">
+                     <string>Azioni agenti</string>
                     </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="QLineEditValue" name="NELSLEdit">
-                    <property name="styleSheet">
-                     <string notr="true"/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabelRichName" name="MELSyLabel">
-                    <property name="text">
-                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                    <layout class="QGridLayout" name="gridLayout_11">
+                     <item row="1" column="0">
+                      <widget class="QLabelRichName" name="MySLSLabel">
+                       <property name="text">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
 &lt;body&gt;
 M&lt;span style=&quot; vertical-align:sub;&quot;&gt;y&lt;/span&gt;
 &lt;/body&gt;
 &lt;/html&gt;</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLabelUnitMeasure" name="MELSyUMLabel">
-                    <property name="text">
-                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QLabelUnitMeasure" name="MySLSUMLabel">
+                       <property name="text">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
 &lt;body&gt;
 [N m]
 &lt;/body&gt;
 &lt;/html&gt;</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="2">
-                   <widget class="QLineEditValue" name="MELSyLEdit">
-                    <property name="styleSheet">
-                     <string notr="true"/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabelRichName" name="MELSzLabel">
-                    <property name="text">
-                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="2">
+                      <widget class="QLineEditValue" name="MySLSLEdit">
+                       <property name="styleSheet">
+                        <string notr="true"/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QLabelRichName" name="MzSLSLabel">
+                       <property name="text">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
 &lt;body&gt;
 M&lt;span style=&quot; vertical-align:sub;&quot;&gt;z&lt;/span&gt;
 &lt;/body&gt;
 &lt;/html&gt;</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QLabelUnitMeasure" name="MELSzUMLabel">
-                    <property name="text">
-                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QLabelUnitMeasure" name="MzSLSUMLabel">
+                       <property name="text">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
 &lt;body&gt;
 [N m]
 &lt;/body&gt;
 &lt;/html&gt;</string>
-                    </property>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="2">
+                      <widget class="QLineEditValue" name="MzSLSLEdit">
+                       <property name="styleSheet">
+                        <string notr="true"/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabelRichName" name="NSLSLabel">
+                       <property name="text">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+N
+&lt;/body&gt;&lt;/html&gt;</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLabelUnitMeasure" name="NSLSUMLabel">
+                       <property name="text">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[N]
+&lt;/body&gt;&lt;/html&gt;</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="2">
+                      <widget class="QLineEditValue" name="NSLSLEdit">
+                       <property name="styleSheet">
+                        <string notr="true"/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0" colspan="3">
+                      <widget class="QGroupBox" name="SLSActionsNCenGBox">
+                       <property name="title">
+                        <string>Polo</string>
+                       </property>
+                       <layout class="QGridLayout" name="gridLayout_40">
+                        <item row="1" column="0">
+                         <widget class="QLabelRichName" name="NCenYSLSLabel">
+                          <property name="text">
+                           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+y
+&lt;/body&gt;
+&lt;/html&gt;</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="2">
+                         <widget class="QLineEditValue" name="NCenYSLSLEdit">
+                          <property name="styleSheet">
+                           <string notr="true"/>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="0">
+                         <widget class="QLabelRichName" name="NCenZSLSLabel">
+                          <property name="text">
+                           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+z
+&lt;/body&gt;
+&lt;/html&gt;</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="2">
+                         <widget class="QLineEditValue" name="NCenZSLSLEdit">
+                          <property name="styleSheet">
+                           <string notr="true"/>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="1">
+                         <widget class="QLabelUnitMeasure" name="NCenYSLSUMLabel">
+                          <property name="text">
+                           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[m]
+&lt;/body&gt;
+&lt;/html&gt;</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="1">
+                         <widget class="QLabelUnitMeasure" name="NCenZSLSUMLabel">
+                          <property name="text">
+                           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[m]
+&lt;/body&gt;
+&lt;/html&gt;</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="3">
+                         <widget class="QCheckBoxReadOnly" name="NCenYSLSCheckBox">
+                          <property name="text">
+                           <string/>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="3">
+                         <widget class="QCheckBoxReadOnly" name="NCenZSLSCheckBox">
+                          <property name="text">
+                           <string/>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
-                  <item row="2" column="2">
-                   <widget class="QLineEditValue" name="MELSzLEdit">
-                    <property name="styleSheet">
-                     <string notr="true"/>
+                  <item>
+                   <spacer name="verticalSpacer_6">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
                     </property>
-                   </widget>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>17</width>
+                      <height>34</height>
+                     </size>
+                    </property>
+                   </spacer>
                   </item>
                  </layout>
                 </widget>
-                <widget class="QGroupBox" name="fELSGBox">
+                <widget class="QGroupBox" name="resultsSLSGBox">
                  <property name="minimumSize">
                   <size>
                    <width>250</width>
@@ -1450,65 +1572,129 @@ M&lt;span style=&quot; vertical-align:sub;&quot;&gt;z&lt;/span&gt;
                   </size>
                  </property>
                  <property name="title">
-                  <string>Tensioni</string>
+                  <string>Calcolo</string>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout_12">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="fELSCncrMaxLabel">
-                    <property name="text">
-                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
-&lt;body&gt;
-σ&lt;span style=&quot; vertical-align:sub;&quot;&gt;s,max&lt;/span&gt;
-&lt;/body&gt;
-&lt;/html&gt;</string>
+                 <layout class="QVBoxLayout" name="verticalLayout_9">
+                  <item>
+                   <widget class="QGroupBox" name="groupBox_4">
+                    <property name="title">
+                     <string>Deformazioni</string>
                     </property>
+                    <layout class="QGridLayout" name="gridLayout_17">
+                     <item row="0" column="1">
+                      <widget class="QLabelUnitMeasure" name="lSLSUMLabel">
+                       <property name="text">
+                        <string>[-]</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabelRichName" name="mySLSLabel">
+                       <property name="text">
+                        <string>μ&lt;span style=&quot; vertical-align:sub;&quot;&gt;y&lt;/span&gt;</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="2">
+                      <widget class="QLineEditValue" name="lSLSLEdit"/>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabelRichName" name="lSLSLabel">
+                       <property name="text">
+                        <string>λ</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="2">
+                      <widget class="QLineEditValue" name="mySLSLEdit"/>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QLabelUnitMeasure" name="mySLSUMLabel">
+                       <property name="text">
+                        <string>[-]</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QLabelRichName" name="mzSLSLabel">
+                       <property name="text">
+                        <string>μ&lt;span style=&quot; vertical-align:sub;&quot;&gt;z&lt;/span&gt;</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QLabelUnitMeasure" name="mzSLSUMLabel">
+                       <property name="text">
+                        <string>[-]</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="2">
+                      <widget class="QLineEditValue" name="mzSLSLEdit"/>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
-                  <item row="0" column="1">
-                   <widget class="QLabelUnitMeasure" name="fELSCncrMaxUMLabel">
-                    <property name="text">
-                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                  <item>
+                   <widget class="QGroupBox" name="groupBox_5">
+                    <property name="title">
+                     <string>Tensioni</string>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_12">
+                     <item row="0" column="0">
+                      <widget class="QLabelRichName" name="fSLSCncrMaxLabel">
+                       <property name="text">
+                        <string>σ&lt;span style=&quot; vertical-align:sub;&quot;&gt;c,max&lt;/span&gt;</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLabelUnitMeasure" name="fSLSCncrMaxUMLabel">
+                       <property name="text">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
 &lt;body&gt;
 [Pa]
 &lt;/body&gt;
 &lt;/html&gt;</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="QLineEditValue" name="fELSCncrMaxLEdit"/>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="fELSSteelCncrMaxLabel">
-                    <property name="text">
-                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="2">
+                      <widget class="QLineEditValue" name="fSLSCncrMaxLEdit"/>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabelRichName" name="fSLSSteelCncrMaxLabel">
+                       <property name="text">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
 &lt;body&gt;
 σ&lt;span style=&quot; vertical-align:sub;&quot;&gt;s,max&lt;/span&gt;
 &lt;/body&gt;
 &lt;/html&gt;</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLabelUnitMeasure" name="fELSSteelCncrMaxUMLabel">
-                    <property name="text">
-                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QLabelUnitMeasure" name="fSLSSteelCncrMaxUMLabel">
+                       <property name="text">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
 &lt;body&gt;
 [Pa]
 &lt;/body&gt;
 &lt;/html&gt;</string>
-                    </property>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="2">
+                      <widget class="QLineEditValue" name="fSLSSteelCncrMaxLEdit"/>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
-                  <item row="1" column="2">
-                   <widget class="QLineEditValue" name="fELSSteelCncrMaxLEdit"/>
-                  </item>
-                  <item row="2" column="0" colspan="3">
-                   <widget class="QPushButton" name="ELSCalculatePButton">
+                  <item>
+                   <widget class="QPushButton" name="SLSCalculatePButton">
                     <property name="text">
                      <string>Calcola</string>
                     </property>
@@ -1534,19 +1720,6 @@ M&lt;span style=&quot; vertical-align:sub;&quot;&gt;z&lt;/span&gt;
              </property>
             </spacer>
            </item>
-           <item row="0" column="1">
-            <spacer name="horizontalSpacer_3">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>452</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
           </layout>
          </widget>
         </widget>
@@ -1568,8 +1741,8 @@ M&lt;span style=&quot; vertical-align:sub;&quot;&gt;z&lt;/span&gt;
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>620</width>
-            <height>553</height>
+            <width>690</width>
+            <height>838</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_37">
@@ -1843,8 +2016,8 @@ M&lt;span style=&quot; vertical-align:sub;&quot;&gt;z&lt;/span&gt;
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>620</width>
-            <height>553</height>
+            <width>690</width>
+            <height>838</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_18"/>
@@ -1868,8 +2041,8 @@ M&lt;span style=&quot; vertical-align:sub;&quot;&gt;z&lt;/span&gt;
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>620</width>
-            <height>553</height>
+            <width>690</width>
+            <height>838</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_38"/>

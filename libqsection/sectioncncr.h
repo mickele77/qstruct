@@ -66,7 +66,7 @@ public:
     * @param sects zone in compressione con andamento parabolico e costante delle tensioni
     * @return Il momento allo stato limite ultimo con deformazione data di parametri l e m (unità di misura interne al programma)
     */
-    void MSLSNormal(double *yRet, double * zRet,
+    void NMSLSNormal(double *yRet, double * zRet,
                     double l, double my, double mz,
                     QList<Point2DModel *> *sectsOut = NULL );
 

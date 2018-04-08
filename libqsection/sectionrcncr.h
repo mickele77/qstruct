@@ -43,7 +43,7 @@ private:
     /** calcola lambda, muy  muz in funzione di due punti di passaggio del piano di deformazione */
     bool lmP1P2(double *l, double *a, double s1, double e1, double s2, double e2);
 
-     /** Inizializza le variabili proprie della sezione */
+    /** Inizializza le variabili proprie della sezione */
     void initVar();
 
     void setGCncrY( bool emitAuto );
@@ -116,6 +116,9 @@ public:
     double Sy2zDyDzNormal();
     double pWNormal();
 
+    void NMSLSNormal( double *NRet, double *MyRet, double *MzRet,
+                      double l, double my, double mz, QList<Point2DModel *> *sects=NULL );
+
     /** Calcola la sezione allo SLE
      * @param l parametro di ritorno descrittivo dello stato deformativo
      * @param my parametro di ritorno descrittivo dello stato deformativo
@@ -129,8 +132,24 @@ public:
      * @param prec livello di precisione */
     bool NMSLSNormal( double *l, double *my, double *mz,
                       double N, double My, double Mz,
-                      double yN, double zN ,
-                      int maxIter=500, double prec=1.0e-4);
+                      double yN, double zN,
+                      int maxIter=5000, double prec=1.0e-4);
+
+    /** Calcola la sezione allo SLE
+     * @param l parametro di ritorno descrittivo dello stato deformativo
+     * @param my parametro di ritorno descrittivo dello stato deformativo
+     * @param mz parametro di ritorno descrittivo dello stato deformativo
+     * @param N sforzo normale applicato
+     * @param My momento My applicato
+     * @param Mz momento Mz applicato
+     * @param yN y del punto di applicazione dello sforzo normale N
+     * @param zN z del punto di applicazione dello sforzo normale N
+     * @param maxIter numero massimo di iterazioni
+     * @param prec livello di precisione */
+    bool NMSLS(DoublePlus * l, DoublePlus * my, DoublePlus * mz,
+               DoublePlus * N, DoublePlus * My, DoublePlus * Mz,
+               Point2DPlus *NCen,
+               IntPlus * maxIter=NULL, DoublePlus * prec=NULL);
 
     /** Calcola lo stato deformativo della sezione sotto l'azione di (N, My, Mz) applicati in
      * (yM, zM)
@@ -172,24 +191,14 @@ public:
      * @param mz mz sezione deformata come risultante dal calcolo
      * @return restituisce true se si raggiunge la convergenza, false altrimenti */
     bool NMULS(QList<DoublePlus *> * l, QList<DoublePlus *> *my, QList<DoublePlus *> * mz,
-                SectionLoadPhase *phase, DoublePlus *N, DoublePlus *My, DoublePlus *Mz, Point2DPlus *Ncen,
-                IntPlus * maxIter=NULL, DoublePlus * prec=NULL);
+               SectionLoadPhase *phase, DoublePlus *N, DoublePlus *My, DoublePlus *Mz, Point2DPlus *Ncen,
+               IntPlus * maxIter=NULL, DoublePlus * prec=NULL);
 
     /** massima sollecitazione di compressione nella sezione (con segno negativo) */
     double NULSMinNormal();
     /** massima sollecitazione di trazione nella sezione
      *  @param eps deformazione corrispondente */
     double NULSMaxNormal( double * eps = NULL );
-
-    /**
-    * Calcola lo sforzo normale allo SLU con deformazione data (deformazione piana e = l + m * y), unitÃ  di misura interne al programma
-    * @param l
-    * @param my
-    * @param sects elenco delle sezioni definite nel corso del calcolo ed utili al fine della verifica del risultato
-    * @return lo sforzo normale allo stato limite ultimo (unitÃ  di misura interne del programma)
-    */
-    double NULSNormal( double l, double my,
-                       QList<Point2DModel *> * sects = NULL );
 
     /**
     * Calcola lo sforzo normale allo SLU con deformazione data (deformazione piana e = l + m * y), unitÃ  di misura interne al programma
@@ -211,19 +220,6 @@ public:
     double NULSNormal(int phase,
                       QList<double> * l, QList<double> * my, QList<double> * mz,
                       QList<Point2DModel *> * sects = NULL );
-
-    /**
-    * Momento allo SLU con deformazione data (deformazione piana e = l + my * z), unita'  di misura interne al programma
-    * Il momento è valutato rispetto a (0, 0).
-    * @param MyRet puntatore alla variabile su cui viene scritta la componente y del momento allo SLU
-    * @param MzRet puntatore alla variabile su cui viene scritta la componente z del momento allo SLU
-    * @param l
-    * @param my
-    * @param sects elenco delle sezioni definite nel corso del calcolo ed utili al fine della verifica del risultato
-    */
-    void MULSNormal(double *MyRet, double * MzRet,
-                    double l, double my,
-                    QList<Point2DModel *> *sects = NULL );
 
     /**
     * Momento allo SLU con deformazione data (deformazione piana e = l + my * z + mz * y), unita'  di misura interne al programma
@@ -302,7 +298,6 @@ public:
 
     // **** GUI ****
     QGraphicsItem * qGraphicsItem();
-
 };
 
 #endif // SECTIONRCNCR_H

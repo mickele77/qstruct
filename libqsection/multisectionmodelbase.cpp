@@ -433,14 +433,20 @@ double MultiSectionModelBase::pWNormal(){
     return ret;
 }
 
-double MultiSectionModelBase::NULSNormal( double l, double my, QList<Point2DModel *> * sects ){
-    double ret = 0.0;
+void MultiSectionModelBase::NMSLSNormal( double *NRet, double *MyRet, double *MzRet,
+                                         double l, double my, double mz, QList<Point2DModel *> *sects) {
+    *NRet = 0.0;
+    *MyRet = 0.0;
+    *MzRet = 0.0;
+    double NTmp = 0.0, MyTmp = 0.0, MzTmp = 0.0;
     QList<Section *>::iterator iter = m_sectionContainer->begin();
     while( iter != m_sectionContainer->end() ){
-        ret += (*iter)->NULSNormal( l, my, sects );
+        (*iter)->NMSLSNormal( &NTmp, &MyTmp, &MzTmp, l, my, mz, sects );
+        *NRet += NTmp;
+        *MyRet += MyTmp;
+        *MzRet += MzTmp;
         iter++;
     }
-    return ret;
 }
 
 double MultiSectionModelBase::NULSNormal( double l, double my, double mz, QList<Point2DModel *> * sects ){
@@ -473,21 +479,6 @@ double MultiSectionModelBase::NULSNormal( int phase,
         }
     }
     return ret;
-}
-
-void MultiSectionModelBase::MULSNormal( double *yRet, double * zRet,
-                                        double l, double my,
-                                        QList<Point2DModel *> * sects ){
-    *yRet = 0.0;
-    *zRet = 0.0;
-    double yTmp = 0.0, zTmp = 0.0;
-    QList<Section *>::iterator iter = m_sectionContainer->begin();
-    while( iter != m_sectionContainer->end() ){
-        (*iter)->MULSNormal( &yTmp, &zTmp, l, my, 0.0, sects );
-        *yRet += yTmp;
-        *zRet += zTmp;
-        iter++;
-    }
 }
 
 void MultiSectionModelBase::MULSNormal( double *yRet, double * zRet,

@@ -114,14 +114,19 @@ public:
     double pWNormal();
 
     /**
-    * Calcola lo sforzo normale allo SLU con deformazione data (deformazione piana e = l + my * z), unità di misura interne al programma
+    * Momento allo SLE con deformazione data (deformazione piana e = l + my * z + mz * y), unità di misura interne al programma
+    * @param yRet puntatore alla variabile su cui viene scritta la componente y del momento allo SLU
+    * @param zRet puntatore alla variabile su cui viene scritta la componente z del momento allo SLU
     * @param l
     * @param my
+    * @param mz
     * @param sect1 zona con andamento parabolico delle tensioni
     * @param sect2 zona con andamento costante delle tensioni
-    * @return lo sforzo normale allo stato limite ultimo (unità di misura interne del programma)
+    * @return Il momento allo stato limite ultimo con deformazione data di parametri l e m (unità di misura interne al programma)
     */
-    double NULSNormal(double l, double my, QList<Point2DModel *> *sects = NULL );
+    void NMSLSNormal( double *NRet, double *MyRet, double * MzRet,
+                      double l, double my, double mz,
+                      QList<Point2DModel *> * sects = NULL );
 
     /**
     * Calcola lo sforzo normale allo SLU con deformazione data (deformazione piana e = l + my * z + mz * y), unità di misura interne al programma
@@ -145,18 +150,6 @@ public:
     * @return lo sforzo normale allo stato limite ultimo (unità di misura interne del programma)
     */
     double NULSNormal(int phase, QList<double> *l, QList<double> *my, QList<double> *mz, QList<Point2DModel *> *sects = NULL );
-
-    /**
-    * Momento allo SLU con deformazione data (deformazione piana e = l + my * z), unità di misura interne al programma
-    * @param yRet puntatore alla variabile su cui viene scritta la componente y del momento allo SLU
-    * @param zRet puntatore alla variabile su cui viene scritta la componente z del momento allo SLU
-    * @param l
-    * @param my
-    * @param sect1 zona con andamento parabolico delle tensioni
-    * @param sect2 zona con andamento costante delle tensioni
-    * @return Il momento allo stato limite ultimo con deformazione data di parametri l e m (unità di misura interne al programma)
-    */
-    void MULSNormal(double *yRet, double * zRet, double l, double my, QList<Point2DModel *> * sects = NULL );
 
     /**
     * Momento allo SLU con deformazione data (deformazione piana e = l + my * z + mz * y), unità di misura interne al programma
@@ -186,9 +179,9 @@ public:
     * @return Il momento allo stato limite ultimo con deformazione data di parametri l e m (unità di misura interne al programma)
     */
     void MULSNormal(double *yRet, double * zRet,
-                     int phase,
-                     QList<double> *l, QList<double> *my, QList<double> *mz,
-                     QList<Point2DModel *> * sects = NULL );
+                    int phase,
+                    QList<double> *l, QList<double> *my, QList<double> *mz,
+                    QList<Point2DModel *> * sects = NULL );
 
     /** Inserisce una sezione. */
     bool insertRows( int first, int count=1, const QModelIndex &parent = QModelIndex() );

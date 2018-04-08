@@ -342,17 +342,17 @@ bool SectionRCncr::lmP1P2( double *l, double *a,
 double SectionRCncr::NULSMinNormal(){
     if( m_d->sectionsCncr->count() > 0 ){
         // *** sezione con cls ***
-        return NULSNormal( -m_d->sectionsCncr->epsCUMin(), 0.0);
+        return NULSNormal( -m_d->sectionsCncr->epsCUMin(), 0.0, 0.0);
     } else if (m_d->sectionsSteelCncr->count() > 0) {
         // *** sezione senza cls, solo armature ***
         switch( m_d->sectionsSteelCncr->steelCncrModelfEps() ){
         case SteelCncr::inclinedTopBranch:
-            return NULSNormal( -m_d->sectionsSteelCncr->epsUdMin(), 0.0);
+            return NULSNormal( -m_d->sectionsSteelCncr->epsUdMin(), 0.0, 0.0);
         default:
-            return NULSNormal( -m_d->sectionsSteelCncr->epsYdMax(), 0.0);
+            return NULSNormal( -m_d->sectionsSteelCncr->epsYdMax(), 0.0, 0.0);
         }
     } else if (m_d->sectionsSteel->count() > 0) {
-        return NULSNormal( - m_d->sectionsSteelCncr->epsYdMax(), 0.0);
+        return NULSNormal( - m_d->sectionsSteelCncr->epsYdMax(), 0.0, 0.0);
     }
     return 0.0;
 }
@@ -405,14 +405,6 @@ double SectionRCncr::NULSMaxNormal( double *eps ){
     return 0.0;
 }
 
-double SectionRCncr::NULSNormal(double l, double my, QList<Point2DModel *> *sects){
-    double NRdRet = m_d->sectionsCncr->NULSNormal(l, my, sects);
-    NRdRet += m_d->sectionsSteelCncr->NULSNormal(l, my, sects);
-    NRdRet += m_d->sectionsSteel->NULSNormal(l, my, sects);
-    NRdRet += m_d->sectionsFRP->NULSNormal(l, my, sects);
-    return NRdRet;
-}
-
 double SectionRCncr::NULSNormal(double l, double my, double mz, QList<Point2DModel *> *sects){
     double NRdRet = m_d->sectionsCncr->NULSNormal(l, my, mz, sects);
     NRdRet += m_d->sectionsSteelCncr->NULSNormal(l, my, mz, sects);
@@ -429,21 +421,6 @@ double SectionRCncr::NULSNormal( int phase,
     NRdRet += m_d->sectionsSteel->NULSNormal( phase, l, my, mz, sects);
     NRdRet += m_d->sectionsFRP->NULSNormal( phase, l, my, mz, sects);
     return NRdRet;
-}
-
-void SectionRCncr::MULSNormal( double * MyRet, double * MzRet,
-                               double l, double my, QList<Point2DModel *> * sects){
-    *MyRet = 0.0; *MzRet = 0.0;
-    double y=0.0, z=0.0;
-
-    m_d->sectionsCncr->MULSNormal( &y, &z, l, my, sects);
-    *MyRet += y; *MzRet += z;
-    m_d->sectionsSteelCncr->MULSNormal( &y, &z, l, my, sects );
-    *MyRet += y; *MzRet += z;
-    m_d->sectionsSteel->MULSNormal( &y, &z, l, my, sects );
-    *MyRet += y; *MzRet += z;
-    m_d->sectionsFRP->MULSNormal( &y, &z, l, my, sects );
-    *MyRet += y; *MzRet += z;
 }
 
 void SectionRCncr::MULSNormal(double * MyRet, double * MzRet,
@@ -782,7 +759,7 @@ QPolygonF SectionRCncr::MULSyMULSz( DoublePlus * NSd, Point2DPlus * cen, int pro
 }
 
 QPolygonF SectionRCncr::MULSN( Point2DPlus * cen, DoublePlus * rot, int propNP){
-    double lRd, mRd;
+    double lRd, myRd;
     QPolygonF polygon;
 
     int nP = propNP > 1 ? propNP: 1;
@@ -811,10 +788,10 @@ QPolygonF SectionRCncr::MULSN( Point2DPlus * cen, DoublePlus * rot, int propNP){
 
     double NRd[4];
     NRd[0] = sectRCncrRot.NULSMinNormal();
-    lmP1P2(&lRd, &mRd, zCMin, epsCU, zCMax, 0.0 );
-    NRd[1] = sectRCncrRot.NULSNormal( lRd, mRd);
-    lmP1P2(&lRd, &mRd, zCMin, epsCU, zSMax, epsUd);
-    NRd[2] = sectRCncrRot.NULSNormal(lRd, mRd);
+    lmP1P2(&lRd, &myRd, zCMin, epsCU, zCMax, 0.0 );
+    NRd[1] = sectRCncrRot.NULSNormal( lRd, myRd, 0.0);
+    lmP1P2(&lRd, &myRd, zCMin, epsCU, zSMax, epsUd);
+    NRd[2] = sectRCncrRot.NULSNormal(lRd, myRd, 0.0);
     NRd[3] = sectRCncrRot.NULSMaxNormal();
 
     for( int i=0; i < 3; i++){
@@ -845,10 +822,10 @@ QPolygonF SectionRCncr::MULSN( Point2DPlus * cen, DoublePlus * rot, int propNP){
     zSMax = sectRCncrRot.m_d->sectionsSteelCncr->zMaxNormal();
 
     NRd[0] = sectRCncrRot.NULSMinNormal();
-    lmP1P2(&lRd, &mRd, zCMin, epsCU, zCMax, 0.0 );
-    NRd[1] = sectRCncrRot.NULSNormal( lRd, mRd);
-    lmP1P2(&lRd, &mRd, zCMin, epsCU, zSMax, epsUd);
-    NRd[2] = sectRCncrRot.NULSNormal(lRd, mRd);
+    lmP1P2(&lRd, &myRd, zCMin, epsCU, zCMax, 0.0 );
+    NRd[1] = sectRCncrRot.NULSNormal( lRd, myRd, 0.0);
+    lmP1P2(&lRd, &myRd, zCMin, epsCU, zSMax, epsUd);
+    NRd[2] = sectRCncrRot.NULSNormal(lRd, myRd, 0.0);
     NRd[3] = sectRCncrRot.NULSMaxNormal();
 
     for( int i=3; i > 0; i--){
@@ -938,6 +915,22 @@ double SectionRCncr::pWNormal(){
     return m_d->sectionsCncr->pWNormal();
 }
 
+void SectionRCncr::NMSLSNormal(double *NRet, double *MyRet, double * MzRet,
+                                double l, double my, double mz,
+                               QList<Point2DModel *> *sects){
+    *NRet = 0.0; *MyRet = 0.0; *MzRet = 0.0;
+    double NTmp = 0.0, MyTmp=0.0, MzTmp=0.0;
+
+    m_d->sectionsCncr->NMSLSNormal( &NTmp, &MyTmp, &MzTmp, l, my, mz, sects);
+    *NRet += NTmp; *MyRet += MyTmp; *MzRet += MzTmp;
+    m_d->sectionsSteelCncr->NMSLSNormal( &NTmp, &MyTmp, &MzTmp, l, my, mz, sects );
+    *NRet += NTmp; *MyRet += MyTmp; *MzRet += MzTmp;
+    m_d->sectionsSteel->NMSLSNormal( &NTmp, &MyTmp, &MzTmp, l, my, mz, sects );
+    *NRet += NTmp; *MyRet += MyTmp; *MzRet += MzTmp;
+    m_d->sectionsFRP->NMSLSNormal( &NTmp, &MyTmp, &MzTmp, l, my, mz, sects );
+    *NRet += NTmp; *MyRet += MyTmp; *MzRet += MzTmp;
+}
+
 bool SectionRCncr::NMSLSNormal( double *l, double *my, double *mz,
                                 double N, double My, double Mz,
                                 double yN, double zN ,
@@ -954,11 +947,11 @@ bool SectionRCncr::NMSLSNormal( double *l, double *my, double *mz,
         int iter = 0;
 
         *l = N / EA;
-        *my = My / EIyy;
-        *mz = - Mz / EIzz;
-        double DN = N - NSLSNormal( *l, *my, *mz );
-        double MyRet = 0.0, MzRet = 0.0;
-        MSLSNormal( &MyRet, &MzRet, *l, *my, *mz );
+        *my = MyEff / EIyy;
+        *mz = - MzEff / EIzz;
+        double NRet = 0.0, MyRet = 0.0, MzRet = 0.0;
+        NMSLSNormal( &NRet, &MyRet, &MzRet, *l, *my, *mz );
+        double DN = N - NRet;
         double DMy = MyEff - MyRet;
         double DMz = MzEff - MzRet;
 
@@ -967,10 +960,9 @@ bool SectionRCncr::NMSLSNormal( double *l, double *my, double *mz,
             *my += DMy / EIyy;
             *mz += - DMz / EIzz;
 
-            DN = N - NSLSNormal( *l, *my, *mz );
-
-            MyRet = 0.0; MzRet = 0.0;
-            MSLSNormal( &MyRet, &MzRet, *l, *my, *mz );
+            NRet = 0.0; MyRet = 0.0; MzRet = 0.0;
+            NMSLSNormal( &NRet, &MyRet, &MzRet, *l, *my, *mz );
+            DN = N - NRet;
             DMy = MyEff - MyRet;
             DMz = MzEff - MzRet;
 
@@ -984,6 +976,28 @@ bool SectionRCncr::NMSLSNormal( double *l, double *my, double *mz,
     *my = 0.0;
     *mz = 0.0;
     return false;
+}
+
+bool SectionRCncr::NMSLS( DoublePlus *l, DoublePlus *my, DoublePlus *mz,
+                          DoublePlus *N, DoublePlus *My, DoublePlus *Mz,
+                          Point2DPlus * NCen,
+                          IntPlus *maxIter, DoublePlus *prec) {
+    double lRet, myRet, mzRet;
+    double precVal = 1.0e-4;
+    int maxIterVal = 50000;
+    if( prec != NULL ){
+        precVal = prec->valueNormal();
+    }
+    if( maxIter != NULL ){
+        maxIterVal = maxIter->valueNormal();
+    }
+    bool retVal = NMSLSNormal( &lRet, &myRet, &mzRet,
+                               N->valueNormal(), My->valueNormal(), Mz->valueNormal(),
+                               NCen->y->valueNormal(), NCen->z->valueNormal(), maxIterVal, precVal );
+    l->setValueNormal( lRet );
+    my->setValueNormal( myRet );
+    mz->setValueNormal( mzRet );
+    return retVal;
 }
 
 bool SectionRCncr::NMULSNormal(double *l, double *my, double *mz,

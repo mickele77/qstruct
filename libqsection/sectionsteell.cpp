@@ -35,7 +35,7 @@
 
 class SectionSteelLPrivate {
 public:
-    SectionSteelLPrivate( DoublePlus ** p, UnitMeasure * ump ){
+    SectionSteelLPrivate( DoublePlus ** p){
         np = 5;
 
         h = p[0];
@@ -89,7 +89,7 @@ public:
 
 SectionSteelL::SectionSteelL( DoublePlus ** p, Steel * st, UnitMeasure * ump ):
     SectionSteelProfile( st, ump ),
-    m_d( new SectionSteelLPrivate(p, ump )){
+    m_d( new SectionSteelLPrivate(p)){
     connect( m_d->h, &DoublePlus::valueChanged, this, &SectionSteelL::updateSectionSteelProfile );
     connect( m_d->b, &DoublePlus::valueChanged, this, &SectionSteelL::updateSectionSteelProfile );
     connect( m_d->t, &DoublePlus::valueChanged, this, &SectionSteelL::updateSectionSteelProfile );

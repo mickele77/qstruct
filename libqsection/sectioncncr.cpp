@@ -122,7 +122,7 @@ double SectionCncr::NSLSNormal(double l, double my, double mz, QList<Point2DMode
     return NRet;
 }
 
-void SectionCncr::MSLSNormal( double *yRet, double * zRet,
+void SectionCncr::NMSLSNormal( double *yRet, double * zRet,
                               double l, double my, double mz,
                               QList<Point2DModel *> *sectsOut){
     *yRet = 0.0;

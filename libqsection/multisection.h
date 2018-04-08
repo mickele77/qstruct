@@ -55,7 +55,7 @@ public:
     * @param sect2 zona con andamento costante delle tensioni
     * @return lo sforzo normale allo stato limite ultimo (unità di misura interne del programma)
     */
-    double NULSNormal( double l, double m, QList<Point2DModel *> * sects = NULL );
+    double NULSNormal( double l, double my, double mz, QList<Point2DModel *> * sects = NULL );
 
     /**
     * Momento allo SLU con deformazione data (deformazione piana e = l + m * z), unità di misura interne al programma
@@ -67,7 +67,7 @@ public:
     * @param sect2 zona con andamento costante delle tensioni
     * @return Il momento allo stato limite ultimo con deformazione data di parametri l e m (unità di misura interne al programma)
     */
-    void MULSNormal( double *yRet, double * zRet, double l, double m, QList<Point2DModel *> * sects = NULL );
+    void MULSNormal( double *yRet, double *zRet, double l, double my, double mz, QList<Point2DModel *> * sects = NULL );
 
     /** Restituisce l'oggetto grafico che rappresenta la sezione
     Se non c'e' oggetto grafico specifico restituisce NULL */
