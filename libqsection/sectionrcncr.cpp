@@ -923,12 +923,13 @@ void SectionRCncr::fSLSNormal(QList<double> *fMinCncr, QList<double> *fSteelCncr
     m_d->sectionsCncr->fMinSLSNormal( fMinCncr, l, my, mz );
     fSteelCncr->clear();
     m_d->sectionsSteelCncr->fSLSNormal( fSteelCncr, l, my, mz );
+
     // TODO
 }
 
-void SectionRCncr::NMSLSNormal(double *NRet, double *MyRet, double * MzRet,
+void SectionRCncr::NMSLSNormal( double *NRet, double *MyRet, double * MzRet,
                                 double l, double my, double mz,
-                               QList<Point2DModel *> *sects){
+                                QList<Point2DModel *> *sects){
     *NRet = 0.0; *MyRet = 0.0; *MzRet = 0.0;
     double NTmp = 0.0, MyTmp=0.0, MzTmp=0.0;
 

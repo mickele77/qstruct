@@ -104,45 +104,22 @@ double SectionCncr::fMinSLSNormal(double l, double my, double mz) {
             double cmpVal = qMin( 0.0, m_material->E->valueNormal() * (l + my * m_pointsModel->P(i)->y->valueNormal() + mz * m_pointsModel->P(i)->z->valueNormal()));
             ret = qMin( ret, cmpVal );
         }
+        return ret;
     }
     return 0.0;
 }
 
-double SectionCncr::NSLSNormal(double l, double my, double mz, QList<Point2DModel *> *sectsOut) {
-    double NRet = 0.0;
-    if( concrete() ){
-        if( m_pointsModel->pCount() > 2 ){
-            if( my == 0.0 && mz == 0.0 ){
-                NRet = concrete()->fSLSNormal(l) * A->valueNormal();
-            } else {
-                Point2DModel * sectMinus = new Point2DModel();
-
-                QList<double> eVal; eVal << 0.0;
-                QList<Point2DModel *> sects; sects << sectMinus << NULL;
-                m_pointsModel->calculateSects( l, my, mz, eVal, sects );
-
-                NRet += concrete()->E->valueNormal() * ( l * sectMinus->ANormal() + my * sectMinus->SyNormal() + mz * sectMinus->SzNormal() );
-                if( sectsOut != NULL ){
-                    sectsOut->append( sectMinus );
-                } else {
-                    delete sectMinus;
-                }
-            }
-        }
-    }
-    return NRet;
-}
-
-void SectionCncr::NMSLSNormal( double *yRet, double * zRet,
+void SectionCncr::NMSLSNormal( double *NRet, double *MyRet, double * MzRet,
                                double l, double my, double mz,
                                QList<Point2DModel *> *sectsOut){
-    *yRet = 0.0;
-    *zRet = 0.0;
+    *NRet = 0.0;
+    *MyRet = 0.0;
+    *MzRet = 0.0;
     if( concrete() ){
         if( m_pointsModel->pCount() > 2 ){
             if( my == 0.0 && mz == 0.0 ){
-                *yRet = concrete()->fULSNormal(l) * Sy->valueNormal();
-                *zRet = - concrete()->fULSNormal(l) * Sz->valueNormal();
+                *MyRet = concrete()->fULSNormal(l) * Sy->valueNormal();
+                *MzRet = - concrete()->fULSNormal(l) * Sz->valueNormal();
             } else {
                 Point2DModel * sectMinus = new Point2DModel();
 
@@ -150,8 +127,9 @@ void SectionCncr::NMSLSNormal( double *yRet, double * zRet,
                 QList<Point2DModel *> sects; sects << sectMinus << NULL;
                 m_pointsModel->calculateSects( l, my, mz, eVal, sects );
 
-                *yRet = concrete()->E->valueNormal() * ( l * sectMinus->SyNormal() + my * sectMinus->IyyNormal() + mz * sectMinus->IyzNormal() );
-                *zRet -= concrete()->E->valueNormal()* ( l * sectMinus->SzNormal() + my * sectMinus->IyzNormal() + mz * sectMinus->IzzNormal() );
+                *NRet = concrete()->E->valueNormal() * ( l * sectMinus->ANormal() + my * sectMinus->SyNormal() + mz * sectMinus->SzNormal() );
+                *MyRet = concrete()->E->valueNormal() * ( l * sectMinus->SyNormal() + my * sectMinus->IyyNormal() + mz * sectMinus->IyzNormal() );
+                *MzRet -= concrete()->E->valueNormal()* ( l * sectMinus->SzNormal() + my * sectMinus->IyzNormal() + mz * sectMinus->IzzNormal() );
 
                 if( sectsOut ){
                     sectsOut->append( sectMinus );

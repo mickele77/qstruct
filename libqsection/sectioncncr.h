@@ -49,16 +49,6 @@ public:
     double fMinSLSNormal( double l, double my, double mz);
 
     /**
-    * Calcola lo sforzo normale allo SLE con deformazione data (deformazione piana e = l + my * z + mz * y), unità di misura interne al programma
-    * @param l
-    * @param my
-    * @param mz
-    * @param sects zone in compressione
-    * @return lo sforzo normale allo stato limite ultimo (unità di misura interne del programma)
-    */
-    double NSLSNormal(double l, double my, double mz, QList<Point2DModel *> * sectsOut = NULL );
-
-    /**
     * Momento allo SLE con deformazione data (deformazione piana e = l + my * z + mz * y), unità di misura interne al programma
     * @param xRet puntatore alla variabile su cui viene scritta la componente y del momento allo SLU
     * @param yRet puntatore alla variabile su cui viene scritta la componente z del momento allo SLU
@@ -68,7 +58,7 @@ public:
     * @param sects zone in compressione con andamento parabolico e costante delle tensioni
     * @return Il momento allo stato limite ultimo con deformazione data di parametri l e m (unità di misura interne al programma)
     */
-    void NMSLSNormal(double *yRet, double * zRet,
+    void NMSLSNormal(double *NRet, double *MyRet, double * MzRet,
                     double l, double my, double mz,
                     QList<Point2DModel *> *sectsOut = NULL );
 
