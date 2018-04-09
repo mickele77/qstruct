@@ -146,6 +146,13 @@ void SectionSteelCncr::rotateNormal( double rot, bool suspSignals ){
     }
 }
 
+double SectionSteelCncr::fSLSNormal(double l, double my, double mz) {
+    if( m_material != NULL ){
+        return m_material->E->valueNormal() * (l + my * P->y->valueNormal() + mz * P->z->valueNormal());
+    }
+    return 0.0;
+}
+
 void SectionSteelCncr::MULSNormal(double *yRet,
                                   double *zRet,
                                   double l,

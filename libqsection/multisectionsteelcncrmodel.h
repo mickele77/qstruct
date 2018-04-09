@@ -45,6 +45,9 @@ public:
     double epsYdMax();
     double epsUdMin();
 
+    void fSLSNormal( QList<double> *fSteelCncr,
+                     double l, double my, double mz);
+
     /** Se tutte le sezioni hanno SteelCncr::inclinedTopBranch restituisce SteelCncr::inclinedTopBranch,
       * altrimenti resitituisce SteelCncr::horizontalTopBranch */
     SteelCncr::ModelFEps steelCncrModelfEps();

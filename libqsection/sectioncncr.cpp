@@ -97,6 +97,17 @@ QString SectionCncr::typeSection(){
     return trUtf8("Sezione in Cls");
 }
 
+double SectionCncr::fMinSLSNormal(double l, double my, double mz) {
+    if( (m_pointsModel->pCount() > 0) && (m_material != NULL) ){
+        double ret = qMin(0.0, m_material->E->valueNormal() * (l + my * m_pointsModel->P(0)->y->valueNormal() + mz * m_pointsModel->P(0)->z->valueNormal()));
+        for( int i=1; i < m_pointsModel->pCount(); ++i ){
+            double cmpVal = qMin( 0.0, m_material->E->valueNormal() * (l + my * m_pointsModel->P(i)->y->valueNormal() + mz * m_pointsModel->P(i)->z->valueNormal()));
+            ret = qMin( ret, cmpVal );
+        }
+    }
+    return 0.0;
+}
+
 double SectionCncr::NSLSNormal(double l, double my, double mz, QList<Point2DModel *> *sectsOut) {
     double NRet = 0.0;
     if( concrete() ){
@@ -123,8 +134,8 @@ double SectionCncr::NSLSNormal(double l, double my, double mz, QList<Point2DMode
 }
 
 void SectionCncr::NMSLSNormal( double *yRet, double * zRet,
-                              double l, double my, double mz,
-                              QList<Point2DModel *> *sectsOut){
+                               double l, double my, double mz,
+                               QList<Point2DModel *> *sectsOut){
     *yRet = 0.0;
     *zRet = 0.0;
     if( concrete() ){

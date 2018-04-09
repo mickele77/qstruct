@@ -34,6 +34,9 @@ class EXPORT_SECTION_LIB_OPT MultiSectionCncrModel: public MultiSectionModelBase
 public:
     MultiSectionCncrModel(UnitMeasure * ump, MaterialModel * matModel, QObject * parent = 0);
 
+    void fMinSLSNormal( QList<double> *fMinCncr,
+                        double l, double my, double mz );
+
     SectionCncr * sectionCncr( int i );
     SectionCncr * sectionCncrId( unsigned int i);
 

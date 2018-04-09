@@ -49,6 +49,9 @@ public:
 
     Point2DPlus * P;
 
+    /** Tensione alle SLE */
+    double fSLSNormal(double l, double my, double mz);
+
     /**
     * Calcola lo sforzo normale allo SLU con deformazione data (deformazione piana e = l + my * z), unità  di misura interne al programma
     * @param l

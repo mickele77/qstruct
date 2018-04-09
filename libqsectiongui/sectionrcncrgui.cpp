@@ -195,6 +195,21 @@ public:
         mzSLS->setToolTip( QObject::trUtf8("Curvatura - componente z") );
         mzSLS->setRichName( QObject::trUtf8("μ<span style=\"vertical-align:sub;\">z</span>"));
         addVarToContainer( mzSLS );
+
+        fCncrMinSLS = new DoublePlus(0.0, "fCncrMinSLS", m_unitMeasure, UnitMeasure::tension );
+        fCncrMinSLS->setToolTip( QObject::trUtf8("Tensione minima nel calcestruzzo") );
+        fCncrMinSLS->setRichName( QObject::trUtf8("σ<span style=\"vertical-align:sub;\">c,min</span>"));
+        addVarToContainer( fCncrMinSLS );
+
+        fSteelCncrMinSLS = new DoublePlus(0.0, "fSteelCncrMinSLS", m_unitMeasure, UnitMeasure::tension );
+        fSteelCncrMinSLS->setToolTip( QObject::trUtf8("Tensione minima nell'armatura in acciaio") );
+        fSteelCncrMinSLS->setRichName( QObject::trUtf8("σ<span style=\"vertical-align:sub;\">s,min</span>"));
+        addVarToContainer( fSteelCncrMinSLS );
+
+        fSteelCncrMaxSLS = new DoublePlus(0.0, "fSteelCncrMaxSLS", m_unitMeasure, UnitMeasure::tension );
+        fSteelCncrMaxSLS->setToolTip( QObject::trUtf8("Tensione massima nell'armatura in acciaio") );
+        fSteelCncrMaxSLS->setRichName( QObject::trUtf8("σ<span style=\"vertical-align:sub;\">s,max</span>"));
+        addVarToContainer( fSteelCncrMaxSLS );
     }
     ~SectionRCncrGUIPrivate(){
         delete ui;
@@ -260,7 +275,11 @@ public:
         VarPlusGUI::connectVar( MzSLS, ui->MzSLSLabel, ui->MzSLSLEdit, ui->MzSLSUMLabel );
         VarPlusGUI::connectVar( lSLS, ui->lSLSLabel, ui->lSLSLEdit, ui->lSLSUMLabel );
         VarPlusGUI::connectVar( mySLS, ui->mySLSLabel, ui->mySLSLEdit, ui->mySLSUMLabel );
-        VarPlusGUI::connectVar( mzSLS, ui->mzSLSLabel, ui->mzSLSLEdit, ui->mzSLSUMLabel );    }
+        VarPlusGUI::connectVar( mzSLS, ui->mzSLSLabel, ui->mzSLSLEdit, ui->mzSLSUMLabel );
+        VarPlusGUI::connectVar( fCncrMinSLS, ui->fSLSCncrMinLabel, ui->fSLSCncrMinLEdit, ui->fSLSCncrMinUMLabel );
+        VarPlusGUI::connectVar( fSteelCncrMinSLS, ui->fSLSSteelCncrMinLabel, ui->fSLSSteelCncrMinLEdit, ui->fSLSSteelCncrMinUMLabel );
+        VarPlusGUI::connectVar( fSteelCncrMaxSLS, ui->fSLSSteelCncrMaxLabel, ui->fSLSSteelCncrMaxLEdit, ui->fSLSSteelCncrMaxUMLabel );
+    }
 
     Ui::SectionRCncrGUI * ui;
     SectionSteelGUI * sectionSteelGUI;
@@ -303,6 +322,9 @@ public:
     DoublePlus * lSLS;
     DoublePlus * mySLS;
     DoublePlus * mzSLS;
+    DoublePlus * fCncrMinSLS;
+    DoublePlus * fSteelCncrMinSLS;
+    DoublePlus * fSteelCncrMaxSLS;
 
     QList<QGraphicsPolygonItem *> * sectsToView;
 };
@@ -908,6 +930,17 @@ void SectionRCncrGUI::plotMULSN(){
 void SectionRCncrGUI::SLSCalculate(){
     if( m_d->section ){
         m_d->section->NMSLS( m_d->lSLS, m_d->mySLS, m_d->mzSLS, m_d->NSLS, m_d->MySLS, m_d->MzSLS, m_d->NCenSLS );
+        QList<double> fMinCncr;
+        QList<double> fSteelCncr;
+        QList<double> fMinSteel;
+        QList<double> fMaxSteel;
+        QList<double> fMinFRP;
+        QList<double> fMaxFRP;
+        m_d->section->fSLSNormal( &fMinCncr, &fSteelCncr, &fMinSteel, &fMaxSteel, &fMinFRP, &fMaxFRP,
+                                  m_d->lSLS->valueNormal(), m_d->mySLS->valueNormal(), m_d->mzSLS->valueNormal() );
+        m_d->fCncrMinSLS->setValueNormal( *std::min_element(fMinCncr.begin(), fMinCncr.end()) );
+        m_d->fSteelCncrMaxSLS->setValueNormal( *std::max_element(fSteelCncr.begin(), fSteelCncr.end()) );
+        m_d->fSteelCncrMinSLS->setValueNormal( *std::min_element(fSteelCncr.begin(), fSteelCncr.end()) );
     }
 }
 

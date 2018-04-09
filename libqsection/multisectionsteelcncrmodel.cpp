@@ -342,6 +342,13 @@ double MultiSectionSteelCncrModel::epsUdMin(){
     return ret;
 }
 
+void MultiSectionSteelCncrModel::fSLSNormal(QList<double> *fSteelCncr, double l, double my, double mz) {
+    for( QList<Section *>::iterator iter = m_sectionContainer->begin(); iter != m_sectionContainer->end(); iter++ ){
+        SectionSteelCncr * sectSteelCncr = dynamic_cast<SectionSteelCncr *>(*iter);
+        fSteelCncr->append( sectSteelCncr->fSLSNormal( l, my, mz ) );
+    }
+}
+
 SteelCncr::ModelFEps MultiSectionSteelCncrModel::steelCncrModelfEps(){
     QList<Section *>::iterator iter = m_sectionContainer->begin();
     bool wasRetSet = false;

@@ -915,6 +915,17 @@ double SectionRCncr::pWNormal(){
     return m_d->sectionsCncr->pWNormal();
 }
 
+void SectionRCncr::fSLSNormal(QList<double> *fMinCncr, QList<double> *fSteelCncr,
+                              QList<double> *fMinSteel, QList<double> *fMaxSteel,
+                              QList<double> *fMinFRP, QList<double> *fMaxFRP,
+                              double l, double my, double mz) {
+    fMinCncr->clear();
+    m_d->sectionsCncr->fMinSLSNormal( fMinCncr, l, my, mz );
+    fSteelCncr->clear();
+    m_d->sectionsSteelCncr->fSLSNormal( fSteelCncr, l, my, mz );
+    // TODO
+}
+
 void SectionRCncr::NMSLSNormal(double *NRet, double *MyRet, double * MzRet,
                                 double l, double my, double mz,
                                QList<Point2DModel *> *sects){

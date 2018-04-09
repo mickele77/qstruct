@@ -38,6 +38,15 @@ MultiSectionCncrModel::MultiSectionCncrModel(UnitMeasure * ump,
     connect( m_d->unitMeasure, &UnitMeasure::stringsChanged, this, &MultiSectionCncrModel::updateHeaders );
 }
 
+void MultiSectionCncrModel::fMinSLSNormal(QList<double> *fMinCncr, double l, double my, double mz) {
+    for( QList<Section *>::iterator iter = m_sectionContainer->begin(); iter != m_sectionContainer->end(); iter++ ){
+        SectionCncr * sectCncr = dynamic_cast<SectionCncr *>(*iter);
+        if( sectCncr ){
+            fMinCncr->append( sectCncr->fMinSLSNormal( l, my, mz ) );
+        }
+    }
+}
+
 int MultiSectionCncrModel::materialColumn() {
     return 1;
 }
@@ -75,12 +84,11 @@ SectionCncr * MultiSectionCncrModel::sectionCncrId( unsigned int i){
 }
 
 double MultiSectionCncrModel::yMaxNormal(){
-    QList<Section *>::iterator iter = m_sectionContainer->begin();
     double maxRet = 0.0;
     bool wasMexRetSet = false;
 
     // cerchiamo la prima SectionCncr
-    while( iter != m_sectionContainer->end() ){
+    for( QList<Section *>::iterator iter = m_sectionContainer->begin(); iter != m_sectionContainer->end(); iter++ ){
         SectionCncr * sectCncr = dynamic_cast<SectionCncr *>(*iter);
         if(  sectCncr != NULL ){
             if( sectCncr->pointsModel()->pCount() > 0 ){
@@ -96,7 +104,6 @@ double MultiSectionCncrModel::yMaxNormal(){
                 break;
             }
         }
-        iter++;
     }
 
     // finito
@@ -104,12 +111,11 @@ double MultiSectionCncrModel::yMaxNormal(){
 }
 
 double MultiSectionCncrModel::yMinNormal(){
-    QList<Section *>::iterator iter = m_sectionContainer->begin();
     double minRet = 0.0;
     bool wasMinSet = false;
 
     // cerchiamo la prima SectSteelCncr
-    while( iter != m_sectionContainer->end() ){
+    for( QList<Section *>::iterator iter = m_sectionContainer->begin(); iter != m_sectionContainer->end(); iter++ ){
         SectionCncr * sectCncr = dynamic_cast<SectionCncr *>(*iter);
         if( sectCncr ){
             if( sectCncr->pointsModel()->pCount() > 0 ){
@@ -124,7 +130,6 @@ double MultiSectionCncrModel::yMinNormal(){
                 }
             }
         }
-        iter++;
     }
 
     // finito
@@ -132,13 +137,11 @@ double MultiSectionCncrModel::yMinNormal(){
 }
 
 double MultiSectionCncrModel::zMaxNormal(){
-    QList<Section *>::iterator iter = m_sectionContainer->begin();
     double maxRet = 0.0;
     bool wasMaxRet = false;
 
     // cerchiamo la prima SectSteelCncr
-    while( iter != m_sectionContainer->end() ){
-        SectionCncr * sectCncr = dynamic_cast<SectionCncr *>(*iter);
+    for( QList<Section *>::iterator iter = m_sectionContainer->begin(); iter != m_sectionContainer->end(); iter++ ){        SectionCncr * sectCncr = dynamic_cast<SectionCncr *>(*iter);
         if( sectCncr ){
             if( sectCncr->pointsModel()->pCount() > 0 ){
                 if( wasMaxRet) {
@@ -152,7 +155,6 @@ double MultiSectionCncrModel::zMaxNormal(){
                 }
             }
         }
-        iter++;
     }
 
     // finito
@@ -160,7 +162,6 @@ double MultiSectionCncrModel::zMaxNormal(){
 }
 
 double MultiSectionCncrModel::zMinNormal( double *corrEpsC, double *corrEpsCU ){
-    QList<Section *>::iterator iter = m_sectionContainer->begin();
     double zMinRet = 0.0;
     bool zMinWasSet = false;
 
@@ -171,8 +172,7 @@ double MultiSectionCncrModel::zMinNormal( double *corrEpsC, double *corrEpsCU ){
         *corrEpsCU = 0.0;
     }
 
-    while( iter != m_sectionContainer->end() ){
-        SectionCncr * sectCncr = dynamic_cast<SectionCncr *>(*iter);
+    for( QList<Section *>::iterator iter = m_sectionContainer->begin(); iter != m_sectionContainer->end(); iter++ ){        SectionCncr * sectCncr = dynamic_cast<SectionCncr *>(*iter);
         if( sectCncr != NULL ){
             if( sectCncr->pointsModel()->pCount() > 0 ){
                 if( zMinWasSet ) {
@@ -202,7 +202,6 @@ double MultiSectionCncrModel::zMinNormal( double *corrEpsC, double *corrEpsCU ){
                 }
             }
         }
-        iter++;
     }
 
     // finito
@@ -210,12 +209,10 @@ double MultiSectionCncrModel::zMinNormal( double *corrEpsC, double *corrEpsCU ){
 }
 
 bool MultiSectionCncrModel::sMaxNormal( double * ret, double my, double mz ){
-    QList<Section *>::iterator iter = m_sectionContainer->begin();
     *ret = 0.0;
     bool sMaxWasSet = false;
 
-    while( iter != m_sectionContainer->end() ){
-        SectionCncr * sectCncr = dynamic_cast<SectionCncr *>(*iter);
+    for( QList<Section *>::iterator iter = m_sectionContainer->begin(); iter != m_sectionContainer->end(); iter++ ){        SectionCncr * sectCncr = dynamic_cast<SectionCncr *>(*iter);
         if( sectCncr != NULL ){
             if( sectCncr->pointsModel()->pCount() > 0 ){
                 if( sMaxWasSet ) {
@@ -230,7 +227,6 @@ bool MultiSectionCncrModel::sMaxNormal( double * ret, double my, double mz ){
                 }
             }
         }
-        iter++;
     }
 
     // finito
@@ -247,9 +243,7 @@ bool MultiSectionCncrModel::sMinNormal(double *ret,  double my, double mz, doubl
     }
     bool sMinWasSet = false;
 
-    QList<Section *>::iterator iter = m_sectionContainer->begin();
-    while( iter != m_sectionContainer->end() ){
-        SectionCncr * sectCncr = dynamic_cast<SectionCncr *>(*iter);
+    for( QList<Section *>::iterator iter = m_sectionContainer->begin(); iter != m_sectionContainer->end(); iter++ ){        SectionCncr * sectCncr = dynamic_cast<SectionCncr *>(*iter);
         if( sectCncr != NULL ){
             if( sectCncr->pointsModel()->pCount() > 0 ){
                 if( sMinWasSet ) {
@@ -282,7 +276,6 @@ bool MultiSectionCncrModel::sMinNormal(double *ret,  double my, double mz, doubl
                 }
             }
         }
-        iter++;
     }
 
     // finito

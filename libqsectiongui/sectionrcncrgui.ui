@@ -113,7 +113,7 @@ p&lt;span style=&quot; vertical-align:sub;&quot;&gt;w&lt;/span&gt;
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
-                 <widget class="QWidget" name="">
+                 <widget class="QWidget" name="layoutWidget">
                   <layout class="QGridLayout" name="gridLayout_10">
                    <item row="0" column="0">
                     <widget class="QPushButton" name="addSectionCncrPButton">
@@ -345,8 +345,8 @@ h
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>568</width>
-                <height>531</height>
+                <width>186</width>
+                <height>124</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_28">
@@ -400,7 +400,7 @@ h
                 <x>0</x>
                 <y>0</y>
                 <width>655</width>
-                <height>517</height>
+                <height>503</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_29">
@@ -1356,7 +1356,7 @@ N punti
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
-                <widget class="QWidget" name="">
+                <widget class="QWidget" name="layoutWidget">
                  <layout class="QVBoxLayout" name="verticalLayout_8">
                   <item>
                    <widget class="QGroupBox" name="SLSActionsGBox">
@@ -1576,7 +1576,7 @@ z
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_9">
                   <item>
-                   <widget class="QGroupBox" name="groupBox_4">
+                   <widget class="QGroupBox" name="defSLSGroupBox">
                     <property name="title">
                      <string>Deformazioni</string>
                     </property>
@@ -1636,20 +1636,20 @@ z
                    </widget>
                   </item>
                   <item>
-                   <widget class="QGroupBox" name="groupBox_5">
+                   <widget class="QGroupBox" name="fSLSGroupBox">
                     <property name="title">
                      <string>Tensioni</string>
                     </property>
                     <layout class="QGridLayout" name="gridLayout_12">
                      <item row="0" column="0">
-                      <widget class="QLabelRichName" name="fSLSCncrMaxLabel">
+                      <widget class="QLabelRichName" name="fSLSCncrMinLabel">
                        <property name="text">
-                        <string>σ&lt;span style=&quot; vertical-align:sub;&quot;&gt;c,max&lt;/span&gt;</string>
+                        <string>σ&lt;span style=&quot; vertical-align:sub;&quot;&gt;c,min&lt;/span&gt;</string>
                        </property>
                       </widget>
                      </item>
                      <item row="0" column="1">
-                      <widget class="QLabelUnitMeasure" name="fSLSCncrMaxUMLabel">
+                      <widget class="QLabelUnitMeasure" name="fSLSCncrMinUMLabel">
                        <property name="text">
                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
@@ -1661,9 +1661,9 @@ z
                       </widget>
                      </item>
                      <item row="0" column="2">
-                      <widget class="QLineEditValue" name="fSLSCncrMaxLEdit"/>
+                      <widget class="QLineEditValue" name="fSLSCncrMinLEdit"/>
                      </item>
-                     <item row="1" column="0">
+                     <item row="2" column="0">
                       <widget class="QLabelRichName" name="fSLSSteelCncrMaxLabel">
                        <property name="text">
                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1675,7 +1675,7 @@ z
                        </property>
                       </widget>
                      </item>
-                     <item row="1" column="1">
+                     <item row="2" column="1">
                       <widget class="QLabelUnitMeasure" name="fSLSSteelCncrMaxUMLabel">
                        <property name="text">
                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1687,8 +1687,30 @@ z
                        </property>
                       </widget>
                      </item>
-                     <item row="1" column="2">
+                     <item row="2" column="2">
                       <widget class="QLineEditValue" name="fSLSSteelCncrMaxLEdit"/>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabelRichName" name="fSLSSteelCncrMinLabel">
+                       <property name="text">
+                        <string>σ&lt;span style=&quot; vertical-align:sub;&quot;&gt;s,min&lt;/span&gt;</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QLabelUnitMeasure" name="fSLSSteelCncrMinUMLabel">
+                       <property name="text">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;
+&lt;body&gt;
+[Pa]
+&lt;/body&gt;
+&lt;/html&gt;</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="2">
+                      <widget class="QLineEditValue" name="fSLSSteelCncrMinLEdit"/>
                      </item>
                     </layout>
                    </widget>

@@ -116,6 +116,10 @@ public:
     double Sy2zDyDzNormal();
     double pWNormal();
 
+    void fSLSNormal( QList<double> *fMinCncr, QList<double> *fSteelCncr,
+                     QList<double> *fMinSteel, QList<double> *fMaxSteel, QList<double> *fMinFRP, QList<double> *fMaxFRP,
+                     double l, double my, double mz );
+
     void NMSLSNormal( double *NRet, double *MyRet, double *MzRet,
                       double l, double my, double mz, QList<Point2DModel *> *sects=NULL );
 

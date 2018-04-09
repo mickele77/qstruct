@@ -46,6 +46,8 @@ public:
     @return la denominazione */
     QString typeSection();
 
+    double fMinSLSNormal( double l, double my, double mz);
+
     /**
     * Calcola lo sforzo normale allo SLE con deformazione data (deformazione piana e = l + my * z + mz * y), unità di misura interne al programma
     * @param l
