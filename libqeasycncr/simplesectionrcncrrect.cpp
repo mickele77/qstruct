@@ -938,12 +938,13 @@ double SimpleSectionRCncrRect::ULSTNormal( double *TRdc, double *TRds,
 }
 
 double SimpleSectionRCncrRect::ULSVNoSteelNormal(double bw, double dw, double Asl, double scp ) {
+
     double CRd = 0.0;
     if( gammaC->valueNormal() > 0.0 ){
         CRd = 0.18 / gammaC->valueNormal();
     }
 
-    double k = 0.0;
+    double k = 2.0;
     if( dw > 0.0 ){
         k = 1.0 + sqrt( 200.0 / (dw*1.0e+3));
         if( k > 2.0 ){
@@ -970,7 +971,7 @@ double SimpleSectionRCncrRect::ULSVNoSteelNormal(double bw, double dw, double As
     double nuMin = 0.035 * pow(k, 3.0/2.0) * pow(fck->valueNormal()*1e-6, 0.50) * 1e+6;
     double retMin = (nuMin + k1 * scp) * bw * dw;
 
-    if( (ret > 0.0) && (ret < retMin) ){
+    if( ret < retMin ){
         ret = retMin;
     }
 

@@ -104,7 +104,7 @@ void Load::setValueNormal( double vv ){
 void Load::setValueNormal( double vv, bool emitAuto ){
     if( vv != m_value ){
         m_value = vv;
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
         }
     }

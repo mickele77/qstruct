@@ -192,7 +192,7 @@ void BeamQSysRef::setValueNormal( BeamQ::qSysRef vv, bool emitAuto ){
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }
@@ -346,7 +346,7 @@ void BeamQSysRefGlobal::setValueNormal( int vv, bool emitAuto ){
         if( m_d->setValue( vv ) ){
             emit valueChangedInternal( valueStr() );
             emit valueIntChangedWidget( m_d->value );
-            if( emitAuto ){
+            if( emitAuto && !m_signalsSuspended ){
                 emit valueChanged( valueStr() );
                 emit valueIntChanged( m_d->value );
             }

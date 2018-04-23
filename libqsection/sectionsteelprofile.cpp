@@ -332,3 +332,7 @@ void SectionSteelProfile::NMULSPlastNormal( double *NRet, double *MyRet, double 
         *MzRet *= fydNormal(0);
     }
 }
+
+void SectionSteelProfile::suspendSignals(bool susp) {
+    m_signalsSuspended = susp;
+}

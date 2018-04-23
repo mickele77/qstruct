@@ -81,6 +81,9 @@ public:
     /** Distruttore */
     ~SectionSteel();
 
+    /** Sospende l'emissione dei segnali delle variabili contenute */
+    void suspendSignals( bool susp = true );
+
     QString typeSection();
 
     /** L'acciaio di cui si compone la sezione. Se alla sezione è stato erronamente

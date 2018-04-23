@@ -102,6 +102,10 @@ void Point2DPlus::writeXml(QXmlStreamWriter *writer){
     writer->writeEndElement();
 }
 
+void Point2DPlus::suspendSignals(bool susp) {
+    // TODO
+}
+
 void Point2DPlus::loadFromXML( const QXmlStreamAttributes &attrs ){
     for ( int i=0; i<attrs.count(); i++ ) {
         if( attrs.at(i).name().toString().toUpper() == "NAME" ){
@@ -173,7 +177,9 @@ void Point2DPlus::setReadOnly( bool f ){
 }
 
 void Point2DPlus::emitValueChanged(){
-    emit valueChanged( valueStr() );
+    if( !m_signalsSuspended ){
+        emit valueChanged( valueStr() );
+    }
 }
 
 void Point2DPlus::translate( Point2DPlus * trans){

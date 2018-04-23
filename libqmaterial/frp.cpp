@@ -123,7 +123,7 @@ void FRPExposition::setValueNormal(FRP::Exposition vv, bool emitAuto ){
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }
@@ -272,7 +272,7 @@ void FRPFiberType::setValueNormal(FRP::FiberType vv, bool emitAuto ){
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }
@@ -420,7 +420,7 @@ void FRPApplicationType::setValueNormal(FRP::ApplicationType vv, bool emitAuto )
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }
@@ -568,7 +568,7 @@ void FRPLoadMode::setValueNormal(FRP::LoadMode vv, bool emitAuto ){
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }
@@ -718,7 +718,7 @@ void FRPResistenceModel::setValueNormal(FRP::ResistenceModel vv, bool emitAuto )
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }

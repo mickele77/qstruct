@@ -65,7 +65,7 @@ void BoolPlus::setValueNormal( bool vv, bool emitAuto ){
     if( vv != m_value ){
         m_value = vv;
         emit valueChangedInternal( valueStr() );
-        if( emitAuto && !m_suspendSignals){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueChangedBool( m_value );
         }

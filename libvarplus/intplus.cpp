@@ -75,20 +75,24 @@ QString IntPlus::valueStr() {
 void IntPlus::setValueNormal( int vv, bool emitAuto){
     if( m_wasMinSet ){
         if( vv < m_min){
+            if( emitAuto  && !m_signalsSuspended ){
                 emit valueChanged( valueStr() );
+            }
             return;
         }
     }
     if( m_wasMaxSet ){
         if( vv > m_max){
-            emit valueChanged( valueStr() );
+            if( emitAuto  && !m_signalsSuspended ){
+                emit valueChanged( valueStr() );
+            }
             return;
         }
     }
     if( vv != m_value ){
         m_value = vv;
         emit valueChangedInternal( valueStr() );
-        if( emitAuto && !m_suspendSignals){
+        if( emitAuto  && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
         }
     }

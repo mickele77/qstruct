@@ -154,6 +154,9 @@ public:
     /** Disabilita l'aggiornamento ad ogni variazione delle variabili collegate */
     void suspendSignals( bool susp = true );
 
+    /** Ci dice se e' disabilitato l'aggiornamento ad ogni variazione delle variabili collegate */
+    bool signalsSuspended() const;
+
     /** Disabilita l'aggiornamento ad ogni variazione delle variabili collegate */
     void suspendUpdate( bool susp = true );
 
@@ -263,8 +266,8 @@ protected:
     UnitMeasure::unitMeasure m_unitMeasureValue;
     /** Ci dice se il valore è inserito dall'utente o se è calcolato in automatico dal software */
     bool m_readOnly;
-    /** se vero, sospende l'emissione dei segnali */
-    bool m_suspendSignals;
+    /** Ci dice se gli aggiornamenti sono sospesi */
+    bool m_signalsSuspended;
     /** Contiene valueStr() quanto è chiamato il metodo storeValue() */
     QString m_storedValue;
     /** Lista dei modelli connessi */

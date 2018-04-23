@@ -54,7 +54,7 @@ void QStringPlus::setValueNormal( const QString & vvStr, bool emitAuto ){
     if( vvStr != m_value ){
         m_value = vvStr;
         emit valueChangedInternal( m_value );
-        if( emitAuto && !m_suspendSignals ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( m_value );
         }
     }

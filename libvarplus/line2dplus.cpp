@@ -117,7 +117,9 @@ void Line2DPlus::setReadOnly( bool f ){
 }
 
 void Line2DPlus::emitValueChanged(){
-    emit valueChanged( valueStr() );
+    if( !m_signalsSuspended ){
+        emit valueChanged( valueStr() );
+    }
 }
 
 void Line2DPlus::translate( Point2DPlus * trans){

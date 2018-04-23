@@ -266,7 +266,10 @@ void SectionSteelRect::updateQGraphics(){
 void SectionSteelRect::updateSectionSteelProfile() {
     updateSectionPoints();
     updateQGraphics();
-    emit sectionSteelProfileChanged();
+
+    if( !m_signalsSuspended ) {
+        emit sectionSteelProfileChanged();
+    }
 }
 
 void SectionSteelRect::classDiagram(QList<QPolygonF *> *, double NULSMax, double MyULSMax, double MzULSMax){

@@ -7,15 +7,15 @@
 #include <QStringList>
 
 Point3DPlus::Point3DPlus(  const QString & nn,
-                         const QString & xN,
-                         double xVal,
-                         const QString & yN,
-                         double yVal,
-                         const QString & zN,
-                         double zVal,
-                         UnitMeasure * ump,
-                         UnitMeasure::unitMeasure um,
-                         bool em):
+                           const QString & xN,
+                           double xVal,
+                           const QString & yN,
+                           double yVal,
+                           const QString & zN,
+                           double zVal,
+                           UnitMeasure * ump,
+                           UnitMeasure::unitMeasure um,
+                           bool em):
     VarPlus(nn, ump, um, em),
     x(new DoublePlus( xVal, xN, ump, um, em )),
     y(new DoublePlus( yVal, yN, ump, um, em )),
@@ -122,7 +122,9 @@ void Point3DPlus::setReadOnly( bool f ){
 }
 
 void Point3DPlus::emitValueChanged(){
-    emit valueChanged( valueStr() );
+    if( !m_signalsSuspended ){
+        emit valueChanged( valueStr() );
+    }
 }
 
 void Point3DPlus::translate( Point3DPlus * trans){

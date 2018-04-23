@@ -714,7 +714,7 @@ void SoilTypePlus::setValueNormal( Soil::SoilType vv, bool emitAuto ){
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }
@@ -859,7 +859,7 @@ void SoilKTheoryPlus::setValueNormal( Soil::SoilKTheory vv, bool emitAuto ){
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }
@@ -1005,7 +1005,7 @@ void SoilEQCategory::setValueNormal( Soil::EQCategory vv, bool emitAuto ){
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }

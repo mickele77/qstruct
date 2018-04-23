@@ -298,7 +298,9 @@ void SectionSteelCirc::updateSectionSteelProfile(){
     updateSectionPoints();
     updateQGraphics();
 
-    emit sectionSteelProfileChanged();
+    if( !m_signalsSuspended ){
+        emit sectionSteelProfileChanged();
+    }
 }
 
 void SectionSteelCirc::updateSectionPoints(){

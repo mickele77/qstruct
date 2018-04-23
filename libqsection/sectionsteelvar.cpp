@@ -112,7 +112,7 @@ void SectionSteelManufactType::setValueNormal( SectionSteel::ManufactType vv, bo
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }
@@ -254,7 +254,7 @@ void SectionSteelShape::setValueNormal( SectionSteel::SectionShape vv, bool emit
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }
@@ -394,7 +394,7 @@ void SectionSteelMomentDistribution::setValueNormal( SectionSteel::MomentDistrib
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }
@@ -534,7 +534,7 @@ void SectionSteelTorsionalDeformability::setValueNormal( SectionSteel::Torsional
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }

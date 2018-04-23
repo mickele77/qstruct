@@ -455,8 +455,12 @@ void SectionSteelOmega::calcSectEffLocalBuckling( SectionThin & sectEff,
                     }
                     // rapporto tra lunghezza totale tratto in compressione e tratto efficace
                     double rho = 1.0;
+                    double eps = 1.0;
+                    if( steel() ){
+                        eps = steel()->epsilon( m_d->sectionThin->sectionLine(i)->t->valueNormal() );
+                    }
                     double l = m_d->sectionProj->sectionLine(i)->L->valueNormal() /
-                            ( m_d->sectionThin->sectionLine(i)->t->valueNormal() * 28.4 * steel()->epsilon( m_d->sectionThin->sectionLine(i)->t->valueNormal() ) * sqrt(ks));
+                            ( m_d->sectionThin->sectionLine(i)->t->valueNormal() * 28.4 * eps * sqrt(ks));
                     if( l > 0.748 ){
                         rho = (l - 0.188) / (l*l);
                     }
@@ -497,8 +501,12 @@ void SectionSteelOmega::calcSectEffLocalBuckling( SectionThin & sectEff,
                         }
                     }
                     double rho = 1.0;
+                    double eps = 1.0;
+                    if( steel() ){
+                        eps = steel()->epsilon( m_d->sectionThin->sectionLine(i)->t->valueNormal() );
+                    }
                     double l = m_d->sectionProj->sectionLine(i)->L->valueNormal() /
-                            ( m_d->sectionThin->sectionLine(i)->t->valueNormal() * 28.4 * steel()->epsilon( m_d->sectionThin->sectionLine(i)->t->valueNormal() ) * sqrt(ks));
+                            ( m_d->sectionThin->sectionLine(i)->t->valueNormal() * 28.4 * eps * sqrt(ks));
                     if( l > 0.748 ){
                         rho = (l - 0.188) / (l*l);
                     }
@@ -528,8 +536,12 @@ void SectionSteelOmega::calcSectEffLocalBuckling( SectionThin & sectEff,
                         ks = 95.68; // = 5.98 * 16.0
                     }
                     double rho = 1.0;
+                    double eps = 1.0;
+                    if( steel() ){
+                        eps = steel()->epsilon( m_d->sectionThin->sectionLine(i)->t->valueNormal() );
+                    }
                     double l = m_d->sectionProj->sectionLine(i)->L->valueNormal() /
-                            ( m_d->sectionThin->sectionLine(i)->t->valueNormal() * 28.4 * steel()->epsilon( m_d->sectionThin->sectionLine(i)->t->valueNormal() ) * sqrt(ks));
+                            ( m_d->sectionThin->sectionLine(i)->t->valueNormal() * 28.4 * eps * sqrt(ks));
                     if( l > 0.673 ){
                         rho = (l - 0.055 * (3.0 + psi)) / (l * l);
                     }
@@ -575,20 +587,27 @@ void SectionSteelOmega::calcSectEffLocalBuckling( SectionThin & sectEff,
 }
 
 void SectionSteelOmega::calcSectEffDistorsionBuckling( SectionThin & sectEff, double N, double My, double Mz ){
+    if( steel() == NULL ){
+        return;
+    }
     // instabilità   distorsionale
     SectionThin sect1( m_unitMeasure, steel(), "");
+    sect1.suspendSignals( true );
     sect1.sectionArcModel()->insertRows(0,1);
     *(sect1.sectionArc(0)) = *(sectEff.sectionArc(0));
     sect1.sectionLineModel()->insertRows(0,2);
     *(sect1.sectionLine(0)) = *(sectEff.sectionLine(1));
     *(sect1.sectionLine(1)) = *(sectEff.sectionLine(2));
+    sect1.updateReadOnlyVars();
 
     SectionThin sect2( m_unitMeasure, steel(), "");
+    sect2.suspendSignals( true );
     sect2.sectionArcModel()->insertRows(0,1);
     *(sect2.sectionArc(0)) = *(sectEff.sectionArc(3));
     sect2.sectionLineModel()->insertRows(0,2);
     *(sect2.sectionLine(0)) = *(sectEff.sectionLine(9-2));
     *(sect2.sectionLine(1)) = *(sectEff.sectionLine(9-1));
+    sect2.updateReadOnlyVars();
 
     double s1 = 0.0;
     double s2 = 0.0;
@@ -868,7 +887,9 @@ void SectionSteelOmega::updateSectionSteelProfile() {
     updateSectionThin();
     updateQGraphics();
 
-    emit sectionSteelProfileChanged();
+    if( !m_signalsSuspended ){
+        emit sectionSteelProfileChanged();
+    }
 }
 
 void SectionSteelOmega::updateSectionThin(){

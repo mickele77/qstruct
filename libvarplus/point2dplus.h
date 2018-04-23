@@ -66,6 +66,8 @@ public:
     /** Scrive su file XML il contenuto del modello. */
     void writeXml(QXmlStreamWriter *writer);
 
+    void suspendSignals( bool susp = true );
+
 public slots:
     void setValue(const QString &, bool emitAuto = true );
     void setValueNormal(const QString &, bool emitAuto = true );

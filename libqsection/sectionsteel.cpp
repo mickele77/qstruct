@@ -106,6 +106,13 @@ SectionSteel::~SectionSteel(){
     delete m_d;
 }
 
+void SectionSteel::suspendSignals(bool susp) {
+    VarPlusContainer::suspendSignals( susp );
+    if( m_d->sectionSteelProfile ) {
+        m_d->sectionSteelProfile->suspendSignals( susp );
+    }
+}
+
 void SectionSteel::loadFromXML( const QXmlStreamAttributes &attrs, MaterialModel * mModel, SectionLoadPhaseModel * loadModel ){
     for ( int i=0; i<attrs.count(); ++i ) {
         for( QMap<QString, VarPlus *>::iterator iter = m_varContainer->begin(); iter != m_varContainer->end(); ++iter ){
@@ -2622,8 +2629,8 @@ void SectionSteel::MULSNormal( double *yRet,
 
                 if( sects ){
                     sects->append( sectPlus );
-                    sects->append( sectEl );
-                    sects->append( sectMinus );
+                    //sects->append( sectEl );
+                    //sects->append( sectMinus );
                 } else {
                     delete sectPlus;
                     delete sectEl;

@@ -826,7 +826,7 @@ void TimberTypePlus::setValueNormal( Timber::TimberType vv, bool emitAuto ){
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }
@@ -965,7 +965,7 @@ void WoodEssencePlus::setValueNormal( Timber::WoodEssence vv, bool emitAuto ){
         m_d->value = vv;
         emit valueChangedInternal( valueStr() );
         emit valueIntChangedWidget( m_d->valueIndex() );
-        if( emitAuto ){
+        if( emitAuto && !m_signalsSuspended ){
             emit valueChanged( valueStr() );
             emit valueIntChanged( m_d->valueIndex() );
         }

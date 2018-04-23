@@ -5,7 +5,6 @@
 VarPlusContainerPlus::VarPlusContainerPlus(UnitMeasure * ump, const QString &t, const QString &n , QObject *parent):
     QObject( parent ),
     VarPlusContainer( ump, t, n ){
-
 }
 
 VarPlusContainerPlus::~VarPlusContainerPlus(){

@@ -127,6 +127,9 @@ public:
     /** Il numero di punti della sezione che point() mette a disposizione */
     virtual int nPoints() = 0;
 
+    /** Disabilita l'aggiornamento ad ogni variazione delle variabili collegate */
+    void suspendSignals( bool susp = true );
+
 signals:
     void sectionSteelProfileChanged();
 
@@ -135,6 +138,7 @@ protected:
     UnitMeasure * m_unitMeasure;
     Steel * m_steel;
     Point2DModel * m_sectionPoints;
+    bool m_signalsSuspended;
 
     double fykNormal();
     double fydNormal( int i );

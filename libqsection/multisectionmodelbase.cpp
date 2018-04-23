@@ -133,17 +133,11 @@ void MultiSectionModelBase::writeXml(QXmlStreamWriter *writer){
 }
 
 void MultiSectionModelBase::readXml(QXmlStreamReader *reader){
+    suspendSignals( true );
+
     QXmlStreamReader::TokenType t = reader->tokenType();
     QString n = reader->name().toString().toUpper();
     QString myName = m_d->modelName.toUpper();
-
-    /*    // Ci mettiamo sul tag iniziale
-    while( !(n == myName && t == QXmlStreamReader::StartElement) &&
-           !(reader->hasError()) &&
-           (t != QXmlStreamReader::EndDocument) ){
-        t = reader->readNext();
-        n = reader->name().toString().toUpper();
-    }*/
 
     // Andiamo sul tag finale. Nel frattempo leggiamo le sezioni.
     while( !(t == QXmlStreamReader::EndElement && n == myName ) &&
@@ -159,8 +153,10 @@ void MultiSectionModelBase::readXml(QXmlStreamReader *reader){
         t = reader->readNext();
         n = reader->name().toString().toUpper();
     }
-}
 
+    suspendSignals( false );
+    updateReadOnlyVars();
+}
 
 Section * MultiSectionModelBase::createSection( const QString & sectType, const QXmlStreamAttributes & attrs ) {
     return SectionModel::createSection( m_d->unitMeasure, m_materialModel, sectType, attrs );

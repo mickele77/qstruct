@@ -85,7 +85,8 @@ SectionRCncr::SectionRCncr( UnitMeasure * ump,
     initVar();
 }
 
-SectionRCncr::SectionRCncr(UnitMeasure *ump, const QXmlStreamAttributes &attrs, MaterialModel *matModel, SectionLoadPhaseModel *lModel, QObject *parent):
+SectionRCncr::SectionRCncr( UnitMeasure *ump, const QXmlStreamAttributes &attrs,
+                            MaterialModel *matModel, SectionLoadPhaseModel *lModel, QObject *parent):
     Section( ump, NULL, "", parent ),
     m_d( new SectionRCncrPrivate( ump, matModel, this ) ){
     initVar();

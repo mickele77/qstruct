@@ -22,7 +22,7 @@ VarPlus::VarPlus( const QString & nn,
     m_unitMeasurePointer(ump),
     m_unitMeasureValue(um),
     m_readOnly(rOnly),
-    m_suspendSignals(false),
+    m_signalsSuspended(false),
     m_container(NULL),
     m_updateValueMethod(NULL){
     if( m_unitMeasurePointer ){
@@ -39,7 +39,7 @@ VarPlus::VarPlus( VarPlus & val ):
     m_unitMeasurePointer( val.m_unitMeasurePointer ),
     m_unitMeasureValue( val.m_unitMeasureValue ),
     m_readOnly( val.m_readOnly ),
-    m_suspendSignals(val.m_suspendSignals),
+    m_signalsSuspended( val.m_signalsSuspended ),
     m_connectedTableModels(val.m_connectedTableModels),
     m_connectedVarContainers(val.m_connectedVarContainers),
     m_connectedVars(val.m_connectedVars),
@@ -315,7 +315,7 @@ void VarPlus::updateValue(bool emitAuto) {
 }
 
 void VarPlus::suspendSignals(bool susp) {
-    m_suspendSignals = susp;
+    m_signalsSuspended = susp;
 }
 
 void VarPlus::storeValue() {
@@ -331,4 +331,3 @@ void VarPlus::checkStoredValue() {
 void VarPlus::updateValue() {
     updateValue( true );
 }
-
