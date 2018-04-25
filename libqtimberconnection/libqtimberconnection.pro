@@ -34,8 +34,6 @@ LIBS += \
     -lvarplus \
     -lqstructutility
 
-INCLUDEPATH += \
-
 SOURCES += \
     timberconnection.cpp \
     timberconnector.cpp \
