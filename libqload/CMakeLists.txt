@@ -38,7 +38,7 @@ set( HDR
 )
 
 # Tell CMake to create the library
-add_library( libqload
+add_library( qload
     ${SRC} ${HDR}
 )
 
@@ -47,5 +47,8 @@ include_directories(
 )
 
 # Use required libraries
-target_link_libraries(libqload libvarplus Qt5::Core)
+target_link_libraries(
+    qload
+    varplus Qt5::Core
+)
 

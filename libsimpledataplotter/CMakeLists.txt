@@ -6,15 +6,15 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
 # Find the required modules
-find_package(Qt5 COMPONENTS Widgets Gui Core PrintSupport REQUIRED)
+find_package(Qt5 COMPONENTS Widgets PrintSupport REQUIRED)
 
 set( SRC
-    simpledataplotter.cpp \
+    simpledataplotter.cpp
     simpledataplotterdialog.cpp
 )
 
 set( HDR
-    simpledataplotter.h \
+    simpledataplotter.h
     simpledataplotterdialog.h
 )
 
@@ -27,10 +27,11 @@ set( QRC
 )
 
 # Tell CMake to create the library
-add_library( libsimpledataplotter
+add_library( simpledataplotter
     ${SRC} ${HDR} ${FRM} ${QRC}
 )
 
 # Use required libraries
-target_link_libraries(libsimpledataplotter Qt5::Widgets Qt5::Gui Qt5::Core Qt5::PrintSupport )
-
+target_link_libraries( simpledataplotter
+    Qt5::Widgets Qt5::PrintSupport
+)

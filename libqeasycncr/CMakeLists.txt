@@ -32,7 +32,7 @@ set( HDR
 )
 
 # Tell CMake to create the library
-add_library( libqeasycncr
+add_library( qeasycncr
     ${SRC} ${HDR}
 )
 
@@ -42,5 +42,7 @@ include_directories(
 )
 
 # Use required libraries
-target_link_libraries(libqeasycncr libvarplus libqstructutility Qt5::Core)
-
+target_link_libraries(
+    qeasycncr
+    varplus qstructutility Qt5::Core
+)

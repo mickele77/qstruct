@@ -2,11 +2,16 @@ cmake_minimum_required(VERSION 2.8.11)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 
 # Find the required modules
 find_package(Qt5 COMPONENTS Core REQUIRED)
+
+set( QRC
+    icons.qrc
+)
 
 set( SRC
     structmodule.cpp
@@ -41,11 +46,14 @@ set( HDR
 )
 
 # Tell CMake to create the library
-add_library( libqstructure
-    ${SRC} ${HDR}
+add_library( qstructure
+    ${SRC} ${HDR} ${QRC}
 )
 
 include_directories(
+    ../libqstructutility
+    ../libvarplus
+    ../libqload
     ../libqmaterial
     ../libqmaterialgui
     ../libqsection
@@ -65,13 +73,21 @@ include_directories(
 
 # Use required libraries
 target_link_libraries(
-    libqstructure
-    libqsectiongui
-    libqmaterialgui
-    libqsoilgui
-    liqfem2dgui
-    libqtimberconnectiongui
-    libqeasycncrgui
-    libqeasygui
+    qstructure
+    qeasy
+    qeasygui
+    qeasycncr
+    qeasycncrgui
+    qmaterial
+    qmaterialgui
+    qsection
+    qsectiongui
+    qsoil
+    qsoilgui
+    qfem
+    qfemgui
+    qfem2dgui
+    qtimberconnection
+    qtimberconnectiongui
+    Qt5::Core
 )
-

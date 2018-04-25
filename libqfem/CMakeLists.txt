@@ -48,7 +48,7 @@ set( HDR
     beamf.h)
 
 # Tell CMake to create the library
-add_library( libqfem
+add_library( qfem
     ${SRC} ${HDR}
 )
 
@@ -63,5 +63,8 @@ include_directories(
 )
 
 # Use required libraries
-target_link_libraries(libqfem libqsection libqload libglviewer Qt5::Core Eigen3::Eigen)
+target_link_libraries(
+    qfem
+    qsection qload glviewer Eigen3::Eigen
+)
 

@@ -29,10 +29,13 @@ set( HDR
 )
 
 # Tell CMake to create the library
-add_library( libglviewer
+add_library( glviewer
     ${SRC} ${HDR} ${QRC}
 )
 
 # Use required modules from Qt 5
-target_link_libraries(libglviewer Qt5::Core Qt5::Gui)
+target_link_libraries(
+    glviewer
+    Qt5::Core Qt5::Gui
+)
 

@@ -10,7 +10,7 @@ IF( BUILD_SHARED_LIBS AND WIN32 )
 ENDIF( BUILD_SHARED_LIBS AND WIN32 )
 
 # Find the required modules
-find_package(Qt5 COMPONENTS Core REQUIRED)
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 set( SRC
     structmath.cpp
@@ -33,10 +33,10 @@ set( HDR
 )
 
 # Tell CMake to create the library
-add_library( libqstructutility
+add_library( qstructutility
     ${SRC} ${HDR}
 )
 
 # Use required libraries
-target_link_libraries(libqstructutility Qt5::Core)
+target_link_libraries( qstructutility Qt5::Widgets )
 

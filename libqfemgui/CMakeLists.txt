@@ -41,7 +41,7 @@ set( FRM
 )
 
 # Tell CMake to create the library
-add_library( libqfemgui
+add_library( qfemgui
     ${SRC} ${HDR} ${FRM}
 )
 
@@ -56,5 +56,4 @@ include_directories(
 )
 
 # Use required libraries
-target_link_libraries(libqfemgui libqfem Qt5::Widgets Qt5::Gui)
-
+target_link_libraries( qfemgui qfem Qt5::Widgets Qt5::Gui)

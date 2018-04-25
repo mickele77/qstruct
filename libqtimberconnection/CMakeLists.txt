@@ -26,7 +26,7 @@ set( HDR
 )
 
 # Tell CMake to create the library
-add_library( libqtimberconnection
+add_library( qtimberconnection
     ${SRC} ${HDR}
 )
 
@@ -39,5 +39,8 @@ include_directories(
 )
 
 # Use required libraries
-target_link_libraries(libqtimberconnection libqsection)
+target_link_libraries(
+    qtimberconnection
+    qsection
+)
 

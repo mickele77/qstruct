@@ -30,15 +30,20 @@ set( HDR
 )
 
 # Tell CMake to create the library
-add_library( libqmaterial
+add_library( qmaterial
     ${SRC} ${HDR}
 )
 
 include_directories(
     ../libqstructutility
     ../libvarplus
+    ../libqload
+    ../libqsection
 )
 
 # Use required libraries
-target_link_libraries(libqmaterial libvarplus Qt5::Core)
+target_link_libraries(
+    qmaterial
+    qload varplus
+)
 

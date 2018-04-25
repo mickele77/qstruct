@@ -6,7 +6,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
 # Find the required modules
-find_package(Qt5 COMPONENTS Widgets Gui REQUIRED)
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 set( SRC
     qwidgetplus.cpp
@@ -35,7 +35,7 @@ set( HDR
 )
 
 # Tell CMake to create the library
-add_library( libqeasygui
+add_library( varplusgui
     ${SRC} ${HDR} ${FRM}
 )
 
@@ -45,5 +45,4 @@ include_directories(
 )
 
 # Use required libraries
-target_link_libraries(libvarplusgui libvarplus Qt5::Widgets Qt5::Gui)
-
+target_link_libraries( varplusgui varplus Qt5::Widgets)

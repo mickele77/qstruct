@@ -36,8 +36,7 @@ class QFile;
 *
 */
 
-class QStructureGUI : public QMainWindow
-{
+class QStructureGUI : public QMainWindow {
     Q_OBJECT
 public:
     /** Costruttore */

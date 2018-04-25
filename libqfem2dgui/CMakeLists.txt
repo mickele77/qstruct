@@ -6,7 +6,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
 # Find the required modules
-find_package(Qt5 COMPONENTS OpenGl Xml Widgets Gui REQUIRED)
+find_package(Qt5 COMPONENTS OpenGL Widgets REQUIRED)
 
 set( SRC
     qfem2dgui.cpp
@@ -19,7 +19,7 @@ set( HDR
 )
 
 # Tell CMake to create the library
-add_library( libqeasygui
+add_library( qfem2dgui
     ${SRC} ${HDR}
 )
 
@@ -32,5 +32,7 @@ include_directories(
 )
 
 # Use required libraries
-target_link_libraries(libqfem2d libqfemgui libqfem Qt5::Widgets Qt5::Gui)
-
+target_link_libraries(
+    qfem2dgui
+    qfemgui qfem Qt5::OpenGL Qt5::Widgets
+)

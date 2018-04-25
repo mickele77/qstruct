@@ -14,7 +14,8 @@ set( SRC
     retainingwall.cpp
     retainingwallmodel.cpp
     soilsheet.cpp
-    soilsheetmodel.cpp)
+    soilsheetmodel.cpp
+)
 
 set( HDR
     soil.h
@@ -26,15 +27,19 @@ set( HDR
 )
 
 # Tell CMake to create the library
-add_library( libqsoilgui
+add_library( qsoil
     ${SRC} ${HDR}
 )
 
 include_directories(
     ../libqstructutility
     ../libvarplus
+    ../libqsection
 )
 
 # Use required libraries
-target_link_libraries(libqsoil libvarplus libqstructutility )
+target_link_libraries(
+    qsoil
+    qsection
+)
 

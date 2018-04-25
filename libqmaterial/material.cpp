@@ -19,7 +19,7 @@
 
 #include "material.h"
 
-#include "section.h"
+// #include "section.h"
 #include "boolplus.h"
 #include "qstringplus.h"
 #include "doubleplus.h"

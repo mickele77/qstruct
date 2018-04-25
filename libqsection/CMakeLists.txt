@@ -90,10 +90,11 @@ set( HDR
     sectionfrp.h
     multisectionfrpmodel.h
     sectionloadphase.h
-    sectionloadphasemodel.h)
+    sectionloadphasemodel.h
+)
 
 # Tell CMake to create the library
-add_library( libqmaterial
+add_library( qsection
     ${SRC} ${HDR}
 )
 
@@ -101,8 +102,11 @@ include_directories(
     ../libqstructutility
     ../libvarplus
     ../libqmaterial
+    ../libqload
 )
 
 # Use required libraries
-target_link_libraries(libqsection libqmaterial libvarplusgui)
-
+target_link_libraries(
+    qsection
+    qmaterial qload
+)

@@ -16,8 +16,8 @@
             You should have received a copy of the GNU General Public License
             along with QStruct.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef RETAININGWALLMODELGUI_H
-#define RETAININGWALLMODELGUI_H
+#ifndef SOILSEETMODELGUI_H
+#define SOILSEETMODELGUI_H
 
 #include <QWidget>
 
@@ -48,4 +48,4 @@ private slots:
     void setCurrent();
 };
 
-#endif // RETAININGWALLMODELGUI_H
+#endif // SOILSEETMODELGUI_H

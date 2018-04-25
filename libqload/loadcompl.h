@@ -16,8 +16,8 @@
     You should have received a copy of the GNU General Public License
     along with QStruct.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef LOAD_H
-#define LOAD_H
+#ifndef LOADCOMPL_H
+#define LOADCOMPL_H
 
 class BoolPlus;
 class QStringPlus;
@@ -74,4 +74,4 @@ signals:
     void loadChanged();
 };
 
-#endif // LOAD_H
+#endif // LOADCOMPL_H

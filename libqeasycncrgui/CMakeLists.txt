@@ -30,7 +30,7 @@ set ( FRM
 )
 
 # Tell CMake to create the library
-add_library( libqeasycncrgui
+add_library( qeasycncrgui
     ${SRC} ${HDR} ${FRM}
 )
 
@@ -43,5 +43,8 @@ include_directories(
 )
 
 # Use required libraries
-target_link_libraries(libqeasycncrgui libqeasycncr libsimpledataplotter Qt5::Widgets Qt5::Gui)
+target_link_libraries(
+    qeasycncrgui
+    qeasycncr simpledataplotter Qt5::Widgets
+)
 

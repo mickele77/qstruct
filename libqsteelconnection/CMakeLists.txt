@@ -19,7 +19,7 @@ set( HDR
 )
 
 # Tell CMake to create the library
-add_library( libqsteelconnection
+add_library( qsteelconnection
     ${SRC} ${HDR}
 )
 
@@ -30,5 +30,8 @@ include_directories(
 )
 
 # Use required libraries
-target_link_libraries(libqsteelconnection libqmaterial libvarplus libqstructutility )
+target_link_libraries(
+    qsteelconnection
+    qmaterial
+)
 

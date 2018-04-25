@@ -38,4 +38,3 @@ add_subdirectory( libqeasygui )
 add_subdirectory( libqeasycncrgui )
 add_subdirectory( libqstructure )
 add_subdirectory( qstruct )
-

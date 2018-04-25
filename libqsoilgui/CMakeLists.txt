@@ -6,7 +6,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
 # Find the required modules
-find_package(Qt5 COMPONENTS Widgets Gui Core REQUIRED)
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 set( SRC
     soilmodelgui.cpp
@@ -44,7 +44,7 @@ set( FRM
 )
 
 # Tell CMake to create the library
-add_library( libqsoilgui
+add_library( qsoilgui
     ${SRC} ${HDR} ${FRM}
 )
 
@@ -56,5 +56,7 @@ include_directories(
 )
 
 # Use required libraries
-target_link_libraries(libqsoilgui libqsoil libvarplusgui Qt5::Widgets Qt5::Gui )
-
+target_link_libraries(
+    qsoilgui
+    qsoil varplusgui
+)

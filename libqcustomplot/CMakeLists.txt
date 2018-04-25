@@ -5,7 +5,7 @@ IF( BUILD_SHARED_LIBS AND WIN32 )
 ENDIF( BUILD_SHARED_LIBS AND WIN32 )
 
 # Find the required modules
-find_package(Qt5 COMPONENTS Core Gui Widgets PrintSupport REQUIRED)
+find_package(Qt5 COMPONENTS Widgets PrintSupport REQUIRED)
 
 set( SRC
     qcustomplot.cpp
@@ -17,10 +17,10 @@ set( HDR
 )
 
 # Tell CMake to create the library
-add_library( libglviewer
+add_library( qcustomplot
     ${SRC} ${HDR}
 )
 
 # Use required modules from Qt 5
-target_link_libraries(libglviewer Qt5::Core Qt5::Gui Qt5::Widgets Qt5::PrintSupport)
+target_link_libraries( qcustomplot Qt5::Widgets Qt5::PrintSupport)
 

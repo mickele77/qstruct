@@ -75,7 +75,7 @@ LIBS += \
 
 # Resources
 RESOURCES += \
-    ../icons.qrc
+    icons.qrc
 
 # Input
 HEADERS += \

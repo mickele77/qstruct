@@ -6,7 +6,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
 # Find the required modules
-find_package(Qt5 COMPONENTS Widgets Gui REQUIRED)
+find_package(Qt5 COMPONENTS Sql Widgets REQUIRED)
 
 set( SRC
     materialgui.cpp
@@ -47,7 +47,7 @@ set ( FRM
 )
 
 # Tell CMake to create the library
-add_library( libqeasygui
+add_library( qmaterialgui
     ${SRC} ${HDR} ${FRM}
 )
 
@@ -55,10 +55,13 @@ include_directories(
     ../libvarplus
     ../libvarplusgui
     ../libqcustomplot
+    ../libqload
     ../libqmaterial
     ../libqsection
 )
 
 # Use required libraries
-target_link_libraries(libqmaterialgui libqmaterial Qt5::Widgets Qt5::Gui)
-
+target_link_libraries(
+    qmaterialgui
+    qmaterial Qt5::Sql Qt5::Widgets
+)
