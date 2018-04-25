@@ -36,7 +36,7 @@ add_library( qeasycncrgui
 
 include_directories(
     ../libqeasycncr
-    ../libsimpledataplotter
+    ../libqcustomplot
     ../libqstructutility
     ../libvarplusgui
     ../libvarplus
@@ -45,6 +45,5 @@ include_directories(
 # Use required libraries
 target_link_libraries(
     qeasycncrgui
-    qeasycncr simpledataplotter Qt5::Widgets
+    qeasycncr qcustomplot Qt5::Widgets
 )
-

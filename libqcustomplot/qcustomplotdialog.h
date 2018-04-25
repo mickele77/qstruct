@@ -1,14 +1,14 @@
-#ifndef SIMPLEDATAPLOTTERDIALOG_H
-#define SIMPLEDATAPLOTTERDIALOG_H
+#ifndef QCUSTOMPLOTDIALOG_H
+#define QCUSTOMPLOTDIALOG_H
 
-class SimpleDataPlotterDialogPrivate;
+class QCustomPlotDialogPrivate;
 
 #include <QDialog>
 
-class SimpleDataPlotterDialog : public QDialog {
+class QCustomPlotDialog : public QDialog {
     Q_OBJECT
 public:
-    explicit SimpleDataPlotterDialog(const QString &title, QWidget *parent = 0);
+    explicit QCustomPlotDialog(const QString &title, QWidget *parent = 0);
 
     void setCurveData(int id, const QVector<QPointF> &data);
     void setCurveData(int id, const QVector<QPointF> &data, Qt::PenStyle ps, const QColor & c );
@@ -18,7 +18,7 @@ public:
     void setYAxisInverted( bool v = true );
 
 private:
-    SimpleDataPlotterDialogPrivate * m_d;
+    QCustomPlotDialogPrivate * m_d;
 };
 
-#endif // SIMPLEDATAPLOTTERDIALOG_H
+#endif // QCUSTOMPLOTDIALOG_H

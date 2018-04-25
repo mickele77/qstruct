@@ -75,7 +75,6 @@ include_directories(
     ../libqstructutility
     ../libvarplus
     ../libvarplusgui
-    ../libsimpledataplotter
     ../libqcustomplot
     ../libqload
     ../libqmaterial
@@ -86,6 +85,6 @@ include_directories(
 # Use required libraries
 target_link_libraries(
     qsectiongui
-    qfem qsection qcustomplot simpledataplotter
+    qfem qsection qcustomplot
     Qt5::Sql Qt5::Widgets
 )

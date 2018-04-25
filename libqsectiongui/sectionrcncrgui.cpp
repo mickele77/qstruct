@@ -44,7 +44,7 @@
 #include "point2dplus.h"
 #include "point2dmodel.h"
 
-#include "simpledataplotterdialog.h"
+#include "qcustomplotdialog.h"
 
 #include <QTextStream>
 #include <QFileDialog>
@@ -873,7 +873,7 @@ void SectionRCncrGUI::copyToFileMULSyMULSz(){
 
 void SectionRCncrGUI::plotMULSyMULSz(){
     if( m_d->section ){
-        SimpleDataPlotterDialog d( trUtf8("Interazione My-Mz"), this );
+        QCustomPlotDialog d( trUtf8("Interazione My-Mz"), this );
         QPolygonF plotData = m_d->section->MULSyMULSz(m_d->NULS, m_d->NCenULS, m_d->ui->MULSyMULSzAccuracySBox->value());
         for( QPolygonF::iterator i = plotData.begin(); i != plotData.end(); ++i ){
             (*i) *= m_d->MULSyMULSzKRed->valueNormal();
@@ -920,7 +920,7 @@ void SectionRCncrGUI::copyToFileMULSN(){
 
 void SectionRCncrGUI::plotMULSN(){
     if( m_d->section ){
-        SimpleDataPlotterDialog d( trUtf8("Interazione N-M"), this );
+        QCustomPlotDialog d( trUtf8("Interazione N-M"), this );
         d.setCurveData( 0, m_d->section->MULSN( m_d->NCenULS, m_d->alphaULS, m_d->ui->MULSNAccuracySBox->value()) );
         d.setXAxisInverted( true );
         d.exec();

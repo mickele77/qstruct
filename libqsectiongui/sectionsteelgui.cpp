@@ -37,7 +37,7 @@
 #include "point2dplusmodel.h"
 
 #include "varplusguiutility.h"
-#include "simpledataplotterdialog.h"
+#include "qcustomplotdialog.h"
 
 #include <QSqlDatabase>
 #include <QSqlQueryModel>
@@ -1164,7 +1164,7 @@ void SectionSteelGUI::calculateMULS(){
 
 void SectionSteelGUI::plotMULSyMULSz(){
     if( m_d->section != NULL ){
-        SimpleDataPlotterDialog d( trUtf8("Interazione My-Mz"), this );
+        QCustomPlotDialog d( trUtf8("Interazione My-Mz"), this );
         d.setCurveData( 0, m_d->section->MULSyMULSz(m_d->NMULSN, m_d->cenMULSN, m_d->ui->MULSyMULSzAccuracySBox->value()) );
         d.exec();
     }
@@ -1188,7 +1188,7 @@ void SectionSteelGUI::setZCenMULSN(){
 
 void SectionSteelGUI::plotMULSN(){
     if( m_d->section ){
-        SimpleDataPlotterDialog d( trUtf8("Interazione N-M"), this );
+        QCustomPlotDialog d( trUtf8("Interazione N-M"), this );
         d.setCurveData( 0, m_d->section->MULSN( m_d->cenMULSN, m_d->alphaMULSN, m_d->ui->MULSNAccuracySBox->value()) );
         d.exec();
     }

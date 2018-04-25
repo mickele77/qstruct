@@ -39,4 +39,7 @@ include_directories(
 )
 
 # Use required libraries
-target_link_libraries( qtimberconnectiongui qeasy simpledataplotter Qt5::Widgets)
+target_link_libraries( qtimberconnectiongui
+    qtimberconnection
+    Qt5::Widgets
+)

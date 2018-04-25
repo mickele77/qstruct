@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SimpleDataPlotterDialog</class>
- <widget class="QDialog" name="SimpleDataPlotterDialog">
+ <class>QCustomPlotDialog</class>
+ <widget class="QDialog" name="QCustomPlotDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="SimpleDataPlotter" name="dataPlotter" native="true"/>
+    <widget class="QCustomPlot" name="dataPlot" native="true"/>
    </item>
    <item row="1" column="0">
     <widget class="QDialogButtonBox" name="buttonBox">
@@ -31,9 +31,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>SimpleDataPlotter</class>
+   <class>QCustomPlot</class>
    <extends>QWidget</extends>
-   <header>simpledataplotter.h</header>
+   <header>qcustomplot.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
@@ -42,7 +42,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>SimpleDataPlotterDialog</receiver>
+   <receiver>QCustomPlotDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -58,7 +58,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>SimpleDataPlotterDialog</receiver>
+   <receiver>QCustomPlotDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

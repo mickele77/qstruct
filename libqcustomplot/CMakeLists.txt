@@ -9,16 +9,22 @@ find_package(Qt5 COMPONENTS Widgets PrintSupport REQUIRED)
 
 set( SRC
     qcustomplot.cpp
+    qcustomplotdialog.cpp
 )
 
 set( HDR
     qcustomplot.h
+    qcustomplotdialog.h
     qcustomplot_export.h
+)
+
+set( FRM
+    qcustomplotdialog.ui
 )
 
 # Tell CMake to create the library
 add_library( qcustomplot
-    ${SRC} ${HDR}
+    ${SRC} ${HDR} ${FRM}
 )
 
 # Use required modules from Qt 5

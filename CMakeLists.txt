@@ -14,7 +14,6 @@ set(CMAKE_AUTORCC ON)
 project(qstruct)
 
 add_subdirectory( libglviewer )
-add_subdirectory( libsimpledataplotter )
 add_subdirectory( libqcustomplot )
 add_subdirectory( libqstructutility )
 add_subdirectory( libvarplus )

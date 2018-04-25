@@ -1,7 +1,7 @@
 #include "simplesectionrcncrcompgui.h"
 #include "ui_simplesectionrcncrcompgui.h"
 
-#include "simpledataplotterdialog.h"
+#include "qcustomplotdialog.h"
 
 #include "simplesectionrcncrcomp.h"
 #include "cncrrectmodel.h"
@@ -171,13 +171,13 @@ SimpleSectionRCncrCompGUI::~SimpleSectionRCncrCompGUI() {
 }
 
 void SimpleSectionRCncrCompGUI::calcMChi() {
-    SimpleDataPlotterDialog d( trUtf8("Momento/Curvatura"), this );
+    QCustomPlotDialog d( trUtf8("Momento/Curvatura"), this );
     d.setCurveData( 0, m_d->sect->MChiDiagram( m_d->MChiNEd ) );
     d.exec();
 }
 
 void SimpleSectionRCncrCompGUI::calcNRdMRd() {
-    SimpleDataPlotterDialog d( trUtf8("Diagramma N-M"), this );
+    QCustomPlotDialog d( trUtf8("Diagramma N-M"), this );
     d.setCurveData( 0, m_d->sect->NRdMRd() );
     d.setXAxisInverted( true );
     d.exec();

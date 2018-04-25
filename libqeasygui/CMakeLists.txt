@@ -33,7 +33,6 @@ add_library( qeasygui
 
 include_directories(
     ../libqeasy
-    ../libsimpledataplotter
     ../libqstructutility
     ../libvarplusgui
     ../libvarplus
@@ -42,6 +41,7 @@ include_directories(
 # Use required libraries
 target_link_libraries(
     qeasygui
-    qeasy simpledataplotter Qt5::Widgets
+    qeasy
+    Qt5::Widgets
 )
 

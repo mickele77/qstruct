@@ -1,7 +1,7 @@
 #include "simplesectionrcncrrectgui.h"
 #include "ui_simplesectionrcncrrectgui.h"
 
-#include "simpledataplotterdialog.h"
+#include "qcustomplotdialog.h"
 
 #include "simplesectionrcncrrect.h"
 #include "steelamodel.h"
@@ -311,7 +311,7 @@ void SimpleSectionRCncrRectGUI::setDVULS() {
 }
 
 void SimpleSectionRCncrRectGUI::calcMChi() {
-    SimpleDataPlotterDialog d( trUtf8("Momento/Curvatura"), this );
+    QCustomPlotDialog d( trUtf8("Momento/Curvatura"), this );
     d.setCurveData( 0, m_d->sect->MChiDiagram( m_d->MChiNEd ) );
     d.exec();
 }
@@ -326,7 +326,7 @@ void SimpleSectionRCncrRectGUI::copyToClipboardMChi() {
 }
 
 void SimpleSectionRCncrRectGUI::calcNRdMRd() {
-    SimpleDataPlotterDialog d( trUtf8("Diagramma N-M"), this );
+    QCustomPlotDialog d( trUtf8("Diagramma N-M"), this );
     d.setCurveData( 0, m_d->sect->NRdMRd() );
     d.setXAxisInverted( true );
     d.exec();
