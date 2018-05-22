@@ -1,28 +1,27 @@
 cmake_minimum_required(VERSION 2.8.11)
 
+if(POLICY CMP0020)
+  cmake_policy(SET CMP0020 NEW)
+endif()
+
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-# Instruct CMake to run moc automatically when needed.
-set(CMAKE_AUTOMOC ON)
 
 # Find the required modules
 find_package(Qt5 COMPONENTS OpenGL Widgets REQUIRED)
+find_package(VTK REQUIRED)
 
-set( SRC
-    qfem2dgui.cpp
-    femstructureviewer.cpp
-)
-
-set( HDR
-    qfem2dgui.h
-    femstructureviewer.h
-)
+file(GLOB FRM *.ui)
+file(GLOB QRC *.qrc)
+file(GLOB HDR *.h)
+file(GLOB SRC *.cpp)
 
 # Tell CMake to create the library
 add_library( qfem2dgui
-    ${SRC} ${HDR}
+    ${SRC} ${HDR} ${QRC} ${FRM}
 )
 
+include(${VTK_USE_FILE})
 include_directories(
     ../libqfemgui
     ../libqfem
@@ -34,5 +33,5 @@ include_directories(
 # Use required libraries
 target_link_libraries(
     qfem2dgui
-    qfemgui qfem Qt5::OpenGL Qt5::Widgets
+    qfemgui qfem  ${VTK_LIBRARIES} Qt5::OpenGL Qt5::Widgets
 )

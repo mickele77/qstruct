@@ -8,6 +8,8 @@ add_executable( QStruct
     main.cpp
 )
 
+install( TARGETS QStruct DESTINATION bin )
+
 include_directories(
     ../libqstructure
 )
