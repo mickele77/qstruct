@@ -294,7 +294,7 @@ void SimpleSectionRCncrCompGUI::connectVar() {
     VarPlusGUI::connectVar( m_d->MChiNEd, m_d->ui->MChiNEdLabel, m_d->ui->MChiNEdLEdit, m_d->ui->MChiNEdUMLabel );
 
     m_d->ui->steelATableView->setModel( m_d->sect->steelAModel() );
-    VarPlusGUI::connectVar( m_d->sect->dMax, m_d->ui->dMaxLabel, m_d->ui->dMaxLEdit, m_d->ui->dMaxUMLabel );
+    VarPlusGUI::connectVar( m_d->sect->dMax, m_d->ui->dMaxLabel, m_d->ui->dMaxLEdit, m_d->ui->dMaxUMLabel, m_d->ui->dMaxCheckBox );
 
     VarPlusGUI::connectVar( m_d->SLSNEk, m_d->ui->SLSNEkLabel, m_d->ui->SLSNEkLineEdit, m_d->ui->SLSNEkUMLabel );
     VarPlusGUI::connectVar( m_d->SLSMEk, m_d->ui->SLSMEkLabel, m_d->ui->SLSMEkLineEdit, m_d->ui->SLSMEkUMLabel );

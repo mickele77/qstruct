@@ -103,7 +103,7 @@ void SimpleSectionRCncrComp::initVar() {
     setEpsC2();
 
     epsCU2 = new DoublePlus(0.0, "epsCU2", m_unitMeasure, UnitMeasure::deformation );
-    epsCU2->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">cu2</span>") );
+    epsCU2->setRichName( tr("ε<span style=\" vertical-align:sub;\">cu2</span>") );
     epsCU2->setReadOnly( true );
     epsCU2->setToolTip(trUtf8("Deformazione ultima di contrazione - diagramma parabola-rettangolo"));
     addVarToContainer( epsCU2 );
