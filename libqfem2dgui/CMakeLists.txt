@@ -9,7 +9,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Find the required modules
 find_package(Qt5 COMPONENTS OpenGL Widgets REQUIRED)
-find_package(VTK REQUIRED)
 
 file(GLOB FRM *.ui)
 file(GLOB QRC *.qrc)
@@ -21,7 +20,6 @@ add_library( qfem2dgui
     ${SRC} ${HDR} ${QRC} ${FRM}
 )
 
-include(${VTK_USE_FILE})
 include_directories(
     ../libqfemgui
     ../libqfem
@@ -33,5 +31,5 @@ include_directories(
 # Use required libraries
 target_link_libraries(
     qfem2dgui
-    qfemgui qfem  ${VTK_LIBRARIES} Qt5::OpenGL Qt5::Widgets
+    qfemgui qfem Qt5::OpenGL Qt5::Widgets
 )
