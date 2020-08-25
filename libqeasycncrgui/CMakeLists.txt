@@ -43,5 +43,8 @@ include_directories(
 # Use required libraries
 target_link_libraries(
     qeasycncrgui
-    qeasycncr qcustomplot Qt5::Widgets
+    qeasycncr
+    varplusgui
+    qcustomplot
+    Qt5::Widgets
 )

@@ -83,6 +83,9 @@ include_directories(
 # Use required libraries
 target_link_libraries(
     qsectiongui
-    qfem qsection qcustomplot
+    qfem
+    qsection
+    varplusgui
+    qcustomplot
     Qt5::Sql Qt5::Widgets
 )

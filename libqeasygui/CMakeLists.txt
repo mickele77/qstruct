@@ -40,6 +40,7 @@ include_directories(
 target_link_libraries(
     qeasygui
     qeasy
+    varplusgui
     Qt5::Widgets
 )
 

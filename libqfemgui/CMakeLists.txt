@@ -54,4 +54,9 @@ include_directories(
 )
 
 # Use required libraries
-target_link_libraries( qfemgui qfem Qt5::Widgets Qt5::Gui)
+target_link_libraries(
+    qfemgui
+    qfem
+    varplusgui
+    qcustomplot
+    Qt5::Widgets Qt5::Gui)

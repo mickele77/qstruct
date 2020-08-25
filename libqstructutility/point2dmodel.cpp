@@ -2,6 +2,7 @@
 
 #include "structmath.h"
 
+#include <QList>
 #include <QPolygonF>
 #include <QPointF>
 #include <cmath>

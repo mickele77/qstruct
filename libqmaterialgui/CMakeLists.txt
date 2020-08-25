@@ -61,5 +61,9 @@ include_directories(
 # Use required libraries
 target_link_libraries(
     qmaterialgui
-    qmaterial Qt5::Sql Qt5::Widgets
+    qmaterial
+    qsection
+    qcustomplot
+    varplusgui
+    Qt5::Sql Qt5::Widgets
 )

@@ -39,5 +39,6 @@ include_directories(
 # Use required libraries
 target_link_libraries( qtimberconnectiongui
     qtimberconnection
+    varplusgui
     Qt5::Widgets
 )
