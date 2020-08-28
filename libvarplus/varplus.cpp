@@ -23,8 +23,8 @@ VarPlus::VarPlus( const QString & nn,
     m_unitMeasureValue(um),
     m_readOnly(rOnly),
     m_signalsSuspended(false),
-    m_container(NULL),
-    m_updateValueMethod(NULL){
+    m_container(nullptr),
+    m_updateValueMethod(nullptr){
     if( m_unitMeasurePointer ){
         connect( m_unitMeasurePointer, &UnitMeasure::richStringsChanged, this, &VarPlus::emitUnitMeasureRichStringChanged );
         connect( m_unitMeasurePointer, &UnitMeasure::stringsChanged, this, &VarPlus::emitUnitMeasureStringChanged );
@@ -306,8 +306,8 @@ void VarPlus::setUpdateValueMethod(VarPlusContainer * cont, void (VarPlusContain
 
 void VarPlus::updateValue(bool emitAuto) {
     if( m_readOnly ){
-        if( m_container != NULL ){
-            if( m_updateValueMethod != NULL ){
+        if( m_container != nullptr ){
+            if( m_updateValueMethod != nullptr ){
                 (m_container->*m_updateValueMethod)( emitAuto );
             }
         }

@@ -21,7 +21,7 @@ public:
         horizontalTopBranch,
         inclinedTopBranch
     };
-    explicit SimpleSectionRCncrRect(UnitMeasure * ump, const QString & n, QObject * parent = 0);
+    explicit SimpleSectionRCncrRect(UnitMeasure * ump, const QString & n, QObject * parent = nullptr);
 
     /** Base */
     DoublePlus * b;
@@ -144,19 +144,6 @@ public:
 signals:
     void sectionChanged();
 
-private slots:
-    void setFcd();
-    void setEpsC2();
-    void setEpsCU2();
-    void setNC();
-
-    void setEpsSUd();
-    void setFSyd();
-    void setFSud();
-
-    void setNRdMin();
-    void setNRdMax();
-
 private:
     SimpleSectionRCncrRectPrivate * m_d;
 
@@ -173,6 +160,22 @@ private:
     double MRdNormal(double NEd, double *x, bool inverted = false, double prec=1.0e-7, int maxIter=1000);
 
     double calcSigmaNormal(double *sigmaCUp, double *sigmaCDown, double sigmaS[], double N, double M, double x, double alphaE, bool invert);
+
+    void setFcd( bool emitAuto = true );
+    void setEpsC2( bool emitAuto = true  );
+    void setEpsCU2( bool emitAuto = true  );
+    void setNC( bool emitAuto = true  );
+
+    void setEpsSUd( bool emitAuto = true );
+    void setFSyd( bool emitAuto = true );
+    void setFSud( bool emitAuto = true );
+
+    void setNRdMin( bool emitAuto = true );
+    void setNRdMax( bool emitAuto = true );
+
+private slots:
+    void setDMax( double newVal );
+    void setDMin( double newVal );
 };
 
 #endif // SIMPLESECTIONRCNCRRECT_H

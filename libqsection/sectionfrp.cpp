@@ -32,14 +32,14 @@ SectionFRP::SectionFRP(UnitMeasure * ump, FRP * frp, Concrete *cncr, const QStri
 
 SectionFRP::SectionFRP(UnitMeasure *ump, const QXmlStreamAttributes &attrs,
                        MaterialModel *mModel, SectionLoadPhaseModel * lModel, QObject *parent):
-    SectionLine( ump, NULL, "", parent ),
-    m_d(new SectionFRPPrivate(NULL) ) {
+    SectionLine( ump, nullptr, "", parent ),
+    m_d(new SectionFRPPrivate(nullptr) ) {
     initVar();
     loadFromXML( attrs, mModel, lModel );
 }
 
 SectionFRP::~SectionFRP(){
-    if( m_d->concrete != NULL ){
+    if( m_d->concrete != nullptr ){
         m_d->concrete->removeIsUsedBy( this );
     }
     delete m_d;
@@ -90,7 +90,7 @@ void SectionFRP::loadFromXML( const QXmlStreamAttributes &attrs, MaterialModel *
             } else if ( attrs.at(i).name().toString().toUpper() == "CONCRETE" ) {
                 setConcrete( dynamic_cast<Concrete *>(mModel->materialId( attrs.at(i).value().toString().toUInt() )), false );
             } else if ( attrs.at(i).name().toString().toUpper() == "LOADPHASE" ) {
-                if( loadModel != NULL ){
+                if( loadModel != nullptr ){
                     setLoadPhase( loadModel->loadPhaseId( attrs.at(i).value().toString().toUInt() ), false );
                 }
             }
@@ -145,7 +145,7 @@ Concrete *SectionFRP::concrete() {
 
 void SectionFRP::setConcrete(Concrete *cncr, bool emitAuto) {
     if( m_d->concrete != cncr ){
-        if( m_d->concrete != NULL ){
+        if( m_d->concrete != nullptr ){
             m_d->concrete->removeIsUsedBy( this );
             disconnect( m_d->concrete, &Material::aboutToBeDeleted, this, &SectionFRP::setConcreteNULL );
             LFd->removeConnectedVar( m_d->concrete->fctm );
@@ -159,7 +159,7 @@ void SectionFRP::setConcrete(Concrete *cncr, bool emitAuto) {
         Concrete * oldConcrete = m_d->concrete;
         m_d->concrete = cncr;
 
-        if( m_d->concrete != NULL ){
+        if( m_d->concrete != nullptr ){
             m_d->concrete->setIsUsedBy( this );
             connect( m_d->concrete, &Material::aboutToBeDeleted, this, &SectionFRP::setConcreteNULL );
             LFd->addConnectedVar( m_d->concrete->fctm );
@@ -182,99 +182,99 @@ void SectionFRP::setConcrete(Concrete *cncr, bool emitAuto) {
 }
 
 void SectionFRP::setConcreteNULL() {
-    setConcrete( NULL );
+    setConcrete( nullptr );
 }
 
 void SectionFRP::initVar() {
     *m_typeNameInternal = "SectionFRP";
-    typeName->setValue( trUtf8("FRP"));
+    typeName->setValue( tr("FRP"));
 
     connect( this, &SectionFRP::concreteChanged, this, &Section::sectionChanged );
 
-    t->setRichName( trUtf8("t<span style=\" vertical-align:sub;\">f</span>") );
-    t->setToolTip( trUtf8("Spessore del rinforzo"));
+    t->setRichName( tr("t<span style=\" vertical-align:sub;\">f</span>") );
+    t->setToolTip( tr("Spessore del rinforzo"));
     t->setReadOnly( false );
 
-    L->setRichName( trUtf8("b<span style=\" vertical-align:sub;\">f</span>") );
-    L->setToolTip( trUtf8("Larghezza del rinforzo in FRP"));
+    L->setRichName( tr("b<span style=\" vertical-align:sub;\">f</span>") );
+    L->setToolTip( tr("Larghezza del rinforzo in FRP"));
 
     b = new DoublePlus( 0.0, "b", m_unitMeasure, UnitMeasure::sectL );
-    b->setRichName( trUtf8("b") );
-    b->setToolTip( trUtf8("Larghezza della trave rinforzata"));
+    b->setRichName( tr("b") );
+    b->setToolTip( tr("Larghezza della trave rinforzata"));
     addVarToContainer( b );
 
     kb = new DoublePlus( 0.0, "kb", m_unitMeasure, UnitMeasure::noDimension, true );
-    kb->setRichName( trUtf8("k<span style=\" vertical-align:sub;\">b</span>") );
-    kb->setToolTip( trUtf8("Fattore geomtrico funzione della larghezza della trave rinforzata e di quella del rinforzo"));
+    kb->setRichName( tr("k<span style=\" vertical-align:sub;\">b</span>") );
+    kb->setToolTip( tr("Fattore geomtrico funzione della larghezza della trave rinforzata e di quella del rinforzo"));
     addVarToContainer( kb );
     kb->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionFRP::setKb) );
     kb->addConnectedVars( 2, L, b );
 
     kG = new DoublePlus( 0.000037, "kG", m_unitMeasure, UnitMeasure::sectL );
-    kG->setRichName( trUtf8("k<span style=\" vertical-align:sub;\">G</span>") );
-    kG->setToolTip( trUtf8("Coefficiente correttivo per calcolo energia specifica di frattura (0.023 mm per composti preformati - 0.037 mm per compositi impregnati in situ)" ));
+    kG->setRichName( tr("k<span style=\" vertical-align:sub;\">G</span>") );
+    kG->setToolTip( tr("Coefficiente correttivo per calcolo energia specifica di frattura (0.023 mm per composti preformati - 0.037 mm per compositi impregnati in situ)" ));
     addVarToContainer( kG );
 
     su = new DoublePlus( 0.00025, "kG", m_unitMeasure, UnitMeasure::sectL );
-    su->setRichName( trUtf8("s<span style=\" vertical-align:sub;\">u</span>") );
-    su->setToolTip( trUtf8("Valore ultimo dello scorrimento tra FRP e supporto"));
+    su->setRichName( tr("s<span style=\" vertical-align:sub;\">u</span>") );
+    su->setToolTip( tr("Valore ultimo dello scorrimento tra FRP e supporto"));
     addVarToContainer( su );
 
     LFd = new DoublePlus( 1.35, "LFd", m_unitMeasure, UnitMeasure::SCE, true );
-    LFd->setRichName( trUtf8("Γ<span style=\" vertical-align:sub;\">Fd</span>") );
-    LFd->setToolTip( trUtf8("Valore di progetto dell'energia specifica di frattura"));
+    LFd->setRichName( tr("Γ<span style=\" vertical-align:sub;\">Fd</span>") );
+    LFd->setToolTip( tr("Valore di progetto dell'energia specifica di frattura"));
     addVarToContainer( LFd );
     LFd->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionFRP::setLFd) );
     LFd->addConnectedVars( 2, kG, kb );
 
     kq = new DoublePlus( 1.0, "kq", m_unitMeasure, UnitMeasure::noDimension );
-    kq->setRichName( trUtf8("k<span style=\" vertical-align:sub;\">q</span>") );
-    kq->setToolTip( trUtf8("Coefficiente correttivo funzione delle condizioni di carico (1.25 carichi distribuiti - 1 negli altri casi)"));
+    kq->setRichName( tr("k<span style=\" vertical-align:sub;\">q</span>") );
+    kq->setToolTip( tr("Coefficiente correttivo funzione delle condizioni di carico (1.25 carichi distribuiti - 1 negli altri casi)"));
     addVarToContainer( kq );
 
     kG2 = new DoublePlus( 0.0001, "kG2", m_unitMeasure, UnitMeasure::sectL );
-    kG2->setRichName( trUtf8("k<span style=\" vertical-align:sub;\">G,2</span>") );
-    kG2->setToolTip( trUtf8("Coefficiente correttivo per calcolo tensione di delaminazione tipo 2 (pari a 0,10 mm)"));
+    kG2->setRichName( tr("k<span style=\" vertical-align:sub;\">G,2</span>") );
+    kG2->setToolTip( tr("Coefficiente correttivo per calcolo tensione di delaminazione tipo 2 (pari a 0,10 mm)"));
     addVarToContainer( kG2 );
 
     fbd = new DoublePlus( 0.0, "fbd", m_unitMeasure, UnitMeasure::tension, true );
-    fbd->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">bd</span>") );
-    fbd->setToolTip( trUtf8(""));
+    fbd->setRichName( tr("f<span style=\" vertical-align:sub;\">bd</span>") );
+    fbd->setToolTip( tr(""));
     addVarToContainer( fbd );
     fbd->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionFRP::setFbd) );
     fbd->addConnectedVars( 2, su, LFd );
 
     led = new DoublePlus( 0.0, "led", m_unitMeasure, UnitMeasure::sectL, true );
-    led->setRichName( trUtf8("l<span style=\" vertical-align:sub;\">ed</span>" ) );
-    led->setToolTip( trUtf8("Lunghezza ottimale di ancoraggio"));
+    led->setRichName( tr("l<span style=\" vertical-align:sub;\">ed</span>" ) );
+    led->setToolTip( tr("Lunghezza ottimale di ancoraggio"));
     addVarToContainer( led );
     led->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionFRP::setLed) );
     led->addConnectedVars( 3, t, fbd, LFd );
 
     ffdd = new DoublePlus( 0.0, "ffdd", m_unitMeasure, UnitMeasure::tension, true );
-    ffdd->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">fdd</span>") );
-    ffdd->setToolTip( trUtf8("Tensione di progetto del rinforzo"));
+    ffdd->setRichName( tr("f<span style=\" vertical-align:sub;\">fdd</span>") );
+    ffdd->setToolTip( tr("Tensione di progetto del rinforzo"));
     addVarToContainer( ffdd );
     ffdd->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionFRP::setFfdd) );
     ffdd->addConnectedVars( 2, t, LFd );
 
     ffdd2 = new DoublePlus( 0.0, "ffdd2", m_unitMeasure, UnitMeasure::tension, true );
-    ffdd2->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">fdd,2</span>") );
-    ffdd2->setToolTip( trUtf8("Tensione di progetto del rinforzo"));
+    ffdd2->setRichName( tr("f<span style=\" vertical-align:sub;\">fdd,2</span>") );
+    ffdd2->setToolTip( tr("Tensione di progetto del rinforzo"));
     addVarToContainer( ffdd2 );
     ffdd2->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionFRP::setFfdd2) );
     ffdd2->addConnectedVars( 4, t, kG2, kb, kq );
 
     epsfdd = new DoublePlus( 0.0, "epsfdd", m_unitMeasure, UnitMeasure::deformation, true );
-    epsfdd->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">fdd</span>") );
-    epsfdd->setToolTip( trUtf8("Deformazione di delaminazione del rinforzo"));
+    epsfdd->setRichName( tr("ε<span style=\" vertical-align:sub;\">fdd</span>") );
+    epsfdd->setToolTip( tr("Deformazione di delaminazione del rinforzo"));
     addVarToContainer( epsfdd );
     epsfdd->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionFRP::setEpsfdd) );
     epsfdd->addConnectedVar( ffdd2 );
 
     epsfd = new DoublePlus( 0.0, "epsfd", m_unitMeasure, UnitMeasure::deformation, true );
-    epsfd->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">fd</span>") );
-    epsfd->setToolTip( trUtf8("Deformazione massima di progetto"));
+    epsfd->setRichName( tr("ε<span style=\" vertical-align:sub;\">fd</span>") );
+    epsfd->setToolTip( tr("Deformazione massima di progetto"));
     addVarToContainer( epsfd );
     epsfd->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionFRP::setEpsfd) );
     epsfd->addConnectedVar( epsfdd );
@@ -403,7 +403,7 @@ double SectionFRP::NULSNormal(double l,
                               double my,
                               double mz,
                               QList<Point2DModel *> *sects){
-    Q_UNUSED(sects);
+    Q_UNUSED(sects)
 
     if( A->valueNormal() == 0.0 ){
         return 0.0;
@@ -457,7 +457,7 @@ double SectionFRP::NULSNormal(double l,
 void SectionFRP::MULSNormal( double *yRet, double *zRet,
                              double l, double my, double mz,
                              QList<Point2DModel *> *sects ){
-    Q_UNUSED(sects);
+    Q_UNUSED(sects)
 
     if( A->valueNormal() == 0.0 ){
         *yRet = 0.0;

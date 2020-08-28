@@ -62,153 +62,153 @@ public:
         settingsFile(sFile){
         ui = new Ui::SectionRCncrGUI;
 
-        section = NULL;
+        section = nullptr;
         materialModel = matModel;
-        currentSectionCncrPointModel = NULL;
-        currentSectionFRP = NULL;
+        currentSectionCncrPointModel = nullptr;
+        currentSectionFRP = nullptr;
         sectsToView = new QList<QGraphicsPolygonItem *>;
 
-        geometricDataPanel = NULL;
-        transformPanel = NULL;
+        geometricDataPanel = nullptr;
+        transformPanel = nullptr;
 
         initVar();
     }
     void initVar(){
         bRect = new DoublePlus(0.0, "bRect", m_unitMeasure, UnitMeasure::sectL );
-        bRect->setToolTip( QObject::trUtf8("Base della sezione rettangolare"));
-        bRect->setRichName( QObject::trUtf8("b"));
+        bRect->setToolTip( QObject::tr("Base della sezione rettangolare"));
+        bRect->setRichName( QObject::tr("b"));
         addVarToContainer( bRect );
 
         hRect = new DoublePlus(0.0, "hRect", m_unitMeasure, UnitMeasure::sectL );
-        hRect->setToolTip( QObject::trUtf8("Altezza della sezione rettangolare"));
-        hRect->setRichName( QObject::trUtf8("h"));
+        hRect->setToolTip( QObject::tr("Altezza della sezione rettangolare"));
+        hRect->setRichName( QObject::tr("h"));
         addVarToContainer(hRect);
 
         NULS = new DoublePlus(0.0, "NULS", m_unitMeasure, UnitMeasure::loadF );
-        NULS->setToolTip( QObject::trUtf8("Sforzo normale agente") );
-        NULS->setRichName( QObject::trUtf8("N<span style=\"vertical-align:sub;\">Sd</span>"));
+        NULS->setToolTip( QObject::tr("Sforzo normale agente") );
+        NULS->setRichName( QObject::tr("N<span style=\"vertical-align:sub;\">Sd</span>"));
         addVarToContainer( NULS );
 
         alphaULS = new DoublePlus(0.0, "alphaULS", m_unitMeasure, UnitMeasure::angle );
-        alphaULS->setToolTip( QObject::trUtf8("Inclinazione piano di deformazione rispetto all'asse y") );
-        alphaULS->setRichName( QObject::trUtf8("α<span style=\" vertical-align:sub;\">Sd</span>"));
+        alphaULS->setToolTip( QObject::tr("Inclinazione piano di deformazione rispetto all'asse y") );
+        alphaULS->setRichName( QObject::tr("α<span style=\" vertical-align:sub;\">Sd</span>"));
         addVarToContainer( alphaULS );
 
         NCenULS = new Point2DPlus( "NCenULS", "NCenULSY", 0.0, "NCenULSZ", 0.0, m_unitMeasure, UnitMeasure::sectL);
         addVarToContainer( NCenULS );
-        NCenULS->y->setToolTip( QObject::trUtf8("Ascissa del polo attorno a cui si calcola il momento"));
-        NCenULS->y->setRichName( QObject::trUtf8("y<span style=\"vertical-align:sub;\">N</span>"));
+        NCenULS->y->setToolTip( QObject::tr("Ascissa del polo attorno a cui si calcola il momento"));
+        NCenULS->y->setRichName( QObject::tr("y<span style=\"vertical-align:sub;\">N</span>"));
         NCenULS->y->setReadOnly( true );
-        NCenULS->z->setToolTip( QObject::trUtf8("Ordinata del polo attorno a cui si calcola il momento"));
-        NCenULS->z->setRichName( QObject::trUtf8("z<span style=\"vertical-align:sub;\">N</span>"));
+        NCenULS->z->setToolTip( QObject::tr("Ordinata del polo attorno a cui si calcola il momento"));
+        NCenULS->z->setRichName( QObject::tr("z<span style=\"vertical-align:sub;\">N</span>"));
         NCenULS->z->setReadOnly( true );
 
         MULSy = new DoublePlus(0.0, "MULSy", m_unitMeasure, UnitMeasure::loadM, true );
-        MULSy->setToolTip( QObject::trUtf8("Componente y del momento resistente"));
-        MULSy->setRichName( QObject::trUtf8("M<span style=\"vertical-align:sub;\">Rd,y</span>"));
+        MULSy->setToolTip( QObject::tr("Componente y del momento resistente"));
+        MULSy->setRichName( QObject::tr("M<span style=\"vertical-align:sub;\">Rd,y</span>"));
         addVarToContainer( MULSy );
 
         MULSz = new DoublePlus(0.0, "MULSz", m_unitMeasure, UnitMeasure::loadM, true );
-        MULSz->setToolTip( QObject::trUtf8("Componente z del momento resistente"));
-        MULSz->setRichName( QObject::trUtf8("M<span style=\"vertical-align:sub;\">Rd,z</span>"));
+        MULSz->setToolTip( QObject::tr("Componente z del momento resistente"));
+        MULSz->setRichName( QObject::tr("M<span style=\"vertical-align:sub;\">Rd,z</span>"));
         addVarToContainer( MULSz );
 
         MULSyMULSzKRed = new DoublePlus(1.0, "MULSyMULSzKRed", m_unitMeasure, UnitMeasure::noDimension );
-        MULSyMULSzKRed->setToolTip( QObject::trUtf8("Coefficiente di riduzione dei valori del momento"));
-        MULSyMULSzKRed->setRichName( QObject::trUtf8("k<span style=\"vertical-align:sub;\">red</span>"));
+        MULSyMULSzKRed->setToolTip( QObject::tr("Coefficiente di riduzione dei valori del momento"));
+        MULSyMULSzKRed->setRichName( QObject::tr("k<span style=\"vertical-align:sub;\">red</span>"));
         addVarToContainer( MULSyMULSzKRed );
 
         LSPlusNULS = new DoublePlus(0.0, "LSPlusNULS", m_unitMeasure, UnitMeasure::loadF );
-        LSPlusNULS->setToolTip( QObject::trUtf8("Sforzo normale agente"));
-        LSPlusNULS->setRichName( QObject::trUtf8("N<span style=\"vertical-align:sub;\">Ed</span>"));
+        LSPlusNULS->setToolTip( QObject::tr("Sforzo normale agente"));
+        LSPlusNULS->setRichName( QObject::tr("N<span style=\"vertical-align:sub;\">Ed</span>"));
         addVarToContainer( LSPlusNULS );
 
         LSPlusMyULS = new DoublePlus(0.0, "LSPlusMyULS", m_unitMeasure, UnitMeasure::loadM );
-        LSPlusMyULS->setToolTip( QObject::trUtf8("Momento agente rispetto all'asse y"));
-        LSPlusMyULS->setRichName( QObject::trUtf8("M<span style=\"vertical-align:sub;\">Ed,y</span>"));
+        LSPlusMyULS->setToolTip( QObject::tr("Momento agente rispetto all'asse y"));
+        LSPlusMyULS->setRichName( QObject::tr("M<span style=\"vertical-align:sub;\">Ed,y</span>"));
         addVarToContainer( LSPlusMyULS );
 
         LSPlusMzULS = new DoublePlus(0.0, "LSPlusMzULS", m_unitMeasure, UnitMeasure::loadM );
-        LSPlusMzULS->setToolTip( QObject::trUtf8("Momento agente rispetto all'asse z"));
-        LSPlusMzULS->setRichName( QObject::trUtf8("M<span style=\"vertical-align:sub;\">Ed,z</span>"));
+        LSPlusMzULS->setToolTip( QObject::tr("Momento agente rispetto all'asse z"));
+        LSPlusMzULS->setRichName( QObject::tr("M<span style=\"vertical-align:sub;\">Ed,z</span>"));
         addVarToContainer( LSPlusMzULS );
 
         LSPlusNCenULS  = new Point2DPlus( "LSPlusNCenULS", "LSPlusNYCenULS", 0.0, "LSPlusNZCenULS", 0.0, m_unitMeasure, UnitMeasure::sectL);
         addVarToContainer( LSPlusNCenULS );
-        LSPlusNCenULS->y->setToolTip( QObject::trUtf8("Ascissa del polo attorno a cui si calcola il momento"));
-        LSPlusNCenULS->y->setRichName( QObject::trUtf8("y<span style=\"vertical-align:sub;\">M</span>"));
+        LSPlusNCenULS->y->setToolTip( QObject::tr("Ascissa del polo attorno a cui si calcola il momento"));
+        LSPlusNCenULS->y->setRichName( QObject::tr("y<span style=\"vertical-align:sub;\">M</span>"));
         LSPlusNCenULS->y->setReadOnly( true );
-        LSPlusNCenULS->z->setToolTip( QObject::trUtf8("Ordinata del polo attorno a cui si calcola il momento"));
-        LSPlusNCenULS->z->setRichName( QObject::trUtf8("z<span style=\"vertical-align:sub;\">M</span>"));
+        LSPlusNCenULS->z->setToolTip( QObject::tr("Ordinata del polo attorno a cui si calcola il momento"));
+        LSPlusNCenULS->z->setRichName( QObject::tr("z<span style=\"vertical-align:sub;\">M</span>"));
         LSPlusNCenULS->z->setReadOnly( true );
 
         LSPluslULS = new DoublePlus(0.0, "LSPluslULS", m_unitMeasure, UnitMeasure::deformation, true );
-        LSPluslULS->setToolTip( QObject::trUtf8("Deformazione assiale corrispondente"));
-        LSPluslULS->setRichName( QObject::trUtf8("λ"));
+        LSPluslULS->setToolTip( QObject::tr("Deformazione assiale corrispondente"));
+        LSPluslULS->setRichName( QObject::tr("λ"));
         addVarToContainer( LSPluslULS );
 
         LSPlusmyULS = new DoublePlus(0.0, "LSPlusmyULS", m_unitMeasure, UnitMeasure::curvature, true );
-        LSPlusmyULS->setToolTip( QObject::trUtf8("Curvatura rispetto ad asse y"));
-        LSPlusmyULS->setRichName( QObject::trUtf8("μ<span style=\"vertical-align:sub;\">y</span>"));
+        LSPlusmyULS->setToolTip( QObject::tr("Curvatura rispetto ad asse y"));
+        LSPlusmyULS->setRichName( QObject::tr("μ<span style=\"vertical-align:sub;\">y</span>"));
         addVarToContainer( LSPlusmyULS );
 
         LSPlusmzULS = new DoublePlus(0.0, "LSPlusmzULS", m_unitMeasure, UnitMeasure::curvature, true );
-        LSPlusmzULS->setToolTip( QObject::trUtf8("Curvatura rispetto ad asse z"));
-        LSPlusmzULS->setRichName( QObject::trUtf8("μ<span style=\"vertical-align:sub;\">z</span>"));
+        LSPlusmzULS->setToolTip( QObject::tr("Curvatura rispetto ad asse z"));
+        LSPlusmzULS->setRichName( QObject::tr("μ<span style=\"vertical-align:sub;\">z</span>"));
         addVarToContainer( LSPlusmzULS );
 
         NSLS = new DoublePlus(0.0, "NSLS", m_unitMeasure, UnitMeasure::loadF );
-        NSLS->setToolTip( QObject::trUtf8("Sforzo normale agente") );
-        NSLS->setRichName( QObject::trUtf8("N"));
+        NSLS->setToolTip( QObject::tr("Sforzo normale agente") );
+        NSLS->setRichName( QObject::tr("N"));
         addVarToContainer( NSLS );
 
         NCenSLS = new Point2DPlus( "NCenSLS", "NCenYSLS", 0.0, "NCenZSLS", 0.0, m_unitMeasure, UnitMeasure::sectL);
         addVarToContainer( NCenSLS );
-        NCenSLS->y->setToolTip( QObject::trUtf8("Ascissa del polo attorno a cui si calcola il momento"));
-        NCenSLS->y->setRichName( QObject::trUtf8("y<span style=\"vertical-align:sub;\">N</span>"));
+        NCenSLS->y->setToolTip( QObject::tr("Ascissa del polo attorno a cui si calcola il momento"));
+        NCenSLS->y->setRichName( QObject::tr("y<span style=\"vertical-align:sub;\">N</span>"));
         NCenSLS->y->setReadOnly( true );
-        NCenSLS->z->setToolTip( QObject::trUtf8("Ordinata del polo attorno a cui si calcola il momento"));
-        NCenSLS->z->setRichName( QObject::trUtf8("z<span style=\"vertical-align:sub;\">N</span>"));
+        NCenSLS->z->setToolTip( QObject::tr("Ordinata del polo attorno a cui si calcola il momento"));
+        NCenSLS->z->setRichName( QObject::tr("z<span style=\"vertical-align:sub;\">N</span>"));
         NCenSLS->z->setReadOnly( true );
 
         MySLS = new DoublePlus(0.0, "MySLS", m_unitMeasure, UnitMeasure::loadM );
-        MySLS->setToolTip( QObject::trUtf8("Momento agente - componente y") );
-        MySLS->setRichName( QObject::trUtf8("M<span style=\"vertical-align:sub;\">y</span>"));
+        MySLS->setToolTip( QObject::tr("Momento agente - componente y") );
+        MySLS->setRichName( QObject::tr("M<span style=\"vertical-align:sub;\">y</span>"));
         addVarToContainer( MySLS );
 
         MzSLS = new DoublePlus(0.0, "MzSLS", m_unitMeasure, UnitMeasure::loadM );
-        MzSLS->setToolTip( QObject::trUtf8("Momento agente - componente z") );
-        MzSLS->setRichName( QObject::trUtf8("M<span style=\"vertical-align:sub;\">z</span>"));
+        MzSLS->setToolTip( QObject::tr("Momento agente - componente z") );
+        MzSLS->setRichName( QObject::tr("M<span style=\"vertical-align:sub;\">z</span>"));
         addVarToContainer( MzSLS );
 
         lSLS = new DoublePlus(0.0, "lSLS", m_unitMeasure, UnitMeasure::deformation );
-        lSLS->setToolTip( QObject::trUtf8("Deformazione nell'origine") );
-        lSLS->setRichName( QObject::trUtf8("λ"));
+        lSLS->setToolTip( QObject::tr("Deformazione nell'origine") );
+        lSLS->setRichName( QObject::tr("λ"));
         addVarToContainer( lSLS );
 
         mySLS = new DoublePlus(0.0, "mySLS", m_unitMeasure, UnitMeasure::curvature );
-        mySLS->setToolTip( QObject::trUtf8("Curvatura - componente y") );
-        mySLS->setRichName( QObject::trUtf8("μ<span style=\"vertical-align:sub;\">y</span>"));
+        mySLS->setToolTip( QObject::tr("Curvatura - componente y") );
+        mySLS->setRichName( QObject::tr("μ<span style=\"vertical-align:sub;\">y</span>"));
         addVarToContainer( mySLS );
 
         mzSLS = new DoublePlus(0.0, "mzSLS", m_unitMeasure, UnitMeasure::curvature );
-        mzSLS->setToolTip( QObject::trUtf8("Curvatura - componente z") );
-        mzSLS->setRichName( QObject::trUtf8("μ<span style=\"vertical-align:sub;\">z</span>"));
+        mzSLS->setToolTip( QObject::tr("Curvatura - componente z") );
+        mzSLS->setRichName( QObject::tr("μ<span style=\"vertical-align:sub;\">z</span>"));
         addVarToContainer( mzSLS );
 
         fCncrMinSLS = new DoublePlus(0.0, "fCncrMinSLS", m_unitMeasure, UnitMeasure::tension );
-        fCncrMinSLS->setToolTip( QObject::trUtf8("Tensione minima nel calcestruzzo") );
-        fCncrMinSLS->setRichName( QObject::trUtf8("σ<span style=\"vertical-align:sub;\">c,min</span>"));
+        fCncrMinSLS->setToolTip( QObject::tr("Tensione minima nel calcestruzzo") );
+        fCncrMinSLS->setRichName( QObject::tr("σ<span style=\"vertical-align:sub;\">c,min</span>"));
         addVarToContainer( fCncrMinSLS );
 
         fSteelCncrMinSLS = new DoublePlus(0.0, "fSteelCncrMinSLS", m_unitMeasure, UnitMeasure::tension );
-        fSteelCncrMinSLS->setToolTip( QObject::trUtf8("Tensione minima nell'armatura in acciaio") );
-        fSteelCncrMinSLS->setRichName( QObject::trUtf8("σ<span style=\"vertical-align:sub;\">s,min</span>"));
+        fSteelCncrMinSLS->setToolTip( QObject::tr("Tensione minima nell'armatura in acciaio") );
+        fSteelCncrMinSLS->setRichName( QObject::tr("σ<span style=\"vertical-align:sub;\">s,min</span>"));
         addVarToContainer( fSteelCncrMinSLS );
 
         fSteelCncrMaxSLS = new DoublePlus(0.0, "fSteelCncrMaxSLS", m_unitMeasure, UnitMeasure::tension );
-        fSteelCncrMaxSLS->setToolTip( QObject::trUtf8("Tensione massima nell'armatura in acciaio") );
-        fSteelCncrMaxSLS->setRichName( QObject::trUtf8("σ<span style=\"vertical-align:sub;\">s,max</span>"));
+        fSteelCncrMaxSLS->setToolTip( QObject::tr("Tensione massima nell'armatura in acciaio") );
+        fSteelCncrMaxSLS->setRichName( QObject::tr("σ<span style=\"vertical-align:sub;\">s,max</span>"));
         addVarToContainer( fSteelCncrMaxSLS );
     }
     ~SectionRCncrGUIPrivate(){
@@ -411,15 +411,15 @@ void SectionRCncrGUI::setSection(Section * s){
         VarPlusGUI::disconnectVar( m_d->ui->nameLabel, m_d->ui->nameLEdit );
         VarPlusGUI::disconnectVar( m_d->ui->pWLabel, m_d->ui->pWLEdit, m_d->ui->pWUMLabel, m_d->ui->pWCheckBox );
 
-        m_d->ui->sectionsCncrTableView->setModel( NULL );
-        m_d->sectionsCncrMatDelegate->setLoadPhaseModel( NULL );
-        m_d->ui->sectionsSteelCncrTableView->setModel( NULL );
-        m_d->sectionsSteelCncrMatDelegate->setLoadPhaseModel( NULL );
-        m_d->ui->sectionsSteelTableView->setModel( NULL );
-        m_d->sectionsSteelMatDelegate->setLoadPhaseModel( NULL );
-        m_d->ui->sectionsFRPTableView->setModel( NULL );
-        m_d->sectionsFRPMatDelegate->setLoadPhaseModel( NULL );
-        m_d->ui->LSPlusULSLoadStoryTableView->setModel( NULL );
+        m_d->ui->sectionsCncrTableView->setModel( nullptr );
+        m_d->sectionsCncrMatDelegate->setLoadPhaseModel( nullptr );
+        m_d->ui->sectionsSteelCncrTableView->setModel( nullptr );
+        m_d->sectionsSteelCncrMatDelegate->setLoadPhaseModel( nullptr );
+        m_d->ui->sectionsSteelTableView->setModel( nullptr );
+        m_d->sectionsSteelMatDelegate->setLoadPhaseModel( nullptr );
+        m_d->ui->sectionsFRPTableView->setModel( nullptr );
+        m_d->sectionsFRPMatDelegate->setLoadPhaseModel( nullptr );
+        m_d->ui->LSPlusULSLoadStoryTableView->setModel( nullptr );
 
         disconnect( m_d->ui->sectionsCncrTableView->selectionModel(), &QItemSelectionModel::currentRowChanged, this, &SectionRCncrGUI::setCurrentSectionCncr );
         disconnect( m_d->ui->sectionsSteelTableView->selectionModel(), &QItemSelectionModel::currentRowChanged, this, &SectionRCncrGUI::setCurrentSectionSteel );
@@ -435,7 +435,7 @@ void SectionRCncrGUI::setSection(Section * s){
     }
 
     m_d->section = dynamic_cast<SectionRCncr *>(s);
-    setCurrentSectionFRP( NULL );
+    setCurrentSectionFRP( nullptr );
 
     if( m_d->section ){
         VarPlusGUI::connectVar( m_d->section->name, m_d->ui->nameLabel, m_d->ui->nameLEdit );
@@ -477,7 +477,7 @@ void SectionRCncrGUI::setSection(Section * s){
 }
 
 Material *SectionRCncrGUI::material() {
-    return NULL;
+    return nullptr;
 }
 
 void SectionRCncrGUI::addSectionCncr(){
@@ -590,10 +590,10 @@ void SectionRCncrGUI::setCurrentSectionCncr( const QModelIndex & current, const 
             m_d->currentSectionCncrPointModel = m_d->section->sectionsCncr()->sectionCncr(current.row())->pointsModel();
         }
     } else {
-        m_d->currentSectionCncrPointModel = NULL;
+        m_d->currentSectionCncrPointModel = nullptr;
     }
     m_d->ui->sectCncrPointsTableView->setModel( m_d->currentSectionCncrPointModel );
-    m_d->ui->sectCncrPointsTabWidget->setEnabled( m_d->currentSectionCncrPointModel != NULL );
+    m_d->ui->sectCncrPointsTabWidget->setEnabled( m_d->currentSectionCncrPointModel != nullptr );
 }
 
 void SectionRCncrGUI::setCurrentSectionSteel( const QModelIndex & current, const QModelIndex & previous){
@@ -606,11 +606,11 @@ void SectionRCncrGUI::setCurrentSectionSteel( const QModelIndex & current, const
 }
 
 void SectionRCncrGUI::setCurrentSectionFRPNULL(){
-    setCurrentSectionFRP( NULL);
+    setCurrentSectionFRP( nullptr);
 }
 
 void SectionRCncrGUI::setCurrentSectionFRP( SectionFRP * sectFRP ){
-    if( m_d->currentSectionFRP != NULL ){
+    if( m_d->currentSectionFRP != nullptr ){
         VarPlusGUI::disconnectVar( m_d->ui->FRPNameLabel, m_d->ui->FRPNameLineEdit );
         VarPlusGUI::disconnectVar( m_d->ui->FRPtfLabel, m_d->ui->FRPtfLineEdit, m_d->ui->FRPtfUMLabel );
         VarPlusGUI::disconnectVar( m_d->ui->FRPy1Label, m_d->ui->FRPy1LineEdit, m_d->ui->FRPy1UMLabel );
@@ -637,7 +637,7 @@ void SectionRCncrGUI::setCurrentSectionFRP( SectionFRP * sectFRP ){
 
     m_d->currentSectionFRP = sectFRP;
 
-    if( m_d->currentSectionFRP != NULL ){
+    if( m_d->currentSectionFRP != nullptr ){
         VarPlusGUI::connectVar( m_d->currentSectionFRP->name, m_d->ui->FRPNameLabel, m_d->ui->FRPNameLineEdit );
         VarPlusGUI::connectVar( m_d->currentSectionFRP->t, m_d->ui->FRPtfLabel, m_d->ui->FRPtfLineEdit, m_d->ui->FRPtfUMLabel );
         VarPlusGUI::connectVar( m_d->currentSectionFRP->P1->y, m_d->ui->FRPy1Label, m_d->ui->FRPy1LineEdit, m_d->ui->FRPy1UMLabel );
@@ -679,7 +679,7 @@ void SectionRCncrGUI::FRPpopulateConcreteComboBox() {
         for( QList< Material * >::iterator i=matList.begin(); i!=matList.end(); ++i ){
             m_d->ui->FRPconcreteComboBox->addItem( (*i)->name->valueStr(), qVariantFromValue((void *) (*i) ) );
         }
-        if( m_d->currentSectionFRP->concrete() != NULL ){
+        if( m_d->currentSectionFRP->concrete() != nullptr ){
             m_d->ui->FRPconcreteComboBox->setCurrentIndex( m_d->ui->FRPconcreteComboBox->findData( qVariantFromValue((void *) m_d->currentSectionFRP->concrete() )));
         } else {
             m_d->ui->FRPconcreteComboBox->setCurrentIndex( -1 );
@@ -689,7 +689,7 @@ void SectionRCncrGUI::FRPpopulateConcreteComboBox() {
 }
 
 void SectionRCncrGUI::FRPsetConcreteFromCombobox(){
-    if( m_d->currentSectionFRP != NULL ){
+    if( m_d->currentSectionFRP != nullptr ){
         m_d->currentSectionFRP->setConcrete( (Concrete *) (m_d->ui->FRPconcreteComboBox->currentData().value<void *>()) );
     }
 }
@@ -703,7 +703,7 @@ void SectionRCncrGUI::FRPpopulateFRPComboBox() {
         for( QList< Material * >::iterator i=matList.begin(); i!=matList.end(); ++i ){
             m_d->ui->FRPFRPComboBox->addItem( (*i)->name->valueStr(), qVariantFromValue((void *) (*i) ) );
         }
-        if( m_d->currentSectionFRP->material() != NULL ){
+        if( m_d->currentSectionFRP->material() != nullptr ){
             m_d->ui->FRPFRPComboBox->setCurrentIndex( m_d->ui->FRPFRPComboBox->findData( qVariantFromValue((void *) m_d->currentSectionFRP->material() )));
         } else {
             m_d->ui->FRPFRPComboBox->setCurrentIndex( -1 );
@@ -713,7 +713,7 @@ void SectionRCncrGUI::FRPpopulateFRPComboBox() {
 }
 
 void SectionRCncrGUI::FRPsetFRPFromCombobox(){
-    if( m_d->currentSectionFRP != NULL ){
+    if( m_d->currentSectionFRP != nullptr ){
         m_d->currentSectionFRP->setFRP( (FRP *) (m_d->ui->FRPFRPComboBox->currentData().value<void *>()) );
     }
 }

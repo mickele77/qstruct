@@ -29,7 +29,8 @@ public:
 SimpleSectionRCncrRect::SimpleSectionRCncrRect(UnitMeasure *ump, const QString &n, QObject *parent) :
     VarPlusContainerPlus(ump, "SimpleSectionRCncrRect", n, parent ),
     m_d( new SimpleSectionRCncrRectPrivate(ump)){
-    connect( m_d->steelAModel, SIGNAL(modelChanged()), this, SIGNAL(sectionChanged()) );
+    connect( m_d->steelAModel, &SteelAModel::modelChanged, this, &SimpleSectionRCncrRect::sectionChanged );
+    connect( this, &VarPlusContainerPlus::containerChanged, this, &SimpleSectionRCncrRect::sectionChanged );
     initVar();
 }
 
@@ -41,213 +42,187 @@ void SimpleSectionRCncrRect::initVar() {
     connect( this, &SimpleSectionRCncrRect::containerChanged, this, &SimpleSectionRCncrRect::sectionChanged );
 
     b = new DoublePlus( 0.300, "b", m_unitMeasure, UnitMeasure::sectL );
-    b->setRichName(trUtf8("b"));
-    b->setToolTip( trUtf8("Base della sezione rettangolare"));
+    b->setRichName(tr("b"));
+    b->setToolTip( tr("Base della sezione rettangolare"));
     addVarToContainer(b);
 
     h = new DoublePlus( 0.400, "h", m_unitMeasure, UnitMeasure::sectL );
-    h->setRichName(trUtf8("h"));
-    h->setToolTip( trUtf8("Altezza della sezione rettangolare"));
+    h->setRichName(tr("h"));
+    h->setToolTip( tr("Altezza della sezione rettangolare"));
     addVarToContainer(h);
 
     dMax = new DoublePlus( 0.0, "dMax", m_unitMeasure, UnitMeasure::sectL, true );
-    dMax->setRichName(trUtf8("d<span style=\" vertical-align:sub;\">max</span>"));
-    dMax->setToolTip( trUtf8("Altezza utile sezione rettangolare"));
+    dMax->setRichName(tr("d<span style=\" vertical-align:sub;\">max</span>"));
+    dMax->setToolTip( tr("Altezza utile sezione rettangolare"));
     dMax->setReadOnly( true );
-    connect( m_d->steelAModel, SIGNAL(dMaxChanged(double)), dMax, SLOT(setValueNormal(double)) );
+    connect( m_d->steelAModel, &SteelAModel::dMaxChanged, this, &SimpleSectionRCncrRect::setDMax );
     addVarToContainer(dMax);
 
     dMin = new DoublePlus( 0.0, "dMin", m_unitMeasure, UnitMeasure::sectL, true );
-    dMin->setRichName(trUtf8("d<span style=\" vertical-align:sub;\">min</span>"));
-    dMin->setToolTip( trUtf8("Altezza utile minima"));
+    dMin->setRichName(tr("d<span style=\" vertical-align:sub;\">min</span>"));
+    dMin->setToolTip( tr("Altezza utile minima"));
     dMin->setReadOnly( true );
-    connect( m_d->steelAModel, SIGNAL(dMinChanged(double)), dMin, SLOT(setValueNormal(double)) );
+    connect( m_d->steelAModel, &SteelAModel::dMinChanged, this, &SimpleSectionRCncrRect::setDMin );
     addVarToContainer(dMin);
 
     fck = new DoublePlus( 25.0e+6, "fck", m_unitMeasure, UnitMeasure::tension );
-    fck->setRichName(trUtf8("f<span style=\" vertical-align:sub;\">ck</span>"));
-    fck->setToolTip( trUtf8("Resistenza caratteristica su provino cilindrico del cls"));
+    fck->setRichName(tr("f<span style=\" vertical-align:sub;\">ck</span>"));
+    fck->setToolTip( tr("Resistenza caratteristica su provino cilindrico del cls"));
     addVarToContainer(fck);
 
     alphaCC = new DoublePlus( 0.85, "alphaCC", m_unitMeasure, UnitMeasure::noDimension );
-    alphaCC->setRichName(trUtf8("α<span style=\" vertical-align:sub;\">cc</span>"));
-    alphaCC->setToolTip( trUtf8("Coefficiente effetti a lungo termine e modalità  di applicazione del carico [0.8 - 1.0]"));
+    alphaCC->setRichName(tr("α<span style=\" vertical-align:sub;\">cc</span>"));
+    alphaCC->setToolTip( tr("Coefficiente effetti a lungo termine e modalità  di applicazione del carico [0.8 - 1.0]"));
     addVarToContainer( alphaCC );
 
     gammaC = new DoublePlus( 1.5, "gammaC", m_unitMeasure, UnitMeasure::noDimension );
-    gammaC->setRichName(trUtf8("γ<span style=\" vertical-align:sub;\">c</span>"));
-    gammaC->setToolTip(trUtf8("Coefficiente di sicurezza parziale calcestruzzo"));
+    gammaC->setRichName(tr("γ<span style=\" vertical-align:sub;\">c</span>"));
+    gammaC->setToolTip(tr("Coefficiente di sicurezza parziale calcestruzzo"));
     addVarToContainer( gammaC );
 
     fcd = new DoublePlus( 20.0e+6, "fcd", m_unitMeasure, UnitMeasure::tension, true );
-    fcd->setRichName(trUtf8("f<span style=\" vertical-align:sub;\">cd</span>"));
-    fcd->setToolTip( trUtf8("Resistenza di progetto del cls"));
+    fcd->setRichName(tr("f<span style=\" vertical-align:sub;\">cd</span>"));
+    fcd->setToolTip( tr("Resistenza di progetto del cls"));
     fcd->setReadOnly( true );
     addVarToContainer(fcd);
-    connect( alphaCC, SIGNAL(valueChanged(QString)), this, SLOT(setFcd()));
-    connect( fck, SIGNAL(valueChanged(QString)), this, SLOT(setFcd()));
-    connect( gammaC, SIGNAL(valueChanged(QString)), this, SLOT(setFcd()));
-    connect( fcd, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFcd()));
-    setFcd();
+    fcd->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SimpleSectionRCncrRect::setFcd) );
+    fcd->addConnectedVars( 3, alphaCC, fck, gammaC );
 
     epsC2 = new DoublePlus(0.0, "epsC2", m_unitMeasure, UnitMeasure::deformation );
-    epsC2->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">c2</span>") );
+    epsC2->setRichName( tr("ε<span style=\" vertical-align:sub;\">c2</span>") );
     epsC2->setReadOnly( true );
     addVarToContainer( epsC2 );
-    connect( fck, SIGNAL(valueChanged(QString)), this, SLOT(setEpsC2()) );
-    connect( epsC2, SIGNAL(readOnlyChanged(bool)), this, SLOT(setEpsC2()) );
-    setEpsC2();
+    epsC2->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SimpleSectionRCncrRect::setEpsC2 ) );
+    epsC2->addConnectedVar( fck );
 
     epsCU2 = new DoublePlus(0.0, "epsCU2", m_unitMeasure, UnitMeasure::deformation );
-    epsCU2->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">cu2</span>") );
+    epsCU2->setRichName( tr("ε<span style=\" vertical-align:sub;\">cu2</span>") );
     epsCU2->setReadOnly( true );
-    epsCU2->setToolTip(trUtf8("Deformazione ultima di contrazione - diagramma parabola-rettangolo"));
+    epsCU2->setToolTip(tr("Deformazione ultima di contrazione - diagramma parabola-rettangolo"));
     addVarToContainer( epsCU2 );
-    connect( fck, SIGNAL(valueChanged(QString)), this, SLOT(setEpsCU2()) );
-    connect( epsCU2, SIGNAL(readOnlyChanged(bool)), this, SLOT(setEpsCU2()) );
-    setEpsCU2();
+    epsCU2->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SimpleSectionRCncrRect::setEpsCU2 ) );
+    epsCU2->addConnectedVar( fck );
 
     nC = new DoublePlus( 2.0, "nC", m_unitMeasure, UnitMeasure::noDimension );
-    nC->setRichName(trUtf8("n<span style=\" vertical-align:sub;\">c</span>"));
-    nC->setToolTip(trUtf8("Esponente delle deformazioni nella relazione deformazione/tensione del cls a SLU"));
+    nC->setRichName(tr("n<span style=\" vertical-align:sub;\">c</span>"));
+    nC->setToolTip(tr("Esponente delle deformazioni nella relazione deformazione/tensione del cls a SLU"));
     nC->setReadOnly( true );
     addVarToContainer( nC );
-    connect( fck, SIGNAL(valueChanged(QString)), this, SLOT(setNC()) );
-    connect( nC, SIGNAL(readOnlyChanged(bool)), this, SLOT(setNC()) );
-    setNC();
+    nC->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SimpleSectionRCncrRect::setNC ) );
+    nC->addConnectedVar( fck );
 
     Es = new DoublePlus( 2.0e+11, "Es", m_unitMeasure, UnitMeasure::tension );
-    Es->setRichName(trUtf8("E<span style=\" vertical-align:sub;\">s</span>"));
-    Es->setToolTip( trUtf8("Modulo di elasticità normale dell'acciaio"));
+    Es->setRichName(tr("E<span style=\" vertical-align:sub;\">s</span>"));
+    Es->setToolTip( tr("Modulo di elasticità normale dell'acciaio"));
     addVarToContainer(Es);
 
     epsSUk = new DoublePlus(0.075, "epsSUk", m_unitMeasure, UnitMeasure::deformation );
-    epsSUk->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">s,uk</span>") );
-    epsSUk->setToolTip(trUtf8("Deformazione caratteristica di rottura dell'acciaio"));
+    epsSUk->setRichName( tr("ε<span style=\" vertical-align:sub;\">s,uk</span>") );
+    epsSUk->setToolTip(tr("Deformazione caratteristica di rottura dell'acciaio"));
     addVarToContainer( epsSUk );
 
     epsSUd = new DoublePlus(0.0, "epsSUd", m_unitMeasure, UnitMeasure::deformation );
-    epsSUd->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">s,ud</span>") );
+    epsSUd->setRichName( tr("ε<span style=\" vertical-align:sub;\">s,ud</span>") );
     epsSUd->setReadOnly( true );
-    epsSUd->setToolTip(trUtf8("Deformazione ultima di progetto dell'acciaio"));
+    epsSUd->setToolTip(tr("Deformazione ultima di progetto dell'acciaio"));
     addVarToContainer( epsSUd );
-    connect( epsSUk, SIGNAL(valueChanged(QString)), this, SLOT(setEpsSUd()) );
-    connect( epsSUd, SIGNAL(readOnlyChanged(bool)), this, SLOT(setEpsSUd()) );
-    setEpsSUd();
+    epsSUd->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SimpleSectionRCncrRect::setEpsSUd) );
+    epsSUd->addConnectedVar( epsSUk );
 
     fSyk = new DoublePlus( 450.0e+6, "fSyk", m_unitMeasure, UnitMeasure::tension );
-    fSyk->setRichName(trUtf8("f<span style=\" vertical-align:sub;\">s,yk</span>"));
-    fSyk->setToolTip( trUtf8("Tensione caratteristica di snervamento dell'acciaio"));
+    fSyk->setRichName(tr("f<span style=\" vertical-align:sub;\">s,yk</span>"));
+    fSyk->setToolTip( tr("Tensione caratteristica di snervamento dell'acciaio"));
     addVarToContainer(fSyk);
 
     gammaS = new DoublePlus( 1.15, "gammaS", m_unitMeasure, UnitMeasure::noDimension );
-    gammaS->setRichName(trUtf8("γ<span style=\" vertical-align:sub;\">s</span>"));
-    gammaS->setToolTip(trUtf8("Coefficiente di sicurezza parziale acciaio"));
+    gammaS->setRichName(tr("γ<span style=\" vertical-align:sub;\">s</span>"));
+    gammaS->setToolTip(tr("Coefficiente di sicurezza parziale acciaio"));
     addVarToContainer( gammaS );
 
     fSyd = new DoublePlus( 0.0, "fSyd", m_unitMeasure, UnitMeasure::tension, true );
-    fSyd->setRichName(trUtf8("f<span style=\" vertical-align:sub;\">s,yd</span>"));
-    fSyd->setToolTip( trUtf8("Tensione di progetto dell'acciaio"));
+    fSyd->setRichName(tr("f<span style=\" vertical-align:sub;\">s,yd</span>"));
+    fSyd->setToolTip( tr("Tensione di progetto dell'acciaio"));
     fSyd->setReadOnly( true );
     addVarToContainer(fSyd);
-    connect( fSyk, SIGNAL(valueChanged(QString)), this, SLOT(setFSyd()));
-    connect( gammaS, SIGNAL(valueChanged(QString)), this, SLOT(setFSyd()));
-    connect( fSyd, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFSyd()));
-    setFSyd();
+    fSyd->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SimpleSectionRCncrRect::setFSyd) );
+    fSyd->addConnectedVars( 2, fSyk, gammaS );
 
     kS = new DoublePlus( 1.15, "kS", m_unitMeasure, UnitMeasure::noDimension );
-    kS->setRichName(trUtf8("(f<span style=\" vertical-align:sub;\">t</span>/f<span style=\" vertical-align:sub;\">y</span>)<span style=\" vertical-align:sub;\">k</span>"));
-    kS->setToolTip(trUtf8("Rapporto caratteristico tra tensione di snervamento e tensione di rottura"));
+    kS->setRichName(tr("(f<span style=\" vertical-align:sub;\">t</span>/f<span style=\" vertical-align:sub;\">y</span>)<span style=\" vertical-align:sub;\">k</span>"));
+    kS->setToolTip(tr("Rapporto caratteristico tra tensione di snervamento e tensione di rottura"));
     addVarToContainer( kS );
 
     fSud = new DoublePlus( 0.0, "fSud", m_unitMeasure, UnitMeasure::tension, true );
-    fSud->setRichName(trUtf8("f<span style=\" vertical-align:sub;\">s,ud</span>"));
-    fSud->setToolTip( trUtf8("Tensione ultima di progetto dell'acciaio"));
+    fSud->setRichName(tr("f<span style=\" vertical-align:sub;\">s,ud</span>"));
+    fSud->setToolTip( tr("Tensione ultima di progetto dell'acciaio"));
     fSud->setReadOnly( true );
     addVarToContainer(fSud);
-    connect( fSyd, SIGNAL(valueChanged(QString)), this, SLOT(setFSud()));
-    connect( kS, SIGNAL(valueChanged(QString)), this, SLOT(setFSud()));
-    connect( Es, SIGNAL(valueChanged(QString)), this, SLOT(setFSud()));
-    connect( epsSUd, SIGNAL(valueChanged(QString)), this, SLOT(setFSud()));
-    connect( epsSUk, SIGNAL(valueChanged(QString)), this, SLOT(setFSud()));
-    connect( fSud, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFSud()));
-    setFSud();
+    fSud->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SimpleSectionRCncrRect::setFSud) );
+    fSud->addConnectedVars( 5, fSyd, kS, Es, epsSUd, epsSUk );
 
     steelFEpsModel = new SteelFEpsModel( SimpleSectionRCncrComp::inclinedTopBranch, "steelFEpsModel", false );
-    steelFEpsModel->setRichName( trUtf8("Legge σ-ε"));
-    steelFEpsModel->setToolTip( trUtf8("Legge costitutiva dell'acciaio a SLU"));
+    steelFEpsModel->setRichName( tr("Legge σ-ε"));
+    steelFEpsModel->setToolTip( tr("Legge costitutiva dell'acciaio a SLU"));
     addVarToContainer( steelFEpsModel );
 
     NRdMin = new DoublePlus( 0.0, "NRdMin", m_unitMeasure, UnitMeasure::loadF );
-    NRdMin->setRichName(trUtf8("N<span style=\" vertical-align:sub;\">Rd,min</span>"));
-    NRdMin->setToolTip(trUtf8("Sforzo normale resistente minimo"));
+    NRdMin->setRichName(tr("N<span style=\" vertical-align:sub;\">Rd,min</span>"));
+    NRdMin->setToolTip(tr("Sforzo normale resistente minimo"));
     NRdMin->setReadOnly( true );
     addVarToContainer( NRdMin );
-    connect( b, SIGNAL(valueChanged(QString)), this, SLOT(setNRdMin()) );
-    connect( h, SIGNAL(valueChanged(QString)), this, SLOT(setNRdMin()) );
-    connect( epsCU2, SIGNAL(valueChanged(QString)), this, SLOT(setNRdMin()) );
-    connect( fcd, SIGNAL(valueChanged(QString)), this, SLOT(setNRdMin()) );
-    connect( fSyd, SIGNAL(valueChanged(QString)), this, SLOT(setNRdMin()) );
-    connect( fSud, SIGNAL(valueChanged(QString)), this, SLOT(setNRdMin()) );
-    connect( steelFEpsModel, SIGNAL(valueChanged(QString)), this, SLOT(setNRdMin()) );
-    connect( m_d->steelAModel, SIGNAL(modelChanged()), this, SLOT(setNRdMin()) );
-    setNRdMin();
+    NRdMin->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SimpleSectionRCncrRect::setNRdMin) );
+    NRdMin->addConnectedVars( 7 , b, h, epsCU2, fcd, fSyd, fSud, steelFEpsModel );
+    NRdMin->addConnectedTableModel( m_d->steelAModel );
 
     NRdMax = new DoublePlus( 0.0, "NRdMax", m_unitMeasure, UnitMeasure::loadF );
-    NRdMax->setRichName(trUtf8("N<span style=\" vertical-align:sub;\">Rd,max</span>"));
-    NRdMax->setToolTip(trUtf8("Sforzo normale resistente massimo"));
+    NRdMax->setRichName(tr("N<span style=\" vertical-align:sub;\">Rd,max</span>"));
+    NRdMax->setToolTip(tr("Sforzo normale resistente massimo"));
     NRdMax->setReadOnly( true );
     addVarToContainer( NRdMax );
-    connect( fSyd, SIGNAL(valueChanged(QString)), this, SLOT(setNRdMax()) );
-    connect( fSud, SIGNAL(valueChanged(QString)), this, SLOT(setNRdMax()) );
-    connect( steelFEpsModel, SIGNAL(valueChanged(QString)), this, SLOT(setNRdMax()) );
-    connect( m_d->steelAModel, SIGNAL(modelChanged()), this, SLOT(setNRdMax()) );
-    setNRdMax();
+    NRdMax->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SimpleSectionRCncrRect::setNRdMax) );
+    NRdMax->addConnectedVars( 3 , fSyd, fSud, steelFEpsModel );
+    NRdMax->addConnectedTableModel( m_d->steelAModel );
+
+    updateReadOnlyVars();
 }
 
-void SimpleSectionRCncrRect::setFcd() {
-    if( fcd->readOnly() ){
-        double ret = 0.0;
-        if( gammaC->valueNormal() != 0.0 ){
-            ret = fck->valueNormal() * alphaCC->valueNormal() / gammaC->valueNormal();
-        }
-        fcd->setValueNormal( ret );
+void SimpleSectionRCncrRect::setFcd( bool emitAuto ) {
+    double ret = 0.0;
+    if( gammaC->valueNormal() != 0.0 ){
+        ret = fck->valueNormal() * alphaCC->valueNormal() / gammaC->valueNormal();
     }
+    fcd->setValueNormal( ret, emitAuto );
 }
 
-void SimpleSectionRCncrRect::setFSyd() {
-    if( fSyd->readOnly() ){
-        double ret = 0.0;
-        if( gammaS->valueNormal() != 0.0 ){
-            ret = fSyk->valueNormal() / gammaS->valueNormal();
-        }
-        fSyd->setValueNormal( ret );
+void SimpleSectionRCncrRect::setFSyd( bool emitAuto ) {
+    double ret = 0.0;
+    if( gammaS->valueNormal() != 0.0 ){
+        ret = fSyk->valueNormal() / gammaS->valueNormal();
     }
+    fSyd->setValueNormal( ret, emitAuto );
 }
 
-void SimpleSectionRCncrRect::setFSud() {
-    if( fSud->readOnly() ){
-        double ret = 0.0;
-        if( Es->valueNormal() != 0.0 ){
-            double epsYd = fSyd->valueNormal() / Es->valueNormal();
-            double D = epsSUk->valueNormal() - epsYd;
-            if( D != 0.0 ){
-                ret = fSyd->valueNormal() + (kS->valueNormal() - 1.0 ) * fSyd->valueNormal() * (epsSUd->valueNormal() - epsYd) / D;
-            }
+void SimpleSectionRCncrRect::setFSud( bool emitAuto ) {
+    double ret = 0.0;
+    if( Es->valueNormal() != 0.0 ){
+        double epsYd = fSyd->valueNormal() / Es->valueNormal();
+        double D = epsSUk->valueNormal() - epsYd;
+        if( D != 0.0 ){
+            ret = fSyd->valueNormal() + (kS->valueNormal() - 1.0 ) * fSyd->valueNormal() * (epsSUd->valueNormal() - epsYd) / D;
         }
-        fSud->setValueNormal( ret );
     }
+    fSud->setValueNormal( ret, emitAuto );
 }
 
-void SimpleSectionRCncrRect::setNRdMin() {
+void SimpleSectionRCncrRect::setNRdMin( bool emitAuto ) {
     double N = - b->valueNormal() * h->valueNormal() * fcd->valueNormal();
     for( int i=0; i < m_d->steelAModel->count(); ++i ) {
         N += m_d->steelAModel->A(i)->valueNormal() * fSteelNormal( -epsCU2->valueNormal());
     }
-    NRdMin->setValueNormal( N );
+    NRdMin->setValueNormal( N, emitAuto );
 }
 
-void SimpleSectionRCncrRect::setNRdMax() {
+void SimpleSectionRCncrRect::setNRdMax( bool emitAuto ) {
     double N = 0.0;
     for( int i=0; i < m_d->steelAModel->count(); ++i ) {
         if( steelFEpsModel->valueNormal() == SimpleSectionRCncrComp::inclinedTopBranch ){
@@ -256,14 +231,12 @@ void SimpleSectionRCncrRect::setNRdMax() {
             N += m_d->steelAModel->A(i)->valueNormal() * fSyd->valueNormal();
         }
     }
-    NRdMax->setValueNormal( N );
+    NRdMax->setValueNormal( N, emitAuto );
 }
 
-void SimpleSectionRCncrRect::setEpsSUd() {
-    if( epsSUd->readOnly() ){
-        double ret = 0.9 * epsSUk->valueNormal();
-        epsSUd->setValueNormal( ret );
-    }
+void SimpleSectionRCncrRect::setEpsSUd( bool emitAuto ) {
+    double ret = 0.9 * epsSUk->valueNormal();
+    epsSUd->setValueNormal( ret, emitAuto );
 }
 
 double SimpleSectionRCncrRect::beta1Normal( double eC ){
@@ -312,34 +285,38 @@ double SimpleSectionRCncrRect::beta2Normal( double eC ){
     return 0.0;
 }
 
-void SimpleSectionRCncrRect::setEpsC2( void ){
-    if( epsC2->readOnly() ){
-        if( (fck->valueNormal() * 1.0e-6) > 50.0 ){
-            epsC2->setValueNormal( 0.002 + 0.000085 * pow( (fck->valueNormal() * 1.0e-6 - 50.0), 0.53) );
-        } else {
-            epsC2->setValueNormal( 0.002 );
-        }
+void SimpleSectionRCncrRect::setEpsC2( bool emitAuto ){
+    if( (fck->valueNormal() * 1.0e-6) > 50.0 ){
+        epsC2->setValueNormal( 0.002 + 0.000085 * pow( (fck->valueNormal() * 1.0e-6 - 50.0), 0.53), emitAuto );
+    } else {
+        epsC2->setValueNormal( 0.002, emitAuto );
     }
 }
 
-void SimpleSectionRCncrRect::setEpsCU2( void ){
-    if( epsCU2->readOnly() ){
-        if( (fck->valueNormal() * 1.0e-6) >= 50.0 ){
-            epsCU2->setValueNormal( 0.0026 + 0.035 * pow( ((90.0 - fck->valueNormal() * 1.0e-6 ) /100.0), 4.0 ) );
-        } else {
-            epsCU2->setValueNormal( 0.0035 );
-        }
+void SimpleSectionRCncrRect::setEpsCU2( bool emitAuto ){
+    if( (fck->valueNormal() * 1.0e-6) >= 50.0 ){
+        epsCU2->setValueNormal( 0.0026 + 0.035 * pow( ((90.0 - fck->valueNormal() * 1.0e-6 ) /100.0), 4.0 ), emitAuto );
+    } else {
+        epsCU2->setValueNormal( 0.0035, emitAuto );
     }
 }
 
-void SimpleSectionRCncrRect::setNC( void ){
+void SimpleSectionRCncrRect::setNC( bool emitAuto ){
     if( nC->readOnly() ){
         if( (fck->valueNormal() * 1.0e-6) >= 50.0 ){
-            nC->setValueNormal( 1.4 + 23.4 * pow( (90-fck->valueNormal()*1.0e-6)/100.0, 4.0) );
+            nC->setValueNormal( 1.4 + 23.4 * pow( (90-fck->valueNormal()*1.0e-6)/100.0, 4.0), emitAuto );
         } else {
-            nC->setValueNormal(2.0);
+            nC->setValueNormal(2.0, emitAuto );
         }
     }
+}
+
+void SimpleSectionRCncrRect::setDMax(double newVal) {
+    dMax->setValueNormal( newVal );
+}
+
+void SimpleSectionRCncrRect::setDMin(double newVal) {
+    dMin->setValueNormal( newVal );
 }
 
 double SimpleSectionRCncrRect::fCncrNormal( double eC ){
@@ -1345,7 +1322,7 @@ double SimpleSectionRCncrRect::MRdNormal(double NEd, double * x, bool inverted, 
         if( NEd > NRd1 ){
             if( steelFEpsModel->valueNormal() == SimpleSectionRCncrComp::inclinedTopBranch ){
                 double eS = epsSUd->valueNormal();
-                double eCA, eCB, eCC;
+                double eCA = 0.0, eCB =0.0, eCC = 0.0;
 
                 // restringiamo il campo (vedi forma curva)
                 double NRd01 = NNormal( eS, 0.0, inverted );

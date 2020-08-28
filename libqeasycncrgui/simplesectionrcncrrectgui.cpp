@@ -22,162 +22,162 @@ public:
         VarPlusContainer( ump, "SimpleSectionRCncrRectGUIPrivate", ""),
         ui(new Ui::SimpleSectionRCncrRectGUI) {
         MRdNEd = new DoublePlus( 0.0, "MRdNEd", m_unitMeasure, UnitMeasure::loadF, true );
-        MRdNEd->setRichName( QObject::trUtf8("N<span style=\" vertical-align:sub;\">Ed</span>") );
-        MRdNEd->setToolTip( QObject::trUtf8("Verifica a pressoflessione - Sforzo normale agente") );
+        MRdNEd->setRichName( QObject::tr("N<span style=\" vertical-align:sub;\">Ed</span>") );
+        MRdNEd->setToolTip( QObject::tr("Verifica a pressoflessione - Sforzo normale agente") );
         MRdNEd->setReadOnly( false );
         addVarToContainer(MRdNEd);
 
         MChiNEd = new DoublePlus( 0.0, "MChiNEd", m_unitMeasure, UnitMeasure::loadF, true );
-        MChiNEd->setRichName( QObject::trUtf8("N<span style=\" vertical-align:sub;\">Ed</span>") );
-        MChiNEd->setToolTip( QObject::trUtf8("Diagramma momento-curvatura - Sforzo normale agente") );
+        MChiNEd->setRichName( QObject::tr("N<span style=\" vertical-align:sub;\">Ed</span>") );
+        MChiNEd->setToolTip( QObject::tr("Diagramma momento-curvatura - Sforzo normale agente") );
         MChiNEd->setReadOnly( false );
         addVarToContainer(MChiNEd);
 
         MRdPlus = new DoublePlus( 0.0, "MRdPlus", m_unitMeasure, UnitMeasure::loadM, true );
-        MRdPlus->setRichName( QObject::trUtf8("M<span style=\" vertical-align:sub;\">Rd,+</span>") );
-        MRdPlus->setToolTip( QObject::trUtf8("Verifica a pressoflessione - Momento resistente positivo"));
+        MRdPlus->setRichName( QObject::tr("M<span style=\" vertical-align:sub;\">Rd,+</span>") );
+        MRdPlus->setToolTip( QObject::tr("Verifica a pressoflessione - Momento resistente positivo"));
         MRdPlus->setReadOnly( true );
         addVarToContainer(MRdPlus);
 
         xMRdPlus = new DoublePlus( 0.0, "xMRdPlus", m_unitMeasure, UnitMeasure::sectL, true );
-        xMRdPlus->setRichName( QObject::trUtf8("x<span style=\" vertical-align:sub;\">MRd,+</span>") );
-        xMRdPlus->setToolTip( QObject::trUtf8("Verifica a pressoflessione - Distanza dell'asse neutro dal lembo superiore compresso"));
+        xMRdPlus->setRichName( QObject::tr("x<span style=\" vertical-align:sub;\">MRd,+</span>") );
+        xMRdPlus->setToolTip( QObject::tr("Verifica a pressoflessione - Distanza dell'asse neutro dal lembo superiore compresso"));
         xMRdPlus->setReadOnly( true );
         addVarToContainer(xMRdPlus);
 
         MRdMinus = new DoublePlus( 0.0, "MRdMinus", m_unitMeasure, UnitMeasure::loadM, true );
-        MRdMinus->setRichName( QObject::trUtf8("M<span style=\" vertical-align:sub;\">Rd,-</span>") );
-        MRdMinus->setToolTip( QObject::trUtf8("Verifica a pressoflessione - Momento resistente negativo"));
+        MRdMinus->setRichName( QObject::tr("M<span style=\" vertical-align:sub;\">Rd,-</span>") );
+        MRdMinus->setToolTip( QObject::tr("Verifica a pressoflessione - Momento resistente negativo"));
         MRdMinus->setReadOnly( true );
         addVarToContainer(MRdMinus);
 
         xMRdMinus = new DoublePlus( 0.0, "xMRdMinus", m_unitMeasure, UnitMeasure::sectL, true );
-        xMRdMinus->setRichName( QObject::trUtf8("x<span style=\" vertical-align:sub;\">MRd,-</span>") );
-        xMRdMinus->setToolTip( QObject::trUtf8("Verifica a pressoflessione - Distanza dell'asse neutro dal lembo inferiore compresso"));
+        xMRdMinus->setRichName( QObject::tr("x<span style=\" vertical-align:sub;\">MRd,-</span>") );
+        xMRdMinus->setToolTip( QObject::tr("Verifica a pressoflessione - Distanza dell'asse neutro dal lembo inferiore compresso"));
         xMRdMinus->setReadOnly( true );
         addVarToContainer(xMRdMinus);
 
         bVULS = new DoublePlus( 0.0, "bVULS", m_unitMeasure, UnitMeasure::sectL, true );
-        bVULS->setRichName( QObject::trUtf8("b<span style=\" vertical-align:sub;\">w</span>") );
-        bVULS->setToolTip( QObject::trUtf8("Verifica a taglio - Larghezza minima dell'area tesa"));
+        bVULS->setRichName( QObject::tr("b<span style=\" vertical-align:sub;\">w</span>") );
+        bVULS->setToolTip( QObject::tr("Verifica a taglio - Larghezza minima dell'area tesa"));
         addVarToContainer(bVULS);
 
         dVULS = new DoublePlus( 0.0, "dVULS", m_unitMeasure, UnitMeasure::sectL, true );
-        dVULS->setRichName( QObject::trUtf8("d") );
-        dVULS->setToolTip( QObject::trUtf8("Verifica a taglio - Altezza utile"));
+        dVULS->setRichName( QObject::tr("d") );
+        dVULS->setToolTip( QObject::tr("Verifica a taglio - Altezza utile"));
         addVarToContainer(dVULS);
 
         sigmaCPNoSteelVULS = new DoublePlus( 0.0, "sigmaCPNoSteelVULS", m_unitMeasure, UnitMeasure::tension );
-        sigmaCPNoSteelVULS->setRichName( QObject::trUtf8("σ<span style=\" vertical-align:sub;\">cp</span>") );
-        sigmaCPNoSteelVULS->setToolTip( QObject::trUtf8("Verifica a taglio in sezione priva di armatura a taglio - Tensione di compressione"));
+        sigmaCPNoSteelVULS->setRichName( QObject::tr("σ<span style=\" vertical-align:sub;\">cp</span>") );
+        sigmaCPNoSteelVULS->setToolTip( QObject::tr("Verifica a taglio in sezione priva di armatura a taglio - Tensione di compressione"));
         addVarToContainer(sigmaCPNoSteelVULS);
 
         ASLNoSteelVULS = new DoublePlus( 0.0, "sigmaCPNoSteelVULS", m_unitMeasure, UnitMeasure::sectL2 );
-        ASLNoSteelVULS->setRichName( QObject::trUtf8("A<span style=\" vertical-align:sub;\">sl</span>") );
-        ASLNoSteelVULS->setToolTip( QObject::trUtf8("Verifica a taglio in sezione priva di armatura a taglio - Armatura longitudinale"));
+        ASLNoSteelVULS->setRichName( QObject::tr("A<span style=\" vertical-align:sub;\">sl</span>") );
+        ASLNoSteelVULS->setToolTip( QObject::tr("Verifica a taglio in sezione priva di armatura a taglio - Armatura longitudinale"));
         addVarToContainer(ASLNoSteelVULS);
 
         VRdNoSteelVULS = new DoublePlus( 0.0, "VRdNoSteelVULS", m_unitMeasure, UnitMeasure::loadF, true );
-        VRdNoSteelVULS->setRichName( QObject::trUtf8("V<span style=\" vertical-align:sub;\">Rd,c</span>") );
-        VRdNoSteelVULS->setToolTip( QObject::trUtf8("Verifica a taglio in sezione priva di armatura a taglio - Taglio resistente"));
+        VRdNoSteelVULS->setRichName( QObject::tr("V<span style=\" vertical-align:sub;\">Rd,c</span>") );
+        VRdNoSteelVULS->setToolTip( QObject::tr("Verifica a taglio in sezione priva di armatura a taglio - Taglio resistente"));
         addVarToContainer(VRdNoSteelVULS);
 
         // staffe 4 bracci diam. 8
         ASWSteelVULS = new DoublePlus( M_PI * 1.60e-5 * 4.0, "ASWSteelVULS", m_unitMeasure, UnitMeasure::sectL2 );
-        ASWSteelVULS->setRichName( QObject::trUtf8("A<span style=\" vertical-align:sub;\">sw</span>") );
-        ASWSteelVULS->setToolTip( QObject::trUtf8("Verifica a taglio in sezione con armatura a taglio - Armatura trasversale"));
+        ASWSteelVULS->setRichName( QObject::tr("A<span style=\" vertical-align:sub;\">sw</span>") );
+        ASWSteelVULS->setToolTip( QObject::tr("Verifica a taglio in sezione con armatura a taglio - Armatura trasversale"));
         addVarToContainer(ASWSteelVULS);
 
         sSteelVULS = new DoublePlus( 0.20, "sSteelVULS", m_unitMeasure, UnitMeasure::sectL );
-        sSteelVULS->setRichName( QObject::trUtf8("s<span style=\" vertical-align:sub;\">V</span>") );
-        sSteelVULS->setToolTip( QObject::trUtf8("Verifica a taglio in sezione con armatura a taglio - Passo staffe"));
+        sSteelVULS->setRichName( QObject::tr("s<span style=\" vertical-align:sub;\">V</span>") );
+        sSteelVULS->setToolTip( QObject::tr("Verifica a taglio in sezione con armatura a taglio - Passo staffe"));
         addVarToContainer(sSteelVULS);
 
         thetaVULS = new DoublePlus( M_PI/4.0, "thetaVULS", m_unitMeasure, UnitMeasure::angle, true );
-        thetaVULS->setRichName( QObject::trUtf8("θ<span style=\" vertical-align:sub;\">V</span>") );
-        thetaVULS->setToolTip( QObject::trUtf8("Verifica a taglio in sezione con armatura a taglio - Inclinazione bielle compresse rispetto ad asse trave"));
+        thetaVULS->setRichName( QObject::tr("θ<span style=\" vertical-align:sub;\">V</span>") );
+        thetaVULS->setToolTip( QObject::tr("Verifica a taglio in sezione con armatura a taglio - Inclinazione bielle compresse rispetto ad asse trave"));
         addVarToContainer(thetaVULS);
 
         alphaVULS = new DoublePlus( M_PI/2.0, "alphaVULS", m_unitMeasure, UnitMeasure::angle );
-        alphaVULS->setRichName( QObject::trUtf8("α") );
-        alphaVULS->setToolTip( QObject::trUtf8("Verifica a taglio in sezione con armatura a taglio - Inclinazione armatura taglio rispetto ad asse trave"));
+        alphaVULS->setRichName( QObject::tr("α") );
+        alphaVULS->setToolTip( QObject::tr("Verifica a taglio in sezione con armatura a taglio - Inclinazione armatura taglio rispetto ad asse trave"));
         addVarToContainer(alphaVULS);
 
         VRdMaxSteelVULS = new DoublePlus( 0.0, "VRdMaxSteelVULS", m_unitMeasure, UnitMeasure::loadF, true );
-        VRdMaxSteelVULS->setRichName( QObject::trUtf8("V<span style=\" vertical-align:sub;\">Rd,max</span>") );
-        VRdMaxSteelVULS->setToolTip( QObject::trUtf8("Verifica a taglio in sezione con armatura a taglio - Taglio resistente lato cls"));
+        VRdMaxSteelVULS->setRichName( QObject::tr("V<span style=\" vertical-align:sub;\">Rd,max</span>") );
+        VRdMaxSteelVULS->setToolTip( QObject::tr("Verifica a taglio in sezione con armatura a taglio - Taglio resistente lato cls"));
         addVarToContainer(VRdMaxSteelVULS);
 
         VRdSteelSteelVULS = new DoublePlus( 0.0, "VRdSteelSteelVULS", m_unitMeasure, UnitMeasure::loadF, true );
-        VRdSteelSteelVULS->setRichName( QObject::trUtf8("V<span style=\" vertical-align:sub;\">Rd,s</span>") );
-        VRdSteelSteelVULS->setToolTip( QObject::trUtf8("Verifica a taglio in sezione con armatura a taglio - Taglio resistente lato acciaio"));
+        VRdSteelSteelVULS->setRichName( QObject::tr("V<span style=\" vertical-align:sub;\">Rd,s</span>") );
+        VRdSteelSteelVULS->setToolTip( QObject::tr("Verifica a taglio in sezione con armatura a taglio - Taglio resistente lato acciaio"));
         addVarToContainer(VRdSteelSteelVULS);
 
         VRdSteelVULS = new DoublePlus( 0.0, "VRdSteelVULS", m_unitMeasure, UnitMeasure::loadF, true );
-        VRdSteelVULS->setRichName( QObject::trUtf8("V<span style=\" vertical-align:sub;\">Rd</span>") );
-        VRdSteelVULS->setToolTip( QObject::trUtf8("Verifica a taglio in sezione con armatura a taglio - Taglio resistente"));
+        VRdSteelVULS->setRichName( QObject::tr("V<span style=\" vertical-align:sub;\">Rd</span>") );
+        VRdSteelVULS->setToolTip( QObject::tr("Verifica a taglio in sezione con armatura a taglio - Taglio resistente"));
         addVarToContainer(VRdSteelVULS);
 
         ASWTULS = new DoublePlus( M_PI * 1.60e-5 * 4.0, "ASWTULS", m_unitMeasure, UnitMeasure::sectL2 );
-        ASWTULS->setRichName( QObject::trUtf8("A<span style=\" vertical-align:sub;\">sw</span>") );
-        ASWTULS->setToolTip( QObject::trUtf8("Verifica a torsione in sezione con armatura a torsione - Armatura trasversale staffe"));
+        ASWTULS->setRichName( QObject::tr("A<span style=\" vertical-align:sub;\">sw</span>") );
+        ASWTULS->setToolTip( QObject::tr("Verifica a torsione in sezione con armatura a torsione - Armatura trasversale staffe"));
         addVarToContainer(ASWTULS);
 
         sTULS = new DoublePlus( 0.20, "sSteelVULS", m_unitMeasure, UnitMeasure::sectL );
-        sTULS->setRichName( QObject::trUtf8("s<span style=\" vertical-align:sub;\">T</span>") );
-        sTULS->setToolTip( QObject::trUtf8("Verifica a torsione in sezione con armatura a torsione - Passo staffe"));
+        sTULS->setRichName( QObject::tr("s<span style=\" vertical-align:sub;\">T</span>") );
+        sTULS->setToolTip( QObject::tr("Verifica a torsione in sezione con armatura a torsione - Passo staffe"));
         addVarToContainer(sTULS);
 
         thetaTULS = new DoublePlus( M_PI/4.0, "thetaTULS", m_unitMeasure, UnitMeasure::angle, false );
-        thetaTULS->setRichName( QObject::trUtf8("θ<span style=\" vertical-align:sub;\">T</span>") );
-        thetaTULS->setToolTip( QObject::trUtf8("Verifica a torsione in sezione con armatura a torsione - Inclinazione bielle compresse rispetto ad asse trave"));
+        thetaTULS->setRichName( QObject::tr("θ<span style=\" vertical-align:sub;\">T</span>") );
+        thetaTULS->setToolTip( QObject::tr("Verifica a torsione in sezione con armatura a torsione - Inclinazione bielle compresse rispetto ad asse trave"));
         addVarToContainer(thetaTULS);
 
         TRdCncrTULS = new DoublePlus( 0.0, "TRdCncrTULS", m_unitMeasure, UnitMeasure::loadM, true );
-        TRdCncrTULS->setRichName( QObject::trUtf8("T<span style=\" vertical-align:sub;\">Rd,c</span>") );
-        TRdCncrTULS->setToolTip( QObject::trUtf8("Verifica a torsione in sezione con armatura a torsione - Torsione resistente lato cls"));
+        TRdCncrTULS->setRichName( QObject::tr("T<span style=\" vertical-align:sub;\">Rd,c</span>") );
+        TRdCncrTULS->setToolTip( QObject::tr("Verifica a torsione in sezione con armatura a torsione - Torsione resistente lato cls"));
         addVarToContainer(TRdCncrTULS);
 
         TRdSteelTULS = new DoublePlus( 0.0, "TRdSteelTULS", m_unitMeasure, UnitMeasure::loadM, true );
-        TRdSteelTULS->setRichName( QObject::trUtf8("T<span style=\" vertical-align:sub;\">Rd,sw</span>") );
-        TRdSteelTULS->setToolTip( QObject::trUtf8("Verifica a torsione in sezione con armatura a torsione - Torsione resistente lato staffe in acciaio"));
+        TRdSteelTULS->setRichName( QObject::tr("T<span style=\" vertical-align:sub;\">Rd,sw</span>") );
+        TRdSteelTULS->setToolTip( QObject::tr("Verifica a torsione in sezione con armatura a torsione - Torsione resistente lato staffe in acciaio"));
         addVarToContainer(TRdSteelTULS);
 
         TRdTULS = new DoublePlus( 0.0, "TRdTULS", m_unitMeasure, UnitMeasure::loadM, true );
-        TRdTULS->setRichName( QObject::trUtf8("T<span style=\" vertical-align:sub;\">Rd</span>") );
-        TRdTULS->setToolTip( QObject::trUtf8("Verifica a torsione in sezione con armatura a torsione - Torsione resistente"));
+        TRdTULS->setRichName( QObject::tr("T<span style=\" vertical-align:sub;\">Rd</span>") );
+        TRdTULS->setToolTip( QObject::tr("Verifica a torsione in sezione con armatura a torsione - Torsione resistente"));
         addVarToContainer(TRdTULS);
 
         SLSNEk = new DoublePlus( 0.0, "SLSNEk", m_unitMeasure, UnitMeasure::loadF, false );
-        SLSNEk->setRichName( QObject::trUtf8("N<span style=\" vertical-align:sub;\">Ek</span>") );
-        SLSNEk->setToolTip( QObject::trUtf8("Verifica a pressoflessione SLE - Sforzo normale agente"));
+        SLSNEk->setRichName( QObject::tr("N<span style=\" vertical-align:sub;\">Ek</span>") );
+        SLSNEk->setToolTip( QObject::tr("Verifica a pressoflessione SLE - Sforzo normale agente"));
         addVarToContainer(SLSNEk);
 
         SLSMEk = new DoublePlus( 0.0, "SLSMEk", m_unitMeasure, UnitMeasure::loadM, false );
-        SLSMEk->setRichName( QObject::trUtf8("M<span style=\" vertical-align:sub;\">Ek</span>") );
-        SLSMEk->setToolTip( QObject::trUtf8("Verifica a pressoflessione SLE - Momento agente"));
+        SLSMEk->setRichName( QObject::tr("M<span style=\" vertical-align:sub;\">Ek</span>") );
+        SLSMEk->setToolTip( QObject::tr("Verifica a pressoflessione SLE - Momento agente"));
         addVarToContainer(SLSMEk);
 
         SLSAlphaE = new DoublePlus( 15.0, "SLSAlphaE", m_unitMeasure, UnitMeasure::noDimension, false );
-        SLSAlphaE->setRichName( QObject::trUtf8("α<span style=\" vertical-align:sub;\">e</span>") );
-        SLSAlphaE->setToolTip( QObject::trUtf8("Verifica a pressoflessione SLE - Coefficiente di omogeneizzazione"));
+        SLSAlphaE->setRichName( QObject::tr("α<span style=\" vertical-align:sub;\">e</span>") );
+        SLSAlphaE->setToolTip( QObject::tr("Verifica a pressoflessione SLE - Coefficiente di omogeneizzazione"));
         addVarToContainer(SLSAlphaE);
 
         SLSSigmaCUp = new DoublePlus( 0.0, "SLSSigmaCUp", m_unitMeasure, UnitMeasure::tension, true );
-        SLSSigmaCUp->setRichName( QObject::trUtf8("σ<span style=\" vertical-align:sub;\">c,sup</span>") );
-        SLSSigmaCUp->setToolTip( QObject::trUtf8("Verifica a pressoflessione SLE - Tensione minima nel cls"));
+        SLSSigmaCUp->setRichName( QObject::tr("σ<span style=\" vertical-align:sub;\">c,sup</span>") );
+        SLSSigmaCUp->setToolTip( QObject::tr("Verifica a pressoflessione SLE - Tensione minima nel cls"));
         SLSSigmaCUp->setReadOnly( true );
         addVarToContainer(SLSSigmaCUp);
 
         SLSSigmaCDown = new DoublePlus( 0.0, "SLSSigmaCDown", m_unitMeasure, UnitMeasure::tension, true );
-        SLSSigmaCDown->setRichName( QObject::trUtf8("σ<span style=\" vertical-align:sub;\">c,inf</span>") );
-        SLSSigmaCDown->setToolTip( QObject::trUtf8("Verifica a pressoflessione SLE - Tensione massima nel cls"));
+        SLSSigmaCDown->setRichName( QObject::tr("σ<span style=\" vertical-align:sub;\">c,inf</span>") );
+        SLSSigmaCDown->setToolTip( QObject::tr("Verifica a pressoflessione SLE - Tensione massima nel cls"));
         SLSSigmaCDown->setReadOnly( true );
         addVarToContainer(SLSSigmaCDown);
 
         SLSx = new DoublePlus( 0.0, "SLSx", m_unitMeasure, UnitMeasure::sectL, true );
-        SLSx->setRichName( QObject::trUtf8("x") );
-        SLSx->setToolTip( QObject::trUtf8("Verifica a pressoflessione SLE - Distanza dell'asse neutro dal lembo superiore compresso"));
+        SLSx->setRichName( QObject::tr("x") );
+        SLSx->setToolTip( QObject::tr("Verifica a pressoflessione SLE - Distanza dell'asse neutro dal lembo superiore compresso"));
         SLSx->setReadOnly( true );
         addVarToContainer(SLSx);
     }
@@ -311,7 +311,7 @@ void SimpleSectionRCncrRectGUI::setDVULS() {
 }
 
 void SimpleSectionRCncrRectGUI::calcMChi() {
-    QCustomPlotDialog d( trUtf8("Momento/Curvatura"), this );
+    QCustomPlotDialog d( tr("Momento/Curvatura"), this );
     d.setCurveData( 0, m_d->sect->MChiDiagram( m_d->MChiNEd ) );
     d.exec();
 }
@@ -326,7 +326,7 @@ void SimpleSectionRCncrRectGUI::copyToClipboardMChi() {
 }
 
 void SimpleSectionRCncrRectGUI::calcNRdMRd() {
-    QCustomPlotDialog d( trUtf8("Diagramma N-M"), this );
+    QCustomPlotDialog d( tr("Diagramma N-M"), this );
     d.setCurveData( 0, m_d->sect->NRdMRd() );
     d.setXAxisInverted( true );
     d.exec();
@@ -350,7 +350,7 @@ void SimpleSectionRCncrRectGUI::addSteelA() {
                 selRows.append( (*i).row() );
             }
         }
-        qSort( selRows );
+        std::sort( selRows.begin(), selRows.end() );
         if( selRows.isEmpty() ){
             m_d->sect->steelAModel()->insertRows( 0, 1 );
         } else {
@@ -375,6 +375,7 @@ void SimpleSectionRCncrRectGUI::delSteelA() {
 }
 
 void SimpleSectionRCncrRectGUI::setMRd() {
+    qWarning("sectionCHanged");
     m_d->sect->MRd( m_d->MRdPlus, m_d->MRdNEd, m_d->xMRdPlus );
     m_d->sect->MRd( m_d->MRdMinus, m_d->MRdNEd, m_d->xMRdMinus, true );
 }

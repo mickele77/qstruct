@@ -95,11 +95,11 @@ void SteelAModel::removeSteelA( int p ){
 }
 
 void SteelAModel::writeXml(QXmlStreamWriter *writer) {
-    Q_UNUSED( writer );
+    Q_UNUSED( writer )
 }
 
 void SteelAModel::readXml(QXmlStreamReader *reader) {
-    Q_UNUSED( reader );
+    Q_UNUSED( reader )
 }
 
 SteelAModel::SteelAModel( UnitMeasure * ump, QObject *parent ):
