@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 2.8.11)
-
 IF( BUILD_SHARED_LIBS AND WIN32 )
   add_definitions( -DBUILD_QCUSTOMPLOT_LIB )
 ENDIF( BUILD_SHARED_LIBS AND WIN32 )
