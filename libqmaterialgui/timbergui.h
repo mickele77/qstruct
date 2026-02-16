@@ -19,6 +19,7 @@
 #ifndef WOODGUI_H
 #define WOODGUI_H
 
+#include "materialgui_export.h"
 #include "materialgui.h"
 
 namespace Ui {
@@ -33,7 +34,7 @@ class LoadDurationClass;
 class SectionTimberShape;
 class DoublePlus;
 
-class TimberGUI : public MaterialGUI {
+class EXPORT_MATERIALGUI_LIB_OPT TimberGUI : public MaterialGUI {
     Q_OBJECT
 
 public:

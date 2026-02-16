@@ -98,7 +98,7 @@ SectionTimberDataSetModel::SectionTimberDataSetModel(UnitMeasure * ump,
     m_kCritMy( kCritMy),
     m_kCritMz( kCritMz){
     updateHeaders();
-    connect(ump, SIGNAL(stringsChanged(UnitMeasure::unitMeasure)), this, SLOT(updateHeaders()) );
+    connect(ump, &UnitMeasure::stringsChanged, this, &SectionTimberDataSetModel::updateHeaders );
 }
 
 void SectionTimberDataSetModel::writeXml(QXmlStreamWriter *writer){
@@ -201,17 +201,17 @@ void SectionTimberDataSetModel::setSection( SectionTimber * sect ){
 
 void SectionTimberDataSetModel::updateHeaders(){
     QList<QString> headers;
-    headers << trUtf8("Trave")
-            << trUtf8("Sezione")
-            << trUtf8("N") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadF) + QString("]")
-            << trUtf8("Tz") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadF) + QString("]")
-            << trUtf8("Ty") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadF) + QString("]")
-            << trUtf8("yM") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::sectL) + QString("]")
-            << trUtf8("zM") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::sectL) + QString("]")
-            << trUtf8("My")  + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]")
-            << trUtf8("Mz")  + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]")
-            << trUtf8("Mx") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]")
-            << trUtf8("Risultato") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::noDimension) + QString("]");
+    headers << tr("Trave")
+            << tr("Sezione")
+            << tr("N") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadF) + QString("]")
+            << tr("Tz") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadF) + QString("]")
+            << tr("Ty") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadF) + QString("]")
+            << tr("yM") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::sectL) + QString("]")
+            << tr("zM") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::sectL) + QString("]")
+            << tr("My")  + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]")
+            << tr("Mz")  + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]")
+            << tr("Mx") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]")
+            << tr("Risultato") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::noDimension) + QString("]");
     setHeaders( headers );
 }
 

@@ -41,33 +41,33 @@ SectionModelGUI::SectionModelGUI(SectionModel * sectModel, MaterialModel * matMo
 
     // Collega i pulsanti
     QMenu * newSectionMenu = new QMenu( this );
-    QAction * steelHAct = newSectionMenu->addAction( trUtf8("Sezione in Acciaio"));
+    QAction * steelHAct = newSectionMenu->addAction( tr("Sezione in Acciaio"));
     connect( steelHAct, &QAction::triggered, this, &SectionModelGUI::insertSectionSteelH );
-    QAction * rCncrAct = newSectionMenu->addAction( trUtf8("Sezione in C.A."));
+    QAction * rCncrAct = newSectionMenu->addAction( tr("Sezione in C.A."));
     connect( rCncrAct, &QAction::triggered, this, &SectionModelGUI::insertSectionRCncr );
-    QAction * timberAct = newSectionMenu->addAction( trUtf8("Sezione in Legno"));
+    QAction * timberAct = newSectionMenu->addAction( tr("Sezione in Legno"));
     connect( timberAct, &QAction::triggered, this, &SectionModelGUI::insertSectionTimber );
-    QAction * sectionThinContSteelAct = newSectionMenu->addAction( trUtf8("Sezione piegata a freddo"));
+    QAction * sectionThinContSteelAct = newSectionMenu->addAction( tr("Sezione piegata a freddo"));
     connect( sectionThinContSteelAct, &QAction::triggered, this, &SectionModelGUI::insertSectionThinContSteel );
     newSectionMenu->addSeparator();
-    QAction * pointsAct = newSectionMenu->addAction( trUtf8("Sezione per punti"));
+    QAction * pointsAct = newSectionMenu->addAction( tr("Sezione per punti"));
     connect( pointsAct, &QAction::triggered, this, &SectionModelGUI::insertSectionPoints );
-    QAction * sectThinContAct = newSectionMenu->addAction( trUtf8("Sezione sottile continua"));
+    QAction * sectThinContAct = newSectionMenu->addAction( tr("Sezione sottile continua"));
     connect( sectThinContAct, &QAction::triggered, this, &SectionModelGUI::insertSectionThinCont );
-    QAction * sectThinAct = newSectionMenu->addAction( trUtf8("Sezione sottile"));
+    QAction * sectThinAct = newSectionMenu->addAction( tr("Sezione sottile"));
     connect( sectThinAct, &QAction::triggered, this, &SectionModelGUI::insertSectionThin );
-    QAction * sectProfileAct = newSectionMenu->addAction( trUtf8("Sezione profilo"));
+    QAction * sectProfileAct = newSectionMenu->addAction( tr("Sezione profilo"));
     connect( sectProfileAct, &QAction::triggered, this, &SectionModelGUI::insertSectionProfile );
-    QAction * sectAct = newSectionMenu->addAction( trUtf8("Sezione generica"));
+    QAction * sectAct = newSectionMenu->addAction( tr("Sezione generica"));
     connect( sectAct, &QAction::triggered, this, &SectionModelGUI::insertSectionGeneric );
     m_ui->newPButton->setMenu( newSectionMenu );
 
-    connect( m_ui->delPButton, SIGNAL(clicked()), this, SLOT( remove()) );
+    connect( m_ui->delPButton, &QPushButton::clicked, this, &SectionModelGUI::remove );
 
     // Le colonne hanno dimensione fissa ed uguale per tutte
     m_ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    connect( m_ui->tableView->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(setCurrentChanged()));
+    connect( m_ui->tableView->selectionModel(), &QItemSelectionModel::currentRowChanged, this, &SectionModelGUI::setCurrentChanged );
 }
 
 SectionModelGUI::~SectionModelGUI(){
@@ -144,8 +144,8 @@ void SectionModelGUI::remove(){
         int row = rowList.at(i);
         if( row >= 0 && row < m_model->count() ) {
             if( m_model->section( row )->isUsed() ){
-                QString title = trUtf8("Sezione referenziata");
-                QString message = trUtf8("Non si può rimuovere %1 perché è usata da una o più travi.").arg( m_model->section(row)->name->valueStr() );
+                QString title = tr("Sezione referenziata");
+                QString message = tr("Non si può rimuovere %1 perché è usata da una o più travi.").arg( m_model->section(row)->name->valueStr() );
                 QMessageBox::critical(0, title, message, QMessageBox::Ok);
             } else {
                 m_model->removeRows( row );

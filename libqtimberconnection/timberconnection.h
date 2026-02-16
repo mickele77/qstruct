@@ -70,19 +70,19 @@ public:
     TimberConnection( UnitMeasure * ump,
                       const QString &nPar,
                       Timber *timb,
-                      ServiceClass * sc = 0,
-                      LoadDurationClass * ld = 0,
-                      LSType * ls = 0,
-                      QObject * parent = 0 );
+                      ServiceClass * sc = nullptr,
+                      LoadDurationClass * ld = nullptr,
+                      LSType * ls = nullptr,
+                      QObject * parent = nullptr );
 
     /** Costruttore da flusso XML */
     TimberConnection(UnitMeasure *ump,
                      const QXmlStreamAttributes &attrs,
                      MaterialModel *mModel,
-                     ServiceClass *sc = 0,
-                     LoadDurationClass *ld = 0,
-                     LSType *ls = 0,
-                     QObject *parent = 0);
+                     ServiceClass *sc = nullptr,
+                     LoadDurationClass *ld = nullptr,
+                     LSType *ls = nullptr,
+                     QObject *parent = nullptr);
 
 
     /** Distruttore */
@@ -201,8 +201,8 @@ public:
     DoublePlus * FAxRdTot;
 
     /** Verifica a carica combinato, assiale e trasversale, usando EC5 (8.27) e EC5 (8.28) */
-    bool verifyNormal( double FAxEd, double FVEd, double * res, QString * messages = NULL );
-    bool verify( DoublePlus * FAxEd, DoublePlus * FVEd, DoublePlus * res, QString * messages = NULL );
+    bool verifyNormal( double FAxEd, double FVEd, double * res, QString * messages = nullptr );
+    bool verify( DoublePlus * FAxEd, DoublePlus * FVEd, DoublePlus * res, QString * messages = nullptr );
 
     /** Scrive le variabili contenute nel contenitore sul flusso XML. */
     void writeXml(QXmlStreamWriter *writer);
@@ -210,6 +210,7 @@ public:
     /** Carica i valori degli attributi pubblici da un oggetto di tipo QXmlAttributes
     @param attrs gli attributi da analizzare */
     void loadFromXML(const QXmlStreamAttributes &attrs, MaterialModel *mModel);
+
 public slots:
     void setFAxk1A();
     void setFAxk1B();
@@ -279,7 +280,7 @@ class TimberConnectionTypePrivate;
 
 #include "enumplus.h"
 
-class TimberConnectionType : public EnumPlus
+class EXPORT_TIMBERCONNECTION_LIB_OPT TimberConnectionType : public EnumPlus
 {
     Q_OBJECT
 public:

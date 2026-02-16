@@ -39,32 +39,32 @@ public:
         np = 5;
 
         h = p[0];
-        h->setToolTip( QObject::trUtf8("Altezza del profilo"));
-        h->setRichName( QObject::trUtf8("h"));
+        h->setToolTip( QObject::tr("Altezza del profilo"));
+        h->setRichName( QObject::tr("h"));
         h->setUnitMeasure( UnitMeasure::sectL );
         h->setEnabled( true );
 
         b = p[1];
-        b->setToolTip( QObject::trUtf8("Larghezza del profilo"));
-        b->setRichName( QObject::trUtf8("b"));
+        b->setToolTip( QObject::tr("Larghezza del profilo"));
+        b->setRichName( QObject::tr("b"));
         b->setUnitMeasure( UnitMeasure::sectL );
         b->setEnabled( true );
 
         tw = p[2];
-        tw->setToolTip( QObject::trUtf8("Spessore dell'anima"));
-        tw->setRichName( QObject::trUtf8("t<span style=\" vertical-align:sub;\">w</span>"));
+        tw->setToolTip( QObject::tr("Spessore dell'anima"));
+        tw->setRichName( QObject::tr("t<span style=\" vertical-align:sub;\">w</span>"));
         tw->setUnitMeasure( UnitMeasure::sectL );
         tw->setEnabled( true );
 
         tf = p[3];
-        tf->setToolTip( QObject::trUtf8("Spessore delle ali"));
-        tf->setRichName( QObject::trUtf8("t<span style=\" vertical-align:sub;\">f</span>"));
+        tf->setToolTip( QObject::tr("Spessore delle ali"));
+        tf->setRichName( QObject::tr("t<span style=\" vertical-align:sub;\">f</span>"));
         tf->setUnitMeasure( UnitMeasure::sectL );
         tf->setEnabled( true );
 
         r = p[4];
-        r->setToolTip( QObject::trUtf8("Raggio di raccordo tra anima e ali"));
-        r->setRichName( QObject::trUtf8("r"));
+        r->setToolTip( QObject::tr("Raggio di raccordo tra anima e ali"));
+        r->setRichName( QObject::tr("r"));
         r->setUnitMeasure( UnitMeasure::sectL );
         r->setEnabled( true );
 

@@ -17,12 +17,12 @@ UnitMeasureGUI::UnitMeasureGUI( UnitMeasure * extModel, QWidget *parent) :
 }
 
 void UnitMeasureGUI::buildGUI(){
-    setWindowTitle( trUtf8( "Unità di misura utente"));
+    setWindowTitle( tr( "Unità di misura utente"));
     QGridLayout * layout = new QGridLayout( this );
-    layout->addWidget( new QLabel( trUtf8( "Descrizione"), this ), 0, 0);
-    layout->addWidget( new QLabel( trUtf8( "Rapporto"), this ), 0, 1);
-    layout->addWidget( new QLabel( trUtf8( "Simbolo"), this ), 0, 2);
-    layout->addWidget( new QLabel( trUtf8( "Simbolo HTML"), this ), 0, 3);
+    layout->addWidget( new QLabel( tr( "Descrizione"), this ), 0, 0);
+    layout->addWidget( new QLabel( tr( "Rapporto"), this ), 0, 1);
+    layout->addWidget( new QLabel( tr( "Simbolo"), this ), 0, 2);
+    layout->addWidget( new QLabel( tr( "Simbolo HTML"), this ), 0, 3);
     int i = 0;
     for( i=0; i < m_model->size(); i++){
         layout->addWidget( new QLabel( toHTML( m_model->description(i)), this ), (i+1), 0 );
@@ -41,8 +41,8 @@ void UnitMeasureGUI::buildGUI(){
                                      | QDialogButtonBox::Cancel);
 
     layout->addWidget( buttonBox, (i+1), 3 );
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &UnitMeasureGUI::accept );
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &UnitMeasureGUI::reject );
 
     setLayout( layout );
 }

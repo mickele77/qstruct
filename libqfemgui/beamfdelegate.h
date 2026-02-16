@@ -20,12 +20,13 @@
 #ifndef BEAMFDELEGATE_H
 #define BEAMFDELEGATE_H
 
+#include "femgui_export.h"
 #include <QStyledItemDelegate>
 
 class Hypothesis;
 class BeamFDelegatePrivate;
 
-class BeamFDelegate: public QStyledItemDelegate {
+class EXPORT_FEMGUI_LIB_OPT BeamFDelegate: public QStyledItemDelegate {
     Q_OBJECT
 
 public:

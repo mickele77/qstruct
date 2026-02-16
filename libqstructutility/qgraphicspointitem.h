@@ -25,7 +25,7 @@
 
 class QGraphicsPointItemPrivate;
 
-class EXPORT_QSTRUCTUTILITY_LIB_OPT QGraphicsPointItem : public QGraphicsEllipseItem
+class EXPORT_STRUCTUTILITY_LIB_OPT QGraphicsPointItem : public QGraphicsEllipseItem
 {
 public:
     explicit QGraphicsPointItem(const QPointF & p, double r, QGraphicsItem  *parent  = 0);

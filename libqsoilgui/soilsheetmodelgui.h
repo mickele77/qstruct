@@ -19,15 +19,15 @@
 #ifndef SOILSEETMODELGUI_H
 #define SOILSEETMODELGUI_H
 
-#include <QWidget>
-
 namespace Ui {
 class SoilSheetModelGUI;
 }
-
 class SoilSheetModel;
 
-class SoilSheetModelGUI : public QWidget
+#include "soilgui_export.h"
+#include <QWidget>
+
+class EXPORT_SOILGUI_LIB_OPT SoilSheetModelGUI : public QWidget
 {
     Q_OBJECT
 public:

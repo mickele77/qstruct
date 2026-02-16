@@ -20,9 +20,9 @@ Point3DPlus::Point3DPlus(  const QString & nn,
     x(new DoublePlus( xVal, xN, ump, um, em )),
     y(new DoublePlus( yVal, yN, ump, um, em )),
     z(new DoublePlus( zVal, zN, ump, um, em )){
-    connect(x, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
-    connect(y, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
-    connect(z, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
+    connect(x, &DoublePlus::valueChanged, this, &Point3DPlus::emitValueChanged );
+    connect(y, &DoublePlus::valueChanged, this, &Point3DPlus::emitValueChanged );
+    connect(z, &DoublePlus::valueChanged, this, &Point3DPlus::emitValueChanged );
 }
 
 Point3DPlus::Point3DPlus( Point3DPlus & vv ):
@@ -30,9 +30,9 @@ Point3DPlus::Point3DPlus( Point3DPlus & vv ):
     x(new DoublePlus( vv.x->valueNormal(), vv.x->name(), vv.m_unitMeasurePointer, vv.m_unitMeasureValue, vv.m_readOnly )),
     y(new DoublePlus( vv.y->valueNormal(), vv.y->name(), vv.m_unitMeasurePointer, vv.m_unitMeasureValue, vv.m_readOnly )),
     z(new DoublePlus( vv.z->valueNormal(), vv.z->name(), vv.m_unitMeasurePointer, vv.m_unitMeasureValue, vv.m_readOnly )){
-    connect(x, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
-    connect(y, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
-    connect(z, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
+    connect(x, &DoublePlus::valueChanged, this, &Point3DPlus::emitValueChanged );
+    connect(y, &DoublePlus::valueChanged, this, &Point3DPlus::emitValueChanged );
+    connect(z, &DoublePlus::valueChanged, this, &Point3DPlus::emitValueChanged );
 }
 
 Point3DPlus::~Point3DPlus(){

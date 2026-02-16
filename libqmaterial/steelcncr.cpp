@@ -46,8 +46,8 @@ class SteelCncrModelfEpsPlusPrivate{
 public:
     SteelCncrModelfEpsPlusPrivate(SteelCncr::ModelFEps v):
         value(v){
-        enumList.append( BAnchorConcreteEnumVal( SteelCncr::horizontalTopBranch, "HorizontalTopBranch", trUtf8("Elastico-perfettamente plastico")) );
-        enumList.append( BAnchorConcreteEnumVal( SteelCncr::inclinedTopBranch, "InclinedTopBranch", trUtf8("Elastoplastico-incrudente")) );
+        enumList.append( BAnchorConcreteEnumVal( SteelCncr::horizontalTopBranch, "HorizontalTopBranch", tr("Elastico-perfettamente plastico")) );
+        enumList.append( BAnchorConcreteEnumVal( SteelCncr::inclinedTopBranch, "InclinedTopBranch", tr("Elastoplastico-incrudente")) );
     }
     int valueIndex(){
         for( int i=0; i < enumList.size(); ++i){
@@ -221,59 +221,59 @@ MaterialModel::MaterialType SteelCncr::materialType() {
 void SteelCncr::initVar(){
     *m_typeNameInternal = "SteelCncr";
 
-    typeName->setValue( trUtf8("Acciaio C.A."));
+    typeName->setValue( tr("Acciaio C.A."));
     gammaW->setValueNormal( 7.85e+4 );
     alpha->setValueNormal( 1.0e-5);
 
     fyk = new DoublePlus( 0.0, "fyk", m_unitMeasure, UnitMeasure::tension );
-    fyk->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">yk</span>") );
+    fyk->setRichName( tr("f<span style=\"vertical-align:sub;\">yk</span>") );
     addVarToContainer( fyk );
 
     gammaS = new DoublePlus( 1.15, "gammaS", m_unitMeasure, UnitMeasure::noDimension );
-    gammaS->setRichName( trUtf8("γ<span style=\"vertical-align:sub;\">s</span>") );
+    gammaS->setRichName( tr("γ<span style=\"vertical-align:sub;\">s</span>") );
     addVarToContainer( gammaS );
 
     fyd = new DoublePlus( 0.0, "fyd", m_unitMeasure, UnitMeasure::tension, true );
-    fyd->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">yd</span>") );
+    fyd->setRichName( tr("f<span style=\"vertical-align:sub;\">yd</span>") );
     addVarToContainer( fyd );
     fyd->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SteelCncr::setFyd) );
     fyd->addConnectedVars(2, fyk, gammaS);
 
     ftk = new DoublePlus( 0.0, "ftk", m_unitMeasure, UnitMeasure::tension );
-    ftk->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">tk</span>") );
+    ftk->setRichName( tr("f<span style=\"vertical-align:sub;\">tk</span>") );
     addVarToContainer( ftk );
 
     k = new DoublePlus( 1.15, "k", m_unitMeasure, UnitMeasure::noDimension );
     addVarToContainer( k );
 
     fRare = new DoublePlus( 0.0, "fRare", m_unitMeasure, UnitMeasure::tension, true );
-    fRare->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">rara</span>") );
+    fRare->setRichName( tr("f<span style=\"vertical-align:sub;\">rara</span>") );
     addVarToContainer( fRare );
     fRare->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SteelCncr::setFRare) );
     fRare->addConnectedVars(1, fyk);
 
     epsYd = new DoublePlus( 0.0, "epsYd", m_unitMeasure, UnitMeasure::deformation, true );
-    epsYd->setRichName( trUtf8("ε<span style=\"vertical-align:sub;\">yd</span>") );
+    epsYd->setRichName( tr("ε<span style=\"vertical-align:sub;\">yd</span>") );
     addVarToContainer( epsYd );
     epsYd->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SteelCncr::setEpsYd) );
     epsYd->addConnectedVars(2, fyd, E);
 
     epsUk = new DoublePlus( 0.0, "epsUk", m_unitMeasure, UnitMeasure::deformation );
-    epsUk->setRichName( trUtf8("ε<span style=\"vertical-align:sub;\">uk</span>") );
+    epsUk->setRichName( tr("ε<span style=\"vertical-align:sub;\">uk</span>") );
     addVarToContainer( epsUk );
 
     ratioEpsUdEpsUk = new DoublePlus( 0.0, "ratioEpsUdEpsUk", m_unitMeasure, UnitMeasure::noDimension );
-    ratioEpsUdEpsUk->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">ud</span>/ε<span style=\" vertical-align:sub;\">uk</span>") );
+    ratioEpsUdEpsUk->setRichName( tr("ε<span style=\" vertical-align:sub;\">ud</span>/ε<span style=\" vertical-align:sub;\">uk</span>") );
     addVarToContainer( ratioEpsUdEpsUk );
 
     epsUd = new DoublePlus( 0.0, "epsUd", m_unitMeasure, UnitMeasure::deformation, true );
-    epsUd->setRichName( trUtf8("ε<span style=\"vertical-align:sub;\">ud</span>") );
+    epsUd->setRichName( tr("ε<span style=\"vertical-align:sub;\">ud</span>") );
     addVarToContainer( epsUd );
     epsUd->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SteelCncr::setEpsUd) );
     epsUd->addConnectedVars(2, epsUk, ratioEpsUdEpsUk);
 
     fud = new DoublePlus( 0.0, "fud", m_unitMeasure, UnitMeasure::tension, true );
-    fud->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">ud</span>") );
+    fud->setRichName( tr("f<span style=\"vertical-align:sub;\">ud</span>") );
     addVarToContainer( fud );
     fud->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SteelCncr::setFud) );
     fud->addConnectedVars(4, fyd, k, E, epsUd);

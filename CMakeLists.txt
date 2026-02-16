@@ -11,6 +11,10 @@ set(CMAKE_AUTOUIC ON)
 # Instruct CMake to run rcc automatically when needed.
 set(CMAKE_AUTORCC ON)
 
+IF( BUILD_SHARED_LIBS AND WIN32 )
+  add_definitions( -DBUILD_SHARED_WIN )
+ENDIF( BUILD_SHARED_LIBS AND WIN32 )
+
 project(qstruct)
 
 add_subdirectory( libglviewer )

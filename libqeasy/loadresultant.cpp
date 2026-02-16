@@ -16,48 +16,48 @@ LoadSimple::LoadSimple( UnitMeasure * ump,
     VarPlusContainer(ump, "LoadSimple", ""){
 
     xP = new DoublePlus( PxInp, "xP", ump, UnitMeasure::length, false );
-    xP->setRichName( trUtf8("x<span style=\" vertical-align:sub;\">C</span>") );
-    connect(xP, SIGNAL(valueChanged(QString)), this, SIGNAL(loadChanged()) );
+    xP->setRichName( tr("x<span style=\" vertical-align:sub;\">C</span>") );
+    connect(xP, &DoublePlus::valueChanged, this, &LoadSimple::loadChanged );
     addVarToContainer( xP );
 
     yP = new DoublePlus( PyInp, "yP", ump, UnitMeasure::length, false );
-    yP->setRichName( trUtf8("y<span style=\" vertical-align:sub;\">C</span>") );
-    connect(yP, SIGNAL(valueChanged(QString)), this, SIGNAL(loadChanged()) );
+    yP->setRichName( tr("y<span style=\" vertical-align:sub;\">C</span>") );
+    connect(yP, &DoublePlus::valueChanged, this, &LoadSimple::loadChanged );
     addVarToContainer( yP );
 
     zP = new DoublePlus( PzInp, "zP", ump, UnitMeasure::length, false );
-    zP->setRichName( trUtf8("z<span style=\" vertical-align:sub;\">C</span>") );
-    connect(zP, SIGNAL(valueChanged(QString)), this, SIGNAL(loadChanged()) );
+    zP->setRichName( tr("z<span style=\" vertical-align:sub;\">C</span>") );
+    connect(zP, &DoublePlus::valueChanged, this, &LoadSimple::loadChanged );
     addVarToContainer( zP );
 
     Fx = new DoublePlus( FxInp, "Fx", ump, UnitMeasure::loadF, false );
-    Fx->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">x</span>") );
-    connect(Fx, SIGNAL(valueChanged(QString)), this, SIGNAL(loadChanged()) );
+    Fx->setRichName( tr("F<span style=\" vertical-align:sub;\">x</span>") );
+    connect(Fx, &DoublePlus::valueChanged, this, &LoadSimple::loadChanged );
     addVarToContainer( Fx );
 
     Fy = new DoublePlus( FyInp, "Fy", ump, UnitMeasure::loadF, false );
-    Fy->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">y</span>") );
-    connect(Fy, SIGNAL(valueChanged(QString)), this, SIGNAL(loadChanged()) );
+    Fy->setRichName( tr("F<span style=\" vertical-align:sub;\">y</span>") );
+    connect(Fy, &DoublePlus::valueChanged, this, &LoadSimple::loadChanged );
     addVarToContainer( Fy );
 
     Fz = new DoublePlus( FzInp, "Fz", ump, UnitMeasure::loadF, false );
-    Fz->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">z</span>") );
-    connect(Fz, SIGNAL(valueChanged(QString)), this, SIGNAL(loadChanged()) );
+    Fz->setRichName( tr("F<span style=\" vertical-align:sub;\">z</span>") );
+    connect(Fz, &DoublePlus::valueChanged, this, &LoadSimple::loadChanged );
     addVarToContainer( Fz );
 
     Mx = new DoublePlus( MxInp, "Mx", ump, UnitMeasure::loadM, false );
-    Mx->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">x</span>") );
-    connect(Mx, SIGNAL(valueChanged(QString)), this, SIGNAL(loadChanged()) );
+    Mx->setRichName( tr("M<span style=\" vertical-align:sub;\">x</span>") );
+    connect(Mx, &DoublePlus::valueChanged, this, &LoadSimple::loadChanged );
     addVarToContainer( Mx );
 
     My = new DoublePlus( MyInp, "My", ump, UnitMeasure::loadM, false );
-    My->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">y</span>") );
-    connect(My, SIGNAL(valueChanged(QString)), this, SIGNAL(loadChanged()) );
+    My->setRichName( tr("M<span style=\" vertical-align:sub;\">y</span>") );
+    connect(My, &DoublePlus::valueChanged, this, &LoadSimple::loadChanged );
     addVarToContainer( My );
 
     Mz = new DoublePlus( MzInp, "Mz", ump, UnitMeasure::loadM, false );
-    Mz->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">z</span>") );
-    connect(Mz, SIGNAL(valueChanged(QString)), this, SIGNAL(loadChanged()) );
+    Mz->setRichName( tr("M<span style=\" vertical-align:sub;\">z</span>") );
+    connect(Mz, &DoublePlus::valueChanged, this, &LoadSimple::loadChanged );
     addVarToContainer( Mz );
 }
 
@@ -76,13 +76,13 @@ LoadResultant::LoadResultant( UnitMeasure * ump, QObject * parent ):
     TableModelPlus( "LoadResultant", ump, parent ),
     m_dd( new LoadResultantPrivate() ){
 
-    connect( ump, SIGNAL(stringsChanged(UnitMeasure::unitMeasure)), this, SLOT(updateHeaders()) );
+    connect( ump, &UnitMeasure::stringsChanged, this, &LoadResultant::updateHeaders );
     updateHeaders();
 
     R = new LoadSimple( ump );
-    connect( R->xP, SIGNAL(valueChanged(QString)), this, SIGNAL(modelChanged()) );
-    connect( R->yP, SIGNAL(valueChanged(QString)), this, SIGNAL(modelChanged()) );
-    connect( R->zP, SIGNAL(valueChanged(QString)), this, SIGNAL(modelChanged()) );
+    connect( R->xP, &DoublePlus::valueChanged, this, &LoadResultant::modelChanged );
+    connect( R->yP, &DoublePlus::valueChanged, this, &LoadResultant::modelChanged );
+    connect( R->zP, &DoublePlus::valueChanged, this, &LoadResultant::modelChanged );
     R->Fx->setReadOnly( true );
     R->Fy->setReadOnly( true );
     R->Fz->setReadOnly( true );
@@ -90,21 +90,21 @@ LoadResultant::LoadResultant( UnitMeasure * ump, QObject * parent ):
     R->My->setReadOnly( true );
     R->Mz->setReadOnly( true );
 
-    connect( this, SIGNAL(modelChanged()), this, SLOT(updateR()));
+    connect( this, &LoadResultant::modelChanged, this, &LoadResultant::updateR );
 }
 
 void LoadResultant::updateHeaders(){
     QList<QString> headerList;
-    headerList << trUtf8("Tag")
-               << trUtf8("xC [%1]").arg( m_d->unitMeasure->string(UnitMeasure::length ) )
-               << trUtf8("yC [%1]").arg( m_d->unitMeasure->string(UnitMeasure::length ) )
-               << trUtf8("zC [%1]").arg( m_d->unitMeasure->string(UnitMeasure::length ) )
-               << trUtf8("Fx [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadF ) )
-               << trUtf8("Fy [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadF ) )
-               << trUtf8("Fz [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadF ) )
-               << trUtf8("Mx [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadM ) )
-               << trUtf8("My [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadM ) )
-               << trUtf8("Mz [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadM ) );
+    headerList << tr("Tag")
+               << tr("xC [%1]").arg( m_d->unitMeasure->string(UnitMeasure::length ) )
+               << tr("yC [%1]").arg( m_d->unitMeasure->string(UnitMeasure::length ) )
+               << tr("zC [%1]").arg( m_d->unitMeasure->string(UnitMeasure::length ) )
+               << tr("Fx [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadF ) )
+               << tr("Fy [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadF ) )
+               << tr("Fz [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadF ) )
+               << tr("Mx [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadM ) )
+               << tr("My [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadM ) )
+               << tr("Mz [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadM ) );
     setHeaders( headerList );
 }
 
@@ -119,7 +119,7 @@ void LoadResultant::insertRows( int position, int count ){
                         addedLoad->xP, addedLoad->yP, addedLoad->zP,
                         addedLoad->Fx, addedLoad->Fy, addedLoad->Fz,
                         addedLoad->Mx, addedLoad->My, addedLoad->Mz);
-        connect(addedLoad, SIGNAL(loadChanged()), this, SIGNAL(modelChanged()) );
+        connect(addedLoad, &LoadSimple::loadChanged, this, &LoadResultant::modelChanged );
     }
     emit modelChanged();
 }
@@ -134,7 +134,7 @@ void LoadResultant::removeRows(int position, int count) {
 
     for (int row = position; row < (position+count); row++){
         // scolleghiamo la sezione
-        disconnect(m_dd->loadContainer.at(position), SIGNAL(loadChanged()), this, SIGNAL(modelChanged()) );
+        disconnect(m_dd->loadContainer.at(position), &LoadSimple::loadChanged, this, &LoadResultant::modelChanged );
 
         // procediamo a cancellare la riga
         removeRowsPrivate( position );

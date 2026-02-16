@@ -24,6 +24,7 @@
 #include "vertexmodelgui.h"
 #include "elementmodelgui.h"
 #include "calcresultsgui.h"
+#include "glitem.h"
 
 #include <QGridLayout>
 #include <QIcon>
@@ -61,28 +62,26 @@ Fem2DModule::Fem2DModule( UnitMeasure * ump,
     StructModule( ump, parent ),
     m_d( new Fem2DModulePrivate( ump, sm, this) ){
 
-    connect( m_d->calcResultsGUI, SIGNAL(resultsChanged()), m_d->elementGUI, SLOT(updateResults()));
-    connect( m_d->calcResultsGUI, SIGNAL(addGLItem(GLItem*)), m_d->gui, SLOT(setExtraGLItem(GLItem*)));
+    connect( m_d->calcResultsGUI, &CalcResultsGUI::resultsChanged, m_d->elementGUI, &ElementModelGUI::updateResults );
+    connect( m_d->calcResultsGUI, &CalcResultsGUI::addGLItem, m_d->gui, &QFem2DGUI::setExtraGLItem );
 
     setLayout( new QGridLayout(this));
     layout()->addWidget( m_d->gui );
 
-    QDockWidget * dockCalcResults = new QDockWidget(richName() + " - " + trUtf8("Calcolo"));
+    QDockWidget * dockCalcResults = new QDockWidget(richName() + " - " + tr("Calcolo"));
     dockCalcResults->setObjectName( "FEM2DCalcResults" );
     dockCalcResults->setWidget( m_d->calcResultsGUI );
     m_panels->append( dockCalcResults );
 
-    QDockWidget * dockVertex = new QDockWidget(richName() + " - " + trUtf8("Vertici"));
+    QDockWidget * dockVertex = new QDockWidget(richName() + " - " + tr("Vertici"));
     dockVertex->setObjectName( "FEM2DVertex");
     dockVertex->setWidget( m_d->vertexGUI );
     m_panels->append( dockVertex );
 
-    QDockWidget * dockElement = new QDockWidget(richName() + " - " + trUtf8("Elementi"));
+    QDockWidget * dockElement = new QDockWidget(richName() + " - " + tr("Elementi"));
     dockElement->setObjectName( "FEM2DElement");
     dockElement->setWidget( m_d->elementGUI );
     m_panels->append( dockElement );
-
-    connect( m_d->calcResultsGUI, SIGNAL(resultsChanged()), m_d->elementGUI, SLOT(updateResults()));
 }
 
 Fem2DModule::~Fem2DModule(){
@@ -94,7 +93,7 @@ QString Fem2DModule::name(){
 }
 
 QString Fem2DModule::richName(){
-    return trUtf8("FEM 2D");
+    return tr("FEM 2D");
 }
 
 QIcon Fem2DModule::icon(){

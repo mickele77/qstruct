@@ -115,12 +115,12 @@ void TimberGUI::loadStandardComboBox(){
         QString name = queryModel.record(i).value("nameType1").toString();
         m_d->ui->type1FilterStandardComboBox->insertItem((i+1), name, data );
     }
-    connect( m_d->ui->type1FilterStandardComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateType2FilterStandardComboBox()) );
+    connect( m_d->ui->type1FilterStandardComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &TimberGUI::updateType2FilterStandardComboBox );
     updateType2FilterStandardComboBox();
-    connect( m_d->ui->type1FilterStandardComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateWoodNameStandardComboBox()) );
-    connect( m_d->ui->type2FilterStandardComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateWoodNameStandardComboBox()) );
+    connect( m_d->ui->type1FilterStandardComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &TimberGUI::updateWoodNameStandardComboBox );
+    connect( m_d->ui->type2FilterStandardComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &TimberGUI::updateWoodNameStandardComboBox );
     updateWoodNameStandardComboBox();
-    connect( m_d->ui->loadStandardPButton, SIGNAL(clicked()), this, SLOT(loadStandardData()));
+    connect( m_d->ui->loadStandardPButton, &QPushButton::clicked, this, &TimberGUI::loadStandardData );
 }
 
 TimberGUI::~TimberGUI()
@@ -136,166 +136,166 @@ TimberGUI::~TimberGUI()
 
 void TimberGUI::initVar(){
     m_d->sClass = new ServiceClass(ServiceClass::SC1, "ServiceClass" );
-    m_d->sClass->setRichName(trUtf8("Classe di servizio"));
+    m_d->sClass->setRichName(tr("Classe di servizio"));
     addVarToContainer( m_d->sClass );
     VarPlusGUI::connectEnumVar(  m_d->sClass, m_d->ui->sClassLabel, m_d->ui->sClassComboBox );
-    connect( m_d->sClass, SIGNAL(valueChanged(QString)), this, SLOT(setCurrentKmod()));
+    connect( m_d->sClass, &ServiceClass::valueChanged, this, &TimberGUI::setCurrentKmod );
 
     m_d->ldClass = new LoadDurationClass(LoadDurationClass::permanent, "LoadDurationClass" );
-    m_d->ldClass->setRichName(trUtf8("Durata del carico"));
+    m_d->ldClass->setRichName(tr("Durata del carico"));
     addVarToContainer( m_d->ldClass );
     VarPlusGUI::connectEnumVar( m_d->ldClass, m_d->ui->ldClassLabel, m_d->ui->ldClassComboBox );
-    connect( m_d->ldClass, SIGNAL(valueChanged(QString)), this, SLOT(setCurrentKmod()));
+    connect( m_d->ldClass, &LoadDurationClass::valueChanged, this, &TimberGUI::setCurrentKmod );
 
     m_d->lsType = new LSType(LSType::ULSFundamental, "LSType");
-    m_d->lsType->setRichName(trUtf8("Combinazione"));
+    m_d->lsType->setRichName(tr("Combinazione"));
     addVarToContainer( m_d->lsType );
     VarPlusGUI::connectEnumVar( m_d->lsType, m_d->ui->lsTypeLabel, m_d->ui->lsTypeComboBox );
-    connect( m_d->lsType, SIGNAL(valueChanged(QString)), this, SLOT(setCurrentGammaM()));
+    connect( m_d->lsType, &LSType::valueChanged, this, &TimberGUI::setCurrentGammaM );
 
     m_d->sectionShape = new SectionTimberShape(SectionTimber::rectangular, "SectionShape" );
-    m_d->sectionShape->setRichName(trUtf8("Tipologia di sezione"));
+    m_d->sectionShape->setRichName(tr("Tipologia di sezione"));
     addVarToContainer( m_d->sectionShape );
     VarPlusGUI::connectEnumVar( m_d->sectionShape, m_d->ui->sectionTypeLabel, m_d->ui->sectionTypeComboBox );
-    connect( m_d->sectionShape, SIGNAL(valueChanged(QString)), this, SLOT(updateSectionData()));
+    connect( m_d->sectionShape, &SectionTimberShape::valueChanged, this, &TimberGUI::updateSectionData );
 
     m_d->b = new DoublePlus(0.0, "b", m_unitMeasure, UnitMeasure::sectL );
-    m_d->b->setRichName(trUtf8("b"));
+    m_d->b->setRichName(tr("b"));
     addVarToContainer( m_d->b );
     VarPlusGUI::connectVar( m_d->b, m_d->ui->bLabel, m_d->ui->bLEdit, m_d->ui->bUMLabel );
 
     m_d->h = new DoublePlus(0.0, "b", m_unitMeasure, UnitMeasure::sectL );
-    m_d->h->setRichName(trUtf8("h"));
+    m_d->h->setRichName(tr("h"));
     addVarToContainer( m_d->h );
     VarPlusGUI::connectVar( m_d->h, m_d->ui->hLabel, m_d->ui->hLEdit, m_d->ui->hUMLabel );
 
     m_d->V = new DoublePlus(0.0, "V", m_unitMeasure, UnitMeasure::sectL3 );
-    m_d->V->setRichName(trUtf8("V"));
+    m_d->V->setRichName(tr("V"));
     addVarToContainer( m_d->V );
     VarPlusGUI::connectVar( m_d->V, m_d->ui->VLabel, m_d->ui->VLEdit, m_d->ui->VUMLabel );
 
     m_d->khm = new DoublePlus(0.0, "khm", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->khm->setRichName(trUtf8("k<span style=\" vertical-align:sub;\">h</span>"));
+    m_d->khm->setRichName(tr("k<span style=\" vertical-align:sub;\">h</span>"));
     m_d->khm->setToolTip("Coefficiente amplificativo per sforzi normali di trazione paralleli alle fibre - flessione nel piano parallelo ad h");
     addVarToContainer( m_d->khm );
     VarPlusGUI::connectVar( m_d->khm, m_d->ui->khmLabel, m_d->ui->khmLEdit, m_d->ui->khmUMLabel, m_d->ui->khmCheckBox );
-    connect( m_d->h, SIGNAL(valueChanged(QString)), this, SLOT(updatekhm()) );
-    connect( m_d->khm, SIGNAL(readOnlyChanged(bool)), this, SLOT(updatekhm()) );
+    connect( m_d->h, &DoublePlus::valueChanged, this, &TimberGUI::updatekhm );
+    connect( m_d->khm, &DoublePlus::readOnlyChanged, this, &TimberGUI::updatekhm );
 
     m_d->kbm = new DoublePlus(0.0, "kbm", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->kbm->setRichName(trUtf8("k<span style=\" vertical-align:sub;\">b</span>"));
+    m_d->kbm->setRichName(tr("k<span style=\" vertical-align:sub;\">b</span>"));
     m_d->kbm->setToolTip("Coefficiente amplificativo per sforzi normali di trazione paralleli alle fibre - flessione nel piano parallelo a b");
     addVarToContainer( m_d->kbm );
     VarPlusGUI::connectVar( m_d->kbm, m_d->ui->kbmLabel, m_d->ui->kbmLEdit, m_d->ui->kbmUMLabel, m_d->ui->kbmCheckBox );
-    connect( m_d->b, SIGNAL(valueChanged(QString)), this, SLOT(updatekbm()) );
-    connect( m_d->kbm, SIGNAL(readOnlyChanged(bool)), this, SLOT(updatekbm()) );
+    connect( m_d->b, &DoublePlus::valueChanged, this, &TimberGUI::updatekbm );
+    connect( m_d->kbm, &DoublePlus::readOnlyChanged, this, &TimberGUI::updatekbm );
 
     m_d->km = new DoublePlus(0.0, "km", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->km->setRichName(trUtf8("k<span style=\" vertical-align:sub;\">m</span>"));
-    m_d->km->setToolTip(trUtf8("Coefficiente di ridistribuzione delle tensioni"));
+    m_d->km->setRichName(tr("k<span style=\" vertical-align:sub;\">m</span>"));
+    m_d->km->setToolTip(tr("Coefficiente di ridistribuzione delle tensioni"));
     addVarToContainer( m_d->km );
     VarPlusGUI::connectVar( m_d->km, m_d->ui->kmLabel, m_d->ui->kmLEdit, m_d->ui->kmUMLabel, m_d->ui->kmCheckBox );
-    connect( m_d->sectionShape, SIGNAL(valueChanged(QString)), this, SLOT(updatekm()) );
-    connect( m_d->km, SIGNAL(readOnlyChanged(bool)), this, SLOT(updatekm()) );
+    connect( m_d->sectionShape, &SectionTimberShape::valueChanged, this, &TimberGUI::updatekm );
+    connect( m_d->km, &DoublePlus::readOnlyChanged, this, &TimberGUI::updatekm );
 
     m_d->kh = new DoublePlus(0.0, "kh", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->kh->setRichName(trUtf8("k<span style=\" vertical-align:sub;\">h</span>"));
+    m_d->kh->setRichName(tr("k<span style=\" vertical-align:sub;\">h</span>"));
     m_d->kh->setToolTip("Coefficiente amplificativo per sforzi normali di trazione paralleli alle fibre");
     addVarToContainer( m_d->kh );
     VarPlusGUI::connectVar( m_d->kh, m_d->ui->khLabel, m_d->ui->khLEdit, m_d->ui->khUMLabel, m_d->ui->khCheckBox );
-    connect( m_d->h, SIGNAL(valueChanged(QString)), this, SLOT(updatekh()) );
-    connect( m_d->b, SIGNAL(valueChanged(QString)), this, SLOT(updatekh()) );
+    connect( m_d->h, &DoublePlus::valueChanged, this, &TimberGUI::updatekh );
+    connect( m_d->b, &DoublePlus::valueChanged, this, &TimberGUI::updatekh );
 
     m_d->kV = new DoublePlus(1.0, "kV", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->kV->setRichName(trUtf8("k<span style=\" vertical-align:sub;\">V</span>"));
+    m_d->kV->setRichName(tr("k<span style=\" vertical-align:sub;\">V</span>"));
     m_d->kV->setToolTip("Coefficiente amplificativo per sforzi normali di trazione perpendicolari alle fibre");
     addVarToContainer( m_d->kV );
     VarPlusGUI::connectVar( m_d->kV, m_d->ui->kVLabel, m_d->ui->kVLEdit, m_d->ui->kVUMLabel, m_d->ui->kVCheckBox );
-    connect( m_d->V, SIGNAL(valueChanged(QString)), this, SLOT(updatekV()) );
-    connect( m_d->kV, SIGNAL(readOnlyChanged(bool)), this, SLOT(updatekV()) );
+    connect( m_d->V, &DoublePlus::valueChanged, this, &TimberGUI::updatekV );
+    connect( m_d->kV, &DoublePlus::readOnlyChanged, this, &TimberGUI::updatekV );
 
     m_d->ksh = new DoublePlus(0.0, "ksh", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->ksh->setRichName(trUtf8("k<span style=\" vertical-align:sub;\">sh</span>"));
+    m_d->ksh->setRichName(tr("k<span style=\" vertical-align:sub;\">sh</span>"));
     m_d->ksh->setToolTip("Coefficiente di correlazione tra resistenza a taglio e resistenza a torsione");
     addVarToContainer( m_d->ksh );
     VarPlusGUI::connectVar(m_d->ksh, m_d->ui->kshLabel, m_d->ui->kshLEdit, m_d->ui->kshUMLabel, m_d->ui->kshCheckBox );
-    connect( m_d->h, SIGNAL(valueChanged(QString)), this, SLOT(updateksh()) );
-    connect( m_d->b, SIGNAL(valueChanged(QString)), this, SLOT(updateksh()) );
-    connect( m_d->sectionShape, SIGNAL(readOnlyChanged(bool)), this, SLOT(updateksh()) );
+    connect( m_d->h, &DoublePlus::valueChanged, this, &TimberGUI::updateksh );
+    connect( m_d->b, &DoublePlus::valueChanged, this, &TimberGUI::updateksh );
+    connect( m_d->sectionShape, &SectionTimberShape::readOnlyChanged, this, &TimberGUI::updateksh );
 
     m_d->fc0d = new DoublePlus(0.0, "fc0d", m_unitMeasure, UnitMeasure::tension, true );
-    m_d->fc0d->setRichName(trUtf8("f<span style=\" vertical-align:sub;\">c0d</span>"));
+    m_d->fc0d->setRichName(tr("f<span style=\" vertical-align:sub;\">c0d</span>"));
     addVarToContainer( m_d->fc0d );
     VarPlusGUI::connectVar( m_d->fc0d, m_d->ui->fc0dLabel, m_d->ui->fc0dLEdit, m_d->ui->fc0dUMLabel, m_d->ui->fc0dCheckBox );
-    connect( m_d->lsType, SIGNAL(valueChanged(QString)), this, SLOT(updatefc0d()) );
-    connect( m_d->sClass, SIGNAL(valueChanged(QString)), this, SLOT(updatefc0d()) );
-    connect( m_d->ldClass, SIGNAL(valueChanged(QString)), this, SLOT(updatefc0d()) );
+    connect( m_d->lsType, &LSType::valueChanged, this, &TimberGUI::updatefc0d );
+    connect( m_d->sClass, &ServiceClass::valueChanged, this, &TimberGUI::updatefc0d );
+    connect( m_d->ldClass, &LoadDurationClass::valueChanged, this, &TimberGUI::updatefc0d );
 
     m_d->fc90d = new DoublePlus(0.0, "fc90d", m_unitMeasure, UnitMeasure::tension, true );
-    m_d->fc90d->setRichName(trUtf8("f<span style=\" vertical-align:sub;\">c90d</span>"));
+    m_d->fc90d->setRichName(tr("f<span style=\" vertical-align:sub;\">c90d</span>"));
     addVarToContainer( m_d->fc90d );
     VarPlusGUI::connectVar( m_d->fc90d, m_d->ui->fc90dLabel, m_d->ui->fc90dLEdit, m_d->ui->fc90dUMLabel, m_d->ui->fc90dCheckBox );
-    connect( m_d->lsType, SIGNAL(valueChanged(QString)), this, SLOT(updatefc90d()) );
-    connect( m_d->sClass, SIGNAL(valueChanged(QString)), this, SLOT(updatefc90d()) );
-    connect( m_d->ldClass, SIGNAL(valueChanged(QString)), this, SLOT(updatefc90d()) );
+    connect( m_d->lsType, &LSType::valueChanged, this, &TimberGUI::updatefc90d );
+    connect( m_d->sClass, &ServiceClass::valueChanged, this, &TimberGUI::updatefc90d );
+    connect( m_d->ldClass, &LoadDurationClass::valueChanged, this, &TimberGUI::updatefc90d );
 
     m_d->ft0d = new DoublePlus(0.0, "ft0d", m_unitMeasure, UnitMeasure::tension, true );
-    m_d->ft0d->setRichName(trUtf8("f<span style=\" vertical-align:sub;\">t0d</span>"));
+    m_d->ft0d->setRichName(tr("f<span style=\" vertical-align:sub;\">t0d</span>"));
     addVarToContainer( m_d->ft0d );
     VarPlusGUI::connectVar( m_d->ft0d, m_d->ui->ft0dLabel, m_d->ui->ft0dLEdit, m_d->ui->ft0dUMLabel, m_d->ui->ft0dCheckBox );
-    connect( m_d->lsType, SIGNAL(valueChanged(QString)), this, SLOT(updateft0d()) );
-    connect( m_d->sClass, SIGNAL(valueChanged(QString)), this, SLOT(updateft0d()) );
-    connect( m_d->ldClass, SIGNAL(valueChanged(QString)), this, SLOT(updateft0d()) );
-    connect( m_d->kh, SIGNAL(valueChanged(QString)), this, SLOT(updateft0d()) );
+    connect( m_d->lsType, &LSType::valueChanged, this, &TimberGUI::updateft0d );
+    connect( m_d->sClass, &ServiceClass::valueChanged, this, &TimberGUI::updateft0d );
+    connect( m_d->ldClass, &LoadDurationClass::valueChanged, this, &TimberGUI::updateft0d );
+    connect( m_d->kh, &DoublePlus::valueChanged, this, &TimberGUI::updateft0d );
 
 
     m_d->ft90d = new DoublePlus(0.0, "ft90d", m_unitMeasure, UnitMeasure::tension, true );
-    m_d->ft90d->setRichName(trUtf8("f<span style=\" vertical-align:sub;\">t90d</span>"));
+    m_d->ft90d->setRichName(tr("f<span style=\" vertical-align:sub;\">t90d</span>"));
     addVarToContainer( m_d->ft90d );
     VarPlusGUI::connectVar( m_d->ft90d, m_d->ui->ft90dLabel, m_d->ui->ft90dLEdit, m_d->ui->ft90dUMLabel, m_d->ui->ft90dCheckBox );
-    connect( m_d->lsType, SIGNAL(valueChanged(QString)), this, SLOT(updateft90d()) );
-    connect( m_d->sClass, SIGNAL(valueChanged(QString)), this, SLOT(updateft90d()) );
-    connect( m_d->ldClass, SIGNAL(valueChanged(QString)), this, SLOT(updateft90d()) );
-    connect( m_d->kV, SIGNAL(valueChanged(QString)), this, SLOT(updateft90d()) );
+    connect( m_d->lsType, &LSType::valueChanged, this, &TimberGUI::updateft90d );
+    connect( m_d->sClass, &ServiceClass::valueChanged, this, &TimberGUI::updateft90d );
+    connect( m_d->ldClass, &LoadDurationClass::valueChanged, this, &TimberGUI::updateft90d );
+    connect( m_d->kV, &DoublePlus::valueChanged, this, &TimberGUI::updateft90d );
 
     m_d->fmdh = new DoublePlus(0.0, "fmdh", m_unitMeasure, UnitMeasure::tension, true );
-    m_d->fmdh->setRichName(trUtf8("f<span style=\" vertical-align:sub;\">md,h</span>"));
+    m_d->fmdh->setRichName(tr("f<span style=\" vertical-align:sub;\">md,h</span>"));
     addVarToContainer( m_d->fmdh );
     VarPlusGUI::connectVar( m_d->fmdh, m_d->ui->fmdhLabel, m_d->ui->fmdhLEdit, m_d->ui->fmdhUMLabel, m_d->ui->fmdhCheckBox );
-    connect( m_d->lsType, SIGNAL(valueChanged(QString)), this, SLOT(updatefmdh()) );
-    connect( m_d->sClass, SIGNAL(valueChanged(QString)), this, SLOT(updatefmdh()) );
-    connect( m_d->ldClass, SIGNAL(valueChanged(QString)), this, SLOT(updatefmdh()) );
-    connect( m_d->khm, SIGNAL(valueChanged(QString)), this, SLOT(updatefmdh()) );
+    connect( m_d->lsType, &LSType::valueChanged, this, &TimberGUI::updatefmdh );
+    connect( m_d->sClass, &ServiceClass::valueChanged, this, &TimberGUI::updatefmdh );
+    connect( m_d->ldClass, &LoadDurationClass::valueChanged, this, &TimberGUI::updatefmdh );
+    connect( m_d->khm, &DoublePlus::valueChanged, this, &TimberGUI::updatefmdh );
 
     m_d->fmdb = new DoublePlus(0.0, "fmdb", m_unitMeasure, UnitMeasure::tension, true );
-    m_d->fmdb->setRichName(trUtf8("f<span style=\" vertical-align:sub;\">md,b</span>"));
+    m_d->fmdb->setRichName(tr("f<span style=\" vertical-align:sub;\">md,b</span>"));
     addVarToContainer( m_d->fmdb );
     VarPlusGUI::connectVar( m_d->fmdb, m_d->ui->fmdbLabel, m_d->ui->fmdbLEdit, m_d->ui->fmdbUMLabel, m_d->ui->fmdbCheckBox );
-    connect( m_d->lsType, SIGNAL(valueChanged(QString)), this, SLOT(updatefmdb()) );
-    connect( m_d->sClass, SIGNAL(valueChanged(QString)), this, SLOT(updatefmdb()) );
-    connect( m_d->ldClass, SIGNAL(valueChanged(QString)), this, SLOT(updatefmdb()) );
-    connect( m_d->kbm, SIGNAL(valueChanged(QString)), this, SLOT(updatefmdb()) );
+    connect( m_d->lsType, &LSType::valueChanged, this, &TimberGUI::updatefmdb );
+    connect( m_d->sClass, &ServiceClass::valueChanged, this, &TimberGUI::updatefmdb );
+    connect( m_d->ldClass, &LoadDurationClass::valueChanged, this, &TimberGUI::updatefmdb );
+    connect( m_d->kbm, &DoublePlus::valueChanged, this, &TimberGUI::updatefmdb );
 
     m_d->fvd = new DoublePlus(0.0, "fvd", m_unitMeasure, UnitMeasure::tension, true );
-    m_d->fvd->setRichName(trUtf8("f<span style=\" vertical-align:sub;\">vd</span>"));
+    m_d->fvd->setRichName(tr("f<span style=\" vertical-align:sub;\">vd</span>"));
     addVarToContainer( m_d->fvd );
     VarPlusGUI::connectVar( m_d->fvd, m_d->ui->fvdLabel, m_d->ui->fvdLEdit, m_d->ui->fvdUMLabel, m_d->ui->fvdCheckBox );
-    connect( m_d->lsType, SIGNAL(valueChanged(QString)), this, SLOT(updatefvd()) );
-    connect( m_d->sClass, SIGNAL(valueChanged(QString)), this, SLOT(updatefvd()) );
-    connect( m_d->ldClass, SIGNAL(valueChanged(QString)), this, SLOT(updatefvd()) );
+    connect( m_d->lsType, &LSType::valueChanged, this, &TimberGUI::updatefvd );
+    connect( m_d->sClass, &ServiceClass::valueChanged, this, &TimberGUI::updatefvd );
+    connect( m_d->ldClass, &LoadDurationClass::valueChanged, this, &TimberGUI::updatefvd );
 
     m_d->ftorsd = new DoublePlus(0.0, "ftorsd", m_unitMeasure, UnitMeasure::tension, true );
-    m_d->ftorsd->setRichName(trUtf8("f<span style=\" vertical-align:sub;\">tors,d</span>"));
+    m_d->ftorsd->setRichName(tr("f<span style=\" vertical-align:sub;\">tors,d</span>"));
     addVarToContainer( m_d->ftorsd);
     VarPlusGUI::connectVar( m_d->ftorsd, m_d->ui->ftorsdLabel, m_d->ui->ftorsdLEdit, m_d->ui->ftorsdUMLabel, m_d->ui->ftorsdCheckBox );
-    connect( m_d->lsType, SIGNAL(valueChanged(QString)), this, SLOT(updateftorsd()) );
-    connect( m_d->sClass, SIGNAL(valueChanged(QString)), this, SLOT(updateftorsd()) );
-    connect( m_d->ldClass, SIGNAL(valueChanged(QString)), this, SLOT(updateftorsd()) );
-    connect( m_d->ksh, SIGNAL(valueChanged(QString)), this, SLOT(updateftorsd()) );
+    connect( m_d->lsType, &LSType::valueChanged, this, &TimberGUI::updateftorsd );
+    connect( m_d->sClass, &ServiceClass::valueChanged, this, &TimberGUI::updateftorsd );
+    connect( m_d->ldClass, &LoadDurationClass::valueChanged, this, &TimberGUI::updateftorsd );
+    connect( m_d->ksh, &DoublePlus::valueChanged, this, &TimberGUI::updateftorsd );
 }
 
 void TimberGUI::setMaterial( Material * timber ){
-    if( m_d->timber != 0 ){
+    if( m_d->timber != nullptr ){
         VarPlusGUI::disconnectVar(m_d->ui->nameLabel, m_d->ui->nameLEdit );
         VarPlusGUI::disconnectVar(m_d->ui->gammaWmLabel, m_d->ui->gammaWmLEdit, m_d->ui->gammaWmUMLabel );
         VarPlusGUI::disconnectVar(m_d->ui->gammaWkLabel, m_d->ui->gammaWkLEdit, m_d->ui->gammaWkUMLabel );
@@ -312,24 +312,29 @@ void TimberGUI::setMaterial( Material * timber ){
         VarPlusGUI::disconnectVar(m_d->ui->E90mLabel, m_d->ui->E90mLEdit, m_d->ui->E90mUMLabel );
         VarPlusGUI::disconnectVar(m_d->ui->GmLabel, m_d->ui->GmLEdit, m_d->ui->GmUMLabel );
 
-        disconnect( m_d->timber->fc0k, SIGNAL(valueChanged(QString)), this, SLOT(updatefc0d()));
-        disconnect( m_d->timber->fc90k, SIGNAL(valueChanged(QString)), this, SLOT(updatefc90d()));
-        disconnect( m_d->timber->fmk, SIGNAL(valueChanged(QString)), this, SLOT(updatefmdh()));
-        disconnect( m_d->timber->fmk, SIGNAL(valueChanged(QString)), this, SLOT(updatefmdb()));
-        disconnect( m_d->timber->ft0k, SIGNAL(valueChanged(QString)), this, SLOT(updateft0d()));
-        disconnect( m_d->timber->ft90k, SIGNAL(valueChanged(QString)), this, SLOT(updateft90d()));
-        disconnect( m_d->timber->fvk, SIGNAL(valueChanged(QString)), this, SLOT(updatefvd()));
-        disconnect( m_d->timber->fvk, SIGNAL(valueChanged(QString)), this, SLOT(updateftorsd()));
-        disconnect( m_d->timber->timberType, SIGNAL(valueChanged(QString)), this, SLOT(updatekhm()));
-        disconnect( m_d->timber->timberType, SIGNAL(valueChanged(QString)), this, SLOT(updatekbm()));
-        disconnect( m_d->timber->timberType, SIGNAL(valueChanged(QString)), this, SLOT(updatekh()));
-        disconnect( m_d->ui->copyfkToClipBoardPButton, SIGNAL(clicked()), m_d->timber, SLOT(copyfkToClipBoard()));
-        disconnect( m_d->ui->copyEToClipBoardPButton, SIGNAL(clicked()), m_d->timber, SLOT(copyEToClipBoard()));
+        disconnect( m_d->timber->fc0k, &DoublePlus::valueChanged, this, &TimberGUI::updatefc0d );
+        disconnect( m_d->timber->fc90k, &DoublePlus::valueChanged, this, &TimberGUI::updatefc90d );
+        disconnect( m_d->timber->fmk, &DoublePlus::valueChanged, this, &TimberGUI::updatefmdh );
+        disconnect( m_d->timber->fmk, &DoublePlus::valueChanged, this, &TimberGUI::updatefmdb );
+        disconnect( m_d->timber->ft0k, &DoublePlus::valueChanged, this, &TimberGUI::updateft0d );
+        disconnect( m_d->timber->ft90k, &DoublePlus::valueChanged, this, &TimberGUI::updateft90d );
+        disconnect( m_d->timber->fvk, &DoublePlus::valueChanged, this, &TimberGUI::updatefvd );
+        disconnect( m_d->timber->fvk, &DoublePlus::valueChanged, this, &TimberGUI::updateftorsd );
+        disconnect( m_d->timber->timberType, &TimberTypePlus::valueChanged, this, &TimberGUI::updatekhm );
+        disconnect( m_d->timber->timberType, &TimberTypePlus::valueChanged, this, &TimberGUI::updatekbm );
+        disconnect( m_d->timber->timberType, &TimberTypePlus::valueChanged, this, &TimberGUI::updatekh );
+
+        disconnect( m_d->ui->copyfkToClipBoardPButton, &QPushButton::clicked, m_d->timber, &Timber::copyfkToClipBoard );
+        disconnect( m_d->ui->copyEToClipBoardPButton, &QPushButton::clicked, m_d->timber, &Timber::copyEToClipBoard );
+
+        disconnect( m_d->lsType, &LSType::valueChanged, this, &TimberGUI::setCurrentGammaM );
+        disconnect( m_d->ldClass, &LoadDurationClass::valueChanged, this, &TimberGUI::setCurrentKmod );
+        disconnect( m_d->sClass, &ServiceClass::valueChanged, this, &TimberGUI::setCurrentKmod);
     }
 
     m_d->timber = dynamic_cast<Timber *>(timber);
 
-    if( m_d->timber != 0 ){
+    if( m_d->timber != nullptr ){
         VarPlusGUI::connectVar(m_d->timber->name, m_d->ui->nameLabel, m_d->ui->nameLEdit );
         VarPlusGUI::connectVar(m_d->timber->gammaW, m_d->ui->gammaWmLabel, m_d->ui->gammaWmLEdit, m_d->ui->gammaWmUMLabel );
         VarPlusGUI::connectVar(m_d->timber->gammaWk, m_d->ui->gammaWkLabel, m_d->ui->gammaWkLEdit, m_d->ui->gammaWkUMLabel );
@@ -346,24 +351,25 @@ void TimberGUI::setMaterial( Material * timber ){
         VarPlusGUI::connectVar(m_d->timber->E90m, m_d->ui->E90mLabel, m_d->ui->E90mLEdit, m_d->ui->E90mUMLabel );
         VarPlusGUI::connectVar(m_d->timber->Gm, m_d->ui->GmLabel, m_d->ui->GmLEdit, m_d->ui->GmUMLabel );
 
-        connect( m_d->timber->fc0k, SIGNAL(valueChanged(QString)), this, SLOT(updatefc0d()));
-        connect( m_d->timber->fc90k, SIGNAL(valueChanged(QString)), this, SLOT(updatefc90d()));
-        connect( m_d->timber->fmk, SIGNAL(valueChanged(QString)), this, SLOT(updatefmdh()));
-        connect( m_d->timber->fmk, SIGNAL(valueChanged(QString)), this, SLOT(updatefmdb()));
-        connect( m_d->timber->ft0k, SIGNAL(valueChanged(QString)), this, SLOT(updateft0d()));
-        connect( m_d->timber->ft90k, SIGNAL(valueChanged(QString)), this, SLOT(updateft90d()));
-        connect( m_d->timber->fvk, SIGNAL(valueChanged(QString)), this, SLOT(updatefvd()));
-        connect( m_d->timber->fvk, SIGNAL(valueChanged(QString)), this, SLOT(updateftorsd()));
-        connect( m_d->timber->timberType, SIGNAL(valueChanged(QString)), this, SLOT(updatekhm()));
-        connect( m_d->timber->timberType, SIGNAL(valueChanged(QString)), this, SLOT(updatekbm()));
-        connect( m_d->timber->timberType, SIGNAL(valueChanged(QString)), this, SLOT(updatekh()));
-        connect( m_d->ui->copyfkToClipBoardPButton, SIGNAL(clicked()), m_d->timber, SLOT(copyfkToClipBoard()));
-        connect( m_d->ui->copyEToClipBoardPButton, SIGNAL(clicked()), m_d->timber, SLOT(copyEToClipBoard()));
+        connect( m_d->timber->fc0k, &DoublePlus::valueChanged, this, &TimberGUI::updatefc0d );
+        connect( m_d->timber->fc90k, &DoublePlus::valueChanged, this, &TimberGUI::updatefc90d );
+        connect( m_d->timber->fmk, &DoublePlus::valueChanged, this, &TimberGUI::updatefmdh );
+        connect( m_d->timber->fmk, &DoublePlus::valueChanged, this, &TimberGUI::updatefmdb );
+        connect( m_d->timber->ft0k, &DoublePlus::valueChanged, this, &TimberGUI::updateft0d );
+        connect( m_d->timber->ft90k, &DoublePlus::valueChanged, this, &TimberGUI::updateft90d );
+        connect( m_d->timber->fvk, &DoublePlus::valueChanged, this, &TimberGUI::updatefvd );
+        connect( m_d->timber->fvk, &DoublePlus::valueChanged, this, &TimberGUI::updateftorsd );
+        connect( m_d->timber->timberType, &TimberTypePlus::valueChanged, this, &TimberGUI::updatekhm );
+        connect( m_d->timber->timberType, &TimberTypePlus::valueChanged, this, &TimberGUI::updatekbm );
+        connect( m_d->timber->timberType, &TimberTypePlus::valueChanged, this, &TimberGUI::updatekh );
 
-        connect( m_d->lsType, SIGNAL(valueChanged(QString)), this, SLOT(setCurrentGammaM()) );
+        connect( m_d->ui->copyfkToClipBoardPButton, &QPushButton::clicked, m_d->timber, &Timber::copyfkToClipBoard );
+        connect( m_d->ui->copyEToClipBoardPButton, &QPushButton::clicked, m_d->timber, &Timber::copyEToClipBoard );
+
+        connect( m_d->lsType, &LSType::valueChanged, this, &TimberGUI::setCurrentGammaM );
         setCurrentGammaM();
-        connect( m_d->ldClass, SIGNAL(valueChanged(QString)), this, SLOT(setCurrentKmod()) );
-        connect( m_d->sClass, SIGNAL(valueChanged(QString)), this, SLOT(setCurrentKmod()) );
+        connect( m_d->ldClass, &LoadDurationClass::valueChanged, this, &TimberGUI::setCurrentKmod );
+        connect( m_d->sClass, &ServiceClass::valueChanged, this, &TimberGUI::setCurrentKmod);
         setCurrentKmod();
 
         updatekhm();

@@ -1,5 +1,10 @@
+IF( BUILD_SHARED_LIBS AND WIN32 )
+  add_definitions( -DBUILD_GLVIEWER_LIB )
+ENDIF( BUILD_SHARED_LIBS AND WIN32 )
+
 # Find the required modules
-find_package(Qt5 COMPONENTS Core Gui REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui Widgets OpenGL REQUIRED)
+find_package(OpenGL REQUIRED)
 
 set( QRC
     shaders.qrc
@@ -7,6 +12,7 @@ set( QRC
 )
 
 set( SRC
+    glwidget.cpp
     glwindow.cpp
     glitem.cpp
     glgroup.cpp
@@ -17,6 +23,7 @@ set( SRC
 )
 
 set( HDR
+    glwidget.h
     glwindow.h
     glitem.h
     glgroup.h
@@ -34,6 +41,8 @@ add_library( glviewer
 # Use required modules from Qt 5
 target_link_libraries(
     glviewer
-    Qt5::Core Qt5::Gui
+    Qt5::Core
+    Qt5::Gui
+    Qt5::Widgets
 )
 

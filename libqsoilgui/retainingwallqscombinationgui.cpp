@@ -63,268 +63,268 @@ RetainingWallQSCombinationGUIPrivate::RetainingWallQSCombinationGUIPrivate( Unit
 
 void RetainingWallQSCombinationGUIPrivate::initVar(){
     QLimBPrime = new DoublePlus(0.0, "QLimBPrime", m_unitMeasure, UnitMeasure::length );
-    QLimBPrime->setRichName( QObject::trUtf8("B'"));
-    QLimBPrime->setToolTip( combinationName + " - " + QObject::trUtf8("Base equivalente della fondazione"));
+    QLimBPrime->setRichName( QObject::tr("B'"));
+    QLimBPrime->setToolTip( combinationName + " - " + QObject::tr("Base equivalente della fondazione"));
     QLimBPrime->setReadOnly( true );
     addVarToContainer( QLimBPrime );
 
     QLimLPrime = new DoublePlus(0.0, "QLimLPrime", m_unitMeasure, UnitMeasure::length );
-    QLimLPrime->setRichName( QObject::trUtf8("L'"));
-    QLimLPrime->setToolTip( combinationName + " - " + QObject::trUtf8("Lunghezza equivalente della fondazione"));
+    QLimLPrime->setRichName( QObject::tr("L'"));
+    QLimLPrime->setToolTip( combinationName + " - " + QObject::tr("Lunghezza equivalente della fondazione"));
     QLimLPrime->setReadOnly( true );
     addVarToContainer( QLimLPrime );
 
     QLimD = new DoublePlus(0.0, "QLimD", m_unitMeasure, UnitMeasure::length );
-    QLimD->setRichName( QObject::trUtf8("D"));
-    QLimD->setToolTip( combinationName + " - " + QObject::trUtf8("Approfondimento fondazione"));
+    QLimD->setRichName( QObject::tr("D"));
+    QLimD->setToolTip( combinationName + " - " + QObject::tr("Approfondimento fondazione"));
     QLimD->setReadOnly( true );
     addVarToContainer( QLimD );
 
     QLimLInfinite = new BoolPlus(true, "QLimLInfinite" );
-    QLimLInfinite->setRichName( QObject::trUtf8("Lunghezza infinita"));
-    QLimLInfinite->setToolTip( combinationName + " - " + QObject::trUtf8("Considera la fondazione di lunghezza infinita nel calcolo della formula di Brinch-Hansen"));
+    QLimLInfinite->setRichName( QObject::tr("Lunghezza infinita"));
+    QLimLInfinite->setToolTip( combinationName + " - " + QObject::tr("Considera la fondazione di lunghezza infinita nel calcolo della formula di Brinch-Hansen"));
     addVarToContainer( QLimLInfinite );
 
     SoilDownPhiPrimeD = new DoublePlus(0.0, "QSSoilDownPhiPrimeD", m_unitMeasure, UnitMeasure::angle );
-    SoilDownPhiPrimeD->setRichName( QObject::trUtf8("φ'<span style=\" vertical-align:sub;\">monte,d</span>"));
-    SoilDownPhiPrimeD->setToolTip( combinationName + " - " + QObject::trUtf8("Angolo di attrito interno di calcolo del terreno a valle"));
+    SoilDownPhiPrimeD->setRichName( QObject::tr("φ'<span style=\" vertical-align:sub;\">monte,d</span>"));
+    SoilDownPhiPrimeD->setToolTip( combinationName + " - " + QObject::tr("Angolo di attrito interno di calcolo del terreno a valle"));
     SoilDownPhiPrimeD->setReadOnly( true );
     addVarToContainer( SoilDownPhiPrimeD );
 
     SoilDownCPrimeD = new DoublePlus(0.0, "QSSoilDownCPrimeD", m_unitMeasure, UnitMeasure::tension );
-    SoilDownCPrimeD->setRichName( QObject::trUtf8("c'<span style=\" vertical-align:sub;\">valle,d</span>"));
-    SoilDownCPrimeD->setToolTip( combinationName + QObject::trUtf8(" - Coesione di calcolo del terreno a valle"));
+    SoilDownCPrimeD->setRichName( QObject::tr("c'<span style=\" vertical-align:sub;\">valle,d</span>"));
+    SoilDownCPrimeD->setToolTip( combinationName + QObject::tr(" - Coesione di calcolo del terreno a valle"));
     SoilDownCPrimeD->setReadOnly( true );
     addVarToContainer( SoilDownCPrimeD );
 
     SoilDownDeltaD = new DoublePlus(0.0, "QSSoilDownDeltaD", m_unitMeasure, UnitMeasure::angle );
-    SoilDownDeltaD->setRichName( QObject::trUtf8("δ<span style=\" vertical-align:sub;\">valle,d</span>"));
-    SoilDownDeltaD->setToolTip( combinationName + " - " + QObject::trUtf8("Angolo di attrito fondazione muro-terreno "));
+    SoilDownDeltaD->setRichName( QObject::tr("δ<span style=\" vertical-align:sub;\">valle,d</span>"));
+    SoilDownDeltaD->setToolTip( combinationName + " - " + QObject::tr("Angolo di attrito fondazione muro-terreno "));
     SoilDownDeltaD->setReadOnly( true );
     addVarToContainer( SoilDownDeltaD );
 
     SoilUpPhiPrimeD = new DoublePlus(0.0, "QSSoilUpPhiPrimeD", m_unitMeasure, UnitMeasure::angle );
-    SoilUpPhiPrimeD->setRichName( QObject::trUtf8("φ'<span style=\" vertical-align:sub;\">monte,d</span>"));
-    SoilUpPhiPrimeD->setToolTip( combinationName + " - " + QObject::trUtf8("Angolo di attrito interno di calcolo del terreno a monte"));
+    SoilUpPhiPrimeD->setRichName( QObject::tr("φ'<span style=\" vertical-align:sub;\">monte,d</span>"));
+    SoilUpPhiPrimeD->setToolTip( combinationName + " - " + QObject::tr("Angolo di attrito interno di calcolo del terreno a monte"));
     SoilUpPhiPrimeD->setReadOnly( true );
     addVarToContainer( SoilUpPhiPrimeD );
 
     SoilUpCPrimeD = new DoublePlus(0.0, "QSSoilUpCPrimeD", m_unitMeasure, UnitMeasure::tension );
-    SoilUpCPrimeD->setRichName( QObject::trUtf8("c'<span style=\" vertical-align:sub;\">monte,d</span>"));
-    SoilUpCPrimeD->setToolTip( combinationName + " - " + QObject::trUtf8("Coesione di calcolo del terreno a monte"));
+    SoilUpCPrimeD->setRichName( QObject::tr("c'<span style=\" vertical-align:sub;\">monte,d</span>"));
+    SoilUpCPrimeD->setToolTip( combinationName + " - " + QObject::tr("Coesione di calcolo del terreno a monte"));
     SoilUpCPrimeD->setReadOnly( true );
     addVarToContainer( SoilUpCPrimeD );
 
     SoilUpDeltaD = new DoublePlus(0.0, "QSSoilUpDeltaD", m_unitMeasure, UnitMeasure::angle );
-    SoilUpDeltaD->setRichName( QObject::trUtf8("δ<span style=\" vertical-align:sub;\">monte,d</span>"));
-    SoilUpDeltaD->setToolTip( combinationName + " - " + QObject::trUtf8("Angolo di attrito muro-terreno "));
+    SoilUpDeltaD->setRichName( QObject::tr("δ<span style=\" vertical-align:sub;\">monte,d</span>"));
+    SoilUpDeltaD->setToolTip( combinationName + " - " + QObject::tr("Angolo di attrito muro-terreno "));
     SoilUpDeltaD->setReadOnly( false );
     addVarToContainer( SoilUpDeltaD );
 
     Ka = new DoublePlus(0.0, "QSKa", m_unitMeasure, UnitMeasure::noDimension );
-    Ka->setRichName( QObject::trUtf8("K<span style=\" vertical-align:sub;\">a</span>"));
-    Ka->setToolTip( combinationName + " - " + QObject::trUtf8("Coefficiente spinta attiva"));
+    Ka->setRichName( QObject::tr("K<span style=\" vertical-align:sub;\">a</span>"));
+    Ka->setToolTip( combinationName + " - " + QObject::tr("Coefficiente spinta attiva"));
     Ka->setReadOnly( true );
     addVarToContainer( Ka );
 
     Kp = new DoublePlus(0.0, "QSKp", m_unitMeasure, UnitMeasure::noDimension );
-    Kp->setRichName( QObject::trUtf8("K<span style=\" vertical-align:sub;\">p</span>"));
-    Kp->setToolTip( combinationName + " - " + QObject::trUtf8("Coefficiente spinta passiva"));
+    Kp->setRichName( QObject::tr("K<span style=\" vertical-align:sub;\">p</span>"));
+    Kp->setToolTip( combinationName + " - " + QObject::tr("Coefficiente spinta passiva"));
     Kp->setReadOnly( true );
     addVarToContainer( Kp );
 
     ChiKp = new DoublePlus(0.5, "QSChiKp", m_unitMeasure, UnitMeasure::noDimension );
-    ChiKp->setRichName( QObject::trUtf8("χ<span style=\" vertical-align:sub;\">kp</span>"));
-    ChiKp->setToolTip( combinationName + " - " + QObject::trUtf8("Fattore riduttivo coefficiente spinta passiva"));
+    ChiKp->setRichName( QObject::tr("χ<span style=\" vertical-align:sub;\">kp</span>"));
+    ChiKp->setToolTip( combinationName + " - " + QObject::tr("Fattore riduttivo coefficiente spinta passiva"));
     ChiKp->setReadOnly( false );
     addVarToContainer( ChiKp );
 
     KpRed = new DoublePlus(0.0, "QSKpD", m_unitMeasure, UnitMeasure::noDimension );
-    KpRed->setRichName( QObject::trUtf8("K<span style=\" vertical-align:sub;\">p,d</span>"));
-    KpRed->setToolTip( combinationName + " - " + QObject::trUtf8("Coefficiente spinta passiva in condizioni di progetto"));
+    KpRed->setRichName( QObject::tr("K<span style=\" vertical-align:sub;\">p,d</span>"));
+    KpRed->setToolTip( combinationName + " - " + QObject::tr("Coefficiente spinta passiva in condizioni di progetto"));
     KpRed->setReadOnly( true );
     addVarToContainer( KpRed );
 
     SlidingVEd = new DoublePlus(0.0, "SlidingVEd", m_unitMeasure, UnitMeasure::loadF );
-    SlidingVEd->setRichName( QObject::trUtf8("V<span style=\" vertical-align:sub;\">Ed</span>"));
-    SlidingVEd->setToolTip( combinationName + " - " + QObject::trUtf8("Forza verticale agente"));
+    SlidingVEd->setRichName( QObject::tr("V<span style=\" vertical-align:sub;\">Ed</span>"));
+    SlidingVEd->setToolTip( combinationName + " - " + QObject::tr("Forza verticale agente"));
     SlidingVEd->setReadOnly( true );
     addVarToContainer( SlidingVEd );
 
     SlidingHEd = new DoublePlus(0.0, "SlidingHEd", m_unitMeasure, UnitMeasure::loadF );
-    SlidingHEd->setRichName( QObject::trUtf8("H<span style=\" vertical-align:sub;\">Ed</span>"));
-    SlidingHEd->setToolTip( combinationName + " - " + QObject::trUtf8("Forza orizzontale agente dovuta alla spinta attiva"));
+    SlidingHEd->setRichName( QObject::tr("H<span style=\" vertical-align:sub;\">Ed</span>"));
+    SlidingHEd->setToolTip( combinationName + " - " + QObject::tr("Forza orizzontale agente dovuta alla spinta attiva"));
     SlidingHEd->setReadOnly( true );
     addVarToContainer( SlidingHEd );
 
     SlidingHRdP = new DoublePlus(0.0, "SlidingHRdP", m_unitMeasure, UnitMeasure::loadF );
-    SlidingHRdP->setRichName( QObject::trUtf8("H<span style=\" vertical-align:sub;\">Rd,P</span>"));
-    SlidingHRdP->setToolTip( combinationName + " - " + QObject::trUtf8("Forza orizzontale resistente dovuta alla spinta passiva"));
+    SlidingHRdP->setRichName( QObject::tr("H<span style=\" vertical-align:sub;\">Rd,P</span>"));
+    SlidingHRdP->setToolTip( combinationName + " - " + QObject::tr("Forza orizzontale resistente dovuta alla spinta passiva"));
     SlidingHRdP->setReadOnly( true );
     addVarToContainer( SlidingHRdP );
 
     SlidingApplyKp = new BoolPlus( false, "SlidingApplyKp" );
-    SlidingApplyKp->setRichName( QObject::trUtf8("Resistenza passiva contro fondazione"));
-    SlidingApplyKp->setToolTip( combinationName + " - " + QObject::trUtf8("Se si tiene conto o meno del contributo della resistenza passiva nella verifica a scorrimento"));
+    SlidingApplyKp->setRichName( QObject::tr("Resistenza passiva contro fondazione"));
+    SlidingApplyKp->setToolTip( combinationName + " - " + QObject::tr("Se si tiene conto o meno del contributo della resistenza passiva nella verifica a scorrimento"));
     SlidingApplyKp->setReadOnly( false );
     addVarToContainer( SlidingApplyKp );
 
     SlidingHRd = new DoublePlus(0.0, "QSSlidingHRd", m_unitMeasure, UnitMeasure::loadF, true );
-    SlidingHRd->setRichName( QObject::trUtf8("H<span style=\" vertical-align:sub;\">Rd</span>"));
-    SlidingHRd->setToolTip( combinationName + " - " + QObject::trUtf8("Verifica a scorrimento - Forza orizzontale resistente"));
+    SlidingHRd->setRichName( QObject::tr("H<span style=\" vertical-align:sub;\">Rd</span>"));
+    SlidingHRd->setToolTip( combinationName + " - " + QObject::tr("Verifica a scorrimento - Forza orizzontale resistente"));
     addVarToContainer( SlidingHRd );
 
     QLimVEd = new DoublePlus(0.0, "QLimVEd", m_unitMeasure, UnitMeasure::loadF );
-    QLimVEd->setRichName( QObject::trUtf8("V<span style=\" vertical-align:sub;\">Ed</span>"));
-    QLimVEd->setToolTip( combinationName + " - " + QObject::trUtf8("Forza verticale agente"));
+    QLimVEd->setRichName( QObject::tr("V<span style=\" vertical-align:sub;\">Ed</span>"));
+    QLimVEd->setToolTip( combinationName + " - " + QObject::tr("Forza verticale agente"));
     QLimVEd->setReadOnly( true );
     addVarToContainer( QLimVEd );
 
     QLimApplyKp = new BoolPlus( false, "QLimApplyKp" );
-    QLimApplyKp->setRichName( QObject::trUtf8("Resistenza passiva contro fondazione"));
-    QLimApplyKp->setToolTip( combinationName + " - " + QObject::trUtf8("Se si tiene conto o meno del contributo della resistenza passiva nella verifica della capacitÃ  portante"));
+    QLimApplyKp->setRichName( QObject::tr("Resistenza passiva contro fondazione"));
+    QLimApplyKp->setToolTip( combinationName + " - " + QObject::tr("Se si tiene conto o meno del contributo della resistenza passiva nella verifica della capacitÃ  portante"));
     QLimApplyKp->setReadOnly( false );
     addVarToContainer( QLimApplyKp );
 
     QLimHEd = new DoublePlus(0.0, "QLimHEd", m_unitMeasure, UnitMeasure::loadF );
-    QLimHEd->setRichName( QObject::trUtf8("H<span style=\" vertical-align:sub;\">Ed</span>"));
-    QLimHEd->setToolTip( combinationName + " - " + QObject::trUtf8("Forza orizzontale agente nella verifica della capacitÃ  portante"));
+    QLimHEd->setRichName( QObject::tr("H<span style=\" vertical-align:sub;\">Ed</span>"));
+    QLimHEd->setToolTip( combinationName + " - " + QObject::tr("Forza orizzontale agente nella verifica della capacitÃ  portante"));
     QLimHEd->setReadOnly( true );
     addVarToContainer( QLimHEd );
 
     QLimHRdPMax = new DoublePlus(0.0, "QLimHRdPMax", m_unitMeasure, UnitMeasure::loadF );
-    QLimHRdPMax->setRichName( QObject::trUtf8("H<span style=\" vertical-align:sub;\">Rd,P,max</span>"));
-    QLimHRdPMax->setToolTip( combinationName + " - " + QObject::trUtf8("Spinta passiva massima disponibile nella verifica della capacitÃ  portante"));
+    QLimHRdPMax->setRichName( QObject::tr("H<span style=\" vertical-align:sub;\">Rd,P,max</span>"));
+    QLimHRdPMax->setToolTip( combinationName + " - " + QObject::tr("Spinta passiva massima disponibile nella verifica della capacitÃ  portante"));
     QLimHRdPMax->setReadOnly( true );
     addVarToContainer( QLimHRdPMax );
 
     QLimHRdP = new DoublePlus(0.0, "QLimHRdP", m_unitMeasure, UnitMeasure::loadF );
-    QLimHRdP->setRichName( QObject::trUtf8("H<span style=\" vertical-align:sub;\">Rd,P,eff</span>"));
-    QLimHRdP->setToolTip( combinationName + " - " + QObject::trUtf8("Spinta passiva mobilitata nella verifica della capacitÃ  portante"));
+    QLimHRdP->setRichName( QObject::tr("H<span style=\" vertical-align:sub;\">Rd,P,eff</span>"));
+    QLimHRdP->setToolTip( combinationName + " - " + QObject::tr("Spinta passiva mobilitata nella verifica della capacitÃ  portante"));
     QLimHRdP->setReadOnly( true );
     addVarToContainer( QLimHRdP );
 
     QLimMEdC = new Point2DPlus("QLimMEdC", "y", 0.0, "z", 0.0, m_unitMeasure, UnitMeasure::length );
-    QLimMEdC->y->setRichName( QObject::trUtf8("y<span style=\" vertical-align:sub;\">C</span>"));
-    QLimMEdC->y->setToolTip( combinationName + " - " + QObject::trUtf8("Ascissa polo per calcolo del momento nella verifica della capacitÃ  portante"));
+    QLimMEdC->y->setRichName( QObject::tr("y<span style=\" vertical-align:sub;\">C</span>"));
+    QLimMEdC->y->setToolTip( combinationName + " - " + QObject::tr("Ascissa polo per calcolo del momento nella verifica della capacitÃ  portante"));
     QLimMEdC->y->setReadOnly( true );
-    QLimMEdC->z->setRichName( QObject::trUtf8("z<span style=\" vertical-align:sub;\">C</span>"));
-    QLimMEdC->z->setToolTip( combinationName + " - " + QObject::trUtf8("Ordinata polo per calcolo del momento nella verifica della capacitÃ  portante"));
+    QLimMEdC->z->setRichName( QObject::tr("z<span style=\" vertical-align:sub;\">C</span>"));
+    QLimMEdC->z->setToolTip( combinationName + " - " + QObject::tr("Ordinata polo per calcolo del momento nella verifica della capacitÃ  portante"));
     QLimMEdC->z->setReadOnly( true );
     addVarToContainer( QLimMEdC );
 
     QLimMEd = new DoublePlus(0.0, "QLimMEd", m_unitMeasure, UnitMeasure::loadM );
-    QLimMEd->setRichName( QObject::trUtf8("M<span style=\" vertical-align:sub;\">Ed</span>"));
-    QLimMEd->setToolTip( combinationName + " - " + QObject::trUtf8("Momento agente nella verifica della capacitÃ  portante"));
+    QLimMEd->setRichName( QObject::tr("M<span style=\" vertical-align:sub;\">Ed</span>"));
+    QLimMEd->setToolTip( combinationName + " - " + QObject::tr("Momento agente nella verifica della capacitÃ  portante"));
     QLimMEd->setReadOnly( true );
     addVarToContainer( QLimMEd );
 
     QLimSoilDownGammaWPrimeD = new DoublePlus(0.0, "QLimSoilDownGammaWPrimeD", m_unitMeasure, UnitMeasure::loadFVolume );
-    QLimSoilDownGammaWPrimeD->setRichName( QObject::trUtf8("γ'<span style=\" vertical-align:sub;\">d</span>"));
-    QLimSoilDownGammaWPrimeD->setToolTip( combinationName + " - " + QObject::trUtf8("Peso specifico di calcolo del terreno a valle nella verifica della capacitÃ  portante"));
+    QLimSoilDownGammaWPrimeD->setRichName( QObject::tr("γ'<span style=\" vertical-align:sub;\">d</span>"));
+    QLimSoilDownGammaWPrimeD->setToolTip( combinationName + " - " + QObject::tr("Peso specifico di calcolo del terreno a valle nella verifica della capacitÃ  portante"));
     QLimSoilDownGammaWPrimeD->setReadOnly( true );
     addVarToContainer( QLimSoilDownGammaWPrimeD );
 
     QLimQEd = new DoublePlus(0.0, "QLimQEd", m_unitMeasure, UnitMeasure::loadFArea );
-    QLimQEd->setRichName( QObject::trUtf8("q<span style=\" vertical-align:sub;\">Ed</span>"));
-    QLimQEd->setToolTip( combinationName + " - " + QObject::trUtf8("Carico distribuito nella verifica della capacitÃ  portante"));
+    QLimQEd->setRichName( QObject::tr("q<span style=\" vertical-align:sub;\">Ed</span>"));
+    QLimQEd->setToolTip( combinationName + " - " + QObject::tr("Carico distribuito nella verifica della capacitÃ  portante"));
     QLimQEd->setReadOnly( true );
     addVarToContainer( QLimQEd );
 
     QLimNGammaW = new DoublePlus(0.0, "QLimNGammaW", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimNGammaW->setRichName( QObject::trUtf8("N<span style=\" vertical-align:sub;\">γ</span>"));
+    QLimNGammaW->setRichName( QObject::tr("N<span style=\" vertical-align:sub;\">γ</span>"));
     QLimNGammaW->setReadOnly( true );
     addVarToContainer( QLimNGammaW );
 
     QLimSGammaW = new DoublePlus(1.0, "QLimSGammaW", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimSGammaW->setRichName( QObject::trUtf8("s<span style=\" vertical-align:sub;\">γ</span>"));
+    QLimSGammaW->setRichName( QObject::tr("s<span style=\" vertical-align:sub;\">γ</span>"));
     QLimSGammaW->setReadOnly( true );
     addVarToContainer( QLimSGammaW );
 
     QLimIGammaW = new DoublePlus(1.0, "QLimIGammaW", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimIGammaW->setRichName( QObject::trUtf8("i<span style=\" vertical-align:sub;\">γ</span>"));
+    QLimIGammaW->setRichName( QObject::tr("i<span style=\" vertical-align:sub;\">γ</span>"));
     QLimIGammaW->setReadOnly( true );
     addVarToContainer( QLimIGammaW );
 
     QLimBGammaW = new DoublePlus(1.0, "QLimBGammaW", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimBGammaW->setRichName( QObject::trUtf8("b<span style=\" vertical-align:sub;\">γ</span>"));
+    QLimBGammaW->setRichName( QObject::tr("b<span style=\" vertical-align:sub;\">γ</span>"));
     QLimBGammaW->setReadOnly( true );
     addVarToContainer( QLimBGammaW );
 
     QLimGGammaW = new DoublePlus(1.0, "QLimGGammaW", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimGGammaW->setRichName( QObject::trUtf8("g<span style=\" vertical-align:sub;\">γ</span>"));
+    QLimGGammaW->setRichName( QObject::tr("g<span style=\" vertical-align:sub;\">γ</span>"));
     QLimGGammaW->setReadOnly( true );
     addVarToContainer( QLimGGammaW );
 
     QLimNC = new DoublePlus(0.0, "QLimNC", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimNC->setRichName( QObject::trUtf8("N<span style=\" vertical-align:sub;\">c</span>"));
+    QLimNC->setRichName( QObject::tr("N<span style=\" vertical-align:sub;\">c</span>"));
     QLimNC->setReadOnly( true );
     addVarToContainer( QLimNC );
 
     QLimSC = new DoublePlus(1.0, "QLimSC", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimSC->setRichName( QObject::trUtf8("s<span style=\" vertical-align:sub;\">c</span>"));
+    QLimSC->setRichName( QObject::tr("s<span style=\" vertical-align:sub;\">c</span>"));
     QLimSC->setReadOnly( true );
     addVarToContainer( QLimSC );
 
     QLimIC = new DoublePlus(1.0, "QLimIC", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimIC->setRichName( QObject::trUtf8("i<span style=\" vertical-align:sub;\">c</span>"));
+    QLimIC->setRichName( QObject::tr("i<span style=\" vertical-align:sub;\">c</span>"));
     QLimIC->setReadOnly( true );
     addVarToContainer( QLimIC );
 
     QLimBC = new DoublePlus(1.0, "QLimBC", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimBC->setRichName( QObject::trUtf8("b<span style=\" vertical-align:sub;\">c</span>"));
+    QLimBC->setRichName( QObject::tr("b<span style=\" vertical-align:sub;\">c</span>"));
     QLimBC->setReadOnly( true );
     addVarToContainer( QLimBC );
 
     QLimGC = new DoublePlus(1.0, "QLimGC", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimGC->setRichName( QObject::trUtf8("g<span style=\" vertical-align:sub;\">c</span>"));
+    QLimGC->setRichName( QObject::tr("g<span style=\" vertical-align:sub;\">c</span>"));
     QLimGC->setReadOnly( true );
     addVarToContainer( QLimGC );
 
     QLimDC = new DoublePlus(1.0, "QLimDC", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimDC->setRichName( QObject::trUtf8("d<span style=\" vertical-align:sub;\">c</span>"));
+    QLimDC->setRichName( QObject::tr("d<span style=\" vertical-align:sub;\">c</span>"));
     QLimDC->setReadOnly( true );
     addVarToContainer( QLimDC );
 
     QLimNQ = new DoublePlus(0.0, "QLimNQ", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimNQ->setRichName( QObject::trUtf8("N<span style=\" vertical-align:sub;\">q</span>"));
+    QLimNQ->setRichName( QObject::tr("N<span style=\" vertical-align:sub;\">q</span>"));
     QLimNQ->setReadOnly( true );
     addVarToContainer( QLimNQ );
 
     QLimSQ = new DoublePlus(1.0, "QLimSQ", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimSQ->setRichName( QObject::trUtf8("s<span style=\" vertical-align:sub;\">q</span>"));
+    QLimSQ->setRichName( QObject::tr("s<span style=\" vertical-align:sub;\">q</span>"));
     QLimSQ->setReadOnly( true );
     addVarToContainer( QLimSQ );
 
     QLimIQ = new DoublePlus(1.0, "QLimIQ", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimIQ->setRichName( QObject::trUtf8("i<span style=\" vertical-align:sub;\">q</span>"));
+    QLimIQ->setRichName( QObject::tr("i<span style=\" vertical-align:sub;\">q</span>"));
     QLimIQ->setReadOnly( true );
     addVarToContainer( QLimIQ );
 
     QLimBQ = new DoublePlus(1.0, "QLimBQ", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimBQ->setRichName( QObject::trUtf8("b<span style=\" vertical-align:sub;\">q</span>"));
+    QLimBQ->setRichName( QObject::tr("b<span style=\" vertical-align:sub;\">q</span>"));
     QLimBQ->setReadOnly( true );
     addVarToContainer( QLimBQ );
 
     QLimGQ = new DoublePlus(1.0, "QLimGQ", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimGQ->setRichName( QObject::trUtf8("g<span style=\" vertical-align:sub;\">q</span>"));
+    QLimGQ->setRichName( QObject::tr("g<span style=\" vertical-align:sub;\">q</span>"));
     QLimGQ->setReadOnly( true );
     addVarToContainer( QLimGQ );
 
     QLimDQ = new DoublePlus(1.0, "QLimDQ", m_unitMeasure, UnitMeasure::noDimension, true );
-    QLimDQ->setRichName( QObject::trUtf8("d<span style=\" vertical-align:sub;\">q</span>"));
+    QLimDQ->setRichName( QObject::tr("d<span style=\" vertical-align:sub;\">q</span>"));
     QLimDQ->setReadOnly( true );
     addVarToContainer( QLimDQ );
 
     qLimD = new DoublePlus(0.0, "qLimD", m_unitMeasure, UnitMeasure::loadFArea, true );
-    qLimD->setRichName( QObject::trUtf8("q<span style=\" vertical-align:sub;\">lim,d</span>"));
-    qLimD->setToolTip( QObject::trUtf8("Pressione limite al contatto tra fondazione e terreno (formula di Brinch-Hansen)"));
+    qLimD->setRichName( QObject::tr("q<span style=\" vertical-align:sub;\">lim,d</span>"));
+    qLimD->setToolTip( QObject::tr("Pressione limite al contatto tra fondazione e terreno (formula di Brinch-Hansen)"));
     qLimD->setReadOnly( true );
     addVarToContainer( qLimD );
 
     QLimVRd = new DoublePlus(0.0, "QLimVRd", m_unitMeasure, UnitMeasure::loadF, true );
-    QLimVRd->setRichName( QObject::trUtf8("V<span style=\" vertical-align:sub;\">Rd</span>"));
-    QLimVRd->setToolTip( QObject::trUtf8("Carico massimo che può essere trasmesso dalla fondazione al terreno"));
+    QLimVRd->setRichName( QObject::tr("V<span style=\" vertical-align:sub;\">Rd</span>"));
+    QLimVRd->setToolTip( QObject::tr("Carico massimo che può essere trasmesso dalla fondazione al terreno"));
     QLimVRd->setReadOnly( true );
     addVarToContainer( QLimVRd );
 }
@@ -351,9 +351,9 @@ RetainingWallQSCombinationGUI::RetainingWallQSCombinationGUI( UnitMeasure * ump,
 
     setVar();
 
-    connect( m_ui->pushButton, SIGNAL(clicked()), this, SLOT(calculateQSCombination()));
+    connect( m_ui->pushButton, &QPushButton::clicked, this, &RetainingWallQSCombinationGUI::calculateQSCombination );
 
-    connect( m_ui->copyClipPButton, SIGNAL(clicked()), this, SLOT(copyClip()) );
+    connect( m_ui->copyClipPButton, &QPushButton::clicked, this, &RetainingWallQSCombinationGUI::copyClip );
 }
 
 RetainingWallQSCombinationGUI::~RetainingWallQSCombinationGUI() {
@@ -446,19 +446,19 @@ void RetainingWallQSCombinationGUI::calculateQSCombination() {
 void RetainingWallQSCombinationGUI::copyClip(){
     QList<VarPlus *> v;
 
-    // v << trUtf8("Verifica scorrimento e capacitÃ  portante");
+    // v << tr("Verifica scorrimento e capacitÃ  portante");
 
-    // v << trUtf8("Parametri geotecnici");
+    // v << tr("Parametri geotecnici");
     v << m_d->gammaTanPhiPrime << m_d->SoilDownPhiPrimeD << m_d->SoilUpPhiPrimeD;
     v << m_d->QLimSoilDownGammaWPrimeD;
     v << m_d->gammaCPrime << m_d->SoilDownCPrimeD << m_d->SoilUpCPrimeD;
     v << m_d->gammaTanPhiPrime << m_d->SoilDownDeltaD << m_d->SoilUpDeltaD;
     v << m_d->Ka << m_d->Kp << m_d->ChiKp << m_d->KpRed;
 
-    // v << trUtf8("Verifica scorrimento");
+    // v << tr("Verifica scorrimento");
     v << m_d->SlidingHEd << m_d->SlidingVEd << m_d->SlidingHRdP << m_d->SlidingHRd;
 
-    // v << trUtf8("Verifica capacitÃ  portante");
+    // v << tr("Verifica capacitÃ  portante");
     v << m_d->QLimSoilDownGammaWPrimeD << m_d->QLimQEd;
     v << m_d->QLimHEd << m_d->QLimVEd << m_d->QLimMEdC->y << m_d->QLimMEdC->z << m_d->QLimMEd;
     v << m_d->QLimBPrime << m_d->QLimLPrime << m_d->QLimD;

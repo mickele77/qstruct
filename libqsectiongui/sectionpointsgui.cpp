@@ -75,8 +75,8 @@ SectionPointsGUI::SectionPointsGUI(UnitMeasure* ump, MaterialModel * matModel, Q
 
     m_d->setupUI( m_unitMeasure );
 
-    connect( m_d->ui->addPointPButton, SIGNAL(clicked()), this, SLOT(insertPoint()));
-    connect( m_d->ui->removePointPButton, SIGNAL(clicked()), this, SLOT(removePoint()));
+    connect( m_d->ui->addPointPButton, &QPushButton::clicked, this, &SectionPointsGUI::insertPoint );
+    connect( m_d->ui->removePointPButton, &QPushButton::clicked, this, &SectionPointsGUI::removePoint );
 
     m_materialComboBox = m_d->ui->materialComboBox;
     connect( m_materialComboBox, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionGUI::setMaterialFromComboBox );

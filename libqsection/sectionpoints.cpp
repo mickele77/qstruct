@@ -146,7 +146,7 @@ void SectionPoints::rotateNormal( double rot, bool suspSignals ){
 
 void SectionPoints::initVar(){
     *m_typeNameInternal = "SectionPoints";
-    typeName->setValue( trUtf8("Punti"));
+    typeName->setValue( tr("Punti"));
 
     m_pointsModel = new Point2DPlusModel(m_unitMeasure, UnitMeasure::sectL, QString("y"), QString("z"), this);
 

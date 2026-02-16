@@ -97,11 +97,11 @@ QVariant BeamQModel::headerData(int section, Qt::Orientation orientation,
         if( orientation == Qt::Horizontal){
             switch( section ){
             case 0:{
-                return trUtf8("Nome"); }
+                return tr("Nome"); }
             case 1:{
-                return QVariant( trUtf8("Rif-1") );}
+                return QVariant( tr("Rif-1") );}
             case 2:{
-                return QVariant( trUtf8("Rif-2") );}
+                return QVariant( tr("Rif-2") );}
             default:{
                 if( (section - 3) < (BeamQ::nVert() * m_d->hypothesis->nDOFVert()) ){
                     QString tit = "q" + QString::number( section - 2 );

@@ -1,13 +1,14 @@
 #ifndef SOILGUI_H
 #define SOILGUI_H
 
+#include "soilgui_export.h"
 #include <QWidget>
 
 class SoilGUIPrivate;
 class Soil;
 class UnitMeasure;
 
-class SoilGUI : public QWidget {
+class EXPORT_SOILGUI_LIB_OPT SoilGUI : public QWidget {
     Q_OBJECT
     
 public:

@@ -76,7 +76,7 @@ TimberConnectionModel::TimberConnectionModel(UnitMeasure * ump, MaterialModel * 
     TableModelPlus( "TimberConnectionModel", ump, parent ),
     m_dd( new TimberConnectionModelPrivate( matModel ) ){
     QList<QString> headers;
-    headers <<  trUtf8("Id") << trUtf8("Nome");
+    headers <<  tr("Id") << tr("Nome");
     setHeaders( headers );
 }
 
@@ -118,7 +118,7 @@ void TimberConnectionModel::insertRows( int position, int count ){
     Timber * timb = dynamic_cast<Timber *>(m_dd->materialModel->firstMaterial(MaterialModel::TimberMaterial ));
     if( timb ) {
         for( int i=0; i < count; ++i){
-            TimberConnection * connection = new TimberConnection( m_d->unitMeasure, trUtf8("Connessione"), timb );
+            TimberConnection * connection = new TimberConnection( m_d->unitMeasure, tr("Connessione"), timb );
             insertConnection( connection, position );
         }
     }

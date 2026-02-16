@@ -41,8 +41,8 @@ VertexModelGUI::VertexModelGUI( FEMStructure * str, QWidget *parent) :
     m_ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     // Buttons' connections
-    connect( m_ui->newPButton, SIGNAL(clicked()), this, SLOT( insert()) );
-    connect( m_ui->delPButton, SIGNAL(clicked()), this, SLOT( remove()) );
+    connect( m_ui->newPButton, &QPushButton::clicked, this, &VertexModelGUI::insert );
+    connect( m_ui->delPButton, &QPushButton::clicked, this, &VertexModelGUI::remove );
 }
 
 VertexModelGUI::~VertexModelGUI(){
@@ -68,8 +68,8 @@ void VertexModelGUI::remove(){
             int row = listRows.at(i).row();
             if( row >= 0 && row < m_structure->vertexModel()->vertexCount() ) {
                 if( m_structure->isVertexUsed( m_structure->vertexModel()->vertex( row ) ) ){
-                    QString title = trUtf8("Vertice già in uso");
-                    QString message = trUtf8("Non è possibile rimuoverlo");
+                    QString title = tr("Vertice già in uso");
+                    QString message = tr("Non è possibile rimuoverlo");
                     QMessageBox::critical(0, title, message, QMessageBox::Ok);
                 } else {
                     m_structure->vertexModel()->removeRows( row );

@@ -39,32 +39,32 @@ public:
         np = 5;
 
         h = p[0];
-        h->setToolTip( QObject::trUtf8("Altezza del profilo"));
-        h->setRichName( QObject::trUtf8("h"));
+        h->setToolTip( QObject::tr("Altezza del profilo"));
+        h->setRichName( QObject::tr("h"));
         h->setUnitMeasure( UnitMeasure::sectL );
         h->setEnabled( true );
 
         b = p[1];
-        b->setToolTip( QObject::trUtf8("Larghezza del profilo"));
-        b->setRichName( QObject::trUtf8("b"));
+        b->setToolTip( QObject::tr("Larghezza del profilo"));
+        b->setRichName( QObject::tr("b"));
         b->setUnitMeasure( UnitMeasure::sectL );
         b->setEnabled( true );
 
         t = p[2];
-        t->setToolTip( QObject::trUtf8("Spessore dei due lati"));
-        t->setRichName( QObject::trUtf8("t"));
+        t->setToolTip( QObject::tr("Spessore dei due lati"));
+        t->setRichName( QObject::tr("t"));
         t->setUnitMeasure( UnitMeasure::sectL );
         t->setEnabled( true );
 
         r1 = p[3];
-        r1->setToolTip( QObject::trUtf8("Raggio di raccordo tra i due lati"));
-        r1->setRichName( QObject::trUtf8("r<span style=\" vertical-align:sub;\">1</span>"));
+        r1->setToolTip( QObject::tr("Raggio di raccordo tra i due lati"));
+        r1->setRichName( QObject::tr("r<span style=\" vertical-align:sub;\">1</span>"));
         r1->setUnitMeasure( UnitMeasure::sectL );
         r1->setEnabled( true );
 
         r2 = p[4];
-        r2->setToolTip( QObject::trUtf8("Smusso dei bordi"));
-        r2->setRichName( QObject::trUtf8("r<span style=\" vertical-align:sub;\">2</span>"));
+        r2->setToolTip( QObject::tr("Smusso dei bordi"));
+        r2->setRichName( QObject::tr("r<span style=\" vertical-align:sub;\">2</span>"));
         r2->setUnitMeasure( UnitMeasure::sectL );
         r2->setEnabled( true );
 

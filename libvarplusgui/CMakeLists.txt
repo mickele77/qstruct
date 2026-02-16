@@ -1,6 +1,10 @@
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+IF( BUILD_SHARED_LIBS AND WIN32 )
+  add_definitions( -DBUILD_VARPLUSGUI_LIB )
+ENDIF( BUILD_SHARED_LIBS AND WIN32 )
+
 # Find the required modules
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
@@ -18,6 +22,7 @@ set( SRC
 )
 
 set( HDR
+    varplusgui_export.h
     qwidgetplus.h
     qlabelunitmeasure.h
     qlabelrichname.h
@@ -33,6 +38,7 @@ set( HDR
 # Tell CMake to create the library
 add_library( varplusgui
     ${SRC} ${HDR} ${FRM}
+    varplusgui_export.h
 )
 
 if ( BUILD_SHARED_LIBS )

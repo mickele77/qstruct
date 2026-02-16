@@ -76,45 +76,45 @@ void Material::initVar(){
 
     m_sectionUsingContainer = new QList<Section *>;
 
-    typeName = new QStringPlus( trUtf8("Generico"), "typeName", true );
-    typeName->setRichName( trUtf8("Tipo") );
+    typeName = new QStringPlus( tr("Generico"), "typeName", true );
+    typeName->setRichName( tr("Tipo") );
 
     E = new DoublePlus( 0.0, "E", m_unitMeasure, UnitMeasure::tension, false );
-    E->setToolTip( trUtf8("Modulo di elasticità  normale per il calcolo elastico"));
-    E->setRichName( trUtf8("E"));
+    E->setToolTip( tr("Modulo di elasticità  normale per il calcolo elastico"));
+    E->setRichName( tr("E"));
     addVarToContainer( E );
 
     nu = new DoublePlus( 0.0, "nu", m_unitMeasure, UnitMeasure::noDimension );
     nu->setReadOnly( false );
-    nu->setToolTip( trUtf8("Modulo di Poisson per il calcolo elastico"));
-    nu->setRichName( trUtf8("ν"));
+    nu->setToolTip( tr("Modulo di Poisson per il calcolo elastico"));
+    nu->setRichName( tr("ν"));
     addVarToContainer( nu );
 
     G = new DoublePlus( 0.0, "G", m_unitMeasure, UnitMeasure::tension );
     G->setReadOnly( false );
-    G->setToolTip( trUtf8("Modulo di elasticità  tangenziale per il calcolo elastico"));
-    G->setRichName( trUtf8("G"));
+    G->setToolTip( tr("Modulo di elasticità  tangenziale per il calcolo elastico"));
+    G->setRichName( tr("G"));
     addVarToContainer( G );
     G->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Material::setG) );
     G->addConnectedVars( 2, E, nu );
 
     alpha = new DoublePlus( 1.0e-5, "alpha", m_unitMeasure, UnitMeasure::alphaTemp );
     alpha->setReadOnly( false );
-    alpha->setRichName( trUtf8("α") );
+    alpha->setRichName( tr("α") );
     addVarToContainer( alpha );
 
     gammaW = new DoublePlus( 1.0e+4, "gammaW", m_unitMeasure, UnitMeasure::loadFVolume );
     gammaW->setReadOnly( false );
-    gammaW->setRichName( trUtf8("γ<span style=\" vertical-align:sub;\">w</span>") );
+    gammaW->setRichName( tr("γ<span style=\" vertical-align:sub;\">w</span>") );
     addVarToContainer( gammaW );
 
     isExisting = new BoolPlus( false, "isExisting" );
-    isExisting->setRichName( trUtf8("esistente") );
+    isExisting->setRichName( tr("esistente") );
     addVarToContainer( isExisting );
 
     FC = new DoublePlus( 1.35, "FC", m_unitMeasure, UnitMeasure::noDimension );
     FC->setReadOnly( false );
-    FC->setRichName( trUtf8("FC") );
+    FC->setRichName( tr("FC") );
     addVarToContainer( FC );
 }
 

@@ -121,20 +121,20 @@ VertexModel::VertexModel( Hypothesis * hyp, UnitMeasure * ump, QObject *parent )
 QList<QString> VertexModel::headersList( ) {
     QList<QString> ret;
 
-    ret << trUtf8("Id");
+    ret << tr("Id");
     for( int i=0;i < m_dd->hypothesis->spaceDim(); ++i ){
         ret << m_dd->hypothesis->dimCaption(i);
     }
 
     if( (m_dd->hypothesis->nDOFVert() == 3) && (m_dd->hypothesis->spaceDim() == 2) ){
-        ret << trUtf8("ηx") << trUtf8("ηy") << trUtf8("θ");
-        ret << trUtf8("Fx") << trUtf8("Fy") << trUtf8("M");
+        ret << tr("ηx") << tr("ηy") << tr("θ");
+        ret << tr("Fx") << tr("Fy") << tr("M");
     } else {
         for( int i=0; i < m_dd->hypothesis->nDOFVert(); ++i ){
-            ret << trUtf8("η%1").arg( i+1 );
+            ret << tr("η%1").arg( i+1 );
         }
         for( int i=0; i < m_dd->hypothesis->nDOFVert(); ++i ){
-            ret << trUtf8("F%1").arg( i+1 );
+            ret << tr("F%1").arg( i+1 );
         }
     }
     return ret;
@@ -153,7 +153,7 @@ void VertexModel::insertVertex( Vertex * addedVert, int position ){
         position = m_dd->vertexContainer.size();
     if( addedVert != NULL ){
         m_dd->insertVertex( addedVert, position );
-        connect( addedVert, SIGNAL(vertexChanged()), this, SIGNAL(modelChanged()) );
+        connect( addedVert, &Vertex::vertexChanged, this, &VertexModel::modelChanged );
         insertRowsPrivate( position );
         setVar( TableModelPlus::DisplayValue, position, 0, addedVert->id );
         for( int i=0; i < m_dd->hypothesis->spaceDim(); ++i){
@@ -178,13 +178,13 @@ void VertexModel::removeRows(int position, int count ){
 
     for (int row = position; row < (position+count); row++){
         if( m_dd->vertex(position)->isUsed()){
-            QString title = trUtf8("Materiale già in uso");
-            QString message = trUtf8("Vertice usato da almeno unelemento.");
+            QString title = tr("Materiale già in uso");
+            QString message = tr("Vertice usato da almeno unelemento.");
             qWarning() << title;
             qWarning() << message;
         } else {
             // scolleghiamo il materiale
-            disconnect( m_dd->vertex(position), SIGNAL(vertexChanged()), this, SIGNAL(modelChanged()) );
+            disconnect( m_dd->vertex(position), &Vertex::vertexChanged, this, &VertexModel::modelChanged );
             // rimuoviamo la riga
             removeRowsPrivate( position );
             // ... e il materiale

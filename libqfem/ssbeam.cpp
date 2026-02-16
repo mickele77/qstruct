@@ -43,92 +43,92 @@ SSBeam::SSBeam( UnitMeasure * ump, Section * s):
 
 void SSBeam::initVar(){
     alpha = new DoublePlus(0.0, "alpha", m_unitMeasure, UnitMeasure::angle );
-    alpha->setRichName( trUtf8("α"));
-    alpha->setToolTip( trUtf8("Inlinazione porzione trave tra appoggi"));
-    connect( alpha, SIGNAL(readOnlyChanged(bool)), this, SLOT(setL()));
-    connect( alpha, SIGNAL(valueChanged(QString)), this, SLOT(setL()));
+    alpha->setRichName( tr("α"));
+    alpha->setToolTip( tr("Inlinazione porzione trave tra appoggi"));
+    connect( alpha, &DoublePlus::readOnlyChanged, this, static_cast<void (SSBeam::*)()> (&SSBeam::setL) );
+    connect( alpha, &DoublePlus::valueChanged, this, static_cast<void (SSBeam::*)()> (&SSBeam::setL) );
 
     alpha1 = new DoublePlus(0.0, "alpha1", m_unitMeasure, UnitMeasure::angle );
-    alpha1->setRichName( trUtf8("α<span style=\" vertical-align:sub;\">1</span>"));
-    alpha1->setToolTip( trUtf8("Inlinazione sbalzo sinistro trale"));
-    connect( alpha1, SIGNAL(readOnlyChanged(bool)), this, SLOT(setL1()));
-    connect( alpha1, SIGNAL(valueChanged(QString)), this, SLOT(setL1()));
+    alpha1->setRichName( tr("α<span style=\" vertical-align:sub;\">1</span>"));
+    alpha1->setToolTip( tr("Inlinazione sbalzo sinistro trale"));
+    connect( alpha1, &DoublePlus::readOnlyChanged, this, &SSBeam::setL1 );
+    connect( alpha1, &DoublePlus::valueChanged, this, &SSBeam::setL1 );
 
     alpha2 = new DoublePlus(0.0, "alpha2", m_unitMeasure, UnitMeasure::angle );
-    alpha2->setRichName( trUtf8("α<span style=\" vertical-align:sub;\">2</span>"));
-    alpha2->setToolTip( trUtf8("Inlinazione sbalzo destro trale"));
-    connect( alpha2, SIGNAL(readOnlyChanged(bool)), this, SLOT(setL2()));
-    connect( alpha2, SIGNAL(valueChanged(QString)), this, SLOT(setL2()));
+    alpha2->setRichName( tr("α<span style=\" vertical-align:sub;\">2</span>"));
+    alpha2->setToolTip( tr("Inlinazione sbalzo destro trale"));
+    connect( alpha2, &DoublePlus::readOnlyChanged, this, &SSBeam::setL2 );
+    connect( alpha2, &DoublePlus::valueChanged, this, &SSBeam::setL2 );
 
     L = new DoublePlus(5.0, "L", m_unitMeasure, UnitMeasure::length );
-    L->setRichName( trUtf8("L"));
-    L->setToolTip( trUtf8("Lunghezza porzione trave tra appoggi"));
-    connect( L, SIGNAL(readOnlyChanged(bool)), this, SLOT(setL()));
-    connect( L, SIGNAL(valueChanged(QString)), this, SLOT(setL()));
+    L->setRichName( tr("L"));
+    L->setToolTip( tr("Lunghezza porzione trave tra appoggi"));
+    connect( L, &DoublePlus::readOnlyChanged, this, static_cast<void (SSBeam::*)()> (&SSBeam::setL) );
+    connect( L, &DoublePlus::valueChanged, this, static_cast<void (SSBeam::*)()> (&SSBeam::setL) );
 
     L1 = new DoublePlus(1.0, "L1", m_unitMeasure, UnitMeasure::length );
-    L1->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">1</span>"));
-    L1->setToolTip( trUtf8("Lunghezza sbalzo sinistro"));
-    connect( L1, SIGNAL(readOnlyChanged(bool)), this, SLOT(setL1()));
-    connect( L1, SIGNAL(valueChanged(QString)), this, SLOT(setL1()));
+    L1->setRichName( tr("L<span style=\" vertical-align:sub;\">1</span>"));
+    L1->setToolTip( tr("Lunghezza sbalzo sinistro"));
+    connect( L1, &DoublePlus::readOnlyChanged, this, &SSBeam::setL1 );
+    connect( L1, &DoublePlus::valueChanged, this, &SSBeam::setL1 );
 
     L2 = new DoublePlus(1.0, "L2", m_unitMeasure, UnitMeasure::length );
-    L2->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">2</span>"));
-    L2->setToolTip( trUtf8("Lunghezza sbalzo destro"));
-    connect( L2, SIGNAL(readOnlyChanged(bool)), this, SLOT(setL2()));
-    connect( L2, SIGNAL(valueChanged(QString)), this, SLOT(setL2()));
+    L2->setRichName( tr("L<span style=\" vertical-align:sub;\">2</span>"));
+    L2->setToolTip( tr("Lunghezza sbalzo destro"));
+    connect( L2, &DoublePlus::readOnlyChanged, this, &SSBeam::setL2 );
+    connect( L2, &DoublePlus::valueChanged, this, &SSBeam::setL2 );
 
     LHor = new DoublePlus(5.0, "LHor", m_unitMeasure, UnitMeasure::length, true  );
-    LHor->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">h</span>"));
-    LHor->setToolTip( trUtf8("Proiezione sul piano orizzontale della prozione di trave tra gli appoggi"));
-    connect( LHor, SIGNAL(readOnlyChanged(bool)), this, SLOT(setL()));
-    connect( LHor, SIGNAL(valueChanged(QString)), this, SLOT(setL()));
+    LHor->setRichName( tr("L<span style=\" vertical-align:sub;\">h</span>"));
+    LHor->setToolTip( tr("Proiezione sul piano orizzontale della prozione di trave tra gli appoggi"));
+    connect( LHor, &DoublePlus::readOnlyChanged, this, static_cast<void (SSBeam::*)()> (&SSBeam::setL) );
+    connect( LHor, &DoublePlus::valueChanged, this, static_cast<void (SSBeam::*)()> (&SSBeam::setL) );
 
     LHor1 = new DoublePlus(1.0, "LHor1", m_unitMeasure, UnitMeasure::length );
-    LHor1->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">h,1</span>"));
+    LHor1->setRichName( tr("L<span style=\" vertical-align:sub;\">h,1</span>"));
     LHor1->setReadOnly( true );
-    LHor1->setToolTip( trUtf8("Proiezione sul piano orizzontale dello sbalzo sinistro"));
-    connect( LHor1, SIGNAL(readOnlyChanged(bool)), this, SLOT(setL1()));
-    connect( LHor1, SIGNAL(valueChanged(QString)), this, SLOT(setL1()));
+    LHor1->setToolTip( tr("Proiezione sul piano orizzontale dello sbalzo sinistro"));
+    connect( LHor1, &DoublePlus::readOnlyChanged, this, &SSBeam::setL1 );
+    connect( LHor1, &DoublePlus::valueChanged, this, &SSBeam::setL1 );
 
     LHor2 = new DoublePlus(1.0, "LHor2", m_unitMeasure, UnitMeasure::length );
-    LHor2->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">h,2</span>"));
+    LHor2->setRichName( tr("L<span style=\" vertical-align:sub;\">h,2</span>"));
     LHor2->setReadOnly( true );
-    LHor2->setToolTip( trUtf8("Proiezione sul piano orizzontale dello sbalzo destro"));
-    connect( LHor2, SIGNAL(readOnlyChanged(bool)), this, SLOT(setL2()));
-    connect( LHor2, SIGNAL(valueChanged(QString)), this, SLOT(setL2()));
+    LHor2->setToolTip( tr("Proiezione sul piano orizzontale dello sbalzo destro"));
+    connect( LHor2, &DoublePlus::readOnlyChanged, this, &SSBeam::setL2 );
+    connect( LHor2, &DoublePlus::valueChanged, this, &SSBeam::setL2 );
 
     LVer = new DoublePlus(0.0, "LVer", m_unitMeasure, UnitMeasure::length );
-    LVer->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">v</span>"));
+    LVer->setRichName( tr("L<span style=\" vertical-align:sub;\">v</span>"));
     LVer->setReadOnly( true );
-    LVer->setToolTip( trUtf8("Proiezione sul piano verticale della prozione di trave tra gli appoggi"));
-    connect( LVer, SIGNAL(readOnlyChanged(bool)), this, SLOT(setL()));
-    connect( LVer, SIGNAL(valueChanged(QString)), this, SLOT(setL()));
+    LVer->setToolTip( tr("Proiezione sul piano verticale della prozione di trave tra gli appoggi"));
+    connect( LVer, &DoublePlus::readOnlyChanged, this, static_cast<void (SSBeam::*)()> (&SSBeam::setL) );
+    connect( LVer, &DoublePlus::valueChanged, this, static_cast<void (SSBeam::*)()> (&SSBeam::setL) );
 
     LVer1 = new DoublePlus(0.0, "LVer1", m_unitMeasure, UnitMeasure::length );
-    LVer1->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">v,1</span>"));
+    LVer1->setRichName( tr("L<span style=\" vertical-align:sub;\">v,1</span>"));
     LVer1->setReadOnly( true );
-    LVer1->setToolTip( trUtf8("Proiezione sul piano verticale dello sbalzo sinistro"));
-    connect( LVer1, SIGNAL(readOnlyChanged(bool)), this, SLOT(setL1()));
-    connect( LVer1, SIGNAL(valueChanged(QString)), this, SLOT(setL1()));
+    LVer1->setToolTip( tr("Proiezione sul piano verticale dello sbalzo sinistro"));
+    connect( LVer1, &DoublePlus::readOnlyChanged, this, &SSBeam::setL1 );
+    connect( LVer1, &DoublePlus::valueChanged, this, &SSBeam::setL1 );
 
     LVer2 = new DoublePlus(0.0, "LVer2", m_unitMeasure, UnitMeasure::length );
-    LVer2->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">v,2</span>"));
+    LVer2->setRichName( tr("L<span style=\" vertical-align:sub;\">v,2</span>"));
     LVer2->setReadOnly( true );
-    LVer2->setToolTip( trUtf8("Proiezione sul piano verticale dello sbalzo destro"));
-    connect( LVer2, SIGNAL(readOnlyChanged(bool)), this, SLOT(setL2()));
-    connect( LVer2, SIGNAL(valueChanged(QString)), this, SLOT(setL2()));
+    LVer2->setToolTip( tr("Proiezione sul piano verticale dello sbalzo destro"));
+    connect( LVer2, &DoublePlus::readOnlyChanged, this, &SSBeam::setL2 );
+    connect( LVer2, &DoublePlus::valueChanged, this, &SSBeam::setL2 );
 
     setL();
     setL1();
     setL2();
 
     L0LT = new DoublePlus(0.0, "L0LT", m_unitMeasure, UnitMeasure::length );
-    L0LT->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">0,LT</span>"));
-    L0LT->setToolTip( trUtf8("Distanza massima tra ritegni torsionali"));
+    L0LT->setRichName( tr("L<span style=\" vertical-align:sub;\">0,LT</span>"));
+    L0LT->setToolTip( tr("Distanza massima tra ritegni torsionali"));
     L0LT->setReadOnly( true );
-    connect( L0LT, SIGNAL(readOnlyChanged(bool)), this, SLOT(setL0LT()));
-    connect( L, SIGNAL(valueChanged(QString)), this, SLOT(setL0LT()));
+    connect( L0LT, &DoublePlus::readOnlyChanged, this, &SSBeam::setL0LT );
+    connect( L, &DoublePlus::valueChanged, this, &SSBeam::setL0LT );
     setL0LT();
 }
 
@@ -181,7 +181,7 @@ void SSBeam::calcS( LoadComplTableModel * lModel ){
             }
         }
         // Riordina la lista
-        qSort( nodes );
+        std::sort( nodes.begin(), nodes.end() );
         // Elimina i duplicati
         for( int i=0; i < nodes.size(); i++ ){
             if( (i+1) < nodes.size() ){

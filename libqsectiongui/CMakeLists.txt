@@ -1,6 +1,10 @@
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+IF( BUILD_SHARED_LIBS AND WIN32 )
+  add_definitions( -DBUILD_SECTIONGUI_LIB )
+ENDIF( BUILD_SHARED_LIBS AND WIN32 )
+
 # Find the required modules
 find_package(Qt5 COMPONENTS Sql Widgets REQUIRED)
 
@@ -25,6 +29,7 @@ set( SRC
 )
 
 set( HDR
+    sectiongui_export.h
     sectiongeometricdatapanel.h
     sectiongui.h
     sectiondefaultgui.h

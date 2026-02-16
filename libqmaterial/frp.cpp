@@ -41,9 +41,9 @@ class FRPExpositionPrivate {
 public:
     FRPExpositionPrivate( FRP::Exposition vv ):
         value(vv){
-        enumList.append( FRPExpositionVal( FRP::internal, "Internal", trUtf8("Interno")) );
-        enumList.append( FRPExpositionVal( FRP::external, "External", trUtf8("Esterno")) );
-        enumList.append( FRPExpositionVal( FRP::aggressive, "Aggressive", trUtf8("Ambiente aggressivo")) );
+        enumList.append( FRPExpositionVal( FRP::internal, "Internal", tr("Interno")) );
+        enumList.append( FRPExpositionVal( FRP::external, "External", tr("Esterno")) );
+        enumList.append( FRPExpositionVal( FRP::aggressive, "Aggressive", tr("Ambiente aggressivo")) );
     }
     ~FRPExpositionPrivate(){
     }
@@ -190,9 +190,9 @@ class FRPFiberTypePrivate {
 public:
     FRPFiberTypePrivate( FRP::FiberType vv ):
         value(vv){
-        enumList.append( FRPFiberTypeVal( FRP::epoxyGlass, "EpoxyGlass", trUtf8("Vetro/Epossidica")) );
-        enumList.append( FRPFiberTypeVal( FRP::epoxyAramid, "EpoxyAramid", trUtf8("Arammidica/Epossidica")) );
-        enumList.append( FRPFiberTypeVal( FRP::epoxyCarbon, "EpoxyCarbon", trUtf8("Carbonio/Epossidica")) );
+        enumList.append( FRPFiberTypeVal( FRP::epoxyGlass, "EpoxyGlass", tr("Vetro/Epossidica")) );
+        enumList.append( FRPFiberTypeVal( FRP::epoxyAramid, "EpoxyAramid", tr("Arammidica/Epossidica")) );
+        enumList.append( FRPFiberTypeVal( FRP::epoxyCarbon, "EpoxyCarbon", tr("Carbonio/Epossidica")) );
     }
     ~FRPFiberTypePrivate(){
     }
@@ -339,8 +339,8 @@ class FRPApplicationTypePrivate {
 public:
     FRPApplicationTypePrivate( FRP::ApplicationType vv ):
         value(vv){
-        enumList.append( FRPApplicationTypeVal( FRP::A, "A", trUtf8("A")) );
-        enumList.append( FRPApplicationTypeVal( FRP::B, "A", trUtf8("B")) );
+        enumList.append( FRPApplicationTypeVal( FRP::A, "A", tr("A")) );
+        enumList.append( FRPApplicationTypeVal( FRP::B, "A", tr("B")) );
     }
     ~FRPApplicationTypePrivate(){
     }
@@ -487,8 +487,8 @@ class FRPLoadModePrivate {
 public:
     FRPLoadModePrivate( FRP::LoadMode vv ):
         value(vv){
-        enumList.append( FRPLoadModeVal( FRP::persistent, "persistent", trUtf8("Persistente")) );
-        enumList.append( FRPLoadModeVal( FRP::cyclic, "cyclic", trUtf8("Ciclico")) );
+        enumList.append( FRPLoadModeVal( FRP::persistent, "persistent", tr("Persistente")) );
+        enumList.append( FRPLoadModeVal( FRP::cyclic, "cyclic", tr("Ciclico")) );
     }
     ~FRPLoadModePrivate(){
     }
@@ -636,9 +636,9 @@ class FRPResistenceModelPrivate {
 public:
     FRPResistenceModelPrivate( FRP::ResistenceModel vv ):
         value(vv){
-        enumList.append( FRPResistenceModelVal( FRP::normalBending, "normalBending", trUtf8("Flessione/Pressoflessione")) );
-        enumList.append( FRPResistenceModelVal( FRP::shearTorsion, "shearTorsion", trUtf8("Taglio/Torsione")) );
-        enumList.append( FRPResistenceModelVal( FRP::confinement, "confinement", trUtf8("Confinamento")) );
+        enumList.append( FRPResistenceModelVal( FRP::normalBending, "normalBending", tr("Flessione/Pressoflessione")) );
+        enumList.append( FRPResistenceModelVal( FRP::shearTorsion, "shearTorsion", tr("Taglio/Torsione")) );
+        enumList.append( FRPResistenceModelVal( FRP::confinement, "confinement", tr("Confinamento")) );
     }
     ~FRPResistenceModelPrivate(){
     }
@@ -820,56 +820,56 @@ double FRP::etal(LoadMode lMode) {
 
 void FRP::initVar(){
     *m_typeNameInternal = "FRP";
-    typeName->setValue( trUtf8("FRP"));
+    typeName->setValue( tr("FRP"));
 
     E->setValueNormal( 2.0e+11 );
-    E->setRichName( trUtf8("E<span style=\" vertical-align:sub;\">f</span>") );
-    E->setToolTip( trUtf8("Modulo di elasticità normale nella direzione della forza"));
+    E->setRichName( tr("E<span style=\" vertical-align:sub;\">f</span>") );
+    E->setToolTip( tr("Modulo di elasticità normale nella direzione della forza"));
 
     exposition = new FRPExposition( FRP::internal, "exposition" );
-    exposition->setRichName( trUtf8("Esposizione") );
-    exposition->setToolTip( trUtf8("Condizione di esposizione") );
+    exposition->setRichName( tr("Esposizione") );
+    exposition->setToolTip( tr("Condizione di esposizione") );
     addVarToContainer( exposition );
 
     fiberType = new FRPFiberType( FRP::epoxyCarbon, "fiberType" );
-    fiberType->setRichName( trUtf8("Tipo") );
-    fiberType->setToolTip( trUtf8("Tipo di fibra/resina") );
+    fiberType->setRichName( tr("Tipo") );
+    fiberType->setToolTip( tr("Tipo di fibra/resina") );
     addVarToContainer( fiberType );
 
     applicationType = new FRPApplicationType( FRP::B, "applicationType" );
-    applicationType->setRichName( trUtf8("Tipo applicazione") );
-    applicationType->setToolTip( trUtf8("Tipo di applicazione (A/B)") );
+    applicationType->setRichName( tr("Tipo applicazione") );
+    applicationType->setToolTip( tr("Tipo di applicazione (A/B)") );
     addVarToContainer( applicationType );
 
     etaa = new DoublePlus( 0.0, "etaa", m_unitMeasure, UnitMeasure::noDimension, true );
-    etaa->setRichName( trUtf8("η<span style=\" vertical-align:sub;\">a</span>") );
-    etaa->setToolTip( trUtf8("Fattore di conversione ambientale"));
+    etaa->setRichName( tr("η<span style=\" vertical-align:sub;\">a</span>") );
+    etaa->setToolTip( tr("Fattore di conversione ambientale"));
     addVarToContainer( etaa );
     etaa->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&FRP::setEtaa) );
     etaa->addConnectedVars( 2, exposition, fiberType );
 
     gammaf = new DoublePlus( 0.0, "gammaf", m_unitMeasure, UnitMeasure::noDimension, true );
-    gammaf->setRichName( trUtf8("γ<span style=\" vertical-align:sub;\">f</span>") );
-    gammaf->setToolTip( trUtf8("Coefficiente parziale a rottura per i materiali"));
+    gammaf->setRichName( tr("γ<span style=\" vertical-align:sub;\">f</span>") );
+    gammaf->setToolTip( tr("Coefficiente parziale a rottura per i materiali"));
     addVarToContainer( gammaf );
     gammaf->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&FRP::setGammaf) );
     gammaf->addConnectedVars( 1, applicationType );
 
     gammafd = new DoublePlus( 0.0, "gammafd", m_unitMeasure, UnitMeasure::noDimension, true );
-    gammafd->setRichName( trUtf8("γ<span style=\" vertical-align:sub;\">f,d</span>") );
-    gammafd->setToolTip( trUtf8("Coefficiente parziale a distacco per i materiali"));
+    gammafd->setRichName( tr("γ<span style=\" vertical-align:sub;\">f,d</span>") );
+    gammafd->setToolTip( tr("Coefficiente parziale a distacco per i materiali"));
     addVarToContainer( gammafd );
     gammafd->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&FRP::setGammafd) );
     gammafd->addConnectedVars( 1, applicationType );
 
     ffk = new DoublePlus( 1.8e+9 , "ffk", m_unitMeasure, UnitMeasure::tension );
-    ffk->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">fk</span>") );
-    ffk->setToolTip(trUtf8("Tensione caratteristica a rottura"));
+    ffk->setRichName( tr("f<span style=\" vertical-align:sub;\">fk</span>") );
+    ffk->setToolTip(tr("Tensione caratteristica a rottura"));
     addVarToContainer( ffk );
 
     epsfk = new DoublePlus(0.0, "epsfk", m_unitMeasure, UnitMeasure::percent, true );
-    epsfk->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">fk</span>") );
-    epsfk->setToolTip(trUtf8("Deformazione caratteristica a rottura"));
+    epsfk->setRichName( tr("ε<span style=\" vertical-align:sub;\">fk</span>") );
+    epsfk->setToolTip(tr("Deformazione caratteristica a rottura"));
     addVarToContainer( epsfk );
     epsfk->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&FRP::setEpsfk) );
     epsfk->addConnectedVars( 2, E, ffk );

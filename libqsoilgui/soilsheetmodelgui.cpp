@@ -34,16 +34,16 @@ SoilSheetModelGUI::SoilSheetModelGUI(SoilSheetModel * m, QWidget *parent) :
     m_ui->tableView->setModel( m_model );
 
     // Connects buttons
-    connect( m_ui->newPButton, SIGNAL(clicked()), this, SLOT( insert() ) );
-    connect( m_ui->delPButton, SIGNAL(clicked()), this, SLOT( remove()) );
-    connect( m_ui->defaultPButton, SIGNAL(clicked()), this, SLOT(setDefault()) );
+    connect( m_ui->newPButton, &QPushButton::clicked, this, &SoilSheetModelGUI::insert );
+    connect( m_ui->delPButton, &QPushButton::clicked, this, &SoilSheetModelGUI::remove );
+    connect( m_ui->defaultPButton, &QPushButton::clicked, this, &SoilSheetModelGUI::setDefault );
 
     // Rifinisce l'aspetto di tableView
     m_ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     // m_ui->tableView->hideColumn(0);
     // m_ui->tableView->hideColumn(1);
 
-    connect( m_ui->tableView->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(setCurrent()));
+    connect( m_ui->tableView->selectionModel(), &QItemSelectionModel::currentRowChanged, this, &SoilSheetModelGUI::setCurrent  );
 }
 
 SoilSheetModelGUI::~SoilSheetModelGUI(){

@@ -18,13 +18,13 @@ public:
 SLSSteelSigmaModel::SLSSteelSigmaModel(SteelAModel *steelModel, UnitMeasure *ump, QObject *parent):
     TableModelPlus("SLSSteelSigmaModel", ump, parent),
     m_dd( new SLSSteelSigmaModelPrivate(steelModel)){
-    connect( m_dd->steelModel, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT( insertRows( QModelIndex,int,int ) ) );
-    connect( m_dd->steelModel, SIGNAL(rowsAboutToBeRemoved(QModelIndex,int,int)), SLOT( removeRows( QModelIndex,int,int ) ) );
+    connect( m_dd->steelModel, &SteelAModel::rowsInserted, this, &SLSSteelSigmaModel::insertRows );
+    connect( m_dd->steelModel, &SteelAModel::rowsRemoved, this, static_cast<void (SLSSteelSigmaModel::*) (const QModelIndex &, int, int)> (&SLSSteelSigmaModel::removeRows) );
 
-    connect( m_d->unitMeasure, SIGNAL(stringsChanged(UnitMeasure::unitMeasure)), this, SLOT(updateHeaders(UnitMeasure::unitMeasure)) );
+    connect( m_d->unitMeasure, &UnitMeasure::stringsChanged, this, &SLSSteelSigmaModel::updateHeaders );
     QList<QString> headers;
-    headers << trUtf8("d [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
-    headers << trUtf8("σs [%1]").arg( m_d->unitMeasure->string( UnitMeasure::tension ) );
+    headers << tr("d [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
+    headers << tr("σs [%1]").arg( m_d->unitMeasure->string( UnitMeasure::tension ) );
     setHeaders( headers );
 
     insertRows( QModelIndex(), 0, m_dd->steelModel->count()-1 );
@@ -62,8 +62,8 @@ void SLSSteelSigmaModel::removeRows( const QModelIndex & parent, int start, int 
 void SLSSteelSigmaModel::updateHeaders(UnitMeasure::unitMeasure um) {
     if( um == UnitMeasure::sectL || um == UnitMeasure::tension) {
         QList<QString> headers;
-        headers << trUtf8("d [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
-        headers << trUtf8("σₛ [%1]").arg( m_d->unitMeasure->string( UnitMeasure::tension ) );
+        headers << tr("d [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
+        headers << tr("σₛ [%1]").arg( m_d->unitMeasure->string( UnitMeasure::tension ) );
         setHeaders( headers );
     }
 }

@@ -111,9 +111,9 @@ QVariant ElementModel::headerData(int section, Qt::Orientation orientation,
         if( orientation == Qt::Horizontal){
             switch( section ){
             case 0:
-                return QVariant( trUtf8("Id") );
+                return QVariant( tr("Id") );
             case 1:
-                return QVariant( trUtf8("Tipo") );
+                return QVariant( tr("Tipo") );
             default:
                 return QVariant();
             }
@@ -280,10 +280,10 @@ Element * ElementModel::createElement( ElementModel::ElementType tt ){
                 m_d->nextId++;
                 return elem;
             } else {
-                qWarning(trUtf8("Sezione Corrente non definita").toStdString().c_str() );
+                qWarning(tr("Sezione Corrente non definita").toStdString().c_str() );
             }
         } else {
-            qWarning(trUtf8("Per creare un elemento BEAM devono essere definiti almeno due vertici").toStdString().c_str() );
+            qWarning(tr("Per creare un elemento BEAM devono essere definiti almeno due vertici").toStdString().c_str() );
         }
     }
     }

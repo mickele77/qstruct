@@ -41,11 +41,11 @@ void QRadioButtonEnum::resetVar() {
 
 void QRadioButtonEnum::connectVar() {
     if( m_var ){
-        connect( this, SIGNAL(toggled(bool)), this, SLOT(setVarValue()) );
-        connect( m_var, SIGNAL(valueIntChangedWidget(int)), this, SLOT(setCheckedInt(int)) );
-        connect( m_var, SIGNAL(destroyed()), this, SLOT(resetVar()) );
+        connect( this, &QRadioButtonEnum::toggled, this, &QRadioButtonEnum::setVarValue );
+        connect( m_var, &EnumPlus::valueIntChangedWidget, this, &QRadioButtonEnum::setCheckedInt );
+        connect( m_var, &EnumPlus::destroyed, this, &QRadioButtonEnum::resetVar );
         setVisible( m_var->enabled() );
-        connect( m_var, SIGNAL(enabledChanged(bool)), this, SLOT(setVisible(bool)) );
+        connect( m_var, &EnumPlus::enabledChanged, this, &QRadioButtonEnum::setVisible );
         setText( m_var->enumStr( m_value ) );
         setChecked( m_value == m_var->valueInt() );
     }
@@ -53,10 +53,10 @@ void QRadioButtonEnum::connectVar() {
 
 void QRadioButtonEnum::disconnectVar() {
     if( m_var ){
-        disconnect( this, SIGNAL(toggled(bool)), this, SLOT(setVarValue()) );
-        disconnect( m_var, SIGNAL(valueIntChangedWidget(int)), this, SLOT(setCheckedInt(int)) );
-        disconnect( m_var, SIGNAL(destroyed()), this, SLOT(resetVar()) );
-        disconnect( m_var, SIGNAL(enabledChanged(bool)), this, SLOT(setVisible(bool)) );
+        disconnect( this, &QRadioButtonEnum::toggled, this, &QRadioButtonEnum::setVarValue );
+        disconnect( m_var, &EnumPlus::valueIntChangedWidget, this, &QRadioButtonEnum::setCheckedInt );
+        disconnect( m_var, &EnumPlus::destroyed, this, &QRadioButtonEnum::resetVar );
+        disconnect( m_var, &EnumPlus::enabledChanged, this, &QRadioButtonEnum::setVisible );
         m_var = 0;
         setText( "" );
         setChecked( false );

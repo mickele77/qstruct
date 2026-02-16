@@ -28,6 +28,7 @@ class BoolPlus;
 class Point2DPlus;
 class QGraphicsItem;
 
+#include "soil_export.h"
 #include "varpluscontainer.h"
 #include <QObject>
 
@@ -42,7 +43,7 @@ class QGraphicsItem;
 *
 */
 
-class RetainingWall : public QObject, public VarPlusContainer
+class EXPORT_SOIL_LIB_OPT RetainingWall : public QObject, public VarPlusContainer
 {
     Q_OBJECT
 public:
@@ -338,7 +339,7 @@ class RWEarthQuakeDirectionPrivate;
 *
 */
 
-class RWEarthQuakeDirection : public EnumPlus
+class EXPORT_SOIL_LIB_OPT RWEarthQuakeDirection : public EnumPlus
 {
     Q_OBJECT
 public:

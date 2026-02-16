@@ -42,43 +42,43 @@ Soil::Soil(UnitMeasure *ump, const QXmlStreamAttributes &attrs, QObject *parent)
 
 void Soil::initVar( Soil::SoilType st) {
     soilType = new SoilTypePlus( st, "soilType"  );
-    soilType->setRichName( trUtf8("Classificazione") );
-    soilType->setToolTip( trUtf8("Classificazione del terreno") );
+    soilType->setRichName( tr("Classificazione") );
+    soilType->setToolTip( tr("Classificazione del terreno") );
     addVarToContainer( soilType );
 
     phiPrimeK = new DoublePlus( 34.0*M_PI/180.0, "phiPrimeK", m_unitMeasure, UnitMeasure::angle );;
-    phiPrimeK->setRichName( trUtf8("φ'<span style=\" vertical-align:sub;\">k</span>"));
-    phiPrimeK->setToolTip( trUtf8("Angolo di attrito interno del terreno in condizioni drenate"));
+    phiPrimeK->setRichName( tr("φ'<span style=\" vertical-align:sub;\">k</span>"));
+    phiPrimeK->setToolTip( tr("Angolo di attrito interno del terreno in condizioni drenate"));
     addVarToContainer( phiPrimeK );
 
     cPrimeK = new DoublePlus( 0.0, "cPrimeK", m_unitMeasure, UnitMeasure::tension );;
-    cPrimeK->setRichName( trUtf8("c'<span style=\" vertical-align:sub;\">k</span>"));
-    cPrimeK->setToolTip( trUtf8("Coesione del terreno in condizioni drenate"));
+    cPrimeK->setRichName( tr("c'<span style=\" vertical-align:sub;\">k</span>"));
+    cPrimeK->setToolTip( tr("Coesione del terreno in condizioni drenate"));
     addVarToContainer( cPrimeK );
 
     cUK = new DoublePlus( 0.0, "cUK", m_unitMeasure, UnitMeasure::tension );;
-    cUK->setRichName( trUtf8("c<span style=\" vertical-align:sub;\">u,k</span>"));
-    cUK->setToolTip( trUtf8("Coesione del terreno in condizioni non drenate"));
+    cUK->setRichName( tr("c<span style=\" vertical-align:sub;\">u,k</span>"));
+    cUK->setToolTip( tr("Coesione del terreno in condizioni non drenate"));
     addVarToContainer( cUK );
 
     gammaW = new DoublePlus( 1.9e+4, "gammaW", m_unitMeasure, UnitMeasure::loadFVolume );
-    gammaW->setRichName( trUtf8("γ<span style=\" vertical-align:sub;\">w</span>"));
-    gammaW->setToolTip( trUtf8("Peso specifico del terreno"));
+    gammaW->setRichName( tr("γ<span style=\" vertical-align:sub;\">w</span>"));
+    gammaW->setToolTip( tr("Peso specifico del terreno"));
     addVarToContainer( gammaW );
 
     KaTheory = new SoilKTheoryPlus( Soil::Coulomb, "soilKaTheory" );
-    KaTheory->setRichName( trUtf8("Ipotesi") );
-    KaTheory->setToolTip( trUtf8("Teoria impiegata per il calcolo della spinta attiva") );
+    KaTheory->setRichName( tr("Ipotesi") );
+    KaTheory->setToolTip( tr("Teoria impiegata per il calcolo della spinta attiva") );
     addVarToContainer( KaTheory );
 
     KpTheory = new SoilKTheoryPlus( Soil::Lancellotta, "soilKpTheory" );
-    KpTheory->setRichName( trUtf8("Ipotesi") );
-    KpTheory->setToolTip( trUtf8("Teoria impiegata per il calcolo della spinta passiva") );
+    KpTheory->setRichName( tr("Ipotesi") );
+    KpTheory->setToolTip( tr("Teoria impiegata per il calcolo della spinta passiva") );
     addVarToContainer( KpTheory );
 
     soilEQCategory = new SoilEQCategory( Soil::B, "soilEQCategory");
-    soilEQCategory->setRichName( trUtf8("Categoria sismica"));
-    soilEQCategory->setToolTip( trUtf8("Categoria sismica del sottosuolo (NTC08 3.2.2)"));
+    soilEQCategory->setRichName( tr("Categoria sismica"));
+    soilEQCategory->setToolTip( tr("Categoria sismica del sottosuolo (NTC08 3.2.2)"));
     addVarToContainer( soilEQCategory );
 }
 
@@ -638,8 +638,8 @@ class SoilTypePlusPrivate{
 public:
     SoilTypePlusPrivate(Soil::SoilType v):
         value(v){
-        enumList.append( enumVal( Soil::clay, "clay", trUtf8("Terreno coesivo")) );
-        enumList.append( enumVal( Soil::sand, "sand", trUtf8("Terreno granulare")) );
+        enumList.append( enumVal( Soil::clay, "clay", tr("Terreno coesivo")) );
+        enumList.append( enumVal( Soil::sand, "sand", tr("Terreno granulare")) );
     };
     ~SoilTypePlusPrivate(){
     };
@@ -783,9 +783,9 @@ public:
     SoilKTheoryPlusPrivate(Soil::SoilKTheory v):
         value(v){
         // Superfici di rottura piane
-        enumList.append( enumVal( Soil::Coulomb, "Coulomb", trUtf8("Teoria di Coulomb")) );
+        enumList.append( enumVal( Soil::Coulomb, "Coulomb", tr("Teoria di Coulomb")) );
         // Metodo statico, presenza di attrito tra muro e terreno
-        enumList.append( enumVal( Soil::Lancellotta, "Lancellotta", trUtf8("Lancellotta")) );
+        enumList.append( enumVal( Soil::Lancellotta, "Lancellotta", tr("Lancellotta")) );
     };
     ~SoilKTheoryPlusPrivate(){
     };
@@ -927,11 +927,11 @@ class SoilEQCategoryPrivate{
 public:
     SoilEQCategoryPrivate(Soil::EQCategory v):
         value(v){
-        enumList.append( enumVal( Soil::A, "A", trUtf8("A")) );
-        enumList.append( enumVal( Soil::B, "B", trUtf8("B")) );
-        enumList.append( enumVal( Soil::C, "C", trUtf8("C")) );
-        enumList.append( enumVal( Soil::D, "D", trUtf8("D")) );
-        enumList.append( enumVal( Soil::E, "E", trUtf8("E")) );
+        enumList.append( enumVal( Soil::A, "A", tr("A")) );
+        enumList.append( enumVal( Soil::B, "B", tr("B")) );
+        enumList.append( enumVal( Soil::C, "C", tr("C")) );
+        enumList.append( enumVal( Soil::D, "D", tr("D")) );
+        enumList.append( enumVal( Soil::E, "E", tr("E")) );
     };
     ~SoilEQCategoryPrivate(){
     };

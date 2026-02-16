@@ -49,12 +49,12 @@ TimberConnectionModule::TimberConnectionModule(UnitMeasure * um,
     m_d->GUI = new TimberConnectionGUI( um, materialModel, this );
     layout()->addWidget( m_d->GUI );
 
-    QDockWidget * dock = new QDockWidget(richName() + " - " + trUtf8("Lista"));
+    QDockWidget * dock = new QDockWidget(richName() + " - " + tr("Lista"));
     dock->setObjectName( "TimberConnectionDock" );
     dock->setWidget( new TimberConnectionModelGUI( timberConnectionModel, this ) );
     m_panels->append(  dock );
 
-    connect( m_d->model, SIGNAL(currentChanged(TimberConnection*)), this, SLOT(setCurrentConnection(TimberConnection*)));
+    connect( m_d->model, &TimberConnectionModel::currentChanged, this, &TimberConnectionModule::setCurrentConnection );
 }
 
 QString TimberConnectionModule::name(){
@@ -62,7 +62,7 @@ QString TimberConnectionModule::name(){
 }
 
 QString TimberConnectionModule::richName(){
-    return trUtf8("CollegaLegno");
+    return tr("CollegaLegno");
 }
 
 QIcon TimberConnectionModule::icon(){

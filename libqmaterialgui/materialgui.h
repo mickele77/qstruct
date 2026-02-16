@@ -19,6 +19,7 @@
 #ifndef MATERIALGUI_H
 #define MATERIALGUI_H
 
+#include "materialgui_export.h"
 #include <QWidget>
 #include "varpluscontainer.h"
 
@@ -39,7 +40,7 @@ template <class Key, class T> class QMap;
 *
 */
 
-class MaterialGUI : public QWidget, public VarPlusContainer
+class EXPORT_MATERIALGUI_LIB_OPT MaterialGUI : public QWidget, public VarPlusContainer
 {
     Q_OBJECT
 public:

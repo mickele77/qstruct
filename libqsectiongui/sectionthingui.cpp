@@ -67,12 +67,12 @@ SectionThinGUI::SectionThinGUI(UnitMeasure* ump, MaterialModel * matModel, QWidg
     m_d->ui->transformationScrollAreaWidgetContents->layout()->addWidget( m_d->rotTransPanel );
 
     m_d->ui->sectionLineTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    connect( m_d->ui->addSectionLinePButton, SIGNAL(clicked()), this, SLOT(addSectionLine()));
-    connect( m_d->ui->removeSectionLinePButton, SIGNAL(clicked()), this, SLOT(removeSectionLine()));
+    connect( m_d->ui->addSectionLinePButton, &QPushButton::clicked, this, &SectionThinGUI::addSectionLine );
+    connect( m_d->ui->removeSectionLinePButton, &QPushButton::clicked, this, &SectionThinGUI::removeSectionLine );
 
     m_d->ui->sectionArcTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    connect( m_d->ui->addSectionArcPButton, SIGNAL(clicked()), this, SLOT(addSectionArc()));
-    connect( m_d->ui->removeSectionArcPButton, SIGNAL(clicked()), this, SLOT(removeSectionArc()));
+    connect( m_d->ui->addSectionArcPButton, &QPushButton::clicked, this, &SectionThinGUI::addSectionArc );
+    connect( m_d->ui->removeSectionArcPButton, &QPushButton::clicked, this, &SectionThinGUI::removeSectionArc );
 
     m_materialComboBox = m_d->ui->materialComboBox;
     connect( m_materialComboBox, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionGUI::setMaterialFromComboBox );

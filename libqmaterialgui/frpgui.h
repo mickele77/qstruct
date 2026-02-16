@@ -21,9 +21,10 @@
 
 class FRPGUIPrivate;
 
+#include "materialgui_export.h"
 #include "materialgui.h"
 
-class FRPGUI : public MaterialGUI {
+class EXPORT_MATERIALGUI_LIB_OPT FRPGUI : public MaterialGUI {
     Q_OBJECT
 public:
     FRPGUI(UnitMeasure *um, const QString & settingsFile, QWidget *parent = 0);

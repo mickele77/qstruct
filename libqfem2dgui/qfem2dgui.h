@@ -35,7 +35,7 @@ public:
     explicit QFem2DGUI(FEMStructure * str, QWidget *parent = 0);
     ~QFem2DGUI();
 
-private slots:
+public slots:
     void setExtraGLItem( GLItem * item );
 
 private:

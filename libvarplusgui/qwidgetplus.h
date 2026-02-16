@@ -3,10 +3,12 @@
 
 class VarPlus;
 
-class QWidgetPlus
+#include "varplusgui_export.h"
+
+class EXPORT_VARPLUSGUI_LIB_OPT QWidgetPlus
 {
 public:
-    QWidgetPlus( VarPlus * v=0 );
+    QWidgetPlus( VarPlus * v=nullptr );
 
     virtual void setVar( VarPlus * v);
     VarPlus * var();

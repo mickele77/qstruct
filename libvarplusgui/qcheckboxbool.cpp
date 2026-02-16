@@ -13,9 +13,9 @@ QCheckBoxBool::~QCheckBoxBool(){
 }
 
 void QCheckBoxBool::setVar(VarPlus *v) {
-    BoolPlus * vbool = dynamic_cast<BoolPlus *>(v);
-    if( vbool ){
-        if( m_var != vbool ){
+    if( v != m_var ) {
+        BoolPlus * vbool = dynamic_cast<BoolPlus *>(v);
+        if( vbool != nullptr ){
             disconnectVar();
             m_var = vbool;
             connectVar();
@@ -24,32 +24,33 @@ void QCheckBoxBool::setVar(VarPlus *v) {
 }
 
 void QCheckBoxBool::resetVar() {
-    if( m_var ){
-        m_var = 0;
+    if( m_var != nullptr ){
+        disconnectVar();
+        m_var = nullptr ;
         setChecked( false );
     }
 }
 
 void QCheckBoxBool::connectVar() {
-    BoolPlus * vbool = dynamic_cast<BoolPlus *>(m_var);
-    if( vbool ){
-        connect( vbool, SIGNAL(valueChangedBool(bool)), this, SLOT(setChecked(bool)) );
-        connect( this, SIGNAL(toggled(bool)), vbool, SLOT(setValueNormal(bool)) );
-        connect( vbool, SIGNAL(destroyed()), this, SLOT(resetVar()) );
+    if( m_var != nullptr ){
+        BoolPlus * vbool = static_cast<BoolPlus *>(m_var);
+        connect( vbool, &BoolPlus::valueChangedBool, this, &QCheckBoxBool::setChecked );
+        connect( this, &QCheckBoxBool::toggled, vbool, static_cast< void (BoolPlus::*) (bool) > (&BoolPlus::setValueNormal) );
+        connect( vbool, &BoolPlus::destroyed, this, &QCheckBoxBool::resetVar );
         setVisible( vbool->enabled() );
-        connect( vbool, SIGNAL(enabledChanged(bool)), this, SLOT(setVisible(bool)) );
+        connect( vbool, &BoolPlus::enabledChanged, this, &QCheckBoxBool::setVisible );
         setChecked( vbool->value() );
     }
 }
 
 void QCheckBoxBool::disconnectVar() {
-    BoolPlus * vbool = dynamic_cast<BoolPlus *>(m_var);
-    if( vbool ){
-        disconnect( vbool, SIGNAL(valueChanged(QString)), this, SLOT(setChecked(bool)) );
-        disconnect( this, SIGNAL(toggled(bool)), vbool, SLOT(setReadOnly(bool)) );
-        disconnect( vbool, SIGNAL(destroyed()), this, SLOT(resetVar()) );
-        disconnect( vbool, SIGNAL(enabledChanged(bool)), this, SLOT(setVisible(bool)) );
-        m_var = 0;
+    if( m_var != nullptr ){
+        BoolPlus * vbool = static_cast<BoolPlus *>(m_var);
+        disconnect( vbool, &BoolPlus::valueChangedBool, this, &QCheckBoxBool::setChecked );
+        disconnect( this, &QCheckBoxBool::toggled, vbool, static_cast< void (BoolPlus::*) (bool) > (&BoolPlus::setValueNormal) );
+        disconnect( vbool, &BoolPlus::destroyed, this, &QCheckBoxBool::resetVar );
+        disconnect( vbool, &BoolPlus::enabledChanged, this, &QCheckBoxBool::setVisible );
+        m_var = nullptr;
         setChecked( false );
     }
 }

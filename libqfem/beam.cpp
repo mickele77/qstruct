@@ -59,8 +59,8 @@ public:
         fAppModel = new BeamFModel( hyp, ump );
         qAppModel = new BeamQModel( hyp, ump );
 
-        qGraphicsItem = NULL;
-        glItem = NULL;
+        qGraphicsItem = nullptr;
+        glItem = nullptr;
     }
     ~BeamPrivate(){
         delete [] fAppLocalArray;
@@ -117,18 +117,18 @@ void Beam::init(){
 
     L = new DoublePlus( 0.0, "L", m_unitMeasure, UnitMeasure::length );
     L->setReadOnly( true );
-    L->setRichName( trUtf8("L"));
-    L->setToolTip( trUtf8("Lunghezza dell'elemento trave"));
+    L->setRichName( tr("L"));
+    L->setToolTip( tr("Lunghezza dell'elemento trave"));
     for( int i=0; i < m_vertexes->size(); i++){
-        connect( m_vertexes->at(i)->vertex, SIGNAL(vertexChanged()), this, SLOT(setL()));
-        connect( m_vertexes->at(i)->vertex, SIGNAL(vertexChanged()), this, SLOT(setLCS()));
+        connect( m_vertexes->at(i)->vertex, &Vertex::vertexChanged, this, &Beam::setL );
+        connect( m_vertexes->at(i)->vertex, &Vertex::vertexChanged, this, &Beam::setLCS );
     }
     setL();
 
     bType = new BeamType( Beam::Timoshenko, "bType" );
     bType->setReadOnly( false );
-    bType->setRichName( trUtf8("Tipo") );
-    bType->setToolTip( trUtf8("Teoria applicata nel calcolo dell'elemento") );
+    bType->setRichName( tr("Tipo") );
+    bType->setToolTip( tr("Teoria applicata nel calcolo dell'elemento") );
 
     setKF0Local();
 
@@ -156,16 +156,23 @@ void Beam::setL(){
 }
 
 void Beam::setVertex1(Vertex *vert) {
+    if( m_dd->glItem != nullptr ){
+        disconnect( m_vertexes->at(0)->vertex, &Vertex::vertexChanged, this, &Beam::updateGLItem );
+    }
     setVertex( 0 , vert );
+    if( m_dd->glItem != nullptr ){
+        connect( m_vertexes->at(0)->vertex, &Vertex::vertexChanged, this, &Beam::updateGLItem );
+        updateGLItem();
+    }
 }
 
 void Beam::setVertex2(Vertex *vert) {
-    if( m_dd->glItem ){
-        disconnect( m_vertexes->at(1)->vertex, SIGNAL(vertexChanged()), this, SLOT(updateGLItem()));
+    if( m_dd->glItem != nullptr ){
+        disconnect( m_vertexes->at(1)->vertex, &Vertex::vertexChanged, this, &Beam::updateGLItem );
     }
     setVertex( 1 , vert );
-    if( m_dd->glItem ){
-        connect( m_vertexes->at(1)->vertex, SIGNAL(vertexChanged()), this, SLOT(updateGLItem()));
+    if( m_dd->glItem != nullptr ){
+        connect( m_vertexes->at(1)->vertex, &Vertex::vertexChanged, this, &Beam::updateGLItem );
         updateGLItem();
     }
 }
@@ -695,12 +702,12 @@ void Beam::updateQGraphicsItem(){
 }
 
 GLItem * Beam::glItem(){
-    if( m_dd->glItem == NULL ){
+    if( m_dd->glItem == nullptr ){
         m_dd->glItem = new GLLine();
         m_dd->glItem->setColor(Qt::green);
-        connect( this, SIGNAL(vertexChanged(int,Vertex*,Vertex*)), this, SLOT(reconnectVertexToGLItem(int,Vertex*,Vertex*)));
+        connect( this, &Beam::vertexChanged, this, &Beam::reconnectVertexToGLItem );
         for( int i=0; i < 2; i++ ){
-            connect( m_vertexes->at(i)->vertex, SIGNAL(vertexChanged()), this, SLOT(updateGLItem()));
+            connect( m_vertexes->at(i)->vertex, &Vertex::vertexChanged, this, &Beam::updateGLItem );
         }
         updateGLItem();
     }
@@ -723,8 +730,8 @@ void Beam::updateGLItem(){
 
 void Beam::reconnectVertexToGLItem( int, Vertex * oldVert, Vertex *newVert){
     if( m_dd->glItem ){
-        disconnect( oldVert, SIGNAL(vertexChanged()), this, SLOT(updateGLItem()));
-        connect( newVert, SIGNAL(vertexChanged()), this, SLOT(updateGLItem()));
+        disconnect( oldVert, &Vertex::vertexChanged, this, &Beam::updateGLItem );
+        connect( newVert, &Vertex::vertexChanged, this, &Beam::updateGLItem );
         updateGLItem();
     }
 }
@@ -807,7 +814,7 @@ void Beam::etaPLocal(QString * xName, QVector<double> * xVect, QVector<QString> 
                     x += DL;
                 }
                 if( xName ){
-                    *xName = trUtf8("x");
+                    *xName = tr("x");
                     if( scale ) {
                         *xName +=  QString(" [") + m_unitMeasure->string( UnitMeasure::length ) + "]";
                     }
@@ -834,9 +841,9 @@ void Beam::etaPLocal(QString * xName, QVector<double> * xVect, QVector<QString> 
                 }
             }
             if( valNames ){
-                valNames->append( trUtf8("u") );
-                valNames->append( trUtf8("w") );
-                valNames->append( trUtf8("Î¸") );
+                valNames->append( tr("u") );
+                valNames->append( tr("w") );
+                valNames->append( tr("Î¸") );
             }
 
             // assegna l'unitÃ  di misura utente alle ascisse
@@ -880,16 +887,16 @@ void Beam::etaPLocal(QString * xName, QVector<double> * xVect, QVector<QString> 
 QVector<QString> Beam::FPLocalNames( Hypothesis * hyp ){
     QVector<QString> ret;
     if(  hyp->spaceDim() == 2 && hyp->nDOFVert() == 3 ){
-        ret.append( trUtf8("N") );
-        ret.append( trUtf8("T") );
-        ret.append( trUtf8("M") );
+        ret.append( tr("N") );
+        ret.append( tr("T") );
+        ret.append( tr("M") );
     } else if(  hyp->spaceDim() == 3 && hyp->nDOFVert() == 6 ){
-        ret.append( trUtf8("N") );
-        ret.append( trUtf8("Ty") );
-        ret.append( trUtf8("Tz") );
-        ret.append( trUtf8("Mx") );
-        ret.append( trUtf8("My") );
-        ret.append( trUtf8("Mz") );
+        ret.append( tr("N") );
+        ret.append( tr("Ty") );
+        ret.append( tr("Tz") );
+        ret.append( tr("Mx") );
+        ret.append( tr("My") );
+        ret.append( tr("Mz") );
     }
     return ret;
 }
@@ -952,9 +959,9 @@ void Beam::FPLocal( QString * xName, QVector< double> * xVect, QVector<QString> 
                 valVect->append(T);
                 valVect->append(M);
                 if( valNames ){
-                    valNames->append( trUtf8("N") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(0) ) + "]");
-                    valNames->append( trUtf8("T") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(1) ) + "]");
-                    valNames->append( trUtf8("M") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(2) ) + "]");
+                    valNames->append( tr("N") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(0) ) + "]");
+                    valNames->append( tr("T") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(1) ) + "]");
+                    valNames->append( tr("M") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(2) ) + "]");
                 }
             }
         } else if( m_hypothesis->spaceDim() == 3 && m_hypothesis->nDOFVert() == 6 ){
@@ -997,12 +1004,12 @@ void Beam::FPLocal( QString * xName, QVector< double> * xVect, QVector<QString> 
             valVect->append(My);
             valVect->append(Mz);
             if( valNames ){
-                valNames->append( trUtf8("N") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(0) ) + "]");
-                valNames->append( trUtf8("Ty") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(1) ) + "]");
-                valNames->append( trUtf8("Tz") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(2) ) + "]");
-                valNames->append( trUtf8("Mx") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(3) ) + "]");
-                valNames->append( trUtf8("My") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(4) ) + "]");
-                valNames->append( trUtf8("Mz") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(5) ) + "]");
+                valNames->append( tr("N") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(0) ) + "]");
+                valNames->append( tr("Ty") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(1) ) + "]");
+                valNames->append( tr("Tz") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(2) ) + "]");
+                valNames->append( tr("Mx") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(3) ) + "]");
+                valNames->append( tr("My") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(4) ) + "]");
+                valNames->append( tr("Mz") + QString(" [") + m_unitMeasure->string( m_hypothesis->unitMeasureF(5) ) + "]");
             }
         }
     }
@@ -1193,9 +1200,9 @@ class BeamTypePrivate{
 public:
     BeamTypePrivate(Beam::Type v):
         value(v){
-        enumList.append( enumVal( Beam::Bernoulli, "Bernoulli", trUtf8("Teoria di Bernoulli")) );
-        enumList.append( enumVal( Beam::Timoshenko, "Timoshenko", trUtf8("Teoria di Timoshenko")) );
-        enumList.append( enumVal( Beam::Winkler, "Winkler", trUtf8("Trave elastica su suolo alla Winkler")) );
+        enumList.append( enumVal( Beam::Bernoulli, "Bernoulli", tr("Teoria di Bernoulli")) );
+        enumList.append( enumVal( Beam::Timoshenko, "Timoshenko", tr("Teoria di Timoshenko")) );
+        enumList.append( enumVal( Beam::Winkler, "Winkler", tr("Trave elastica su suolo alla Winkler")) );
     };
     ~BeamTypePrivate(){
     };

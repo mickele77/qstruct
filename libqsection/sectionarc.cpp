@@ -91,31 +91,31 @@ SectionSpace::SectionType SectionArc::sectionType() {
 
 void SectionArc::initVar() {
     *m_typeNameInternal = "SectionArc";
-    typeName->setValue( trUtf8("Arco"));
+    typeName->setValue( tr("Arco"));
 
     startAngle = new DoublePlus(0.0, "startAngle", m_unitMeasure, UnitMeasure::angle);
-    startAngle->setRichName( trUtf8("α<span style=\" vertical-align:sub;\">i</span>"));
-    startAngle->setToolTip( trUtf8("Angolo iniziale dell'arco"));
+    startAngle->setRichName( tr("α<span style=\" vertical-align:sub;\">i</span>"));
+    startAngle->setToolTip( tr("Angolo iniziale dell'arco"));
     // startAngle->setMinNormal( 0.0 );
     // startAngle->setMaxNormal( 2.0 * M_PI );
     addVarToContainer( startAngle );
 
     sweepAngle = new DoublePlus(0.0, "sweepAngle", m_unitMeasure, UnitMeasure::angle);
-    sweepAngle->setRichName( trUtf8("Δα"));
-    sweepAngle->setToolTip( trUtf8("Angolo spazzato dall'arco"));
+    sweepAngle->setRichName( tr("Δα"));
+    sweepAngle->setToolTip( tr("Angolo spazzato dall'arco"));
     // sweepAngle->setMinNormal( 0.0 );
     addVarToContainer( sweepAngle );
 
     C = new Point2DPlus( "C", "yC", 0.0, "zC", 0.0, m_unitMeasure, UnitMeasure::sectL ) ;
-    C->y->setRichName( trUtf8("y<span style=\" vertical-align:sub;\">C</span>"));
-    C->y->setToolTip( trUtf8("Ascissa del centro dell'arco"));
-    C->z->setRichName( trUtf8("z<span style=\" vertical-align:sub;\">C</span>"));
-    C->z->setToolTip( trUtf8("Ordinata del centro dell'arco"));
+    C->y->setRichName( tr("y<span style=\" vertical-align:sub;\">C</span>"));
+    C->y->setToolTip( tr("Ascissa del centro dell'arco"));
+    C->z->setRichName( tr("z<span style=\" vertical-align:sub;\">C</span>"));
+    C->z->setToolTip( tr("Ordinata del centro dell'arco"));
     addVarToContainer( C );
 
     R = new DoublePlus( 0.0, "R", m_unitMeasure, UnitMeasure::sectL ) ;;
-    R->setRichName( trUtf8("R"));
-    R->setToolTip( trUtf8("Raggio dell'arco"));
+    R->setRichName( tr("R"));
+    R->setToolTip( tr("Raggio dell'arco"));
     R->setMinNormal( 0.0 );
     addVarToContainer( R );
 

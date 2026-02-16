@@ -63,8 +63,8 @@ SteelCncrGUI::SteelCncrGUI(UnitMeasure * um, const QString & settingsFile, QWidg
         m_d->dbSteelCncrFileName = settings.value("dbSteelCncrFileName", QApplication::applicationDirPath() + "/../resources/steelcncr.db").toString();
         dbSteelCncr.setDatabaseName(m_d->dbSteelCncrFileName);
         if (!dbSteelCncr.open() ) {
-            QMessageBox::critical(0, trUtf8("Non riesco ad aprire il database dei degli acciai da c.a."),
-                                  trUtf8("Non riesco a trovare il file steelcncr.db"), QMessageBox::Cancel);
+            QMessageBox::critical(0, tr("Non riesco ad aprire il database dei degli acciai da c.a."),
+                                  tr("Non riesco a trovare il file steelcncr.db"), QMessageBox::Cancel);
         } else {
             loadStandardComboBox();
         }
@@ -72,8 +72,8 @@ SteelCncrGUI::SteelCncrGUI(UnitMeasure * um, const QString & settingsFile, QWidg
         loadStandardComboBox();
     }
 
-    connect(m_d->ui->fykLabelPButton, SIGNAL(clicked()), this, SLOT(changeFykLabel()) );
-    connect(m_d->ui->ftkLabelPButton, SIGNAL(clicked()), this, SLOT(changeFtkLabel()) );
+    connect(m_d->ui->fykLabelPButton, &QPushButton::clicked, this, &SteelCncrGUI::changeFykLabel );
+    connect(m_d->ui->ftkLabelPButton, &QPushButton::clicked, this, &SteelCncrGUI::changeFtkLabel );
 }
 
 void SteelCncrGUI::loadStandardComboBox(){
@@ -88,12 +88,12 @@ void SteelCncrGUI::loadStandardComboBox(){
         m_d->ui->standardTypeCBox->insertItem((i+1), name, typeData );
     }
     m_d->ui->standardNameCBox->setCurrentIndex( 0 );
-    connect( m_d->ui->standardTypeCBox, SIGNAL( currentIndexChanged(QString)), this, SLOT( updateStandardNameCBox()));
+    connect( m_d->ui->standardTypeCBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SteelCncrGUI::updateStandardNameCBox );
 
     // Aggiunge i dati in standardNameComboBox
     updateStandardNameCBox();
 
-    connect( m_d->ui->loadStandardPButton, SIGNAL( clicked()) , this, SLOT(loadStandardData()));
+    connect( m_d->ui->loadStandardPButton, &QPushButton::clicked, this, &SteelCncrGUI::loadStandardData );
 }
 
 SteelCncrGUI::~SteelCncrGUI(){
@@ -126,9 +126,9 @@ void SteelCncrGUI::setMaterial( Material * steelCncr ){
         m_d->ui->modelULSRB2->setVar( 0 );
 
         // disconnette i valori
-        disconnect( m_d->steelCncr->modelfEps, SIGNAL(valueChanged(QString)), this, SLOT(plot()));
-        disconnect( m_d->steelCncr->epsUd, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
-        disconnect( m_d->steelCncr->epsYd, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
+        disconnect( m_d->steelCncr->modelfEps, &SteelCncrModelfEpsPlus::valueChanged, this, &SteelCncrGUI::plot );
+        disconnect( m_d->steelCncr->epsUd, &DoublePlus::valueChanged, this, &SteelCncrGUI::replot );
+        disconnect( m_d->steelCncr->epsYd, &DoublePlus::valueChanged, this, &SteelCncrGUI::replot );
     }
 
     m_d->steelCncr = dynamic_cast<SteelCncr*>(steelCncr);
@@ -152,9 +152,9 @@ void SteelCncrGUI::setMaterial( Material * steelCncr ){
         m_d->ui->modelULSRB2->setVar( m_d->steelCncr->modelfEps, 1 );
 
         // sets slots to redraw model diagram
-        connect( m_d->steelCncr->modelfEps, SIGNAL(valueChanged(QString)), this, SLOT(plot()));
-        connect( m_d->steelCncr->epsUd, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
-        connect( m_d->steelCncr->epsYd, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
+        connect( m_d->steelCncr->modelfEps, &SteelCncrModelfEpsPlus::valueChanged, this, &SteelCncrGUI::plot );
+        connect( m_d->steelCncr->epsUd, &DoublePlus::valueChanged, this, &SteelCncrGUI::replot );
+        connect( m_d->steelCncr->epsYd, &DoublePlus::valueChanged, this, &SteelCncrGUI::replot );
         plot();
     }
 }

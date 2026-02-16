@@ -17,8 +17,8 @@ class SteelFEpsModelPrivate{
 public:
     SteelFEpsModelPrivate(SimpleSectionRCncrComp::ModelSteelFEps v):
         value(v){
-        enumList.append( enumVal( SimpleSectionRCncrComp::inclinedTopBranch, "inclinedTopBranch", QObject::trUtf8("E.P. incrudente")) );
-        enumList.append( enumVal( SimpleSectionRCncrComp::horizontalTopBranch, "horizontalTopBranch", QObject::trUtf8("El. inf. plastico")) );
+        enumList.append( enumVal( SimpleSectionRCncrComp::inclinedTopBranch, "inclinedTopBranch", QObject::tr("E.P. incrudente")) );
+        enumList.append( enumVal( SimpleSectionRCncrComp::horizontalTopBranch, "horizontalTopBranch", QObject::tr("El. inf. plastico")) );
     }
     ~SteelFEpsModelPrivate(){
     }

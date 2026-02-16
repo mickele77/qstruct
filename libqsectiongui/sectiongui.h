@@ -19,6 +19,7 @@
 #ifndef SECTIONGUI_H
 #define SECTIONGUI_H
 
+#include "sectiongui_export.h"
 #include <QWidget>
 #include "varpluscontainer.h"
 
@@ -41,7 +42,7 @@ class QComboBox;
 *
 */
 
-class SectionGUI : public QWidget, public VarPlusContainer
+class EXPORT_SECTIONGUI_LIB_OPT SectionGUI : public QWidget, public VarPlusContainer
 {
     Q_OBJECT
 public:

@@ -3,10 +3,12 @@
 
 class EnumPlus;
 
-class QWidgetEnumPlus
+#include "varplusgui_export.h"
+
+class EXPORT_VARPLUSGUI_LIB_OPT QWidgetEnumPlus
 {
 public:
-    QWidgetEnumPlus( EnumPlus * v=0 );
+    QWidgetEnumPlus( EnumPlus * v=nullptr );
 
     EnumPlus * var();
 

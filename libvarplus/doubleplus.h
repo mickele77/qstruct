@@ -85,7 +85,8 @@ public slots:
     void setValue( const QString &, bool emitAuto = true );
     void setValueNormal( const QString &, bool emitAuto = true );
     void setValue( double, bool emitAuto = true );
-    void setValueNormal( double, bool emitAuto = true );
+    void setValueNormal( double, bool emitAuto );
+    void setValueNormal( double );
 
 private:
     static int m_precision;

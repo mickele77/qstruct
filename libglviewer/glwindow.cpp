@@ -377,7 +377,7 @@ void GLWindow::wheelEvent(QWheelEvent *event) {
     double Dzoom = (1.0 - event->angleDelta().y() / 8.0 / 90.0);
 
     float x,y,z;
-    unProject( &x, &y, &z, event->x(), event->y(), 0.5 );
+    unProject( &x, &y, &z, event->position().x(), event->position().y(), 0.5 );
     QVector3D oldFixedP( x,y,z);
 
     m_d->cameraZoom *= Dzoom;
@@ -385,7 +385,7 @@ void GLWindow::wheelEvent(QWheelEvent *event) {
     newMatrixProj.ortho( - 0.50 * width() * m_d->cameraZoom, + 0.50 * width() * m_d->cameraZoom,
                          - 0.50 * height() * m_d->cameraZoom, + 0.50 * height() * m_d->cameraZoom,
                          m_d->cameraNearPlan, m_d->cameraFarPlan);
-    unProject( &x, &y, &z, event->x(), event->y(), 0.5, &newMatrixProj, &(m_d->matrixView) );
+    unProject( &x, &y, &z, event->position().x(), event->position().y(), 0.5, &newMatrixProj, &(m_d->matrixView) );
     QVector3D newFixedP( x,y,z);
 
     QVector3D DFixedP = newFixedP - oldFixedP;
@@ -749,9 +749,9 @@ void GLWindow::zoomWindow() {
 void GLWindow::setScene(GLGroup *s) {
     m_d->root = s;
     updateSceneCenter();
-    connect( m_d->root, SIGNAL(groupChanged()), this, SLOT(updateSceneCenter()) );
+    connect( m_d->root, &GLGroup::groupChanged, this, &GLWindow::updateSceneCenter );
     update();
-    connect( m_d->root, SIGNAL(groupChanged()), this, SLOT(update()) );
+    connect( m_d->root, &GLGroup::groupChanged, this, &GLWindow::update );
 }
 
 void GLWindow::updateSceneCenter(){

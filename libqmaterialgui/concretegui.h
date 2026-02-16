@@ -19,6 +19,7 @@
 #ifndef CONCRETEGUI_H
 #define CONCRETEGUI_H
 
+#include "materialgui_export.h"
 #include "materialgui.h"
 #define CONCRETE_PLOT_ACCURACY 50
 
@@ -32,7 +33,7 @@ class DoublePlus;
 class Concrete;
 class QString;
 
-class ConcreteGUI : public MaterialGUI {
+class EXPORT_MATERIALGUI_LIB_OPT ConcreteGUI : public MaterialGUI {
     Q_OBJECT
 
 public:

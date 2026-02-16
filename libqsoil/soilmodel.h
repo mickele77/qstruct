@@ -21,11 +21,12 @@
 
 class Soil;
 
+#include "soil_export.h"
 #include "tablemodelplus.h"
 
 class SoilModelPrivate;
 
-class SoilModel : public TableModelPlus
+class EXPORT_SOIL_LIB_OPT SoilModel : public TableModelPlus
 {
     Q_OBJECT
 public:

@@ -19,12 +19,13 @@
 #ifndef MULTISECTIONGUI_H
 #define MULTISECTIONGUI_H
 
+#include "sectiongui_export.h"
 #include "sectiongui.h"
 
 class MaterialModel;
 class MultiSectionGUIPrivate;
 
-class MultiSectionGUI : public SectionGUI
+class EXPORT_SECTIONGUI_LIB_OPT MultiSectionGUI : public SectionGUI
 {
     Q_OBJECT
 

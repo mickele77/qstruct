@@ -21,11 +21,11 @@
 #include "qstructuregui.h"
 
 int main(int argc, char *argv[]) {
-    QApplication app(argc, argv);
-
-    #ifdef _WIN32
+#ifdef _WIN32
     QCoreApplication::setAttribute(Qt::AA_UseOpenGLES) ;
-    #endif
+#endif
+
+    QApplication app(argc, argv);
 
 /*    QFont font;
     font.setFamily(font.defaultFamily());

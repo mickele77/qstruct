@@ -21,11 +21,12 @@
 
 class SectionProfile;
 
+#include "sectiongui_export.h"
 #include "sectiongui.h"
 
 class SectionProfileGUIPrivate;
 
-class SectionProfileGUI : public SectionGUI
+class EXPORT_SECTIONGUI_LIB_OPT SectionProfileGUI : public SectionGUI
 {
     Q_OBJECT
 

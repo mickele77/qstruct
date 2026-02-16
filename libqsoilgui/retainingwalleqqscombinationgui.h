@@ -19,12 +19,13 @@
 #ifndef RETAININGWALLEQQSCOMBINATIONGUI_H
 #define RETAININGWALLEQQSCOMBINATIONGUI_H
 
-#include "retainingwallqscombinationgui.h"
-
 class RetainingWallEQQSCombinationGUIPrivate;
 class RWEarthQuakeDirection;
 
-class RetainingWallEQQSCombinationGUI : public RetainingWallQSCombinationGUI
+#include "soilgui_export.h"
+#include "retainingwallqscombinationgui.h"
+
+class EXPORT_SOILGUI_LIB_OPT RetainingWallEQQSCombinationGUI : public RetainingWallQSCombinationGUI
 {
     Q_OBJECT
 public:

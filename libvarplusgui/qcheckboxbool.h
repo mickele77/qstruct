@@ -1,6 +1,8 @@
 #ifndef QCHECKBOXBOOL_H
 #define QCHECKBOXBOOL_H
 
+#include "varplusgui_export.h"
+
 #include <QCheckBox>
 #include "qwidgetplus.h"
 
@@ -16,10 +18,10 @@
 *
 */
 
-class QCheckBoxBool : public QCheckBox, public QWidgetPlus {
+class EXPORT_VARPLUSGUI_LIB_OPT QCheckBoxBool : public QCheckBox, public QWidgetPlus {
     Q_OBJECT
 public:
-    explicit QCheckBoxBool(QWidget *parent = 0, VarPlus * v = 0 );
+    explicit QCheckBoxBool(QWidget *parent = 0, VarPlus * v = nullptr );
     ~QCheckBoxBool();
 
     void setVar( VarPlus * v);

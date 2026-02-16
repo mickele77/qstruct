@@ -1,11 +1,6 @@
 #ifndef RETAININGWALLGUIPRIVATE_H
 #define RETAININGWALLGUIPRIVATE_H
 
-#include "varpluscontainer.h"
-#include <QObject>
-#include "ui_retainingwallgui.h"
-
-
 class Point2DPlus;
 class DoublePlus;
 class BoolPlus;
@@ -15,7 +10,12 @@ class SoilModel;
 class RWEarthQuakeDirection;
 class RetainingWallGUI;
 
-class RetainingWallGUIPrivate: public QObject, public VarPlusContainer {
+#include "soilgui_export.h"
+#include "varpluscontainer.h"
+#include <QObject>
+#include "ui_retainingwallgui.h"
+
+class EXPORT_SOILGUI_LIB_OPT RetainingWallGUIPrivate: public QObject, public VarPlusContainer {
     Q_OBJECT
 private:
     void initVar();

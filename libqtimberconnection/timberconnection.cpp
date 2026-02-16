@@ -36,12 +36,12 @@
 class TimberConnectionPrivate{
 public:
     TimberConnectionPrivate( UnitMeasure * ump,
-                             ServiceClass * sc,
-                             LoadDurationClass * ld,
-                             LSType * ls ):
-        timber1( NULL ),
-        timber2( NULL ),
-        steel( NULL ),
+                            ServiceClass * sc,
+                            LoadDurationClass * ld,
+                            LSType * ls ):
+        timber1( nullptr ),
+        timber2( nullptr ),
+        steel( nullptr ),
         connector( new TimberConnector(ump, 6.4e+8, 8.0e+8, 12e-3 ) ){
         if( sc == 0 ){
             sClass = new ServiceClass( ServiceClass::SC1, "Classe di servizio" );
@@ -199,33 +199,33 @@ Timber * TimberConnection::timber1(){ return m_d->timber1; }
 void TimberConnection::setTimber1( Timber * timb ){
     if( timb != m_d->timber1 ){
         if( m_d->timber1 ){
-            disconnect( m_d->timber1, SIGNAL(destroyed()), this, SLOT(setTimber1NULL()));
-            disconnect( m_d->timber1->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFh0k1()));
-            disconnect( m_d->timber1->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk1A()));
-            disconnect( m_d->timber1->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2A()));
-            disconnect( m_d->timber1->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2B()));
-            disconnect( m_d->timber1, SIGNAL(materialChanged()), this, SLOT(setKmod()));
+            disconnect( m_d->timber1, &Timber::destroyed, this, &TimberConnection::setTimber1NULL );
+            disconnect( m_d->timber1->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFh0k1 );
+            disconnect( m_d->timber1->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk1A );
+            disconnect( m_d->timber1->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk2A );
+            disconnect( m_d->timber1->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk2B );
+            disconnect( m_d->timber1, &Timber::materialChanged, this, &TimberConnection::setKmod );
         }
         m_d->timber1 = timb;
         emit timber1Changed();
         if( m_d->timber1 ){
-            connect( m_d->timber1, SIGNAL(destroyed()), this, SLOT(setTimber1NULL()));
-            connect( m_d->timber1->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFh0k1()));
+            connect( m_d->timber1, &Timber::destroyed, this, &TimberConnection::setTimber1NULL );
+            connect( m_d->timber1->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFh0k1 );
             setFh0k1();
-            connect( m_d->timber1->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk1A()));
+            connect( m_d->timber1->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk1A );
             setFAxk1A();
-            connect( m_d->timber1->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2A()));
+            connect( m_d->timber1->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk2A );
             setFAxk2A();
-            connect( m_d->timber1->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2B()));
+            connect( m_d->timber1->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk2B );
             setFAxk2B();
-            connect( m_d->timber1, SIGNAL(materialChanged()), this, SLOT(setKmod()));
+            connect( m_d->timber1, &Timber::materialChanged, this, &TimberConnection::setKmod );
             setKmod();
         }
     }
 }
 
 void TimberConnection::setTimber1NULL(){
-    setTimber1( NULL );
+    setTimber1( nullptr );
 }
 
 Timber * TimberConnection::timber2(){ return m_d->timber2; }
@@ -233,32 +233,32 @@ Timber * TimberConnection::timber2(){ return m_d->timber2; }
 void TimberConnection::setTimber2( Timber * timb ){
     if( timb != m_d->timber2 ){
         if( m_d->timber2 ){
-            disconnect( m_d->timber2, SIGNAL(destroyed()), this, SLOT(setTimber2NULL()));
-            disconnect( m_d->timber2->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFh0k2()));
-            disconnect( m_d->timber2->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2A()));
-            disconnect( m_d->timber2->fc90k, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2A()));
-            disconnect( m_d->timber2->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2B()));
-            disconnect( m_d->timber2, SIGNAL(materialChanged()), this, SLOT(setKmod()));
+            disconnect( m_d->timber2, &Timber::destroyed, this, &TimberConnection::setTimber2NULL );
+            disconnect( m_d->timber2->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFh0k2 );
+            disconnect( m_d->timber2->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk2A );
+            disconnect( m_d->timber2->fc90k, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk2A );
+            disconnect( m_d->timber2->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk2B );
+            disconnect( m_d->timber2, &Timber::materialChanged, this, &TimberConnection::setKmod );
         }
         m_d->timber2 = timb;
         emit timber2Changed();
         if( m_d->timber2 ){
-            connect( m_d->timber2, SIGNAL(destroyed()), this, SLOT(setTimber2NULL()));
-            connect( m_d->timber2->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFh0k2()));
+            connect( m_d->timber2, &Timber::destroyed, this, &TimberConnection::setTimber2NULL );
+            connect( m_d->timber2->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFh0k2 );
             setFh0k2();
-            connect( m_d->timber2->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2A()));
-            connect( m_d->timber2->fc90k, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2A()));
+            connect( m_d->timber2->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk2A );
+            connect( m_d->timber2->fc90k, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk2A );
             setFAxk2A();
-            connect( m_d->timber2->gammaWk, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2B()));
+            connect( m_d->timber2->gammaWk, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk2B );
             setFAxk2B();
-            connect( m_d->timber2, SIGNAL(materialChanged()), this, SLOT(setKmod()));
+            connect( m_d->timber2, &Timber::materialChanged, this, &TimberConnection::setKmod );
             setKmod();
         }
     }
 }
 
 void TimberConnection::setTimber2NULL(){
-    setTimber2( NULL );
+    setTimber2( nullptr );
 }
 
 Steel * TimberConnection::steel(){ return m_d->steel; }
@@ -268,7 +268,7 @@ void TimberConnection::setSteel( Steel * st ){
         m_d->steel = st;
         emit steelChanged();
         if( m_d->steel ){
-            connect( m_d->steel, SIGNAL(destroyed()), this, SLOT(setSteelNULL()));
+            connect( m_d->steel, &Steel::destroyed, this, &TimberConnection::setSteelNULL );
         }
     }
 }
@@ -281,7 +281,7 @@ bool TimberConnection::verifyNormal(double FAxEd, double FVEd, double * imp, QSt
             return true;
         } else if( FVRdTot->valueNormal() != 0.0 ){
             *imp = fabs( FVEd / FVRdTot->valueNormal() );
-            messages->append( trUtf8("ImpV = Imp = ") + QString::number(*imp) + QString("\n"));
+            messages->append( tr("ImpV = Imp = ") + QString::number(*imp) + QString("\n"));
             if( *imp > 1.0 ){
                 return false;
             } else {
@@ -294,7 +294,7 @@ bool TimberConnection::verifyNormal(double FAxEd, double FVEd, double * imp, QSt
     if (FVRdTot->valueNormal() == 0.0 && FVEd == 0.0) {
         if( FAxRdTot->valueNormal() != 0.0 ){
             *imp = fabs( FAxEd / FAxRdTot->valueNormal() );
-            messages->append( trUtf8("ImpAx = Imp = ") + QString::number(*imp) + QString("\n"));
+            messages->append( tr("ImpAx = Imp = ") + QString::number(*imp) + QString("\n"));
             if( *imp > 1.0 ){
                 return false;
             } else {
@@ -306,11 +306,11 @@ bool TimberConnection::verifyNormal(double FAxEd, double FVEd, double * imp, QSt
     }
     if (FAxRdTot->valueNormal() != 0.0 && FVRdTot->valueNormal() != 0.0){
         double impAx = fabs( FAxEd / FAxRdTot->valueNormal() );
-        messages->append( trUtf8("ImpAx = ") + QString::number(impAx) + QString("\n"));
+        messages->append( tr("ImpAx = ") + QString::number(impAx) + QString("\n"));
         double impV = fabs( FVEd / FVRdTot->valueNormal() );
-        messages->append( trUtf8("ImpV = ") + QString::number(impV) + QString("\n"));
+        messages->append( tr("ImpV = ") + QString::number(impV) + QString("\n"));
         if( m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothRoundNail ||
-                m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail ){
+            m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail ){
             *imp = impAx + impV;
         } else if( m_d->connector->connectorType->valueNormal() == TimberConnector::OtherRoundNail ||
                    m_d->connector->connectorType->valueNormal() == TimberConnector::OtherSquareNail ||
@@ -319,7 +319,7 @@ bool TimberConnection::verifyNormal(double FAxEd, double FVEd, double * imp, QSt
         } else if( m_d->connector->connectorType->valueNormal() == TimberConnector::Bolt ){
             *imp = impAx > impV? impAx: impV;
         }
-        messages->append( trUtf8("Imp = ") + QString::number(*imp) + QString("\n"));
+        messages->append( tr("Imp = ") + QString::number(*imp) + QString("\n"));
         if( *imp > 1.0 ){
             return false;
         } else {
@@ -337,25 +337,25 @@ bool TimberConnection::verify(DoublePlus *FAxEd, DoublePlus *FVEd, DoublePlus * 
 }
 
 void TimberConnection::setSteelNULL(){
-    setSteel( NULL );
+    setSteel( nullptr );
 }
 
 void TimberConnection::initVar(){
     tTimber1 = new DoublePlus( 5.0e-2, "tTimber1", m_unitMeasure, UnitMeasure::sectL );
-    tTimber1->setRichName( trUtf8("t<span style=\" vertical-align:sub;\">T,1</span>") );
-    tTimber1->setToolTip( trUtf8("Spessore legno 1"));
+    tTimber1->setRichName( tr("t<span style=\" vertical-align:sub;\">T,1</span>") );
+    tTimber1->setToolTip( tr("Spessore legno 1"));
     tTimber1->setReadOnly( false );
     addVarToContainer( tTimber1 );
 
     tTimber2 = new DoublePlus( 5.0e-2, "tTimber2", m_unitMeasure, UnitMeasure::sectL );
-    tTimber2->setRichName( trUtf8("t<span style=\" vertical-align:sub;\">T,2</span>") );
-    tTimber2->setToolTip( trUtf8("Spessore legno 2"));
+    tTimber2->setRichName( tr("t<span style=\" vertical-align:sub;\">T,2</span>") );
+    tTimber2->setToolTip( tr("Spessore legno 2"));
     tTimber2->setReadOnly( false );
     addVarToContainer( tTimber2 );
 
     tSteel = new DoublePlus( 4.0e-3, "tSteel", m_unitMeasure, UnitMeasure::sectL );
-    tSteel->setRichName( trUtf8("t<span style=\" vertical-align:sub;\">S</span>") );
-    tSteel->setToolTip( trUtf8("Spessore della piastra di acciaio"));
+    tSteel->setRichName( tr("t<span style=\" vertical-align:sub;\">S</span>") );
+    tSteel->setToolTip( tr("Spessore della piastra di acciaio"));
     tSteel->setReadOnly( false );
     addVarToContainer( tSteel );
 
@@ -365,304 +365,305 @@ void TimberConnection::initVar(){
     m_gammaM->append(1.0);
 
     gammaM = new DoublePlus( 1.0, "gammaM", m_unitMeasure, UnitMeasure::noDimension );
-    gammaM->setRichName(trUtf8("γ<span style=\" vertical-align:sub;\">M</span>"));
+    gammaM->setRichName(tr("γ<span style=\" vertical-align:sub;\">M</span>"));
     gammaM->setReadOnly( true );
     addVarToContainer( gammaM );
-    connect( m_d->lsType, SIGNAL(valueChanged(QString)), this, SLOT(setGammaM()) );
+    connect( m_d->lsType, &LSType::valueChanged, this, &TimberConnection::setGammaM );
     setGammaM();
 
     kmod = new DoublePlus( 0.0, "kmod", m_unitMeasure, UnitMeasure::noDimension );
-    kmod->setRichName(trUtf8("k<span style=\" vertical-align:sub;\">mod</span>"));
+    kmod->setRichName(tr("k<span style=\" vertical-align:sub;\">mod</span>"));
     kmod->setReadOnly( true );
     addVarToContainer( kmod );
-    connect( kmod, SIGNAL(readOnlyChanged(bool)), this, SLOT(setKmod()));
-    connect( m_d->ldClass, SIGNAL(valueChanged(QString)), this, SLOT(setKmod()));
-    connect( m_d->sClass, SIGNAL(valueChanged(QString)), this, SLOT(setKmod()));
+    connect( kmod, &DoublePlus::readOnlyChanged, this, &TimberConnection::setKmod );
+    connect( m_d->ldClass, &LoadDurationClass::valueChanged, this, &TimberConnection::setKmod );
+    connect( m_d->sClass, &ServiceClass::valueChanged, this, &TimberConnection::setKmod );
 
     connectionType = new TimberConnectionType( TimberConnection::TTSingleShear, "connectionType");
-    connectionType->setRichName( trUtf8("Tipologia connessione"));
+    connectionType->setRichName( tr("Tipologia connessione"));
     connectionType->setReadOnly( false );
     addVarToContainer( connectionType );
 
     fAxk1A = new DoublePlus( 0.0, "fAxk1A", m_unitMeasure, UnitMeasure::tension );
-    fAxk1A->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">Ax,k,1A</span>") );
-    fAxk1A->setToolTip( trUtf8(""));
+    fAxk1A->setRichName( tr("f<span style=\" vertical-align:sub;\">Ax,k,1A</span>") );
+    fAxk1A->setToolTip( tr(""));
     fAxk1A->setReadOnly( true );
     addVarToContainer( fAxk1A );
-    connect( m_d->connector->connectorType, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk1A()));
-    connect( connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk1A()));
-    connect( fAxk1A, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFAxk1A()));
+    connect( m_d->connector->connectorType, &TimberConnectorType::valueChanged, this, &TimberConnection::setFAxk1A );
+    connect( connectionType, &TimberConnectionType::valueChanged, this, &TimberConnection::setFAxk1A );
+    connect( fAxk1A, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFAxk1A );
     setFAxk1A();
 
     fAxk1B = new DoublePlus( 0.0, "fAxk1B", m_unitMeasure, UnitMeasure::tension );
-    fAxk1B->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">Ax,k,1B</span>") );
-    fAxk1B->setToolTip( trUtf8(""));
+    fAxk1B->setRichName( tr("f<span style=\" vertical-align:sub;\">Ax,k,1B</span>") );
+    fAxk1B->setToolTip( tr(""));
     fAxk1B->setReadOnly( true );
     addVarToContainer( fAxk1B );
-    connect( fAxk1A, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk1B()));
-    connect( m_d->connector->alpha, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk1B()));
-    connect( connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk1B()));
-    connect( fAxk1B, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFAxk1B()));
+    connect( fAxk1A, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk1B );
+    connect( m_d->connector->alpha, &DoublePlus::valueChanged, this, &TimberConnection::setFAxk1B );
+    connect( connectionType, &TimberConnectionType::valueChanged, this, &TimberConnection::setFAxk1B );
+    connect( fAxk1B, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFAxk1B );
     setFAxk1B();
 
     fAxk2A = new DoublePlus( 0.0, "fAxk2A", m_unitMeasure, UnitMeasure::tension );
-    fAxk2A->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">Ax,k,2A</span>") );
-    fAxk2A->setToolTip( trUtf8(""));
+    fAxk2A->setRichName( tr("f<span style=\" vertical-align:sub;\">Ax,k,2A</span>") );
+    fAxk2A->setToolTip( tr(""));
     fAxk2A->setReadOnly( true );
     addVarToContainer( fAxk2A );
-    connect( m_d->connector->connectorType, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2A()));
-    connect( connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2A()));
-    connect( fAxk2A, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFAxk2A()));
+    connect( m_d->connector->connectorType, &TimberConnectorType::valueChanged, this, &TimberConnection::setFAxk2A );
+    connect( connectionType, &TimberConnectionType::valueChanged, this, &TimberConnection::setFAxk2A );
+    connect( fAxk2A, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFAxk2A );
     setFAxk2A();
 
     fAxk2B = new DoublePlus( 0.0, "fAxk2B", m_unitMeasure, UnitMeasure::tension );
-    fAxk2B->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">Ax,k,2B</span>") );
-    fAxk2B->setToolTip( trUtf8(""));
+    fAxk2B->setRichName( tr("f<span style=\" vertical-align:sub;\">Ax,k,2B</span>") );
+    fAxk2B->setToolTip( tr(""));
     fAxk2B->setReadOnly( true );
     addVarToContainer( fAxk2B );
-    connect( m_d->connector->connectorType, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2B()));
-    connect( connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setFAxk2B()));
-    connect( fAxk2B, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFAxk2B()));
+    connect( m_d->connector->connectorType, &TimberConnectorType::valueChanged, this, &TimberConnection::setFAxk2B );
+    connect( connectionType, &TimberConnectionType::valueChanged, this, &TimberConnection::setFAxk2B );
+    connect( fAxk2B, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFAxk2B );
     setFAxk2B();
 
     FAxRk = new DoublePlus( 0.0, "FAxRk", m_unitMeasure, UnitMeasure::loadF );
-    FAxRk->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">ax,Rk</span>"));
+    FAxRk->setRichName( tr("F<span style=\" vertical-align:sub;\">ax,Rk</span>"));
     FAxRk->setReadOnly( true );
     addVarToContainer( FAxRk );
-    connect( tSteel, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRk()));
-    connect( tTimber1, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRk()));
-    connect( m_d->connector->lEf, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRk()));
-    connect( m_d->connector->d, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRk()));
-    connect( m_d->connector->dHead, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRk()));
-    connect( m_d->connector->fyk, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRk()));
-    connect( fAxk1A, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRk()));
-    connect( fAxk1B, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRk()));
-    connect( fAxk2A, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRk()));
-    connect( fAxk2B, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRk()));
-    connect( connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRk()));
-    connect( FAxRk, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFAxRk()));
+    connect( tSteel, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRk );
+    connect( tTimber1, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRk );
+    connect( m_d->connector->lEf, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRk );
+    connect( m_d->connector->d, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRk );
+    connect( m_d->connector->dHead, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRk );
+    connect( m_d->connector->fyk, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRk );
+    connect( fAxk1A, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRk );
+    connect( fAxk1B, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRk );
+    connect( fAxk2A, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRk );
+    connect( fAxk2B, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRk );
+    connect( connectionType, &TimberConnectionType::valueChanged, this, &TimberConnection::setFAxRk );
+    connect( FAxRk, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFAxRk );
     setFAxRk();
 
     FAxRd = new DoublePlus( 0.0, "FAxRd", m_unitMeasure, UnitMeasure::loadF );
-    FAxRd->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">ax,Rd</span>"));
+    FAxRd->setRichName( tr("F<span style=\" vertical-align:sub;\">ax,Rd</span>"));
     FAxRd->setReadOnly( true );
     addVarToContainer( FAxRd );
-    connect( FAxRk, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRd()));
-    connect( gammaM, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRd()));
-    connect( kmod, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRd()));
-    connect( FAxRd, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFAxRd()));
+    connect( FAxRk, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRd );
+    connect( gammaM, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRd );
+    connect( kmod, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRd );
+    connect( FAxRd, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFAxRd );
 
-    connect( m_d->connector->connectorType, SIGNAL(valueChanged(QString)), this, SLOT(setVisibleVarConnector()));
+    connect( m_d->connector->connectorType, &TimberConnectorType::valueChanged, this, &TimberConnection::setVisibleVarConnector );
     setVisibleVarConnector();
 
     fh0k1 = new DoublePlus( 0.0, "fh0k1", m_unitMeasure, UnitMeasure::tension );
-    fh0k1->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">h,0,k,1</span>") );
-    fh0k1->setToolTip( trUtf8("Valore caratteristico di rifollamento nel caso di chiodi inseriti con preforatura, lungo la direzione delle fibre in legno - Legno 1"));
+    fh0k1->setRichName( tr("f<span style=\" vertical-align:sub;\">h,0,k,1</span>") );
+    fh0k1->setToolTip( tr("Valore caratteristico di rifollamento nel caso di chiodi inseriti con preforatura, lungo la direzione delle fibre in legno - Legno 1"));
     fh0k1->setReadOnly( true );
     addVarToContainer( fh0k1 );
-    connect( fh0k1, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFh0k1()));
-    connect( m_d->connector->d, SIGNAL(valueChanged(QString)), this, SLOT(setFh0k1()));
-    connect( this, SIGNAL(timber1Changed()), this, SLOT(setFh0k1()));
+    connect( fh0k1, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFh0k1 );
+    connect( m_d->connector->d, &DoublePlus::valueChanged, this, &TimberConnection::setFh0k1 );
+    connect( this, &TimberConnection::timber1Changed, this, &TimberConnection::setFh0k1 );
     setFh0k1();
 
     fhAlphak1 = new DoublePlus( 0.0, "fhAlphak1", m_unitMeasure, UnitMeasure::tension );
-    fhAlphak1->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">h,α,k,1</span>") );
-    fhAlphak1->setToolTip( trUtf8("Valore caratteristico di rifollamento nel caso di chiodi inseriti con preforatura, angolo α rispetto alle fibre in legno - Legno 1"));
+    fhAlphak1->setRichName( tr("f<span style=\" vertical-align:sub;\">h,α,k,1</span>") );
+    fhAlphak1->setToolTip( tr("Valore caratteristico di rifollamento nel caso di chiodi inseriti con preforatura, angolo α rispetto alle fibre in legno - Legno 1"));
     fhAlphak1->setReadOnly( true );
     addVarToContainer( fhAlphak1 );
-    connect( fh0k1, SIGNAL(valueChanged(QString)), this, SLOT(setFhAlphak1()));
-    connect( m_d->connector->alpha, SIGNAL(valueChanged(QString)), this, SLOT(setFhAlphak1()));
-    connect( fhAlphak1, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFhAlphak1()));
+    connect( fh0k1, &DoublePlus::valueChanged, this, &TimberConnection::setFhAlphak1 );
+    connect( m_d->connector->alpha, &DoublePlus::valueChanged, this, &TimberConnection::setFhAlphak1 );
+    connect( fhAlphak1, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFhAlphak1 );
     setFhAlphak1();
 
     fh0k2 = new DoublePlus( 0.0, "fh0k2", m_unitMeasure, UnitMeasure::tension );
-    fh0k2->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">h,0,k,2</span>") );
-    fh0k2->setToolTip(  trUtf8("Valore caratteristico di rifollamento nel caso di chiodi inseriti con preforatura, lungo la direzione delle fibre in legno - Legno 2"));
+    fh0k2->setRichName( tr("f<span style=\" vertical-align:sub;\">h,0,k,2</span>") );
+    fh0k2->setToolTip(  tr("Valore caratteristico di rifollamento nel caso di chiodi inseriti con preforatura, lungo la direzione delle fibre in legno - Legno 2"));
     fh0k2->setReadOnly( true );
     addVarToContainer( fh0k2 );
-    connect( fh0k2, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFh0k2()));
-    connect( this, SIGNAL(timber2Changed()), this, SLOT(setFh0k2()));
-    connect( m_d->connector->d, SIGNAL(valueChanged(QString)), this, SLOT(setFh0k2()));
+    connect( fh0k2, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFh0k2 );
+    connect( this, &TimberConnection::timber2Changed, this, &TimberConnection::setFh0k2 );
+    connect( m_d->connector->d, &DoublePlus::valueChanged, this, &TimberConnection::setFh0k2 );
     setFh0k2();
 
     fhAlphak2 = new DoublePlus( 0.0, "fhAlphak2", m_unitMeasure, UnitMeasure::tension );
-    fhAlphak2->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">h,α,k,2</span>") );
-    fhAlphak2->setToolTip( trUtf8("Valore caratteristico di rifollamento nel caso di chiodi inseriti con preforatura, angolo α rispetto alle fibre in legno - Legno 2"));
+    fhAlphak2->setRichName( tr("f<span style=\" vertical-align:sub;\">h,α,k,2</span>") );
+    fhAlphak2->setToolTip( tr("Valore caratteristico di rifollamento nel caso di chiodi inseriti con preforatura, angolo α rispetto alle fibre in legno - Legno 2"));
     fhAlphak2->setReadOnly( true );
     addVarToContainer( fhAlphak2 );
-    connect( fh0k2, SIGNAL(valueChanged(QString)), this, SLOT(setFhAlphak2()));
-    connect( m_d->connector->alpha, SIGNAL(valueChanged(QString)), this, SLOT(setFhAlphak2()));
-    connect( fhAlphak2, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFhAlphak2()));
+    connect( fh0k2, &DoublePlus::valueChanged, this, &TimberConnection::setFhAlphak2 );
+    connect( m_d->connector->alpha, &DoublePlus::valueChanged, this, &TimberConnection::setFhAlphak2 );
+    connect( fhAlphak2, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFhAlphak2 );
     setFhAlphak2();
 
     beta = new DoublePlus( 0.0, "beta", m_unitMeasure, UnitMeasure::noDimension );
-    beta->setRichName( trUtf8("β") );
-    beta->setToolTip( trUtf8("Rapporto tra le tensioni caratteristiche di rifollamento (f<span style=\" vertical-align:sub;\">h,2,k</span>/f<span style=\" vertical-align:sub;\">h,1,k</span>)"));
+    beta->setRichName( tr("β") );
+    beta->setToolTip( tr("Rapporto tra le tensioni caratteristiche di rifollamento (f<span style=\" vertical-align:sub;\">h,2,k</span>/f<span style=\" vertical-align:sub;\">h,1,k</span>)"));
     beta->setReadOnly( true );
     addVarToContainer( beta );
-    connect( fhAlphak1, SIGNAL(valueChanged(QString)), this, SLOT(setBeta()));
-    connect( fhAlphak2, SIGNAL(valueChanged(QString)), this, SLOT(setBeta()));
+    connect( fhAlphak1, &DoublePlus::valueChanged, this, &TimberConnection::setBeta );
+    connect( fhAlphak2, &DoublePlus::valueChanged, this, &TimberConnection::setBeta );
 
     FVRk1A = new DoublePlus( 0.0, "FVRk1A", m_unitMeasure, UnitMeasure::loadF );
-    FVRk1A->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">v,Rk,IA</span>"));
+    FVRk1A->setRichName( tr("F<span style=\" vertical-align:sub;\">v,Rk,IA</span>"));
     FVRk1A->setReadOnly( true );
     addVarToContainer( FVRk1A );
-    connect( fhAlphak1, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1A()));
-    connect( tTimber1, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1A()));
-    connect( m_d->connector->d, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1A()));
-    connect( connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1A()));
-    connect( FVRk1A, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFVRk1A()));
+    connect( fhAlphak1, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1A );
+    connect( tTimber1, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1A );
+    connect( m_d->connector->d, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1A );
+    connect( connectionType, &TimberConnectionType::valueChanged, this, &TimberConnection::setFVRk1A );
+    connect( FVRk1A, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFVRk1A );
     setFVRk1A();
 
     FVRk1B = new DoublePlus( 0.0, "FVRk1B", m_unitMeasure, UnitMeasure::loadF );
-    FVRk1B->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">v,Rk,IB</span>"));
+    FVRk1B->setRichName( tr("F<span style=\" vertical-align:sub;\">v,Rk,IB</span>"));
     FVRk1B->setReadOnly( true );
     addVarToContainer( FVRk1B );
-    connect( fhAlphak1, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1B()));
-    connect( tTimber1, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1B()));
-    connect( fhAlphak2, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1B()));
-    connect( tTimber2, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1B()));
-    connect( m_d->connector->d, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1B()));
-    connect( connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1B()));
-    connect( FVRk1B, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFVRk1B()));
+    connect( fhAlphak1, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1B );
+    connect( tTimber1, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1B );
+    connect( fhAlphak2, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1B );
+    connect( tTimber2, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1B );
+    connect( m_d->connector->d, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1B );
+    connect( connectionType, &TimberConnectionType::valueChanged, this, &TimberConnection::setFVRk1B );
+    connect( FVRk1B, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFVRk1B );
     setFVRk1B();
 
     FVRk1C = new DoublePlus( 0.0, "FVRk1C", m_unitMeasure, UnitMeasure::loadF );
-    FVRk1C->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">v,Rk,IC</span>"));
+    FVRk1C->setRichName( tr("F<span style=\" vertical-align:sub;\">v,Rk,IC</span>"));
     FVRk1C->setReadOnly( true );
     addVarToContainer( FVRk1C );
-    connect( fhAlphak1, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1C()));
-    connect( beta, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1C()));
-    connect( tTimber1, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1C()));
-    connect( tTimber2, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1C()));
-    connect( m_d->connector->d, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1C()));
-    connect( FAxRk, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1C()));
-    connect( connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk1C()));
-    connect( FVRk1C, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFVRk1C()));
+    connect( fhAlphak1, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1C );
+    connect( beta, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1C );
+    connect( tTimber1, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1C );
+    connect( tTimber2, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1C );
+    connect( m_d->connector->d, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1C );
+    connect( FAxRk, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk1C );
+    connect( connectionType, &TimberConnectionType::valueChanged, this, &TimberConnection::setFVRk1C );
+    connect( FVRk1C, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFVRk1C );
     setFVRk1C();
 
     FVRk2A = new DoublePlus( 0.0, "FVRk2A", m_unitMeasure, UnitMeasure::loadF );
-    FVRk2A->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">v,Rk,IIA</span>"));
+    FVRk2A->setRichName( tr("F<span style=\" vertical-align:sub;\">v,Rk,IIA</span>"));
     FVRk2A->setReadOnly( true );
     addVarToContainer( FVRk2A );
-    connect( fhAlphak1, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2A()));
-    connect( beta, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2A()));
-    connect( tTimber1, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2A()));
-    connect( m_d->connector->d, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2A()));
-    connect( m_d->connector->MyRk, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2A()));
-    connect( FAxRk, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2A()));
-    connect( connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2A()));
-    connect( FVRk2A, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFVRk2A()));
+    connect( fhAlphak1, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk2A );
+    connect( beta, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk2A );
+    connect( tTimber1, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk2A );
+    connect( m_d->connector->d, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk2A );
+    connect( m_d->connector->MyRk, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk2A );
+    connect( FAxRk, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk2A );
+    connect( connectionType, &TimberConnectionType::valueChanged, this, &TimberConnection::setFVRk2A );
+    connect( FVRk2A, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFVRk2A );
     setFVRk2A();
 
     FVRk2B = new DoublePlus( 0.0, "FVRk2B", m_unitMeasure, UnitMeasure::loadF );
-    FVRk2B->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">v,Rk,IIB</span>"));
+    FVRk2B->setRichName( tr("F<span style=\" vertical-align:sub;\">v,Rk,IIB</span>"));
     FVRk2B->setReadOnly( true );
     addVarToContainer( FVRk2B );
-    connect( fhAlphak1, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2B()));
-    connect( beta, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2B()));
-    connect( tTimber2, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2B()));
-    connect( m_d->connector->d, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2B()));
-    connect( m_d->connector->MyRk, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2B()));
-    connect( FAxRk, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2B()));
-    connect( connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk2B()));
-    connect( FVRk2B, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFVRk2B()));
+    connect( fhAlphak1, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk2B );
+    connect( beta, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk2B );
+    connect( tTimber2, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk2B );
+    connect( m_d->connector->d, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk2B );
+    connect( m_d->connector->MyRk, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk2B );
+    connect( FAxRk, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk2B );
+    connect( connectionType, &TimberConnectionType::valueChanged, this, &TimberConnection::setFVRk2B );
+    connect( FVRk2B, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFVRk2B );
     setFVRk2B();
 
     FVRk3 = new DoublePlus( 0.0, "FVRk3", m_unitMeasure, UnitMeasure::loadF );
-    FVRk3->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">v,Rk,III</span>"));
+    FVRk3->setRichName( tr("F<span style=\" vertical-align:sub;\">v,Rk,III</span>"));
     FVRk3->setReadOnly( true );
     addVarToContainer( FVRk3 );
-    connect( fhAlphak1, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk3()));
-    connect( beta, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk3()));
-    connect( m_d->connector->d, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk3()));
-    connect( m_d->connector->MyRk, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk3()));
-    connect( FAxRk, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk3()));
-    connect( connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk3()));
-    connect( FVRk3, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFVRk3()));
+    connect( fhAlphak1, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk3 );
+    connect( beta, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk3 );
+    connect( m_d->connector->d, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk3 );
+    connect( m_d->connector->MyRk, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk3 );
+    connect( FAxRk, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk3 );
+    connect( connectionType, &TimberConnectionType::valueChanged, this, &TimberConnection::setFVRk3 );
+    connect( FVRk3, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFVRk3 );
     setFVRk3();
 
     FVRk = new DoublePlus( 0.0, "FVRk", m_unitMeasure, UnitMeasure::loadF );
-    FVRk->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">v,Rk</span>"));
+    FVRk->setRichName( tr("F<span style=\" vertical-align:sub;\">v,Rk</span>"));
     FVRk->setReadOnly( true );
     addVarToContainer( FVRk );
-    connect( FVRk1A, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk()));
-    connect( FVRk1B, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk()));
-    connect( FVRk1C, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk()));
-    connect( FVRk2A, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk()));
-    connect( FVRk2B, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk()));
-    connect( FVRk3, SIGNAL(valueChanged(QString)), this, SLOT(setFVRk()));
+    connect( FVRk1A, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk );
+    connect( FVRk1B, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk );
+    connect( FVRk1C, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk );
+    connect( FVRk2A, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk );
+    connect( FVRk2B, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk );
+    connect( FVRk3, &DoublePlus::valueChanged, this, &TimberConnection::setFVRk );
+    connect( FVRk, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFVRk );
     setFVRk();
 
     FVRd = new DoublePlus( 0.0, "FVRd", m_unitMeasure, UnitMeasure::loadF );
-    FVRd->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">v,Rd</span>"));
+    FVRd->setRichName( tr("F<span style=\" vertical-align:sub;\">v,Rd</span>"));
     FVRd->setReadOnly( true );
     addVarToContainer( FVRd );
-    connect( FVRd, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFVRd()));
-    connect( FVRk, SIGNAL(valueChanged(QString)), this, SLOT(setFVRd()));
-    connect( gammaM, SIGNAL(valueChanged(QString)), this, SLOT(setFVRd()));
-    connect( kmod, SIGNAL(valueChanged(QString)), this, SLOT(setFVRd()));
+    connect( FVRd, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFVRd );
+    connect( FVRk, &DoublePlus::valueChanged, this, &TimberConnection::setFVRd );
+    connect( gammaM, &DoublePlus::valueChanged, this, &TimberConnection::setFVRd );
+    connect( kmod, &DoublePlus::valueChanged, this, &TimberConnection::setFVRd );
 
-    connect( connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setVisibleVar()));
+    connect( connectionType, &TimberConnectionType::valueChanged, this, &TimberConnection::setVisibleVar );
     setVisibleVar();
 
     a1 = new DoublePlus( 0.0, "a1", m_unitMeasure, UnitMeasure::sectL );
-    a1->setRichName( trUtf8("a<span style=\" vertical-align:sub;\">1</span>"));
-    a1->setToolTip( trUtf8("Spaziatura dei connettori parallelamente alle fibre di legno"));
+    a1->setRichName( tr("a<span style=\" vertical-align:sub;\">1</span>"));
+    a1->setToolTip( tr("Spaziatura dei connettori parallelamente alle fibre di legno"));
     a1->setReadOnly( false );
     addVarToContainer( a1 );
 
     nPar = new DoublePlus( 1.0, "nPar", m_unitMeasure, UnitMeasure::noDimension );
-    nPar->setRichName( trUtf8("n<span style=\" vertical-align:sub;\">par</span>"));
-    nPar->setToolTip( trUtf8("Numero effettivo dei connettori, parallelo alle fibre") );
+    nPar->setRichName( tr("n<span style=\" vertical-align:sub;\">par</span>"));
+    nPar->setToolTip( tr("Numero effettivo dei connettori, parallelo alle fibre") );
     nPar->setReadOnly( false );
     addVarToContainer( nPar );
 
     nPerp = new DoublePlus( 1.0, "nPerp", m_unitMeasure, UnitMeasure::noDimension );
-    nPerp->setRichName( trUtf8("n<span style=\" vertical-align:sub;\">perp</span>"));
-    nPerp->setToolTip( trUtf8("Numero effettivo dei connettori, perpendicolare alle fibre") );
+    nPerp->setRichName( tr("n<span style=\" vertical-align:sub;\">perp</span>"));
+    nPerp->setToolTip( tr("Numero effettivo dei connettori, perpendicolare alle fibre") );
     nPerp->setReadOnly( false );
     addVarToContainer( nPerp );
 
     nVEf = new DoublePlus( 0.0, "nVEf", m_unitMeasure, UnitMeasure::noDimension );
-    nVEf->setRichName( trUtf8("n<span style=\" vertical-align:sub;\">V,ef</span>"));
-    nVEf->setToolTip( trUtf8("Numero efficace dei connettori per sforzo di taglio"));
+    nVEf->setRichName( tr("n<span style=\" vertical-align:sub;\">V,ef</span>"));
+    nVEf->setToolTip( tr("Numero efficace dei connettori per sforzo di taglio"));
     nVEf->setReadOnly( true );
     addVarToContainer( nVEf );
-    connect( nPar, SIGNAL(valueChanged(QString)), this, SLOT(setNVEf()));
-    connect( nPerp, SIGNAL(valueChanged(QString)), this, SLOT(setNVEf()));
-    connect( a1, SIGNAL(valueChanged(QString)), this, SLOT(setNVEf()));
-    connect( m_d->connector->alpha, SIGNAL(valueChanged(QString)), this, SLOT(setNVEf()));
-    connect( nVEf, SIGNAL(readOnlyChanged(bool)), this, SLOT(setNVEf()));
+    connect( nPar, &DoublePlus::valueChanged, this, &TimberConnection::setNVEf );
+    connect( nPerp, &DoublePlus::valueChanged, this, &TimberConnection::setNVEf );
+    connect( a1, &DoublePlus::valueChanged, this, &TimberConnection::setNVEf );
+    connect( m_d->connector->alpha, &DoublePlus::valueChanged, this, &TimberConnection::setNVEf );
+    connect( nVEf, &DoublePlus::readOnlyChanged, this, &TimberConnection::setNVEf );
     setNVEf();
 
     FVRdTot = new DoublePlus( 0.0, "FVRdTot", m_unitMeasure, UnitMeasure::loadF );
-    FVRdTot->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">v,Rd,tot</span>"));
+    FVRdTot->setRichName( tr("F<span style=\" vertical-align:sub;\">v,Rd,tot</span>"));
     FVRdTot->setReadOnly( true );
-    FVRdTot->setToolTip( trUtf8("Resistenza di progetto complessiva del collegamento per carichi trasversali (resistenza del singolo connettore * numero efficace)"));
+    FVRdTot->setToolTip( tr("Resistenza di progetto complessiva del collegamento per carichi trasversali (resistenza del singolo connettore * numero efficace)"));
     addVarToContainer( FVRdTot );
-    connect( FVRd, SIGNAL(valueChanged(QString)), this, SLOT(setFVRdTot()));
-    connect( nVEf, SIGNAL(valueChanged(QString)), this, SLOT(setFVRdTot()));
-    connect( FVRdTot, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFVRdTot()));
+    connect( FVRd, &DoublePlus::valueChanged, this, &TimberConnection::setFVRdTot );
+    connect( nVEf, &DoublePlus::valueChanged, this, &TimberConnection::setFVRdTot );
+    connect( FVRdTot, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFVRdTot );
 
     nAxEf = new DoublePlus( 0.0, "nAxEf", m_unitMeasure, UnitMeasure::noDimension );
-    nAxEf->setRichName( trUtf8("n<span style=\" vertical-align:sub;\">Ax,ef</span>"));
-    nAxEf->setToolTip( trUtf8("Numero efficace dei connettori per sforzo di estrazione"));
+    nAxEf->setRichName( tr("n<span style=\" vertical-align:sub;\">Ax,ef</span>"));
+    nAxEf->setToolTip( tr("Numero efficace dei connettori per sforzo di estrazione"));
     nAxEf->setReadOnly( true );
     addVarToContainer( nAxEf );
-    connect( nPar, SIGNAL(valueChanged(QString)), this, SLOT(setNAxEf()));
-    connect( nPerp, SIGNAL(valueChanged(QString)), this, SLOT(setNAxEf()));
-    connect( nAxEf, SIGNAL(readOnlyChanged(bool)), this, SLOT(setNAxEf()));
+    connect( nPar, &DoublePlus::valueChanged, this, &TimberConnection::setNAxEf );
+    connect( nPerp, &DoublePlus::valueChanged, this, &TimberConnection::setNAxEf );
+    connect( nAxEf, &DoublePlus::readOnlyChanged, this, &TimberConnection::setNAxEf );
     setNAxEf();
 
     FAxRdTot = new DoublePlus( 0.0, "FAxRdTot", m_unitMeasure, UnitMeasure::loadF );
-    FAxRdTot->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">Ax,Rd,tot</span>"));
+    FAxRdTot->setRichName( tr("F<span style=\" vertical-align:sub;\">Ax,Rd,tot</span>"));
     FAxRdTot->setReadOnly( true );
-    FAxRdTot->setToolTip( trUtf8("Resistenza di progetto complessiva del collegamento per carichi assiali (resistenza del singolo connettore * numero efficace)"));
+    FAxRdTot->setToolTip( tr("Resistenza di progetto complessiva del collegamento per carichi assiali (resistenza del singolo connettore * numero efficace)"));
     addVarToContainer( FAxRdTot );
-    connect( FAxRd, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRdTot()));
-    connect( nAxEf, SIGNAL(valueChanged(QString)), this, SLOT(setFAxRdTot()));
-    connect( FAxRdTot, SIGNAL(readOnlyChanged(bool)), this, SLOT(setFAxRdTot()));
+    connect( FAxRd, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRdTot );
+    connect( nAxEf, &DoublePlus::valueChanged, this, &TimberConnection::setFAxRdTot );
+    connect( FAxRdTot, &DoublePlus::readOnlyChanged, this, &TimberConnection::setFAxRdTot );
 }
 
 void TimberConnection::setGammaM(){
@@ -707,9 +708,9 @@ void TimberConnection::setFAxk1A(){
             ret = ( 3.6 * 1.0e-3 * pow( 1.0e-1 * m_d->timber1->gammaWk->valueNormal(), 1.5) ) * 1.0e+6;
         }
     } else if ( m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothRoundNail ||
-                m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail ||
-                m_d->connector->connectorType->valueNormal() == TimberConnector::OtherRoundNail ||
-                m_d->connector->connectorType->valueNormal() == TimberConnector::OtherSquareNail ){
+               m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail ||
+               m_d->connector->connectorType->valueNormal() == TimberConnector::OtherRoundNail ||
+               m_d->connector->connectorType->valueNormal() == TimberConnector::OtherSquareNail ){
         if( m_d->timber1 ){
             ret = (2.0e+1 * 1.0e-6 * pow( m_d->timber1->gammaWk->valueNormal() * 1.0e-1, 2.0 )) * 1.0e+6;
         }
@@ -732,9 +733,9 @@ void TimberConnection::setFAxk1B(){
 void TimberConnection::setFAxk2A(){
     double ret = 0.0;
     if ( m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothRoundNail ||
-         m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail ||
-         m_d->connector->connectorType->valueNormal() == TimberConnector::OtherRoundNail ||
-         m_d->connector->connectorType->valueNormal() == TimberConnector::OtherSquareNail ){
+        m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail ||
+        m_d->connector->connectorType->valueNormal() == TimberConnector::OtherRoundNail ||
+        m_d->connector->connectorType->valueNormal() == TimberConnector::OtherSquareNail ){
         if( m_d->timber2 ){
             ret = (2.0e+1 * 1.0e-6 * pow( m_d->timber2->gammaWk->valueNormal() * 1.0e-1, 2.0 )) * 1.0e+6;
         }
@@ -749,9 +750,9 @@ void TimberConnection::setFAxk2A(){
 void TimberConnection::setFAxk2B(){
     double ret = 0.0;
     if ( m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothRoundNail ||
-         m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail ||
-         m_d->connector->connectorType->valueNormal() == TimberConnector::OtherRoundNail ||
-         m_d->connector->connectorType->valueNormal() == TimberConnector::OtherSquareNail ){
+        m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail ||
+        m_d->connector->connectorType->valueNormal() == TimberConnector::OtherRoundNail ||
+        m_d->connector->connectorType->valueNormal() == TimberConnector::OtherSquareNail ){
         if( m_d->timber2 ){
             ret = (7.0e+1 * 1.0e-6 * pow( m_d->timber2->gammaWk->valueNormal() * 1.0e-1, 2.0 )) * 1.0e+6;
         }
@@ -768,9 +769,9 @@ void TimberConnection::setFAxRk(){
                 l = tTimber1->valueNormal() - m_d->connector->d->valueNormal();
             ret =  pow( M_PI * m_d->connector->d->valueNormal() * 1.0e+3 * l * 1.0e+3, 0.8) * fAxk1B->valueNormal() * 1.0e-6;
         } else if ( m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothRoundNail ||
-                    m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail) {
+                   m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail) {
             if( connectionType->valueNormal() == TimberConnection::TTDoubleShear ||
-                    connectionType->valueNormal() == TimberConnection::TTSingleShear  ){
+                connectionType->valueNormal() == TimberConnection::TTSingleShear  ){
                 ret = tTimber1->valueNormal() * fAxk1A->valueNormal() * m_d->connector->d->valueNormal();
                 double retAlt = tTimber2->valueNormal() * fAxk2A->valueNormal() * m_d->connector->d->valueNormal() + fAxk2B->valueNormal() * pow(m_d->connector->dHead->valueNormal(), 2.0);
                 if( retAlt < ret ){
@@ -780,9 +781,9 @@ void TimberConnection::setFAxRk(){
                 ret = tTimber1->valueNormal() * fAxk1A->valueNormal() * m_d->connector->d->valueNormal();
             }
         } else if ( m_d->connector->connectorType->valueNormal() == TimberConnector::OtherRoundNail ||
-                    m_d->connector->connectorType->valueNormal() == TimberConnector::OtherSquareNail ){
+                   m_d->connector->connectorType->valueNormal() == TimberConnector::OtherSquareNail ){
             if( connectionType->valueNormal() == TimberConnection::TTDoubleShear ||
-                    connectionType->valueNormal() == TimberConnection::TTSingleShear  ){
+                connectionType->valueNormal() == TimberConnection::TTSingleShear  ){
                 ret = tTimber1->valueNormal() * fAxk1A->valueNormal() * m_d->connector->d->valueNormal();
                 double retAlt = fAxk2B->valueNormal() * pow(m_d->connector->dHead->valueNormal(), 2.0);
                 if( retAlt < ret ){
@@ -793,8 +794,8 @@ void TimberConnection::setFAxRk(){
             }
         } else if( m_d->connector->connectorType->valueNormal() == TimberConnector::Bolt ){
             if( connectionType->valueNormal() == TimberConnection::TSDoubleShearCentralSteel ||
-                    connectionType->valueNormal() == TimberConnection::TSDoubleShearOuterSteel ||
-                    connectionType->valueNormal() == TimberConnection::TSSingleShear ){
+                connectionType->valueNormal() == TimberConnection::TSDoubleShearOuterSteel ||
+                connectionType->valueNormal() == TimberConnection::TSSingleShear ){
                 double dH = m_d->connector->dHead->valueNormal();
                 double dPlate = 12.0 * tSteel->valueNormal();
                 if( (4.0 * m_d->connector->d->valueNormal()) < dPlate ){
@@ -862,7 +863,7 @@ double TimberConnection::maxVAxApport(){
 double TimberConnection::fh0kNormal( Timber * timb ){
     if( timb ){
         if( (m_d->connector->connectorType->valueNormal() == TimberConnector::Bolt) ||  \
-                (m_d->connector->connectorType->valueNormal() == TimberConnector::Screw && m_d->connector->d->valueNormal() > 6.0e-3 ) ){
+            (m_d->connector->connectorType->valueNormal() == TimberConnector::Screw && m_d->connector->d->valueNormal() > 6.0e-3 ) ){
             return ( 1.0e+6 * 8.2e-2 * (1.0 - 10.0 * m_d->connector->d->valueNormal()) * 1.0e-1 * timb->gammaWk->valueNormal() );
         } else if( m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothRoundNail ||
                    m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail ||
@@ -884,7 +885,7 @@ double TimberConnection::fh0kNormal( Timber * timb ){
 double TimberConnection::fhAlphakNormal( Timber * timb ){
     if( timb ){
         if( (m_d->connector->connectorType->valueNormal() == TimberConnector::Bolt) ||  \
-                (m_d->connector->connectorType->valueNormal() == TimberConnector::Screw && m_d->connector->d->valueNormal() > 6.0e-3 ) ){
+            (m_d->connector->connectorType->valueNormal() == TimberConnector::Screw && m_d->connector->d->valueNormal() > 6.0e-3 ) ){
             double k90 = 1.0;
             if( m_d->timber1->timberType->valueNormal() == Timber::LVL ){
                 k90 = 1.30 + 0.015 * m_d->connector->d->valueNormal() * 1e+3;
@@ -970,7 +971,7 @@ void TimberConnection::setFVRk1B(){
             ret = 0.50 * fhAlphak1->valueNormal() * tTimber1->valueNormal() * m_d->connector->d->valueNormal();
         }
         if( (connectionType->valueNormal() == TimberConnection::TSSingleShear) ||
-                (connectionType->valueNormal() == TimberConnection::TSDoubleShearCentralSteel) ){
+            (connectionType->valueNormal() == TimberConnection::TSDoubleShearCentralSteel) ){
             ret = fhAlphak1->valueNormal() * tTimber1->valueNormal() * m_d->connector->d->valueNormal();
         }
         FVRk1B->setValueNormal( ret );
@@ -985,7 +986,7 @@ void TimberConnection::setFVRk1C(){
             if( (1.0 + b) != 0.0 && tTimber1->valueNormal() != 0.0 ){
                 double r = tTimber2->valueNormal() / tTimber1->valueNormal();
                 double johanPart = fhAlphak1->valueNormal() * tTimber1->valueNormal() * m_d->connector->d->valueNormal() / (1.0 + beta->valueNormal()) * \
-                        ( pow(b*(1.0 + 2.0 * b * (1.0 + r+ r*r) + (b*b) * (r*r)), 0.50) - b * (1.0 + r) );
+                                   ( pow(b*(1.0 + 2.0 * b * (1.0 + r+ r*r) + (b*b) * (r*r)), 0.50) - b * (1.0 + r) );
                 double axPart = FAxRk->valueNormal() / 4.0;
                 double perc = maxVAxApport();
                 if( perc * johanPart < axPart ){
@@ -1002,12 +1003,12 @@ void TimberConnection::setFVRk2A(){
     if( FVRk2A->readOnly() ){
         double ret = 0.0;
         if((connectionType->valueNormal() == TimberConnection::TTSingleShear) || \
-                (connectionType->valueNormal() == TimberConnection::TTDoubleShear)) {
+            (connectionType->valueNormal() == TimberConnection::TTDoubleShear)) {
             double b = beta->valueNormal();
             double den = fhAlphak1->valueNormal() * m_d->connector->d->valueNormal() * pow( tTimber1->valueNormal(), 2.0 );
             if( (2.0+b)!= 0.0 &&  den != 0.0 ){
                 double johanPart = 1.05 * fhAlphak1->valueNormal() * tTimber1->valueNormal() * m_d->connector->d->valueNormal() / (2.0 + b) * \
-                        ( pow( (2.0*b*(1.0+b) + 4.0*b*(2.0+b)*m_d->connector->MyRk->valueNormal() / den),0.50) - b);
+                                   ( pow( (2.0*b*(1.0+b) + 4.0*b*(2.0+b)*m_d->connector->MyRk->valueNormal() / den),0.50) - b);
                 double axPart = FAxRk->valueNormal() / 4.0;
                 double perc = maxVAxApport();
                 if( perc * johanPart < axPart ){
@@ -1017,7 +1018,7 @@ void TimberConnection::setFVRk2A(){
             }
         }
         if( (connectionType->valueNormal() == TimberConnection::TSSingleShear) || \
-                (connectionType->valueNormal() == TimberConnection::TSDoubleShearOuterSteel) ){
+            (connectionType->valueNormal() == TimberConnection::TSDoubleShearOuterSteel) ){
             double johanPart = (1.15 * pow( 2.0 * m_d->connector->MyRk->valueNormal() * fhAlphak1->valueNormal() * m_d->connector->d->valueNormal(),0.50 ) );
             double axPart = FAxRk->valueNormal() / 4.0;
             double perc = maxVAxApport();
@@ -1039,7 +1040,7 @@ void TimberConnection::setFVRk2B(){
             double den = fhAlphak1->valueNormal() * m_d->connector->d->valueNormal() * pow( tTimber2->valueNormal(), 2.0 );
             if( (1.0+2.0*b)!= 0.0 &&  den != 0.0 ){
                 double johanPart = 1.05 * fhAlphak1->valueNormal() * m_d->connector->d->valueNormal() * tTimber2->valueNormal() / (1.0 + 2.0*b) * \
-                        ( pow( (2.0*b*b*(1.0+b) + 4.0*b*(1.0+2.0*b)*m_d->connector->MyRk->valueNormal() / den),0.50) - b);
+                                   ( pow( (2.0*b*b*(1.0+b) + 4.0*b*(1.0+2.0*b)*m_d->connector->MyRk->valueNormal() / den),0.50) - b);
                 double axPart = FAxRk->valueNormal() / 4.0;
                 double perc = maxVAxApport();
                 if( perc * johanPart < axPart ){
@@ -1050,12 +1051,12 @@ void TimberConnection::setFVRk2B(){
         }
 
         if( (connectionType->valueNormal() == TimberConnection::TSSingleShear) || \
-                (connectionType->valueNormal() == TimberConnection::TSDoubleShearCentralSteel) || \
-                (connectionType->valueNormal() == TimberConnection::TSDoubleShearOuterSteel) ){
+            (connectionType->valueNormal() == TimberConnection::TSDoubleShearCentralSteel) || \
+            (connectionType->valueNormal() == TimberConnection::TSDoubleShearOuterSteel) ){
             double den = fhAlphak1->valueNormal() * m_d->connector->d->valueNormal() * pow( tTimber1->valueNormal(), 2.0 );
             if( den != 0.0 ){
                 double johanPart = fhAlphak1->valueNormal() * tTimber1->valueNormal() * m_d->connector->d->valueNormal() * \
-                        (pow( 2.0 + 4.0 * m_d->connector->MyRk->valueNormal() / den,0.50) - 1.0);
+                                   (pow( 2.0 + 4.0 * m_d->connector->MyRk->valueNormal() / den,0.50) - 1.0);
                 double axPart = FAxRk->valueNormal() / 4.0;
                 double perc = maxVAxApport();
                 if( perc * johanPart < axPart ){
@@ -1072,7 +1073,7 @@ void TimberConnection::setFVRk3(){
     if( FVRk3->readOnly() ){
         double ret = 0.0;
         if((connectionType->valueNormal() == TimberConnection::TTSingleShear) || \
-                (connectionType->valueNormal() == TimberConnection::TTDoubleShear)) {
+            (connectionType->valueNormal() == TimberConnection::TTDoubleShear)) {
             double b = beta->valueNormal();
             if( (1.0+b)!= 0.0 ){
                 double johanPart = 1.15 * pow( (4.0*b*m_d->connector->MyRk->valueNormal() * fhAlphak1->valueNormal() * m_d->connector->d->valueNormal() ) / (1.0+b),0.50 );
@@ -1219,17 +1220,17 @@ void TimberConnection::setVisibleVar(){
         fhAlphak2->setEnabled( true );
         beta->setEnabled( true );
         FVRk1A->setEnabled( true );
-        FVRk1A->setToolTip( trUtf8("EC5 (8.6a)"));
+        FVRk1A->setToolTip( tr("EC5 (8.6a)"));
         FVRk1B->setEnabled( true );
-        FVRk1B->setToolTip( trUtf8("EC5 (8.6b)"));
+        FVRk1B->setToolTip( tr("EC5 (8.6b)"));
         FVRk1C->setEnabled( true );
-        FVRk1C->setToolTip( trUtf8("EC5 (8.6c)"));
+        FVRk1C->setToolTip( tr("EC5 (8.6c)"));
         FVRk2A->setEnabled( true );
-        FVRk2A->setToolTip( trUtf8("EC5 (8.6d)"));
+        FVRk2A->setToolTip( tr("EC5 (8.6d)"));
         FVRk2B->setEnabled( true );
-        FVRk2B->setToolTip( trUtf8("EC5 (8.6e)"));
+        FVRk2B->setToolTip( tr("EC5 (8.6e)"));
         FVRk3->setEnabled( true );
-        FVRk3->setToolTip( trUtf8("EC5 (8.6f)"));
+        FVRk3->setToolTip( tr("EC5 (8.6f)"));
         break;
     }
     case TimberConnection::TTDoubleShear:{
@@ -1238,17 +1239,17 @@ void TimberConnection::setVisibleVar(){
         beta->setEnabled( true );
         tSteel->setEnabled( false );
         FVRk1A->setEnabled( true );
-        FVRk1A->setToolTip( trUtf8("EC5 (8.7g)"));
+        FVRk1A->setToolTip( tr("EC5 (8.7g)"));
         FVRk1B->setEnabled( true );
-        FVRk1B->setToolTip( trUtf8("EC5 (8.7h)"));
+        FVRk1B->setToolTip( tr("EC5 (8.7h)"));
         FVRk1C->setEnabled( false );
         FVRk1C->setToolTip( "" );
         FVRk2A->setEnabled( true );
-        FVRk2A->setToolTip( trUtf8("EC5 (8.7j)"));
+        FVRk2A->setToolTip( tr("EC5 (8.7j)"));
         FVRk2B->setEnabled( false);
         FVRk2B->setToolTip( "" );
         FVRk3->setEnabled( true );
-        FVRk3->setToolTip( trUtf8("EC5 (8.7k)"));
+        FVRk3->setToolTip( tr("EC5 (8.7k)"));
         break;
     }
     case TimberConnection::TSSingleShear:{
@@ -1257,9 +1258,9 @@ void TimberConnection::setVisibleVar(){
         beta->setEnabled( false );
         tSteel->setEnabled( true );
         FVRk1A->setEnabled( true );
-        FVRk1A->setToolTip( trUtf8("EC5 (8.9a)"));
+        FVRk1A->setToolTip( tr("EC5 (8.9a)"));
         FVRk1B->setEnabled( true );
-        FVRk1B->setToolTip( trUtf8("EC5 (8.10e)"));
+        FVRk1B->setToolTip( tr("EC5 (8.10e)"));
         FVRk1C->setEnabled( false );
         FVRk1C->setToolTip( "" );
         FVRk2A->setEnabled( true );
@@ -1275,17 +1276,17 @@ void TimberConnection::setVisibleVar(){
         fhAlphak2->setEnabled( false );
         beta->setEnabled( false );
         FVRk1A->setEnabled( false );
-        FVRk1A->setToolTip( trUtf8("EC5 (8.9a)"));
+        FVRk1A->setToolTip( tr("EC5 (8.9a)"));
         FVRk1B->setEnabled( true );
-        FVRk1B->setToolTip( trUtf8("EC5 (8.11f)"));
+        FVRk1B->setToolTip( tr("EC5 (8.11f)"));
         FVRk1C->setEnabled( false );
         FVRk1C->setToolTip( "" );
         FVRk2A->setEnabled( false );
         FVRk2A->setToolTip( "" );
         FVRk2B->setEnabled( true );
-        FVRk2B->setToolTip( trUtf8("EC5 (8.11g)"));
+        FVRk2B->setToolTip( tr("EC5 (8.11g)"));
         FVRk3->setEnabled( true );
-        FVRk3->setToolTip( trUtf8("EC5 (8.11h)"));
+        FVRk3->setToolTip( tr("EC5 (8.11h)"));
         break;
     }
     case TimberConnection::TSDoubleShearOuterSteel:{
@@ -1293,17 +1294,17 @@ void TimberConnection::setVisibleVar(){
         fhAlphak2->setEnabled( false );
         beta->setEnabled( false );
         FVRk1A->setEnabled( false );
-        FVRk1A->setToolTip( trUtf8("EC5 (8.9a)"));
+        FVRk1A->setToolTip( tr("EC5 (8.9a)"));
         FVRk1B->setEnabled( true );
-        FVRk1B->setToolTip( trUtf8("EC5 (8.12j) e (8.13l)") );
+        FVRk1B->setToolTip( tr("EC5 (8.12j) e (8.13l)") );
         FVRk1C->setEnabled( false );
         FVRk1C->setToolTip( "" );
         FVRk2A->setEnabled( true );
-        FVRk2A->setToolTip( trUtf8("EC5 (8.12k)") );
+        FVRk2A->setToolTip( tr("EC5 (8.12k)") );
         FVRk2B->setEnabled( false );
         FVRk2B->setToolTip( "" );
         FVRk3->setEnabled( true );
-        FVRk3->setToolTip( trUtf8("EC5 (8.13m)" ) );
+        FVRk3->setToolTip( tr("EC5 (8.13m)" ) );
         break;
     }
     default: {
@@ -1329,41 +1330,41 @@ void TimberConnection::setVisibleVar(){
 
 void TimberConnection::setVisibleVarConnector(){
     if( m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothRoundNail ||
-            m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail ||
-            m_d->connector->connectorType->valueNormal() == TimberConnector::OtherRoundNail ||
-            m_d->connector->connectorType->valueNormal() == TimberConnector::OtherSquareNail ){
+        m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail ||
+        m_d->connector->connectorType->valueNormal() == TimberConnector::OtherRoundNail ||
+        m_d->connector->connectorType->valueNormal() == TimberConnector::OtherSquareNail ){
         fAxk1A->setEnabled( true );
-        fAxk1A->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">Ax,k,1</span>") );
-        fAxk1A->setToolTip( trUtf8("Valore caratteristico della tensione di estrazione, legno 1 (lato infissione)"));
+        fAxk1A->setRichName( tr("f<span style=\" vertical-align:sub;\">Ax,k,1</span>") );
+        fAxk1A->setToolTip( tr("Valore caratteristico della tensione di estrazione, legno 1 (lato infissione)"));
         fAxk1B->setEnabled( false );
         fAxk1B->setRichName( "" );
         fAxk1B->setToolTip( "" );
         fAxk2A->setEnabled( false );
-        fAxk2A->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">Ax,k,2</span>") );
-        fAxk2A->setToolTip( trUtf8("Valore caratteristico della tensione di estrazione, legno 2 (lato testa del chiodo)"));
+        fAxk2A->setRichName( tr("f<span style=\" vertical-align:sub;\">Ax,k,2</span>") );
+        fAxk2A->setToolTip( tr("Valore caratteristico della tensione di estrazione, legno 2 (lato testa del chiodo)"));
         fAxk2B->setEnabled( false );
-        fAxk2B->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">head,k,2</span>") );
-        fAxk2B->setToolTip( trUtf8("Valore caratteristico della tensione di estrazione sotto la testa del chiodo, legno 2 (lato testa del chiodo)"));
+        fAxk2B->setRichName( tr("f<span style=\" vertical-align:sub;\">head,k,2</span>") );
+        fAxk2B->setToolTip( tr("Valore caratteristico della tensione di estrazione sotto la testa del chiodo, legno 2 (lato testa del chiodo)"));
     } else if( m_d->connector->connectorType->valueNormal() == TimberConnector::Bolt ){
         fAxk1A->setEnabled( true );
-        fAxk1A->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">washer,k,1</span>") );
-        fAxk1A->setToolTip( trUtf8("Valore caratteristico della tensione resistente massima sotto la rondella, legno 1"));
+        fAxk1A->setRichName( tr("f<span style=\" vertical-align:sub;\">washer,k,1</span>") );
+        fAxk1A->setToolTip( tr("Valore caratteristico della tensione resistente massima sotto la rondella, legno 1"));
         fAxk1B->setEnabled( false );
         fAxk1B->setRichName( "" );
         fAxk1B->setToolTip( "" );
         fAxk2A->setEnabled( true );
-        fAxk2A->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">washer,k,2</span>") );
-        fAxk2A->setToolTip( trUtf8("Valore caratteristico della tensione resistente massima sotto la rondella, legno 2"));
+        fAxk2A->setRichName( tr("f<span style=\" vertical-align:sub;\">washer,k,2</span>") );
+        fAxk2A->setToolTip( tr("Valore caratteristico della tensione resistente massima sotto la rondella, legno 2"));
         fAxk2B->setEnabled( false );
         fAxk2B->setRichName( "" );
         fAxk2B->setToolTip( "" );
     } else if( m_d->connector->connectorType->valueNormal() == TimberConnector::Screw ){
         fAxk1A->setEnabled( true );
-        fAxk1A->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">Ax,k,0</span>") );
-        fAxk1A->setToolTip( trUtf8("Valore caratteristico della tensione di estrazione, secondo direzione perpendicolare alle fibre di legno"));
+        fAxk1A->setRichName( tr("f<span style=\" vertical-align:sub;\">Ax,k,0</span>") );
+        fAxk1A->setToolTip( tr("Valore caratteristico della tensione di estrazione, secondo direzione perpendicolare alle fibre di legno"));
         fAxk1B->setEnabled( true );
-        fAxk1B->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">Ax,α,k</span>") );
-        fAxk1B->setToolTip( trUtf8("Valore caratteristico della tensione di estrazione, secondo direzione inclinata di alpha rispetto alle fibre di legno"));
+        fAxk1B->setRichName( tr("f<span style=\" vertical-align:sub;\">Ax,α,k</span>") );
+        fAxk1B->setToolTip( tr("Valore caratteristico della tensione di estrazione, secondo direzione inclinata di alpha rispetto alle fibre di legno"));
         fAxk2A->setEnabled( false );
         fAxk2A->setValueNormal( 0.0 );
         fAxk2A->setRichName( "" );
@@ -1377,10 +1378,10 @@ void TimberConnection::setVisibleVarConnector(){
 
 void TimberConnection::setNVEf(){
     if( m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothRoundNail ||
-            m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail ||
-            m_d->connector->connectorType->valueNormal() == TimberConnector::OtherRoundNail ||
-            m_d->connector->connectorType->valueNormal() == TimberConnector::OtherSquareNail ||
-            ((m_d->connector->connectorType->valueNormal() == TimberConnector::Screw) && (m_d->connector->d->valueNormal() <= 6.0e-3) )){
+        m_d->connector->connectorType->valueNormal() == TimberConnector::SmoothSquareNail ||
+        m_d->connector->connectorType->valueNormal() == TimberConnector::OtherRoundNail ||
+        m_d->connector->connectorType->valueNormal() == TimberConnector::OtherSquareNail ||
+        ((m_d->connector->connectorType->valueNormal() == TimberConnector::Screw) && (m_d->connector->d->valueNormal() <= 6.0e-3) )){
         double kef = 0.0;
         if( m_d->connector->predrilledHole->valueNormal() == TimberConnector::WithoutPredrilledHole ){
             if( a1->valueNormal() < (7.0 * m_d->connector->d->valueNormal()) ){
@@ -1460,7 +1461,7 @@ class TimberConnectionTypePrivate{
             val(v),
             normalStr(ns),
             str(s){
-        };
+            };
         TimberConnection::ConnectionType val;
         QString normalStr;
         QString str;
@@ -1469,11 +1470,11 @@ class TimberConnectionTypePrivate{
 public:
     TimberConnectionTypePrivate(TimberConnection::ConnectionType v):
         value(v){
-        enumList.append( enumVal( TimberConnection::TTSingleShear, "TTSingleShear", trUtf8("Legno-Legno - Piano di taglio singolo")) );
-        enumList.append( enumVal( TimberConnection::TTDoubleShear, "TTDoubleShear", trUtf8("Legno-Legno - Piano di taglio doppio")) );
-        enumList.append( enumVal( TimberConnection::TSSingleShear, "TSSingleShear", trUtf8("Legno-Acciaio - Piano di taglio singolo")) );
-        enumList.append( enumVal( TimberConnection::TSDoubleShearCentralSteel, "TSDoubleShearCentralSteel", trUtf8("Legno-Acciaio - Piano di taglio doppio - Piastra interna")) );
-        enumList.append( enumVal( TimberConnection::TSDoubleShearOuterSteel, "TSDoubleShearOuterSteel", trUtf8("Legno-Acciaio - Piano di taglio doppio - Piastre esterne")) );
+        enumList.append( enumVal( TimberConnection::TTSingleShear, "TTSingleShear", tr("Legno-Legno - Piano di taglio singolo")) );
+        enumList.append( enumVal( TimberConnection::TTDoubleShear, "TTDoubleShear", tr("Legno-Legno - Piano di taglio doppio")) );
+        enumList.append( enumVal( TimberConnection::TSSingleShear, "TSSingleShear", tr("Legno-Acciaio - Piano di taglio singolo")) );
+        enumList.append( enumVal( TimberConnection::TSDoubleShearCentralSteel, "TSDoubleShearCentralSteel", tr("Legno-Acciaio - Piano di taglio doppio - Piastra interna")) );
+        enumList.append( enumVal( TimberConnection::TSDoubleShearOuterSteel, "TSDoubleShearOuterSteel", tr("Legno-Acciaio - Piano di taglio doppio - Piastre esterne")) );
     };
     ~TimberConnectionTypePrivate(){
     };
@@ -1491,8 +1492,8 @@ public:
 };
 
 TimberConnectionType::TimberConnectionType( TimberConnection::ConnectionType tt,
-                                            const QString & nn,
-                                            bool ro):
+                                           const QString & nn,
+                                           bool ro):
     EnumPlus( nn, ro),
     m_d( new TimberConnectionTypePrivate(tt) ){
 }

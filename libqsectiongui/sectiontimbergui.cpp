@@ -122,248 +122,248 @@ SectionTimberGUI::~SectionTimberGUI() {
 
 void SectionTimberGUI::initVar(){
     m_d->beamL0y = new DoublePlus(0.0, "beamL0y", m_unitMeasure, UnitMeasure::length, false );
-    m_d->beamL0y->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">0,y</span>") );
+    m_d->beamL0y->setRichName( tr("L<span style=\" vertical-align:sub;\">0,y</span>") );
     VarPlusGUI::connectVar( m_d->beamL0y, m_d->ui->beamL0yLabel, m_d->ui->beamL0yLEdit, m_d->ui->beamL0yUMLabel );
 
     m_d->beamL0z = new DoublePlus(0.0, "beamL0z", m_unitMeasure, UnitMeasure::length );
     m_d->beamL0z->setReadOnly( true );
-    m_d->beamL0z->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">0,z</span>") );
+    m_d->beamL0z->setRichName( tr("L<span style=\" vertical-align:sub;\">0,z</span>") );
     VarPlusGUI::connectVar( m_d->beamL0z, m_d->ui->beamL0zLabel, m_d->ui->beamL0zLEdit, m_d->ui->beamL0zUMLabel, m_d->ui->beamL0ZCheckBox );
-    connect( m_d->beamL0z, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamL0z()) );
-    connect( m_d->beamL0y, SIGNAL(valueChanged(QString)), this, SLOT(setBeamL0z()) );
+    connect( m_d->beamL0z, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setBeamL0z );
+    connect( m_d->beamL0y, &DoublePlus::valueChanged, this, &SectionTimberGUI::setBeamL0z );
 
     m_d->beamL0LT = new DoublePlus(0.0, "beamL0LT", m_unitMeasure, UnitMeasure::length );
     m_d->beamL0LT->setReadOnly( true );
-    m_d->beamL0LT->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">0,LT</span>") );
+    m_d->beamL0LT->setRichName( tr("L<span style=\" vertical-align:sub;\">0,LT</span>") );
     VarPlusGUI::connectVar( m_d->beamL0LT, m_d->ui->beamL0LTLabel, m_d->ui->beamL0LTLEdit, m_d->ui->beamL0LTUMLabel, m_d->ui->beamL0LTCheckBox );
-    connect( m_d->beamL0LT, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamL0LT()) );
-    connect( m_d->beamL0y, SIGNAL(valueChanged(QString)), this, SLOT(setBeamL0LT()) );
+    connect( m_d->beamL0LT, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setBeamL0LT );
+    connect( m_d->beamL0y, &DoublePlus::valueChanged, this, &SectionTimberGUI::setBeamL0LT );
 
     m_d->lsType = new LSType( LSType::ULSFundamental, "lsType" );
-    m_d->lsType->setRichName( trUtf8("Combinazione"));
+    m_d->lsType->setRichName( tr("Combinazione"));
     VarPlusGUI::connectEnumVar( m_d->lsType, m_d->ui->LSTypeLabel, m_d->ui->LSTypeComboBox );
 
     m_d->serviceClass = new ServiceClass(ServiceClass::SC1, "serviceClass" );
-    m_d->serviceClass->setRichName( trUtf8("Classe di servizio"));
+    m_d->serviceClass->setRichName( tr("Classe di servizio"));
     VarPlusGUI::connectEnumVar( m_d->serviceClass, m_d->ui->serviceClassLabel, m_d->ui->serviceClassComboBox );
-    connect( m_d->serviceClass, SIGNAL(valueChanged(QString)), this, SLOT(setRd()) );
+    connect( m_d->serviceClass, &ServiceClass::valueChanged, this, &SectionTimberGUI::setRd );
 
     m_d->loadDurationClass = new LoadDurationClass( LoadDurationClass::permanent, "loadDurationClass" );
-    m_d->loadDurationClass->setRichName(trUtf8("Classe di durata"));
+    m_d->loadDurationClass->setRichName(tr("Classe di durata"));
     VarPlusGUI::connectEnumVar( m_d->loadDurationClass,  m_d->ui->durationClassLabel, m_d->ui->durationClassComboBox);
-    connect( m_d->loadDurationClass, SIGNAL(valueChanged(QString)), this, SLOT(setRd()) );
+    connect( m_d->loadDurationClass, &LoadDurationClass::valueChanged, this, &SectionTimberGUI::setRd );
 
     m_d->NULSMinus = new DoublePlus(0.0, "NULSMinus", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->NULSMinus->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">c,Rd</span>"));
+    m_d->NULSMinus->setRichName( tr("N<span style=\" vertical-align:sub;\">c,Rd</span>"));
     VarPlusGUI::connectVar( m_d->NULSMinus, m_d->ui->NULSMinusLabel, m_d->ui->NULSMinusLEdit, m_d->ui->NULSMinusUMLabel);
 
     m_d->NULSPlus = new DoublePlus(0.0, "NULSPlus", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->NULSPlus->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">t,Rd</span>"));
+    m_d->NULSPlus->setRichName( tr("N<span style=\" vertical-align:sub;\">t,Rd</span>"));
     m_d->NULSPlus->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->NULSPlus, m_d->ui->NULSPlusLabel, m_d->ui->NULSPlusLEdit, m_d->ui->NULSPlusUMLabel);
 
     m_d->VULS = new DoublePlus(0.0, "VULS", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->VULS->setRichName( trUtf8("V<span style=\" vertical-align:sub;\">Rd</span>"));
+    m_d->VULS->setRichName( tr("V<span style=\" vertical-align:sub;\">Rd</span>"));
     VarPlusGUI::connectVar( m_d->VULS, m_d->ui->VULSLabel, m_d->ui->VULSLEdit, m_d->ui->VULSUMLabel);
 
     m_d->MULSX = new DoublePlus(0.0, "MULSX", m_unitMeasure, UnitMeasure::loadM, true );
-    m_d->MULSX->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">T,Rd</span>"));
+    m_d->MULSX->setRichName( tr("M<span style=\" vertical-align:sub;\">T,Rd</span>"));
     VarPlusGUI::connectVar( m_d->MULSX, m_d->ui->MULSXLabel, m_d->ui->MULSXLEdit, m_d->ui->MULSXUMLabel );
 
     m_d->MULSY = new DoublePlus(0.0, "MULSY", m_unitMeasure, UnitMeasure::loadM, true );
-    m_d->MULSY->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">y,Rd</span>"));
+    m_d->MULSY->setRichName( tr("M<span style=\" vertical-align:sub;\">y,Rd</span>"));
     VarPlusGUI::connectVar( m_d->MULSY, m_d->ui->MULSYLabel, m_d->ui->MULSYLEdit, m_d->ui->MULSYUMLabel );
 
     m_d->MULSZ = new DoublePlus(0.0, "MULSZ", m_unitMeasure, UnitMeasure::loadM, true );
-    m_d->MULSZ->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">z,Rd</span>"));
+    m_d->MULSZ->setRichName( tr("M<span style=\" vertical-align:sub;\">z,Rd</span>"));
     VarPlusGUI::connectVar( m_d->MULSZ, m_d->ui->MULSZLabel, m_d->ui->MULSZLEdit, m_d->ui->MULSZUMLabel );
 
     m_d->beamlY = new DoublePlus(0.0, "beamlY", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->beamlY->setRichName( trUtf8("λ<span style=\" vertical-align:sub;\">y</span>"));
+    m_d->beamlY->setRichName( tr("λ<span style=\" vertical-align:sub;\">y</span>"));
     m_d->beamlY->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->beamlY, m_d->ui->beamlYLabel, m_d->ui->beamlYLEdit, m_d->ui->beamlYUMLabel,  m_d->ui->beamlYCheckBox );
-    connect( m_d->beamlY, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamlY()));
-    connect( m_d->beamL0y, SIGNAL(valueChanged(QString)), this, SLOT(setBeamlY()));
+    connect( m_d->beamlY, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setBeamlY );
+    connect( m_d->beamL0y, &DoublePlus::valueChanged, this, &SectionTimberGUI::setBeamlY );
 
     m_d->beamlRelY = new DoublePlus(0.0, "beamlRelY", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->beamlRelY->setRichName( trUtf8("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">y</span>"));
+    m_d->beamlRelY->setRichName( tr("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">y</span>"));
     m_d->beamlRelY->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->beamlRelY, m_d->ui->beamlRelYLabel, m_d->ui->beamlRelYLEdit, m_d->ui->beamlRelYUMLabel, m_d->ui->beamlRelYCheckBox);
-    connect( m_d->beamlRelY, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamlRelY()) );
-    connect( m_d->beamlY, SIGNAL(valueChanged(QString)), this, SLOT(setBeamlRelY()));
+    connect( m_d->beamlRelY, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setBeamlRelY );
+    connect( m_d->beamlY, &DoublePlus::valueChanged, this, &SectionTimberGUI::setBeamlRelY );
 
     m_d->kBucklY = new DoublePlus(1.0, "kBucklY", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->kBucklY->setRichName( trUtf8("k<span style=\" vertical-align:sub;\">y</span>"));
+    m_d->kBucklY->setRichName( tr("k<span style=\" vertical-align:sub;\">y</span>"));
     m_d->kBucklY->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->kBucklY, m_d->ui->beamkYLabel,  m_d->ui->beamkYLEdit, m_d->ui->beamkYUMLabel, m_d->ui->beamkYCheckBox );
-    connect( m_d->kBucklY, SIGNAL(readOnlyChanged(bool)), this, SLOT(setKBucklY()));
-    connect( m_d->beamlRelY, SIGNAL(valueChanged(QString)), this, SLOT(setKBucklY()));
+    connect( m_d->kBucklY, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setKBucklY );
+    connect( m_d->beamlRelY, &DoublePlus::valueChanged, this, &SectionTimberGUI::setKBucklY );
 
     m_d->kCrBucklY = new DoublePlus(1.0, "kCrBucklY", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->kCrBucklY->setRichName( trUtf8("k<span style=\" vertical-align:sub;\">cr,y</span>"));
+    m_d->kCrBucklY->setRichName( tr("k<span style=\" vertical-align:sub;\">cr,y</span>"));
     m_d->kCrBucklY->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->kCrBucklY, m_d->ui->beamkCritYLabel, m_d->ui->beamkCritYLEdit, m_d->ui->beamkCritYUMLabel, m_d->ui->beamkCritYCheckBox );
-    connect( m_d->kCrBucklY, SIGNAL(readOnlyChanged(bool)), this, SLOT(setKCrBucklY()));
-    connect( m_d->kBucklY, SIGNAL(valueChanged(QString)), this, SLOT(setKCrBucklY()));
-    connect( m_d->beamlRelY, SIGNAL(valueChanged(QString)), this, SLOT(setKCrBucklY()));
+    connect( m_d->kCrBucklY, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setKCrBucklY );
+    connect( m_d->kBucklY, &DoublePlus::valueChanged, this, &SectionTimberGUI::setKCrBucklY );
+    connect( m_d->beamlRelY, &DoublePlus::valueChanged, this, &SectionTimberGUI::setKCrBucklY );
 
     m_d->NULSBucklY = new DoublePlus(0.0, "NULSBucklY", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->NULSBucklY->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">b,Rd,y</span>"));
+    m_d->NULSBucklY->setRichName( tr("N<span style=\" vertical-align:sub;\">b,Rd,y</span>"));
     m_d->NULSBucklY->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->NULSBucklY, m_d->ui->beamNULSBucklYLabel, m_d->ui->beamNULSBucklYLEdit, m_d->ui->beamNULSBucklYUMLabel );
-    connect( m_d->NULSBucklY, SIGNAL(readOnlyChanged(bool)), this, SLOT(setNULSBucklY()) );
-    connect( m_d->kCrBucklY, SIGNAL(valueChanged(QString)), this, SLOT(setNULSBucklY()) );
+    connect( m_d->NULSBucklY, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setNULSBucklY );
+    connect( m_d->kCrBucklY, &DoublePlus::valueChanged, this, &SectionTimberGUI::setNULSBucklY );
 
     m_d->beamlZ  = new DoublePlus(0.0, "beamlZ", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->beamlZ->setRichName( trUtf8("λ<span style=\" vertical-align:sub;\">z</span>"));
+    m_d->beamlZ->setRichName( tr("λ<span style=\" vertical-align:sub;\">z</span>"));
     m_d->beamlZ->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->beamlZ, m_d->ui->beamlZLabel, m_d->ui->beamlZLEdit, m_d->ui->beamlZUMLabel, m_d->ui->beamlZCheckBox);
-    connect( m_d->beamlZ, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamlZ()) );
-    connect( m_d->beamL0z, SIGNAL(valueChanged(QString)), this, SLOT(setBeamlZ()));
+    connect( m_d->beamlZ, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setBeamlZ );
+    connect( m_d->beamL0z, &DoublePlus::valueChanged, this, &SectionTimberGUI::setBeamlZ );
 
     m_d->beamlRelZ  = new DoublePlus(0.0, "beamlRelZ", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->beamlRelZ->setRichName( trUtf8("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">z</span>"));
+    m_d->beamlRelZ->setRichName( tr("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">z</span>"));
     m_d->beamlRelZ->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->beamlRelZ, m_d->ui->beamlRelZLabel, m_d->ui->beamlRelZLEdit, m_d->ui->beamlRelZUMLabel, m_d->ui->beamlRelZCheckBox );
-    connect( m_d->beamlRelZ, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamlRelZ()) );
-    connect( m_d->beamlZ, SIGNAL(valueChanged(QString)), this, SLOT(setBeamlRelZ()));
+    connect( m_d->beamlRelZ, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setBeamlRelZ );
+    connect( m_d->beamlZ, &DoublePlus::valueChanged, this, &SectionTimberGUI::setBeamlRelZ );
 
     m_d->kBucklZ = new DoublePlus(1.0, "kBucklZ", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->kBucklZ->setRichName( trUtf8("k<span style=\" vertical-align:sub;\">z</span>"));
+    m_d->kBucklZ->setRichName( tr("k<span style=\" vertical-align:sub;\">z</span>"));
     m_d->kBucklZ->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->kBucklZ, m_d->ui->beamkZLabel, m_d->ui->beamkZLEdit, m_d->ui->beamkZUMLabel,m_d->ui->beamkZCheckBox );
-    connect( m_d->kBucklZ, SIGNAL(readOnlyChanged(bool)), this, SLOT(setKBucklZ()));
-    connect( m_d->beamlRelZ, SIGNAL(valueChanged(QString)), this, SLOT(setKBucklZ()));
+    connect( m_d->kBucklZ, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setKBucklZ );
+    connect( m_d->beamlRelZ, &DoublePlus::valueChanged, this, &SectionTimberGUI::setKBucklZ );
 
     m_d->kCrBucklZ = new DoublePlus(1.0, "kCrBucklZ", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->kCrBucklZ->setRichName( trUtf8("k<span style=\" vertical-align:sub;\">cr,z</span>"));
+    m_d->kCrBucklZ->setRichName( tr("k<span style=\" vertical-align:sub;\">cr,z</span>"));
     m_d->kCrBucklZ->setReadOnly( true );
     VarPlusGUI::connectVar(m_d->kCrBucklZ, m_d->ui->beamkCritZLabel, m_d->ui->beamkCritZLEdit,  m_d->ui->beamkCritZUMLabel, m_d->ui->beamkCritZCheckBox);
-    connect( m_d->kCrBucklZ, SIGNAL(readOnlyChanged(bool)), this, SLOT(setKCrBucklZ()));
-    connect( m_d->kBucklZ, SIGNAL(valueChanged(QString)), this, SLOT(setKCrBucklZ()));
-    connect( m_d->beamlRelZ, SIGNAL(valueChanged(QString)), this, SLOT(setKCrBucklZ()));
+    connect( m_d->kCrBucklZ, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setKCrBucklZ );
+    connect( m_d->kBucklZ, &DoublePlus::valueChanged, this, &SectionTimberGUI::setKCrBucklZ );
+    connect( m_d->beamlRelZ, &DoublePlus::valueChanged, this, &SectionTimberGUI::setKCrBucklZ );
 
     m_d->NULSBucklZ = new DoublePlus(0.0, "NULSBucklZ", m_unitMeasure, UnitMeasure::loadF );
-    m_d->NULSBucklZ->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">b,Rd,z</span>"));
+    m_d->NULSBucklZ->setRichName( tr("N<span style=\" vertical-align:sub;\">b,Rd,z</span>"));
     m_d->NULSBucklZ->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->NULSBucklZ, m_d->ui->beamNULSBucklZLabel, m_d->ui->beamNULSBucklZLEdit, m_d->ui->beamNULSBucklZUMLabel);
-    connect( m_d->kCrBucklZ, SIGNAL(valueChanged(QString)), this, SLOT(setNULSBucklZ()) );
+    connect( m_d->kCrBucklZ, &DoublePlus::valueChanged, this, &SectionTimberGUI::setNULSBucklZ );
 
     m_d->beamlRelLTY  = new DoublePlus(0.0, "beamlRelLTY", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->beamlRelLTY->setRichName( trUtf8("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">LT,y</span>"));
+    m_d->beamlRelLTY->setRichName( tr("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">LT,y</span>"));
     m_d->beamlRelLTY->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->beamlRelLTY, m_d->ui->beamlRelLTYLabel, m_d->ui->beamlRelLTYLEdit, m_d->ui->beamlRelLTYUMLabel, m_d->ui->beamlRelLTYCheckBox);
-    connect( m_d->beamlRelLTY, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamlRelLTY()));
-    connect( m_d->beamL0LT, SIGNAL(valueChanged(QString)), this, SLOT(setBeamlRelLTY()));
+    connect( m_d->beamlRelLTY, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setBeamlRelLTY );
+    connect( m_d->beamL0LT, &DoublePlus::valueChanged, this, &SectionTimberGUI::setBeamlRelLTY );
 
     m_d->kCrBucklLTY = new DoublePlus(1.0, "kCrBucklLTY", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->kCrBucklLTY->setRichName( trUtf8("k<span style=\" vertical-align:sub;\">cr,LT,y</span>"));
+    m_d->kCrBucklLTY->setRichName( tr("k<span style=\" vertical-align:sub;\">cr,LT,y</span>"));
     m_d->kCrBucklLTY->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->kCrBucklLTY, m_d->ui->beamkCritLTYLabel, m_d->ui->beamkCritLTYLEdit, m_d->ui->beamkCritLTYUMLabel, m_d->ui->beamkCritLTYCheckBox);
-    connect( m_d->kCrBucklLTY, SIGNAL(readOnlyChanged(bool)), this, SLOT(setKCrBucklLTY()));
-    connect( m_d->beamlRelLTY, SIGNAL(valueChanged(QString)), this, SLOT(setKCrBucklLTY()));
+    connect( m_d->kCrBucklLTY, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setKCrBucklLTY );
+    connect( m_d->beamlRelLTY, &DoublePlus::valueChanged, this, &SectionTimberGUI::setKCrBucklLTY );
 
     m_d->MULSBucklLTY = new DoublePlus(0.0, "MULSBucklLTY", m_unitMeasure, UnitMeasure::loadM );
-    m_d->MULSBucklLTY->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">b,Rd,LT,y</span>"));
+    m_d->MULSBucklLTY->setRichName( tr("M<span style=\" vertical-align:sub;\">b,Rd,LT,y</span>"));
     m_d->MULSBucklLTY->setReadOnly( true );
     VarPlusGUI::connectVar(m_d->MULSBucklLTY,  m_d->ui->beamMULSBucklLTYLabel, m_d->ui->beamMULSBucklLTYLEdit, m_d->ui->beamMULSBucklLTYUMLabel);
-    connect( m_d->MULSBucklLTY, SIGNAL(readOnlyChanged(bool)), this, SLOT(setMULSBucklLTY()));
-    connect( m_d->kCrBucklLTY, SIGNAL(valueChanged(QString)), this, SLOT(setMULSBucklLTY()));
+    connect( m_d->MULSBucklLTY, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setMULSBucklLTY );
+    connect( m_d->kCrBucklLTY, &DoublePlus::valueChanged, this, &SectionTimberGUI::setMULSBucklLTY );
 
     m_d->beamlRelLTZ  = new DoublePlus(0.0, "beamlRelLTZ", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->beamlRelLTZ->setRichName( trUtf8("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">LT,z</span>"));
+    m_d->beamlRelLTZ->setRichName( tr("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">LT,z</span>"));
     m_d->beamlRelLTZ->setReadOnly( true );
     VarPlusGUI::connectVar(m_d->beamlRelLTZ, m_d->ui->beamlRelLTZLabel, m_d->ui->beamlRelLTZLEdit, m_d->ui->beamlRelLTZUMLabel, m_d->ui->beamlRelLTZCheckBox);
-    connect( m_d->beamlRelLTZ, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamlRelLTZ()));
-    connect( m_d->beamL0LT, SIGNAL(valueChanged(QString)), this, SLOT(setBeamlRelLTZ()));
+    connect( m_d->beamlRelLTZ, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setBeamlRelLTZ );
+    connect( m_d->beamL0LT, &DoublePlus::valueChanged, this, &SectionTimberGUI::setBeamlRelLTZ );
 
     m_d->kCrBucklLTZ = new DoublePlus(1.0, "kCrBucklLTZ", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->kCrBucklLTZ->setRichName( trUtf8("k<span style=\" vertical-align:sub;\">cr,LT,z</span>"));
+    m_d->kCrBucklLTZ->setRichName( tr("k<span style=\" vertical-align:sub;\">cr,LT,z</span>"));
     m_d->kCrBucklLTZ->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->kCrBucklLTZ, m_d->ui->beamkCritLTZLabel, m_d->ui->beamkCritLTZLEdit, m_d->ui->beamkCritLTZUMLabel, m_d->ui->beamkCritLTZCheckBox);
-    connect( m_d->kCrBucklLTZ, SIGNAL(readOnlyChanged(bool)), this, SLOT(setKCrBucklLTZ()));
-    connect( m_d->beamlRelLTZ, SIGNAL(valueChanged(QString)), this, SLOT(setKCrBucklLTZ()));
+    connect( m_d->kCrBucklLTZ, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setKCrBucklLTZ );
+    connect( m_d->beamlRelLTZ, &DoublePlus::valueChanged, this, &SectionTimberGUI::setKCrBucklLTZ );
 
     m_d->MULSBucklLTZ = new DoublePlus(0.0, "MULSBucklLTZ", m_unitMeasure, UnitMeasure::loadM, true );
-    m_d->MULSBucklLTZ->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">b,Rd,LT,z</span>"));
+    m_d->MULSBucklLTZ->setRichName( tr("M<span style=\" vertical-align:sub;\">b,Rd,LT,z</span>"));
     m_d->MULSBucklLTZ->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->MULSBucklLTZ, m_d->ui->beamMULSBucklLTZLabel, m_d->ui->beamMULSBucklLTZLEdit, m_d->ui->beamMULSBucklLTZUMLabel );
-    connect( m_d->MULSBucklLTZ, SIGNAL(readOnlyChanged(bool)), this, SLOT(setMULSBucklLTZ()));
-    connect( m_d->kCrBucklLTZ, SIGNAL(valueChanged(QString)), this, SLOT(setMULSBucklLTZ()));
+    connect( m_d->MULSBucklLTZ, &DoublePlus::readOnlyChanged, this, &SectionTimberGUI::setMULSBucklLTZ );
+    connect( m_d->kCrBucklLTZ, &DoublePlus::valueChanged, this, &SectionTimberGUI::setMULSBucklLTZ );
 
     m_d->NSd = new DoublePlus(0.0, "NSd", m_unitMeasure, UnitMeasure::loadF );
-    m_d->NSd->setRichName( trUtf8("N"));
+    m_d->NSd->setRichName( tr("N"));
     m_d->NSd->setReadOnly( false );
     VarPlusGUI::connectVar(m_d->NSd, m_d->ui->NSdLabel, m_d->ui->NSdLEdit, m_d->ui->NSdUMLabel);
 
     m_d->VySd = new DoublePlus(0.0, "VySd", m_unitMeasure, UnitMeasure::loadF );
     m_d->VySd->setReadOnly( false );
-    m_d->VySd->setRichName( trUtf8("V<span style=\" vertical-align:sub;\">y</span>"));
+    m_d->VySd->setRichName( tr("V<span style=\" vertical-align:sub;\">y</span>"));
     VarPlusGUI::connectVar( m_d->VySd, m_d->ui->VySdLabel, m_d->ui->VySdLEdit, m_d->ui->VySdUMLabel );
 
     m_d->VzSd = new DoublePlus(0.0, "VzSd", m_unitMeasure, UnitMeasure::loadF );
     m_d->VzSd->setReadOnly( false );
-    m_d->VzSd->setRichName( trUtf8("V<span style=\" vertical-align:sub;\">z</span>"));
+    m_d->VzSd->setRichName( tr("V<span style=\" vertical-align:sub;\">z</span>"));
     VarPlusGUI::connectVar( m_d->VzSd, m_d->ui->VzSdLabel, m_d->ui->VzSdLEdit, m_d->ui->VzSdUMLabel );
 
     m_d->cenMSd = new Point2DPlus( "cenMSd", "yMSd", 0.0, "zMSd", 0.0, m_unitMeasure, UnitMeasure::sectL);
-    m_d->cenMSd->y->setRichName( trUtf8("y<span style=\" vertical-align:sub;\">M</span>"));
+    m_d->cenMSd->y->setRichName( tr("y<span style=\" vertical-align:sub;\">M</span>"));
     m_d->cenMSd->y->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->cenMSd->y, m_d->ui->yCenMSdLabel, m_d->ui->yCenMSdLEdit, m_d->ui->yCenMSdUMLabel, m_d->ui->yCenMSdCheckBox );
-    m_d->cenMSd->z->setRichName( trUtf8("z<span style=\" vertical-align:sub;\">M</span>"));
+    m_d->cenMSd->z->setRichName( tr("z<span style=\" vertical-align:sub;\">M</span>"));
     m_d->cenMSd->z->setReadOnly( true );
     VarPlusGUI::connectVar( m_d->cenMSd->z, m_d->ui->zCenMSdLabel, m_d->ui->zCenMSdLEdit, m_d->ui->zCenMSdUMLabel, m_d->ui->zCenMSdCheckBox );
 
     m_d->MxSd = new DoublePlus(0.0, "MxSd", m_unitMeasure, UnitMeasure::loadM );
     m_d->MxSd->setReadOnly( false );
-    m_d->MxSd->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">T</span>"));
+    m_d->MxSd->setRichName( tr("M<span style=\" vertical-align:sub;\">T</span>"));
     VarPlusGUI::connectVar( m_d->MxSd, m_d->ui->MxSdLabel, m_d->ui->MxSdLEdit, m_d->ui->MxSdUMLabel );
 
     m_d->MySd = new DoublePlus(0.0, "MySd", m_unitMeasure, UnitMeasure::loadM );
     m_d->MySd->setReadOnly( false );
-    m_d->MySd->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">y</span>"));
+    m_d->MySd->setRichName( tr("M<span style=\" vertical-align:sub;\">y</span>"));
     VarPlusGUI::connectVar( m_d->MySd, m_d->ui->MySdLabel, m_d->ui->MySdLEdit, m_d->ui->MySdUMLabel );
 
     m_d->MzSd = new DoublePlus(0.0, "MzSd", m_unitMeasure, UnitMeasure::loadM );
     m_d->MzSd->setReadOnly( false );
-    m_d->MzSd->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">z</span>"));
+    m_d->MzSd->setRichName( tr("M<span style=\" vertical-align:sub;\">z</span>"));
     VarPlusGUI::connectVar( m_d->MzSd, m_d->ui->MzSdLabel, m_d->ui->MzSdLEdit, m_d->ui->MzSdUMLabel );
 
     m_d->resultSd = new DoublePlus(0.0, "resultSd", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->resultSd->setRichName( trUtf8("Risultato"));
+    m_d->resultSd->setRichName( tr("Risultato"));
     m_d->resultSd->setReadOnly( false );
     VarPlusGUI::connectVar( m_d->resultSd, m_d->ui->resultSdLabel, m_d->ui->resultSdLEdit );
 
-    connect( m_d->ui->ULSVerifyPButton, SIGNAL(clicked()), this, SLOT(verifyULS()));
+    connect( m_d->ui->ULSVerifyPButton, &QPushButton::clicked, this, &SectionTimberGUI::verifyULS );
 
     // DataSet
 
     m_d->dataSetLSType = new LSType( LSType::ULSFundamental, "dataSetLSType" );
-    m_d->dataSetLSType->setRichName( trUtf8("Combinazione"));
+    m_d->dataSetLSType->setRichName( tr("Combinazione"));
     VarPlusGUI::connectEnumVar( m_d->dataSetLSType, m_d->ui->dataSetLSTypeLabel, m_d->ui->dataSetLSTypeComboBox );
 
     m_d->dataSetServiceClass = new ServiceClass(ServiceClass::SC1, "dataSetServiceClass" );
-    m_d->dataSetServiceClass->setRichName( trUtf8("Classe di servizio"));
+    m_d->dataSetServiceClass->setRichName( tr("Classe di servizio"));
     VarPlusGUI::connectEnumVar( m_d->dataSetServiceClass, m_d->ui->dataSetServiceClassLabel, m_d->ui->dataSetServiceClassComboBox );
 
     m_d->dataSetLoadDurationClass = new LoadDurationClass( LoadDurationClass::permanent, "dataSetLoadDurationClass" );
-    m_d->dataSetLoadDurationClass->setRichName(trUtf8("Classe di durata"));
+    m_d->dataSetLoadDurationClass->setRichName(tr("Classe di durata"));
     VarPlusGUI::connectEnumVar( m_d->dataSetLoadDurationClass, m_d->ui->dataSetDurationClassLabel, m_d->ui->dataSetDurationClassComboBox );
 
     m_d->dataSetModel = new SectionTimberDataSetModel( m_unitMeasure, m_d->dataSetLSType, m_d->dataSetServiceClass, m_d->dataSetLoadDurationClass, m_d->kCrBucklY, m_d->kCrBucklZ, m_d->kCrBucklLTY, m_d->kCrBucklLTZ );
     m_d->ui->dataSetTableView->setModel( m_d->dataSetModel );
-    connect( m_d->ui->dataSetClearPButton, SIGNAL(clicked()), this, SLOT(dataSetClear()));
-    connect( m_d->ui->dataSetLoadFromFilePButton, SIGNAL(clicked()), this, SLOT(dataSetLoadFromFile()));
-    connect( m_d->ui->dataSetVerifyULSAllPButton, SIGNAL(clicked()), this, SLOT(dataSetVerifyULSAll()));
-    connect( m_d->ui->dataSetFromFormToTablePButton, SIGNAL(clicked()), this, SLOT(dataSetFromGUIToTable()));
-    connect( m_d->ui->dataSetFromTableToFormPButton, SIGNAL(clicked()), this, SLOT(dataSetFromTableToGUI()));
+    connect( m_d->ui->dataSetClearPButton, &QPushButton::clicked, this, &SectionTimberGUI::dataSetClear );
+    connect( m_d->ui->dataSetLoadFromFilePButton, &QPushButton::clicked, this, &SectionTimberGUI::dataSetLoadFromFile );
+    connect( m_d->ui->dataSetVerifyULSAllPButton, &QPushButton::clicked, this, &SectionTimberGUI::dataSetVerifyULSAll );
+    connect( m_d->ui->dataSetFromFormToTablePButton, &QPushButton::clicked, this, &SectionTimberGUI::dataSetFromGUIToTable );
+    connect( m_d->ui->dataSetFromTableToFormPButton, &QPushButton::clicked, this, &SectionTimberGUI::dataSetFromTableToGUI );
 
     // SSBeam
     m_d->SSBeamLoadModel = new LoadComplTableModel( m_unitMeasure );
     m_d->ui->SSBeamLoadTableView->setItemDelegate( new LoadComplTableDelegate(m_d->ui->SSBeamLoadTableView));
     m_d->ui->SSBeamLoadTableView->setModel( m_d->SSBeamLoadModel );
-    connect( m_d->ui->SSBeamLoadAddPButton, SIGNAL(clicked()), this, SLOT(SSBeamAddLoad()));
-    connect( m_d->ui->SSBeamLoadRemovePButton, SIGNAL(clicked()), this, SLOT(SSBeamRemoveLoad()));
+    connect( m_d->ui->SSBeamLoadAddPButton, &QPushButton::clicked, this, &SectionTimberGUI::SSBeamAddLoad );
+    connect( m_d->ui->SSBeamLoadRemovePButton, &QPushButton::clicked, this, &SectionTimberGUI::SSBeamRemoveLoad );
 
     m_d->ssBeamTimber = new SSBeamTimber( m_unitMeasure, m_d->section );
     VarPlusGUI::connectVar( m_d->ssBeamTimber->alpha, m_d->ui->SSBeamAlphaLabel, m_d->ui->SSBeamAlphaLEdit, m_d->ui->SSBeamAlphaUMLabel, m_d->ui->SSBeamAlphaCheckBox );
@@ -601,7 +601,7 @@ void SectionTimberGUI::dataSetLoadFromFile(){
         QFile file(fileName);
 
         if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            QMessageBox::warning( this, trUtf8("QStruct"), trUtf8("Non riesco ad aprire il file file %1:\n%2.").arg(fileName).arg(file.errorString()));
+            QMessageBox::warning( this, tr("QStruct"), tr("Non riesco ad aprire il file file %1:\n%2.").arg(fileName).arg(file.errorString()));
             return;
         }
         m_d->dataSetModel->clear();
@@ -699,10 +699,10 @@ void SectionTimberGUI::setSection(Section * s){
         VarPlusGUI::disconnectVar( m_d->ui->khzLabel, m_d->ui->khzLEdit, m_d->ui->khzUMLabel, m_d->ui->khzCheckBox );
         VarPlusGUI::disconnectVar( m_d->ui->kshLabel, m_d->ui->kshLEdit, m_d->ui->kshUMLabel, m_d->ui->kshCheckBox );
 
-        disconnect( m_d->section->G->y, SIGNAL(valueChanged(QString)), this, SLOT(setYCenMSd()));
-        disconnect( m_d->section->G->z, SIGNAL(valueChanged(QString)), this, SLOT(setZCenMSd()));
+        disconnect( m_d->section->G->y, &DoublePlus::valueChanged, this, &SectionTimberGUI::setYCenMSd );
+        disconnect( m_d->section->G->z, &DoublePlus::valueChanged, this, &SectionTimberGUI::setZCenMSd );
 
-        disconnect(m_d->section, SIGNAL(sectionChanged()), this, SLOT(setRd()) );
+        disconnect(m_d->section, &SectionTimber::sectionChanged, this, &SectionTimberGUI::setRd );
 
         disconnect( m_materialComboBox, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionGUI::setMaterialFromComboBox );
         m_materialComboBox->setCurrentIndex( -1 );
@@ -744,10 +744,10 @@ void SectionTimberGUI::setSection(Section * s){
         }
         connect( m_materialComboBox, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionGUI::setMaterialFromComboBox );
 
-        connect( m_d->section->G->y, SIGNAL(valueChanged(QString)), this, SLOT(setYCenMSd()));
-        connect( m_d->section->G->z, SIGNAL(valueChanged(QString)), this, SLOT(setZCenMSd()));
+        connect( m_d->section->G->y, &DoublePlus::valueChanged, this, &SectionTimberGUI::setYCenMSd );
+        connect( m_d->section->G->z, &DoublePlus::valueChanged, this, &SectionTimberGUI::setZCenMSd );
 
-        connect(m_d->section, SIGNAL(sectionChanged()), this, SLOT(setRd()) );
+        connect(m_d->section, &SectionTimber::sectionChanged, this, &SectionTimberGUI::setRd );
 
         setRd();
     }

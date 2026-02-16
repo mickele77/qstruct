@@ -21,7 +21,7 @@ void QLabelUnitMeasure::setVar(VarPlus *v) {
 }
 
 void QLabelUnitMeasure::updateText()  {
-    if( m_var ){
+    if( m_var != nullptr ){
         if( m_var->unitMeasurePointer() != NULL ){
             setText( QString("[%1]").arg(m_var->unitMeasurePointer()->richString( m_var->unitMeasureValue() )) );
         } else {
@@ -33,28 +33,28 @@ void QLabelUnitMeasure::updateText()  {
 }
 
 void QLabelUnitMeasure::resetVar() {
-    if( m_var ){
+    if( m_var != nullptr ){
         m_var = 0;
         clear();
     }
 }
 
 void QLabelUnitMeasure::connectVar() {
-    if( m_var ){
-        connect( m_var, SIGNAL(unitMeasureRichStringChanged(QString)), this, SLOT(updateText()) );
-        connect( m_var, SIGNAL(destroyed()), this, SLOT(resetVar()) );
+    if( m_var != nullptr ){
+        connect( m_var, &VarPlus::unitMeasureRichStringChanged, this, &QLabelUnitMeasure::updateText );
+        connect( m_var, &VarPlus::destroyed, this, &QLabelUnitMeasure::resetVar );
         setVisible( m_var->enabled() );
-        connect( m_var, SIGNAL(enabledChanged(bool)), this, SLOT(setVisible(bool)) );
+        connect( m_var, &VarPlus::enabledChanged, this, &QLabelUnitMeasure::setVisible );
         updateText();
     }
 }
 
 void QLabelUnitMeasure::disconnectVar() {
-    if( m_var ){
-        disconnect( m_var, SIGNAL(unitMeasureRichStringChanged(QString)), this, SLOT(updateText()) );
-        disconnect( m_var, SIGNAL(destroyed()), this, SLOT(resetVar()) );
-        disconnect( m_var, SIGNAL(enabledChanged(bool)), this, SLOT(setVisible(bool)) );
-        m_var = 0;
+    if( m_var != nullptr ){
+        disconnect( m_var, &VarPlus::unitMeasureRichStringChanged, this, &QLabelUnitMeasure::updateText );
+        disconnect( m_var, &VarPlus::destroyed, this, &QLabelUnitMeasure::resetVar );
+        disconnect( m_var, &VarPlus::enabledChanged, this, &QLabelUnitMeasure::setVisible );
+        m_var = nullptr;
         clear();
     }
 }

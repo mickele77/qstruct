@@ -19,6 +19,7 @@
 #ifndef RETAININGWALLQSCOMBINATIONGUIPRIVATE_H
 #define RETAININGWALLQSCOMBINATIONGUIPRIVATE_H
 
+#include "soilgui_export.h"
 #include "varpluscontainer.h"
 
 class Point2DPlus;
@@ -26,7 +27,7 @@ class DoublePlus;
 class BoolPlus;
 class Point2DPlus;
 
-class RetainingWallQSCombinationGUIPrivate: public VarPlusContainer  {
+class EXPORT_SOILGUI_LIB_OPT RetainingWallQSCombinationGUIPrivate: public VarPlusContainer  {
 private:
     void initVar();
 

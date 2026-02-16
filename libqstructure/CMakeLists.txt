@@ -1,6 +1,10 @@
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+IF( BUILD_SHARED_LIBS AND WIN32 )
+  add_definitions( -DBUILD_STRUCTURE_LIB )
+ENDIF( BUILD_SHARED_LIBS AND WIN32 )
+
 # Find the required modules
 find_package(Qt5 COMPONENTS Core REQUIRED)
 
@@ -64,6 +68,7 @@ include_directories(
     ../libqeasycncrgui
     ../libqeasy
     ../libqeasygui
+    ../libglviewer
 )
 
 # Use required libraries
@@ -84,5 +89,6 @@ target_link_libraries(
     qfem2dgui
     qtimberconnection
     qtimberconnectiongui
+    glviewer
     Qt5::Core
 )

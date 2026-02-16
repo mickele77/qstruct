@@ -206,7 +206,7 @@ BoolPlus * Element::vertexConnection( int vert, int ind ){
 void Element::createVertexModel( VertexModel * vm ){
     if( m_vertexModel == NULL ){
         m_vertexModel = new ElementVertexModel( vm, this);
-        connect( m_vertexModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(updateQGraphicsItem()));
+        connect( m_vertexModel, &ElementVertexModel::dataChanged, this, &Element::updateQGraphicsItem );
     }
 }
 

@@ -21,6 +21,7 @@
 
 class Beam;
 
+#include "femgui_export.h"
 #include <QWidget>
 
 class BeamDeformationGUIPrivate;
@@ -37,7 +38,7 @@ class BeamDeformationGUIPrivate;
 *
 */
 
-class BeamDeformationGUI : public QWidget
+class EXPORT_FEMGUI_LIB_OPT BeamDeformationGUI : public QWidget
 {
     Q_OBJECT
     

@@ -38,11 +38,11 @@ public:
 
     LoadDurationClassPrivate(LoadDurationClass::Class tt):
         value(tt){
-        enumList.append( LoadDurationClassEnumVal(LoadDurationClass::permanent, "permanent", trUtf8("permanente")) );
-        enumList.append( LoadDurationClassEnumVal(LoadDurationClass::longTerm, "longTerm", trUtf8("lunga durata")) );
-        enumList.append( LoadDurationClassEnumVal(LoadDurationClass::mediumTerm, "mediumTerm", trUtf8("media durata")) );
-        enumList.append( LoadDurationClassEnumVal(LoadDurationClass::shortTerm, "shortTerm", trUtf8("breve durata")) );
-        enumList.append( LoadDurationClassEnumVal(LoadDurationClass::instantaneous, "instantaneous", trUtf8("istantanea")) );
+        enumList.append( LoadDurationClassEnumVal(LoadDurationClass::permanent, "permanent", tr("permanente")) );
+        enumList.append( LoadDurationClassEnumVal(LoadDurationClass::longTerm, "longTerm", tr("lunga durata")) );
+        enumList.append( LoadDurationClassEnumVal(LoadDurationClass::mediumTerm, "mediumTerm", tr("media durata")) );
+        enumList.append( LoadDurationClassEnumVal(LoadDurationClass::shortTerm, "shortTerm", tr("breve durata")) );
+        enumList.append( LoadDurationClassEnumVal(LoadDurationClass::instantaneous, "instantaneous", tr("istantanea")) );
     };
     int valueIndex(){
         for( int i=0; i < enumList.size(); ++i){
@@ -74,15 +74,15 @@ int LoadDurationClass::nVal(){
 QString  LoadDurationClass::valStr( int i ){
     switch( i ){
     case 0:
-        return trUtf8("permanente");
+        return tr("permanente");
     case 1:
-        return trUtf8("lunga durata") ;
+        return tr("lunga durata") ;
     case 2:
-        return trUtf8("media durata");
+        return tr("media durata");
     case 3:
-        return trUtf8("breve durata");
+        return tr("breve durata");
     case 4:
-        return trUtf8("istantanea");
+        return tr("istantanea");
     default:
         return QString();
     }

@@ -52,12 +52,12 @@ RetainingWallGUI::RetainingWallGUI(UnitMeasure * ump, SoilModel * soilModel, QWi
 
     setVar();
 
-    connect( m_d->ui->overturningPushButton, SIGNAL(clicked()), this, SLOT(calculateOverTurning()));
-    connect( m_d->ui->EQoverturningPushButton, SIGNAL(clicked()), this, SLOT(calculateEQOverTurning()));
-    connect( m_d->ui->A1PushButton, SIGNAL(clicked()), this, SLOT(calculateA1()));
+    connect( m_d->ui->overturningPushButton, &QPushButton::clicked, this, &RetainingWallGUI::calculateOverTurning );
+    connect( m_d->ui->EQoverturningPushButton, &QPushButton::clicked, this, &RetainingWallGUI::calculateEQOverTurning );
+    connect( m_d->ui->A1PushButton, &QPushButton::clicked, this, &RetainingWallGUI::calculateA1 );
 
-    connect( m_d->ui->overTurningCopyClipPButton, SIGNAL(clicked()), this, SLOT(overTurningCopyClip()));
-    connect( m_d->ui->EQoverturningCopyClipPButton, SIGNAL(clicked()), this, SLOT(EQOverTurningCopyClip()));
+    connect( m_d->ui->overTurningCopyClipPButton, &QPushButton::clicked, this, &RetainingWallGUI::overTurningCopyClip );
+    connect( m_d->ui->EQoverturningCopyClipPButton, &QPushButton::clicked, this, &RetainingWallGUI::EQOverTurningCopyClip );
 }
 
 RetainingWallGUI::~RetainingWallGUI() {
@@ -192,10 +192,10 @@ void RetainingWallGUI::setRetainingWall( RetainingWall * wall ) {
             VarPlusGUI::disconnectVar( m_d->ui->counterfortHLabel, m_d->ui->counterfortHLEdit, m_d->ui->counterfortHUMLabel, m_d->ui->counterfortHCheckBox );
             VarPlusGUI::disconnectVar( m_d->ui->counterfortTLabel, m_d->ui->counterfortTLEdit, m_d->ui->counterfortTUMLabel );
 
-            disconnect( m_d->retainingWall, SIGNAL(soilDownChanged(Soil*, Soil*)), this, SLOT(connectSoilDown(Soil*, Soil*)));
+            disconnect( m_d->retainingWall, &RetainingWall::soilDownChanged, this, &RetainingWallGUI::connectSoilDown );
             if( m_d->retainingWall->soilDown()  ){
-                disconnect( m_d->retainingWall->soilDown()->soilEQCategory, SIGNAL(valueChanged(QString)), m_d, SLOT(setEQSS()));
-                disconnect( m_d->retainingWall->soilDown()->soilEQCategory, SIGNAL(valueChanged(QString)), m_d, SLOT(setEQbetaM()));
+                disconnect( m_d->retainingWall->soilDown()->soilEQCategory, &SoilEQCategory::valueChanged, m_d, &RetainingWallGUIPrivate::setEQSS );
+                disconnect( m_d->retainingWall->soilDown()->soilEQCategory, &SoilEQCategory::valueChanged, m_d, &RetainingWallGUIPrivate::setEQbetaM );
             }
         }
 
@@ -241,11 +241,11 @@ void RetainingWallGUI::setRetainingWall( RetainingWall * wall ) {
             VarPlusGUI::connectVar( m_d->retainingWall->counterfortH, m_d->ui->counterfortHLabel, m_d->ui->counterfortHLEdit, m_d->ui->counterfortHUMLabel, m_d->ui->counterfortHCheckBox );
             VarPlusGUI::connectVar( m_d->retainingWall->counterfortT, m_d->ui->counterfortTLabel, m_d->ui->counterfortTLEdit, m_d->ui->counterfortTUMLabel );
 
-            connect( m_d->retainingWall, SIGNAL(soilDownChanged(Soil*, Soil*)), this, SLOT(connectSoilDown(Soil*, Soil*)));
+            connect( m_d->retainingWall, &RetainingWall::soilDownChanged, this, &RetainingWallGUI::connectSoilDown );
             if( m_d->retainingWall->soilDown()  ){
                 m_d->ui->soilDownNameComboBox->setCurrentIndex( m_d->ui->soilDownNameComboBox->findData( m_d->retainingWall->soilDown()->id->valueNormal() ) );
-                connect( m_d->retainingWall->soilDown()->soilEQCategory, SIGNAL(valueChanged(QString)), m_d, SLOT(setEQSS()));
-                connect( m_d->retainingWall->soilDown()->soilEQCategory, SIGNAL(valueChanged(QString)), m_d, SLOT(setEQbetaM()));
+                connect( m_d->retainingWall->soilDown()->soilEQCategory, &SoilEQCategory::valueChanged, m_d, &RetainingWallGUIPrivate::setEQSS );
+                connect( m_d->retainingWall->soilDown()->soilEQCategory, &SoilEQCategory::valueChanged, m_d, &RetainingWallGUIPrivate::setEQbetaM );
             }
             if( m_d->retainingWall->soilUp()  ){
                 m_d->ui->soilUpNameComboBox->setCurrentIndex( m_d->ui->soilUpNameComboBox->findData( m_d->retainingWall->soilUp()->id->valueNormal() ) );
@@ -256,12 +256,12 @@ void RetainingWallGUI::setRetainingWall( RetainingWall * wall ) {
 
 void RetainingWallGUI::connectSoilDown(Soil * oldSoil, Soil * newSoil){
     if( oldSoil ){
-        disconnect( oldSoil->soilEQCategory, SIGNAL(valueChanged(QString)), m_d, SLOT(setEQSS()));
-        disconnect( oldSoil->soilEQCategory, SIGNAL(valueChanged(QString)), m_d, SLOT(setEQbetaM()));
+        disconnect( oldSoil->soilEQCategory, &SoilEQCategory::valueChanged, m_d, &RetainingWallGUIPrivate::setEQSS );
+        disconnect( oldSoil->soilEQCategory, &SoilEQCategory::valueChanged, m_d, &RetainingWallGUIPrivate::setEQbetaM );
     }
     if( newSoil ){
-        connect( newSoil->soilEQCategory, SIGNAL(valueChanged(QString)), m_d, SLOT(setEQSS()));
-        connect( newSoil->soilEQCategory, SIGNAL(valueChanged(QString)), m_d, SLOT(setEQbetaM()));
+        connect( newSoil->soilEQCategory, &SoilEQCategory::valueChanged, m_d, &RetainingWallGUIPrivate::setEQSS );
+        connect( newSoil->soilEQCategory, &SoilEQCategory::valueChanged, m_d, &RetainingWallGUIPrivate::setEQbetaM );
     }
 }
 
@@ -283,11 +283,11 @@ void RetainingWallGUI::populateSoilComboBox() {
 }
 
 void RetainingWallGUI::showEvent ( QShowEvent * ){
-    disconnect( m_d->ui->soilDownNameComboBox, SIGNAL(currentIndexChanged(int)), this,SLOT(setSoilDown(int)));
-    disconnect( m_d->ui->soilUpNameComboBox, SIGNAL(currentIndexChanged(int)), this,SLOT(setSoilUp(int)));
+    disconnect( m_d->ui->soilDownNameComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &RetainingWallGUI::setSoilDown );
+    disconnect( m_d->ui->soilUpNameComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &RetainingWallGUI::setSoilUp );
     populateSoilComboBox();
-    connect( m_d->ui->soilDownNameComboBox, SIGNAL(currentIndexChanged(int)), this,SLOT(setSoilDown(int)));
-    connect( m_d->ui->soilUpNameComboBox, SIGNAL(currentIndexChanged(int)), this,SLOT(setSoilUp(int)));
+    connect( m_d->ui->soilDownNameComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &RetainingWallGUI::setSoilDown );
+    connect( m_d->ui->soilUpNameComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &RetainingWallGUI::setSoilUp );
 }
 
 void RetainingWallGUI::setSoilDown(int index ) {

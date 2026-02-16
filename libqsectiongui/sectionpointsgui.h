@@ -19,11 +19,12 @@
 #ifndef SECTIONPOINTSGUI_H
 #define SECTIONPOINTSGUI_H
 
+#include "sectiongui_export.h"
 #include "sectiongui.h"
 
 class SectionPointsGUIPrivate;
 
-class SectionPointsGUI : public SectionGUI
+class EXPORT_SECTIONGUI_LIB_OPT SectionPointsGUI : public SectionGUI
 {
     Q_OBJECT
 

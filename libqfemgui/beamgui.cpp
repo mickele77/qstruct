@@ -57,24 +57,24 @@ public:
         globalLayout( new QGridLayout() ),
         beamPropertiesGBox ( new QGroupBox(parent) ),
         beamPropertiesGBoxLayout( new QGridLayout() ),
-        sectionLabel( new QLabel( QObject::trUtf8("Sezione"), parent ) ),
+        sectionLabel( new QLabel( QObject::tr("Sezione"), parent ) ),
         sectionCB( new QComboBox( parent ) ),
         beamTypeLabel( new QLabelRichName( parent ) ),
         beamTypeCB( new QComboBoxEnum( parent ) ),
         vertexView(  new QTableView( parent ) ),
         loadTab( new QWidget(parent) ),
-        addFLoadPButton( new QPushButton( QObject::trUtf8("+"), parent)),
-        removeFLoadPButton( new QPushButton( QObject::trUtf8("-"), parent)),
+        addFLoadPButton( new QPushButton( QObject::tr("+"), parent)),
+        removeFLoadPButton( new QPushButton( QObject::tr("-"), parent)),
         fLoadView(  new QTableView( parent ) ),
         qLoadTab( new QWidget(parent) ),
-        addQLoadPButton( new QPushButton( QObject::trUtf8("+"), parent)),
-        removeQLoadPButton( new QPushButton( QObject::trUtf8("-"), parent)),
+        addQLoadPButton( new QPushButton( QObject::tr("+"), parent)),
+        removeQLoadPButton( new QPushButton( QObject::tr("-"), parent)),
         qLoadView(  new QTableView( parent ) ),
         stressTab( new QWidget(parent)),
         deformationTab( new QWidget(parent)),
         tab ( new QTabWidget(parent) ) {
 
-        beamPropertiesGBox->setTitle( QObject::trUtf8("Proprietà") );
+        beamPropertiesGBox->setTitle( QObject::tr("Proprietà") );
         beamPropertiesGBox->setLayout( beamPropertiesGBoxLayout );
         beamPropertiesGBoxLayout->addWidget( beamTypeLabel, 0,0 );
         beamPropertiesGBoxLayout->addWidget( beamTypeCB, 0,1 );
@@ -82,7 +82,7 @@ public:
         beamPropertiesGBoxLayout->addWidget( sectionCB, 1,1 );
         globalLayout->addWidget( beamPropertiesGBox, 0, 0 );
 
-        tab->addTab( vertexView, QObject::trUtf8("Vertici") );
+        tab->addTab( vertexView, QObject::tr("Vertici") );
         vertexView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
         QGridLayout * loadTabLayout = new QGridLayout;
@@ -90,7 +90,7 @@ public:
         QGroupBox * qLoadGBox = new QGroupBox();
         loadTabLayout->addWidget( qLoadGBox, 0,0 );
         QGridLayout * qLoadGBoxLayout = new QGridLayout;
-        qLoadGBox->setTitle( QObject::trUtf8("Distribuiti"));
+        qLoadGBox->setTitle( QObject::tr("Distribuiti"));
         qLoadGBoxLayout->addWidget( addQLoadPButton, 0, 0);
         qLoadGBoxLayout->addWidget( removeQLoadPButton, 0, 1);
         qLoadGBoxLayout->addWidget( qLoadView, 1, 0, 1, 2);
@@ -102,7 +102,7 @@ public:
         QGroupBox * fLoadGBox = new QGroupBox;
         loadTabLayout->addWidget(fLoadGBox, 1,0 );
         QGridLayout * fLoadGBoxLayout = new QGridLayout;
-        fLoadGBox->setTitle( QObject::trUtf8("Concentrati"));
+        fLoadGBox->setTitle( QObject::tr("Concentrati"));
         fLoadGBoxLayout->addWidget( addFLoadPButton, 0, 0);
         fLoadGBoxLayout->addWidget( removeFLoadPButton, 0, 1);
         fLoadGBoxLayout->addWidget( fLoadView, 1, 0, 1, 2);
@@ -112,18 +112,18 @@ public:
         fLoadView->horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
 
         loadTab->setLayout( loadTabLayout  );
-        tab->addTab( loadTab, QObject::trUtf8("Carichi") );
+        tab->addTab( loadTab, QObject::tr("Carichi") );
 
         QGridLayout * stressTabLayout = new QGridLayout;
         stressGUI = new BeamStressGUI( stressTab );
         stressTabLayout->addWidget( stressGUI, 0, 0 );
-        tab->addTab( stressTab, QObject::trUtf8("Sollecitazioni interne") );
+        tab->addTab( stressTab, QObject::tr("Sollecitazioni interne") );
         stressTab->setLayout( stressTabLayout );
 
         QGridLayout * deformationTabLayout = new QGridLayout;
         deformationGUI = new BeamDeformationGUI( deformationTab );
         deformationTabLayout->addWidget( deformationGUI, 0, 0 );
-        tab->addTab( deformationTab, QObject::trUtf8("Deformazioni") );
+        tab->addTab( deformationTab, QObject::tr("Deformazioni") );
         deformationTab->setLayout( deformationTabLayout );
 
         globalLayout->addWidget( tab, 1, 0 );
@@ -168,13 +168,13 @@ BeamGUI::BeamGUI(Beam * b, VertexModel * vm, SectionModel * sm, QWidget *parent)
     setElement(b);
     updateData();
 
-    connect( m_d->sectionCB, SIGNAL(currentIndexChanged(int)), this, SLOT(setCurrentSection(int)));
+    connect( m_d->sectionCB, static_cast<void (QComboBox::*)(int)> (&QComboBox::currentIndexChanged), this, &BeamGUI::setSection );
 
-    connect( m_d->removeFLoadPButton, SIGNAL(clicked()), this, SLOT(removeFLoad()) );
-    connect( m_d->addFLoadPButton, SIGNAL(clicked()), this, SLOT(addFLoad()) );
+    connect( m_d->removeFLoadPButton, &QPushButton::clicked, this, &BeamGUI::removeFLoad );
+    connect( m_d->addFLoadPButton, &QPushButton::clicked, this, &BeamGUI::addFLoad );
 
-    connect( m_d->removeQLoadPButton, SIGNAL(clicked()), this, SLOT(removeQLoad()) );
-    connect( m_d->addQLoadPButton, SIGNAL(clicked()), this, SLOT(addQLoad()) );
+    connect( m_d->removeQLoadPButton, &QPushButton::clicked, this, &BeamGUI::removeQLoad );
+    connect( m_d->addQLoadPButton, &QPushButton::clicked, this, &BeamGUI::addQLoad );
 }
 
 QString BeamGUI::typeElement(){
@@ -264,9 +264,9 @@ void BeamGUI::removeQLoad(){
 
 void BeamGUI::showEvent ( QShowEvent *){
     updateData();
-    connect( m_d->sectionCB, SIGNAL(currentIndexChanged(int)), this,SLOT(setSection(int)));
+    connect( m_d->sectionCB, static_cast<void (QComboBox::*)(int)> (&QComboBox::currentIndexChanged), this, &BeamGUI::setSection );
 }
 
 void BeamGUI::hideEvent ( QHideEvent *){
-    disconnect( m_d->sectionCB, SIGNAL(currentIndexChanged(int)), this,SLOT(setSection(int)));
+    disconnect( m_d->sectionCB, static_cast<void (QComboBox::*)(int)> (&QComboBox::currentIndexChanged), this, &BeamGUI::setSection );
 }

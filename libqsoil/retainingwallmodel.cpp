@@ -77,7 +77,7 @@ RetainingWallModel::RetainingWallModel(UnitMeasure * ump, SoilModel * sModel, QO
     TableModelPlus( "RetainingWallModel", ump, parent ),
     m_dd( new RetainingWallModelPrivate( sModel ) ){
     QList<QString> headers;
-    headers << trUtf8("Id") << trUtf8("Nome");
+    headers << tr("Id") << tr("Nome");
     setHeaders( headers );
 }
 

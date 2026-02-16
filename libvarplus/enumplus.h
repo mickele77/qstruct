@@ -32,7 +32,8 @@ signals:
     void valueIntChangedWidget( int );
 
 public slots:
-    virtual void setValueInt( int, bool emitAuto = true ) = 0;
+    virtual void setValueInt( int, bool emitAuto ) = 0;
+    void setValueInt( int );
 };
 
 #endif // ENUMPLUS_H

@@ -23,6 +23,7 @@ class SectionTransformPanelPrivate;
 class UnitMeasure;
 class Section;
 
+#include "sectiongui_export.h"
 #include <QWidget>
 
 /**
@@ -36,7 +37,7 @@ class Section;
 *
 */
 
-class SectionTransformPanel : public QWidget {
+class EXPORT_SECTIONGUI_LIB_OPT SectionTransformPanel : public QWidget {
     Q_OBJECT
     
 public:

@@ -19,6 +19,7 @@
 #ifndef STEELGUI_H
 #define STEELGUI_H
 
+#include "materialgui_export.h"
 #include "materialgui.h"
 
 namespace Ui {
@@ -27,7 +28,7 @@ namespace Ui {
 class SteelGUIPrivate;
 class Steel;
 
-class SteelGUI : public MaterialGUI {
+class EXPORT_MATERIALGUI_LIB_OPT SteelGUI : public MaterialGUI {
     Q_OBJECT
 
 public:

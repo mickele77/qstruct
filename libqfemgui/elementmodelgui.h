@@ -19,6 +19,7 @@
 #ifndef ELEMENTMODELGUI_H
 #define ELEMENTMODELGUI_H
 
+#include "femgui_export.h"
 #include <QWidget>
 
 namespace Ui {
@@ -28,7 +29,7 @@ class ElementModelGUI;
 #include "elementmodel.h"
 class ElementGUI;
 
-class ElementModelGUI : public QWidget
+class EXPORT_FEMGUI_LIB_OPT ElementModelGUI : public QWidget
 {
     Q_OBJECT
 public:

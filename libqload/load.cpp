@@ -33,7 +33,7 @@ Load::Load( double vv,
     m_phase(lph),
     m_group(lg){
 
-    connect( loadType, SIGNAL(valueChanged(QString)), this, SLOT(updateUnitMeasure()));
+    connect( loadType, &LoadType::valueChanged, this, &Load::updateUnitMeasure );
     updateUnitMeasure();
 }
 

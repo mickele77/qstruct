@@ -48,9 +48,9 @@ class ConcreteModelfEpsSectionPrivate{
 public:
     ConcreteModelfEpsSectionPrivate(Concrete::ModelfEpsSection v):
         value(v){
-        enumList.append( enumVal( Concrete::SectionParabolaRectangle, "SectionParabolaRectangle", trUtf8("Parabola-rettangolo")) );
-        enumList.append( enumVal( Concrete::SectionBiLinear, "SectionBiLinear", trUtf8("Triangolo-rettangolo")) );
-        enumList.append( enumVal( Concrete::SectionStressBlock, "SectionStressBlock", trUtf8("Rettangolo")) );
+        enumList.append( enumVal( Concrete::SectionParabolaRectangle, "SectionParabolaRectangle", tr("Parabola-rettangolo")) );
+        enumList.append( enumVal( Concrete::SectionBiLinear, "SectionBiLinear", tr("Triangolo-rettangolo")) );
+        enumList.append( enumVal( Concrete::SectionStressBlock, "SectionStressBlock", tr("Rettangolo")) );
     }
     ~ConcreteModelfEpsSectionPrivate(){
     }
@@ -221,7 +221,7 @@ MaterialModel::MaterialType Concrete::materialType() {
 
 void Concrete::initVar(){
     *m_typeNameInternal = "Concrete";
-    typeName->setValue( trUtf8("Calcestruzzo"));
+    typeName->setValue( tr("Calcestruzzo"));
     alpha->setValueNormal( 1.0e-5, false );
     nu->setValueNormal( 0.30, false );
     gammaW->setValueNormal( 2.5e+4, false );
@@ -229,202 +229,202 @@ void Concrete::initVar(){
     G->setReadOnly( true, false );
 
     Rck = new DoublePlus(0.00, "Rck", m_unitMeasure, UnitMeasure::tension );
-    Rck->setRichName( trUtf8("R<span style=\"vertical-align:sub;\">ck</span>") );
+    Rck->setRichName( tr("R<span style=\"vertical-align:sub;\">ck</span>") );
     Rck->setReadOnly( false );
-    Rck->setToolTip(trUtf8("Valore caratteristico della resistenza a compressione cubica"));
+    Rck->setToolTip(tr("Valore caratteristico della resistenza a compressione cubica"));
     addVarToContainer( Rck );
 
     fck = new DoublePlus(0.00, "fck", m_unitMeasure, UnitMeasure::tension, true );
-    fck->setToolTip(trUtf8("Valore caratteristico della resistenza a compressione cilindrica"));
-    fck->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">ck</span>") );
+    fck->setToolTip(tr("Valore caratteristico della resistenza a compressione cilindrica"));
+    fck->setRichName( tr("f<span style=\"vertical-align:sub;\">ck</span>") );
     addVarToContainer( fck );
 
     fcm = new DoublePlus(0.0, "fcm", m_unitMeasure, UnitMeasure::tension );
-    fcm->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">cm</span>") );
+    fcm->setRichName( tr("f<span style=\"vertical-align:sub;\">cm</span>") );
     fcm->setReadOnly( true );
-    fcm->setToolTip(trUtf8("Valore medio della resistenza a compressione"));
+    fcm->setToolTip(tr("Valore medio della resistenza a compressione"));
     addVarToContainer( fcm );
 
     fctm = new DoublePlus(0.0, "fctm", m_unitMeasure, UnitMeasure::tension );
-    fctm->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">ctm</span>") );
+    fctm->setRichName( tr("f<span style=\"vertical-align:sub;\">ctm</span>") );
     fctm->setReadOnly( true );
-    fctm->setToolTip(trUtf8("Valore medio della resistenza a trazione assiale"));
+    fctm->setToolTip(tr("Valore medio della resistenza a trazione assiale"));
     addVarToContainer( fctm );
     fctm->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setfctm) );
     fctm->addConnectedVars( 3, Rck, fck, fcm);
 
     fctk = new DoublePlus(0.0, "fctk", m_unitMeasure, UnitMeasure::tension );
-    fctk->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">ctk</span>") );
+    fctk->setRichName( tr("f<span style=\"vertical-align:sub;\">ctk</span>") );
     fctk->setReadOnly( true );
-    fctk->setToolTip(trUtf8("Valore caratteristico della resistenza a trazione assiale, frattile 5%"));
+    fctk->setToolTip(tr("Valore caratteristico della resistenza a trazione assiale, frattile 5%"));
     addVarToContainer( fctk);
     fctk->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setfctk) );
     fctk->addConnectedVars( 1, fctm);
 
     fctk95 = new DoublePlus(0.0, "fctk95", m_unitMeasure, UnitMeasure::tension );
-    fctk95->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">ctk,95</span>") );
-    fctk95->setToolTip(trUtf8("Valore caratteristico della resistenza a trazione assiale, frattile 95%"));
+    fctk95->setRichName( tr("f<span style=\"vertical-align:sub;\">ctk,95</span>") );
+    fctk95->setToolTip(tr("Valore caratteristico della resistenza a trazione assiale, frattile 95%"));
     fctk95->setReadOnly( true );
     addVarToContainer( fctk95);
     fctk95->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setfctk95) );
     fctk95->addConnectedVars( 1, fctm );
 
     fcfm = new DoublePlus(0.0, "fcfm", m_unitMeasure, UnitMeasure::tension );
-    fcfm->setToolTip( trUtf8("Valore medio della resistenza a trazione per flessione"));
-    fcfm->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">cfm</span>") );
+    fcfm->setToolTip( tr("Valore medio della resistenza a trazione per flessione"));
+    fcfm->setRichName( tr("f<span style=\"vertical-align:sub;\">cfm</span>") );
     fcfm->setReadOnly( true );
     addVarToContainer( fcfm );
     fcfm->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setfcfm) );
     fcfm->addConnectedVars( 1, fctm );
 
     fcRare = new DoublePlus(0.0, "fcRara", m_unitMeasure, UnitMeasure::tension, true );
-    fcRare->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">rara</span>") );
+    fcRare->setRichName( tr("f<span style=\"vertical-align:sub;\">rara</span>") );
     fcRare->setReadOnly( true );
-    fcRare->setToolTip(trUtf8("Valore limite secondo NTC08 della resistenza a compressione nella combinazione rara"));
+    fcRare->setToolTip(tr("Valore limite secondo NTC08 della resistenza a compressione nella combinazione rara"));
     addVarToContainer( fcRare);
     fcRare->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setfcRare) );
     fcRare->addConnectedVars( 1, fck );
 
     fcRareRed = new DoublePlus(0.0, "fcRaraRed", m_unitMeasure, UnitMeasure::tension, true );
-    fcRareRed->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">rara,red</span>") );
+    fcRareRed->setRichName( tr("f<span style=\"vertical-align:sub;\">rara,red</span>") );
     fcRareRed->setReadOnly( true );
-    fcRareRed->setToolTip(trUtf8("Valore limite secondo NTC08 della resistenza a compressione nella combinazione rara, per sezioni con h < 5 cm"));
+    fcRareRed->setToolTip(tr("Valore limite secondo NTC08 della resistenza a compressione nella combinazione rara, per sezioni con h < 5 cm"));
     addVarToContainer( fcRareRed);
     fcRareRed->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setfcRareRed) );
     fcRareRed->addConnectedVars( 1, fcRare );
 
     fcPermanent = new DoublePlus(0.0, "fcRaraRed", m_unitMeasure, UnitMeasure::tension, true );
-    fcPermanent->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">perm</span>") );
+    fcPermanent->setRichName( tr("f<span style=\"vertical-align:sub;\">perm</span>") );
     fcPermanent->setReadOnly( true );
-    fcPermanent->setToolTip(trUtf8("Valore limite secondo NTC08 della resistenza a compressione nella combinazione permanente"));
+    fcPermanent->setToolTip(tr("Valore limite secondo NTC08 della resistenza a compressione nella combinazione permanente"));
     addVarToContainer( fcPermanent );
     fcPermanent->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setfcPermanent) );
     fcPermanent->addConnectedVars( 1, fck );
 
     fcPermanentRed = new DoublePlus(0.0, "fcPermanentRed", m_unitMeasure, UnitMeasure::tension, true );
-    fcPermanentRed->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">perm,red</span>") );
+    fcPermanentRed->setRichName( tr("f<span style=\"vertical-align:sub;\">perm,red</span>") );
     fcPermanentRed->setReadOnly( true );
-    fcPermanentRed->setToolTip(trUtf8("Valore limite secondo NTC08 della resistenza a compressione nella combinazione permanente, per sezioni con h < 5 cm"));
+    fcPermanentRed->setToolTip(tr("Valore limite secondo NTC08 della resistenza a compressione nella combinazione permanente, per sezioni con h < 5 cm"));
     addVarToContainer( fcPermanentRed );
     fcPermanentRed->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setfcPermanentRed) );
     fcPermanentRed->addConnectedVars( 1, fcPermanent );
 
     Ecm = new DoublePlus(0.0, "Ecm", m_unitMeasure, UnitMeasure::tension, true );
-    Ecm->setRichName( trUtf8("E<span style=\"vertical-align:sub;\">cm</span>") );
+    Ecm->setRichName( tr("E<span style=\"vertical-align:sub;\">cm</span>") );
     Ecm->setReadOnly( true );
-    Ecm->setToolTip( trUtf8("Modulo di elasticità normale secante"));
+    Ecm->setToolTip( tr("Modulo di elasticità normale secante"));
     addVarToContainer( Ecm );
     Ecm->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setEcm) );
     Ecm->addConnectedVars( 1, fcm );
 
     ratioEEcm = new DoublePlus(1.0, "ratioEEcm", m_unitMeasure, UnitMeasure::noDimension );
-    ratioEEcm->setRichName( trUtf8("E/E<span style=\"vertical-align:sub;\">cm</span>") );
+    ratioEEcm->setRichName( tr("E/E<span style=\"vertical-align:sub;\">cm</span>") );
     ratioEEcm->setReadOnly( false );
-    ratioEEcm->setToolTip( trUtf8("Rapporto tra il modulo di elasticità normale assunto per il calcolo elastico e quello secante da NTC08 ed EC2"));
+    ratioEEcm->setToolTip( tr("Rapporto tra il modulo di elasticità normale assunto per il calcolo elastico e quello secante da NTC08 ed EC2"));
     addVarToContainer( ratioEEcm );
 
     E->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setE) );
     E->addConnectedVars( 2, Ecm, ratioEEcm );
 
     epsC1 = new DoublePlus(0.0, "epsC1", m_unitMeasure, UnitMeasure::percent );
-    epsC1->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">c1</span>") );
+    epsC1->setRichName( tr("ε<span style=\" vertical-align:sub;\">c1</span>") );
     epsC1->setReadOnly( true );
-    epsC1->setToolTip(trUtf8("Deformazione di contrazione alla tensione di picco"));
+    epsC1->setToolTip(tr("Deformazione di contrazione alla tensione di picco"));
     addVarToContainer( epsC1 );
     epsC1->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setEpsC1) );
     epsC1->addConnectedVars( 1, fcm );
 
     epsC2 = new DoublePlus(0.0, "epsC2", m_unitMeasure, UnitMeasure::percent );
-    epsC2->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">c2</span>") );
+    epsC2->setRichName( tr("ε<span style=\" vertical-align:sub;\">c2</span>") );
     epsC2->setReadOnly( true );
     addVarToContainer( epsC2 );
     epsC2->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setEpsC2) );
     epsC2->addConnectedVars( 1, fck );
 
     epsC3 = new DoublePlus(0.0, "epsC3", m_unitMeasure, UnitMeasure::percent );
-    epsC3->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">c3</span>") );
+    epsC3->setRichName( tr("ε<span style=\" vertical-align:sub;\">c3</span>") );
     epsC3->setReadOnly( true );
     addVarToContainer( epsC3 );
     epsC3->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setEpsC3) );
     epsC3->addConnectedVars( 1, fck );
 
     epsCU1 = new DoublePlus(0.0, "epsCU1", m_unitMeasure, UnitMeasure::percent );
-    epsCU1->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">cu1</span>") );
+    epsCU1->setRichName( tr("ε<span style=\" vertical-align:sub;\">cu1</span>") );
     epsCU1->setReadOnly( true );
-    epsCU1->setToolTip(trUtf8("Deformazione ultima di contrazione"));
+    epsCU1->setToolTip(tr("Deformazione ultima di contrazione"));
     addVarToContainer( epsCU1 );
     epsCU1->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setEpsCU1) );
     epsCU1->addConnectedVars( 2, fcm, fck );
 
     epsCU2 = new DoublePlus(0.0, "epsCU2", m_unitMeasure, UnitMeasure::percent );
-    epsCU2->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">cu2</span>") );
+    epsCU2->setRichName( tr("ε<span style=\" vertical-align:sub;\">cu2</span>") );
     epsCU2->setReadOnly( true );
-    epsCU2->setToolTip(trUtf8("Deformazione ultima di contrazione - diagramma parabola-rettangolo"));
+    epsCU2->setToolTip(tr("Deformazione ultima di contrazione - diagramma parabola-rettangolo"));
     addVarToContainer( epsCU2 );
     epsCU2->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setEpsCU2) );
     epsCU2->addConnectedVars( 1, fck );
 
     epsC4 = new DoublePlus(0.0, "epsC4", m_unitMeasure, UnitMeasure::percent );
-    epsC4->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">c4</span>") );
+    epsC4->setRichName( tr("ε<span style=\" vertical-align:sub;\">c4</span>") );
     epsC4->setReadOnly( true );
     addVarToContainer( epsC4 );
     epsC4->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setEpsC4) );
     epsC4->addConnectedVars( 1, epsCU2 );
 
     epsCU3 = new DoublePlus(0.0, "epsCU3", m_unitMeasure, UnitMeasure::percent );
-    epsCU3->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">cu3</span>") );
+    epsCU3->setRichName( tr("ε<span style=\" vertical-align:sub;\">cu3</span>") );
     epsCU3->setReadOnly( true );
-    epsCU3->setToolTip(trUtf8("Deformazione ultima di contrazione - diagramma bilineare"));
+    epsCU3->setToolTip(tr("Deformazione ultima di contrazione - diagramma bilineare"));
     addVarToContainer( epsCU3 );
     epsCU3->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setEpsCU3) );
     epsCU3->addConnectedVars( 1, fck );
 
     epsCU4 = new DoublePlus(0.0, "epsCU4", m_unitMeasure, UnitMeasure::percent );
-    epsCU4->setRichName( trUtf8("ε<span style=\" vertical-align:sub;\">cu4</span>") );
+    epsCU4->setRichName( tr("ε<span style=\" vertical-align:sub;\">cu4</span>") );
     epsCU4->setReadOnly( true );
-    epsCU4->setToolTip(trUtf8("Deformazione ultima di contrazione - diagramma costante (stress-block) "));
+    epsCU4->setToolTip(tr("Deformazione ultima di contrazione - diagramma costante (stress-block) "));
     addVarToContainer( epsCU4 );
     epsCU4->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setEpsCU4) );
     epsCU4->addConnectedVars( 1, fck );
 
     alphaCC = new DoublePlus(0.85, "alphaCC", m_unitMeasure, UnitMeasure::noDimension );
-    alphaCC->setRichName( trUtf8("α<span style=\" vertical-align:sub;\">cc</span>") );
+    alphaCC->setRichName( tr("α<span style=\" vertical-align:sub;\">cc</span>") );
     alphaCC->setReadOnly( false );
-    alphaCC->setToolTip( trUtf8("Coefficiente effetti a lungo termine e modalità  di applicazione del carico [0.8 - 1.0]"));
+    alphaCC->setToolTip( tr("Coefficiente effetti a lungo termine e modalità  di applicazione del carico [0.8 - 1.0]"));
     addVarToContainer( alphaCC );
 
     gammaC = new DoublePlus(1.50, "gammaC", m_unitMeasure, UnitMeasure::noDimension );
-    gammaC->setRichName( trUtf8("γ<span style=\" vertical-align:sub;\">c</span>") );
-    gammaC->setToolTip(trUtf8("Coefficiente di sicurezza parziale"));
+    gammaC->setRichName( tr("γ<span style=\" vertical-align:sub;\">c</span>") );
+    gammaC->setToolTip(tr("Coefficiente di sicurezza parziale"));
     gammaC->setReadOnly( false );
     addVarToContainer( gammaC );
 
     fcd = new DoublePlus(0.0, "fcd", m_unitMeasure, UnitMeasure::tension );
-    fcd->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">cd</span>") );
+    fcd->setRichName( tr("f<span style=\"vertical-align:sub;\">cd</span>") );
     fcd->setReadOnly( true );
-    fcd->setToolTip(trUtf8("Valore di progetto della resistenza a compressione"));
+    fcd->setToolTip(tr("Valore di progetto della resistenza a compressione"));
     addVarToContainer( fcd);
 
     fcdRed = new DoublePlus(0.0, "fcdRed", m_unitMeasure, UnitMeasure::tension );
-    fcdRed->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">cd,red</span>") );
+    fcdRed->setRichName( tr("f<span style=\"vertical-align:sub;\">cd,red</span>") );
     fcdRed->setReadOnly( true );
-    fcdRed->setToolTip(trUtf8("Valore di progetto della resistenza a compressione, per sezioni con h < 5 cm"));
+    fcdRed->setToolTip(tr("Valore di progetto della resistenza a compressione, per sezioni con h < 5 cm"));
     addVarToContainer( fcdRed);
     fcdRed->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setfcdRed) );
     fcdRed->addConnectedVars( 1, fcd);
 
     fctd = new DoublePlus(0.0, "fctd", m_unitMeasure, UnitMeasure::tension, true );
-    fctd->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">ctd</span>") );
+    fctd->setRichName( tr("f<span style=\"vertical-align:sub;\">ctd</span>") );
     fctd->setReadOnly( true );
-    fctd->setToolTip(trUtf8("Valore di progetto della resistenza a trazione assiale"));
+    fctd->setToolTip(tr("Valore di progetto della resistenza a trazione assiale"));
     addVarToContainer( fctd );
     fctd->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setfctd) );
     fctd->addConnectedVars( 2, fctk, gammaC );
 
     fctdRed = new DoublePlus(0.0, "fctdRed", m_unitMeasure, UnitMeasure::tension, true );
-    fctdRed->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">ctd,red</span>") );
+    fctdRed->setRichName( tr("f<span style=\"vertical-align:sub;\">ctd,red</span>") );
     fctdRed->setReadOnly( true );
-    fctdRed->setToolTip(trUtf8("Valore di progetto della resistenza a trazione assiale, per sezioni con h < 5 cm"));
+    fctdRed->setToolTip(tr("Valore di progetto della resistenza a trazione assiale, per sezioni con h < 5 cm"));
     addVarToContainer( fctdRed );
     fctdRed->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Concrete::setfctdRed) );
     fctdRed->addConnectedVars( 1, fctd );

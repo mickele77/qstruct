@@ -21,6 +21,7 @@
 
 class SectionTimberGUIPrivate;
 
+#include "sectiongui_export.h"
 #include "sectiongui.h"
 
 namespace Ui {
@@ -40,7 +41,7 @@ class Point2DPlus;
 class QGraphicsScene;
 class QGraphicsItemGroup;
 
-class SectionTimberGUI : public SectionGUI
+class EXPORT_SECTIONGUI_LIB_OPT SectionTimberGUI : public SectionGUI
 {
     Q_OBJECT
 

@@ -40,16 +40,16 @@ ElementModelGUI::ElementModelGUI(ElementModel * m, VertexModel * vm, QWidget *pa
 
     // Collega i pulsanti
     QMenu * newElementMenu = new QMenu( this );
-    QAction * beamAct = newElementMenu->addAction( trUtf8("Trave"));
-    connect( beamAct, SIGNAL(triggered()), this, SLOT(insertBeam()));
+    QAction * beamAct = newElementMenu->addAction( tr("Trave"));
+    connect( beamAct, &QAction::triggered, this, &ElementModelGUI::insertBeam );
     m_ui->newPButton->setMenu( newElementMenu );
 
-    connect( m_ui->delPButton, SIGNAL(clicked()), this, SLOT( remove()) );
+    connect( m_ui->delPButton, &QPushButton::clicked, this, &ElementModelGUI::remove );
 
     // Columns automatically resize
     m_ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    connect( m_ui->tableView->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(setCurrent()));
+    connect( m_ui->tableView->selectionModel(), &QItemSelectionModel::currentRowChanged, this, &ElementModelGUI::setCurrent );
 
     m_currentElementGUI = NULL;
 }

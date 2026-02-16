@@ -11,13 +11,13 @@ public:
     CncrRect( UnitMeasure * ump, double bVal=0.0, double tVal=0.0 ):
         VarPlusContainer( ump, "CncrRect", ""){
         b = new DoublePlus( bVal, "b", m_unitMeasure, UnitMeasure::sectL );
-        b->setRichName(QObject::trUtf8("b"));
-        b->setToolTip( QObject::trUtf8("Larghezza della sezione rettangolare in cls"));
+        b->setRichName(QObject::tr("b"));
+        b->setToolTip( QObject::tr("Larghezza della sezione rettangolare in cls"));
         addVarToContainer(b);
 
         t = new DoublePlus( tVal, "t", m_unitMeasure, UnitMeasure::sectL );
-        t->setRichName(QObject::trUtf8("d"));
-        t->setToolTip( QObject::trUtf8("Altezza sezione rettangolare in cls"));
+        t->setRichName(QObject::tr("d"));
+        t->setToolTip( QObject::tr("Altezza sezione rettangolare in cls"));
         addVarToContainer(t);
     }
     DoublePlus * b;
@@ -36,8 +36,8 @@ public:
 void CncrRectModel::updateHeaders(UnitMeasure::unitMeasure um ){
     if( um == UnitMeasure::sectL) {
         QList<QString> headers;
-        headers << trUtf8("b [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
-        headers << trUtf8("t [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
+        headers << tr("b [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
+        headers << tr("t [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
         setHeaders( headers );
     }
 }
@@ -55,8 +55,8 @@ void CncrRectModel::insertCncrRect( CncrRect * addedSect, int position ){
         position = m_dd->sectList.size();
 
     if( addedSect ){
-        connect( addedSect->b, SIGNAL(valueChanged(QString)), this, SIGNAL(modelChanged()) );
-        connect( addedSect->t, SIGNAL(valueChanged(QString)), this, SIGNAL(modelChanged()) );
+        connect( addedSect->b, &DoublePlus::valueChanged, this, &CncrRectModel::modelChanged );
+        connect( addedSect->t, &DoublePlus::valueChanged, this, &CncrRectModel::modelChanged );
         m_dd->sectList.insert( position, addedSect );
         updateHTot();
         insertRowsPrivate( position );
@@ -80,14 +80,14 @@ void CncrRectModel::readXml(QXmlStreamReader *reader) {
 CncrRectModel::CncrRectModel( UnitMeasure * ump, QObject *parent ):
     TableModelPlus( "CncrRectModel", ump, parent ),
     m_dd( new CncrRectModelPrivate() ){
-    connect( m_d->unitMeasure, SIGNAL(stringsChanged(UnitMeasure::unitMeasure)), this, SLOT(updateHeaders(UnitMeasure::unitMeasure)) );
+    connect( m_d->unitMeasure, &UnitMeasure::stringsChanged, this, &CncrRectModel::updateHeaders );
     QList<QString> headers;
-    headers << trUtf8("b [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
-    headers << trUtf8("t [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
+    headers << tr("b [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
+    headers << tr("t [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
     setHeaders( headers );
 
-    connect( this, SIGNAL(modelChanged()), this, SLOT(updateHG()) );
-    connect( this, SIGNAL(modelChanged()), this, SLOT(updateHTot()) );
+    connect( this, &CncrRectModel::modelChanged, this, &CncrRectModel::updateHG );
+    connect( this, &CncrRectModel::modelChanged, this, &CncrRectModel::updateHTot );
 }
 
 void CncrRectModel::insertRows( int position, int count ){

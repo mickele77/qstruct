@@ -38,13 +38,13 @@ VarPlusContainer::VarPlusContainer(UnitMeasure * ump, const QString & t, const Q
     m_usingContainer( new QList<VarPlusContainer *> ){
 
     id = new UIntPlus( 1, "id", false );
-    id->setToolTip( QObject::trUtf8("Id: numero univoco associato al vertice"));
-    id->setRichName( QObject::trUtf8("Id"));
+    id->setToolTip( QObject::tr("Id: numero univoco associato al vertice"));
+    id->setRichName( QObject::tr("Id"));
     addVarToContainer( id );
 
     name = new QStringPlus( n, "name", false );
-    name->setToolTip( QObject::trUtf8("Denominazione del contenitore"));
-    name->setRichName( QObject::trUtf8("Denominazione") );
+    name->setToolTip( QObject::tr("Denominazione del contenitore"));
+    name->setRichName( QObject::tr("Denominazione") );
     addVarToContainer( name );
 }
 

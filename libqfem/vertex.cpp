@@ -55,7 +55,7 @@ Vertex::Vertex( Hypothesis * hyp, UnitMeasure * ump, QObject *parent ):
     initVar();
 
     for( int i=0; i < m_d->xPlusContainer.size(); i++){
-        connect( m_d->xPlusContainer.at(i), SIGNAL(valueChanged(QString)), this, SIGNAL(vertexChanged()));
+        connect( m_d->xPlusContainer.at(i), &DoublePlus::valueChanged, this, &Vertex::vertexChanged );
     }
 }
 
@@ -99,7 +99,7 @@ GLItem * Vertex::glItem(){
         m_d->glItem = new GLPoint();
         m_d->glItem->setColor( Qt::red );
         for( int i=0; i < m_d->xPlusContainer.size(); i++){
-            connect( m_d->xPlusContainer.at(i), SIGNAL(valueChanged(QString)), this, SLOT(updateGLItem()));
+            connect( m_d->xPlusContainer.at(i), &DoublePlus::valueChanged, this, &Vertex::updateGLItem );
         }
         updateGLItem();
     }

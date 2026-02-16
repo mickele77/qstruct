@@ -38,9 +38,9 @@ class ServiceClassPrivate {
 public:
     ServiceClassPrivate(ServiceClass::Class tt):
         value(tt){
-        enumList.append( ServiceClassEnumVal(ServiceClass::SC1, "SC1", trUtf8("CS1")) );
-        enumList.append( ServiceClassEnumVal(ServiceClass::SC2, "SC2", trUtf8("CS2")) );
-        enumList.append( ServiceClassEnumVal(ServiceClass::SC3, "SC3", trUtf8("CS3")) );
+        enumList.append( ServiceClassEnumVal(ServiceClass::SC1, "SC1", tr("CS1")) );
+        enumList.append( ServiceClassEnumVal(ServiceClass::SC2, "SC2", tr("CS2")) );
+        enumList.append( ServiceClassEnumVal(ServiceClass::SC3, "SC3", tr("CS3")) );
     };
     int valueIndex(){
         for( int i=0; i < enumList.size(); ++i){

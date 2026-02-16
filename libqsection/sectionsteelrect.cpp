@@ -33,14 +33,14 @@ public:
         np = 2;
 
         l = p[0];
-        l->setToolTip( QObject::trUtf8("lunghezza"));
-        l->setRichName( QObject::trUtf8("l"));
+        l->setToolTip( QObject::tr("lunghezza"));
+        l->setRichName( QObject::tr("l"));
         l->setUnitMeasure( UnitMeasure::sectL );
         l->setEnabled( true );
 
         t = p[1];
-        t->setToolTip( QObject::trUtf8("Spessore"));
-        t->setRichName( QObject::trUtf8("t"));
+        t->setToolTip( QObject::tr("Spessore"));
+        t->setRichName( QObject::tr("t"));
         t->setUnitMeasure( UnitMeasure::sectL );
         t->setEnabled( true );
 

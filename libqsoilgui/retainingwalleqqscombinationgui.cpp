@@ -55,7 +55,7 @@ RetainingWallEQQSCombinationGUI::RetainingWallEQQSCombinationGUI(UnitMeasure * u
                                   gammaSliding, gammaQLim,
                                   parent),
     m_dd( new RetainingWallEQQSCombinationGUIPrivate( ump, EQDirection, kv, kh, theta, psi2Q ) ){
-    connect( m_ui->copyClipPButton, SIGNAL(clicked()), this, SLOT(copyClip()));
+    connect( m_ui->copyClipPButton, &QPushButton::clicked, this, &RetainingWallEQQSCombinationGUI::copyClip );
 }
 
 void RetainingWallEQQSCombinationGUI::calculateQSCombination() {

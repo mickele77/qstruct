@@ -68,8 +68,8 @@ SectionThinContGUI::SectionThinContGUI(UnitMeasure* ump, MaterialModel * matMode
     m_d->ui->rotTransTab->layout()->addWidget( m_d->rotTransPanel );
 
     m_d->ui->pointsTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    connect( m_d->ui->addPointsPButton, SIGNAL(clicked()), this, SLOT(addPoints()));
-    connect( m_d->ui->removePointsPButton, SIGNAL(clicked()), this, SLOT(removePoints()));
+    connect( m_d->ui->addPointsPButton, &QPushButton::clicked, this, &SectionThinContGUI::addPoints );
+    connect( m_d->ui->removePointsPButton, &QPushButton::clicked, this, &SectionThinContGUI::removePoints );
 
     m_materialComboBox = m_d->ui->materialComboBox;
     connect( m_materialComboBox, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionGUI::setMaterialFromComboBox );

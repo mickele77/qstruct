@@ -81,7 +81,7 @@ public:
 SectionThinContPointsModel::SectionThinContPointsModel( UnitMeasure * ump, QObject *parent ):
     TableModelPlus( "SectionThinContPointsModel", ump, parent),
     m_dd( new SectionThinContPointsModelPrivate() ){
-    connect( m_d->unitMeasure, SIGNAL(stringsChanged(UnitMeasure::unitMeasure)), this, SLOT(updateHeaders()) );
+    connect( m_d->unitMeasure, &UnitMeasure::stringsChanged, this, &SectionThinContPointsModel::updateHeaders );
     updateHeaders();
 }
 

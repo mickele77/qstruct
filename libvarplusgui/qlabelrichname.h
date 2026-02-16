@@ -1,6 +1,8 @@
 #ifndef QLABELRICHNAME_H
 #define QLABELRICHNAME_H
 
+#include "varplusgui_export.h"
+
 #include <QLabel>
 #include "qwidgetplus.h"
 
@@ -16,10 +18,10 @@
 *
 */
 
-class QLabelRichName : public QLabel, public QWidgetPlus {
+class EXPORT_VARPLUSGUI_LIB_OPT QLabelRichName : public QLabel, public QWidgetPlus {
     Q_OBJECT
 public:
-    explicit QLabelRichName(QWidget *parent = 0, VarPlus * v = 0 );
+    explicit QLabelRichName(QWidget *parent = 0, VarPlus * v = nullptr );
     ~QLabelRichName();
 
     void setVar( VarPlus * v);

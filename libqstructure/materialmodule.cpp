@@ -89,7 +89,7 @@ MaterialModule::MaterialModule(UnitMeasure * ump,
     dock->setWidget( m_d->modelGUI );
     m_panels->append( dock );
 
-    connect( m_d->modelGUI, SIGNAL(currentChanged(Material*)), this, SLOT(setCurrentMaterial(Material*)));
+    connect( m_d->modelGUI, &MaterialModelGUI::currentChanged, this, &MaterialModule::setCurrentMaterial );
 }
 
 QString MaterialModule::name(){

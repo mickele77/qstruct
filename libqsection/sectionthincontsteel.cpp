@@ -231,103 +231,103 @@ QVector2D SectionThinContSteel::arcMidPoint( int i ) {
 
 void SectionThinContSteel::initVar(){
     *m_typeNameInternal = "SectionThinContSteel";
-    typeName->setValue( trUtf8("Sezione piegata a freddo acciaio"));
+    typeName->setValue( tr("Sezione piegata a freddo acciaio"));
 
     ANMinusEff = new DoublePlus( 0.0, "ANMinusEff", m_unitMeasure, UnitMeasure::sectL2, true );
-    ANMinusEff->setToolTip( trUtf8("Area della sezione efficace nel caso di compressione semplice"));
-    ANMinusEff->setRichName( trUtf8("A<span style=\"vertical-align:sub;\">N-,eff</span>") );
+    ANMinusEff->setToolTip( tr("Area della sezione efficace nel caso di compressione semplice"));
+    ANMinusEff->setRichName( tr("A<span style=\"vertical-align:sub;\">N-,eff</span>") );
     addVarToContainer( ANMinusEff );
 
     eGNMinusEff = new Point2DPlus("GNMinusEff", "yGNMinusEff", 0.0, "zGNMinusEff", 0.0, m_unitMeasure, UnitMeasure::sectL, true );
     eGNMinusEff->setReadOnly( true );
     eGNMinusEff->y->setReadOnly( true );
     eGNMinusEff->z->setReadOnly( true );
-    eGNMinusEff->setRichName(trUtf8("Eccentricità del baricentro della della sezione efficace rispetto a quello della sezione lorda nel caso di compressione semplice"));
-    eGNMinusEff->y->setToolTip( trUtf8("Eccentricità lungo y del baricentro della sezione efficace nel caso di compressione semplice"));
-    eGNMinusEff->z->setToolTip( trUtf8("Eccentricità lungo z del baricentro della sezione efficace nel caso di compressione semplice"));
+    eGNMinusEff->setRichName(tr("Eccentricità del baricentro della della sezione efficace rispetto a quello della sezione lorda nel caso di compressione semplice"));
+    eGNMinusEff->y->setToolTip( tr("Eccentricità lungo y del baricentro della sezione efficace nel caso di compressione semplice"));
+    eGNMinusEff->z->setToolTip( tr("Eccentricità lungo z del baricentro della sezione efficace nel caso di compressione semplice"));
     eGNMinusEff->setRichName( "GNMinusEff");
-    eGNMinusEff->y->setRichName( trUtf8("e<span style=\"vertical-align:sub;\">Ny</span>") );
-    eGNMinusEff->z->setRichName( trUtf8("e<span style=\"vertical-align:sub;\">Nz</span>") );
+    eGNMinusEff->y->setRichName( tr("e<span style=\"vertical-align:sub;\">Ny</span>") );
+    eGNMinusEff->z->setRichName( tr("e<span style=\"vertical-align:sub;\">Nz</span>") );
     addVarToContainer( eGNMinusEff );
 
     IMyyPlusEff = new DoublePlus( 0.0, "IMyyPlusEff", m_unitMeasure, UnitMeasure::sectL4, true );
-    IMyyPlusEff->setToolTip( trUtf8("Momento centrale di inerzia della sezione efficace nel caso di flessione positiva attorno asse Y"));
-    IMyyPlusEff->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">eff,YY+</span>") );
+    IMyyPlusEff->setToolTip( tr("Momento centrale di inerzia della sezione efficace nel caso di flessione positiva attorno asse Y"));
+    IMyyPlusEff->setRichName( tr("I<span style=\"vertical-align:sub;\">eff,YY+</span>") );
     addVarToContainer( IMyyPlusEff );
 
     WMyyPlusEff = new DoublePlus( 0.0, "WMyyPlusEff", m_unitMeasure, UnitMeasure::sectL3, true );
-    WMyyPlusEff->setToolTip( trUtf8("Modulo elastico di resistenza flessionale della sezione efficace nel caso di flessione positiva attorno asse Y"));
-    WMyyPlusEff->setRichName( trUtf8("W<span style=\"vertical-align:sub;\">eff,Y+</span>") );
+    WMyyPlusEff->setToolTip( tr("Modulo elastico di resistenza flessionale della sezione efficace nel caso di flessione positiva attorno asse Y"));
+    WMyyPlusEff->setRichName( tr("W<span style=\"vertical-align:sub;\">eff,Y+</span>") );
     addVarToContainer( WMyyPlusEff );
 
     thetaCMyyPlusEff = new DoublePlus( 0.0, "thetaCMyyPlusEff", m_unitMeasure, UnitMeasure::angle, true );
-    thetaCMyyPlusEff->setToolTip( trUtf8("Rotazione degli assi centrali di inerzia della sezione efficace nel caso di flessione positiva attorno asse Y"));
-    thetaCMyyPlusEff->setRichName( trUtf8("θ<span style=\" vertical-align:sub;\">C,eff,YY+</span>"));
+    thetaCMyyPlusEff->setToolTip( tr("Rotazione degli assi centrali di inerzia della sezione efficace nel caso di flessione positiva attorno asse Y"));
+    thetaCMyyPlusEff->setRichName( tr("θ<span style=\" vertical-align:sub;\">C,eff,YY+</span>"));
     addVarToContainer( thetaCMyyPlusEff );
 
     IMyyMinusEff = new DoublePlus( 0.0, "IMyyMinusEff", m_unitMeasure, UnitMeasure::sectL4, true );
-    IMyyMinusEff->setToolTip( trUtf8("Momento centrale di inerzia della sezione efficace nel caso di flessione negativa attorno attorno asse Y"));
-    IMyyMinusEff->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">eff,Y-</span>") );
+    IMyyMinusEff->setToolTip( tr("Momento centrale di inerzia della sezione efficace nel caso di flessione negativa attorno attorno asse Y"));
+    IMyyMinusEff->setRichName( tr("I<span style=\"vertical-align:sub;\">eff,Y-</span>") );
     addVarToContainer( IMyyMinusEff );
 
     WMyyMinusEff = new DoublePlus( 0.0, "WMyyMinusEff", m_unitMeasure, UnitMeasure::sectL3, true );
-    WMyyMinusEff->setToolTip( trUtf8("Modulo elastico di resistenza flessionale della sezione efficace nel caso di flessione negativa attorno asse Y"));
-    WMyyMinusEff->setRichName( trUtf8("W<span style=\"vertical-align:sub;\">eff,Y-</span>") );
+    WMyyMinusEff->setToolTip( tr("Modulo elastico di resistenza flessionale della sezione efficace nel caso di flessione negativa attorno asse Y"));
+    WMyyMinusEff->setRichName( tr("W<span style=\"vertical-align:sub;\">eff,Y-</span>") );
     addVarToContainer( WMyyMinusEff );
 
     thetaCMyyMinusEff = new DoublePlus( 0.0, "thetaCMyyMinusEff", m_unitMeasure, UnitMeasure::angle, true );
-    thetaCMyyMinusEff->setToolTip( trUtf8("Rotazione degli assi centrali di inerzia della sezione efficace nel caso di flessione negativa attorno asse Y"));
-    thetaCMyyMinusEff->setRichName( trUtf8("θ<span style=\" vertical-align:sub;\">C,eff,Y-</span>"));
+    thetaCMyyMinusEff->setToolTip( tr("Rotazione degli assi centrali di inerzia della sezione efficace nel caso di flessione negativa attorno asse Y"));
+    thetaCMyyMinusEff->setRichName( tr("θ<span style=\" vertical-align:sub;\">C,eff,Y-</span>"));
     addVarToContainer( thetaCMyyMinusEff );
 
     IMzzPlusEff = new DoublePlus( 0.0, "IMzzPlusEff", m_unitMeasure, UnitMeasure::sectL4, true );
-    IMzzPlusEff->setToolTip( trUtf8("Momento centrale di inerzia della sezione efficace nel caso di flessione negativa attorno asse Z"));
-    IMzzPlusEff->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">eff,Z+</span>") );
+    IMzzPlusEff->setToolTip( tr("Momento centrale di inerzia della sezione efficace nel caso di flessione negativa attorno asse Z"));
+    IMzzPlusEff->setRichName( tr("I<span style=\"vertical-align:sub;\">eff,Z+</span>") );
     addVarToContainer( IMzzPlusEff );
 
     WMzzPlusEff = new DoublePlus( 0.0, "WMzzPlusEff", m_unitMeasure, UnitMeasure::sectL3, true );
-    WMzzPlusEff->setToolTip( trUtf8("Modulo elastico di resistenza flessionale della sezione efficace nel caso di flessione attorno positiva asse Z"));
-    WMzzPlusEff->setRichName( trUtf8("W<span style=\"vertical-align:sub;\">eff,Z+</span>") );
+    WMzzPlusEff->setToolTip( tr("Modulo elastico di resistenza flessionale della sezione efficace nel caso di flessione attorno positiva asse Z"));
+    WMzzPlusEff->setRichName( tr("W<span style=\"vertical-align:sub;\">eff,Z+</span>") );
     addVarToContainer( WMzzPlusEff );
 
     thetaCMzzPlusEff = new DoublePlus( 0.0, "thetaCMzzPlusEff", m_unitMeasure, UnitMeasure::angle, true );
-    thetaCMzzPlusEff->setToolTip( trUtf8("Rotazione degli assi centrali di inerzia della sezione efficace nel caso di flessione attorno positiva asse Z"));
-    thetaCMzzPlusEff->setRichName( trUtf8("θ<span style=\" vertical-align:sub;\">C,eff,Z+</span>"));
+    thetaCMzzPlusEff->setToolTip( tr("Rotazione degli assi centrali di inerzia della sezione efficace nel caso di flessione attorno positiva asse Z"));
+    thetaCMzzPlusEff->setRichName( tr("θ<span style=\" vertical-align:sub;\">C,eff,Z+</span>"));
     addVarToContainer( thetaCMzzPlusEff );
 
     IMzzMinusEff = new DoublePlus( 0.0, "IMzzMinusEff", m_unitMeasure, UnitMeasure::sectL4, true );
-    IMzzMinusEff->setToolTip( trUtf8("Momento centrale di inerzia della sezione efficace nel caso di flessione negativa attorno asse Z"));
-    IMzzMinusEff->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">eff,ZZ-</span>") );
+    IMzzMinusEff->setToolTip( tr("Momento centrale di inerzia della sezione efficace nel caso di flessione negativa attorno asse Z"));
+    IMzzMinusEff->setRichName( tr("I<span style=\"vertical-align:sub;\">eff,ZZ-</span>") );
     addVarToContainer( IMzzMinusEff );
 
     WMzzMinusEff = new DoublePlus( 0.0, "WMzzMinusEff", m_unitMeasure, UnitMeasure::sectL3, true );
-    WMzzMinusEff->setToolTip( trUtf8("Modulo elastico di resistenza flessionale della sezione efficace nel caso di flessione negativa attorno asse Z"));
-    WMzzMinusEff->setRichName( trUtf8("W<span style=\"vertical-align:sub;\">eff,Z-</span>") );
+    WMzzMinusEff->setToolTip( tr("Modulo elastico di resistenza flessionale della sezione efficace nel caso di flessione negativa attorno asse Z"));
+    WMzzMinusEff->setRichName( tr("W<span style=\"vertical-align:sub;\">eff,Z-</span>") );
     addVarToContainer( WMzzMinusEff );
 
     thetaCMzzMinusEff = new DoublePlus( 0.0, "thetaCMzzMinusEff", m_unitMeasure, UnitMeasure::angle, true );
-    thetaCMzzMinusEff->setToolTip( trUtf8("Rotazione degli assi centrali di inerzia della sezione efficace nel caso di flessione negativa attorno asse Z"));
-    thetaCMzzMinusEff->setRichName( trUtf8("θ<span style=\" vertical-align:sub;\">C,eff,Z-</span>"));
+    thetaCMzzMinusEff->setToolTip( tr("Rotazione degli assi centrali di inerzia della sezione efficace nel caso di flessione negativa attorno asse Z"));
+    thetaCMzzMinusEff->setRichName( tr("θ<span style=\" vertical-align:sub;\">C,eff,Z-</span>"));
     addVarToContainer( thetaCMzzMinusEff );
 
     WMyyMinEff = new DoublePlus( 0.0, "WMyyMinusEff", m_unitMeasure, UnitMeasure::sectL3, true );
-    WMyyMinEff->setToolTip( trUtf8("Modulo elastico di resistenza flessionale minimo della sezione efficace nel caso di flessione attorno asse Y"));
-    WMyyMinEff->setRichName( trUtf8("W<span style=\"vertical-align:sub;\">eff,Y,min</span>") );
+    WMyyMinEff->setToolTip( tr("Modulo elastico di resistenza flessionale minimo della sezione efficace nel caso di flessione attorno asse Y"));
+    WMyyMinEff->setRichName( tr("W<span style=\"vertical-align:sub;\">eff,Y,min</span>") );
     addVarToContainer( WMyyMinEff );
 
     thetaCMyyMinEff = new DoublePlus( 0.0, "thetaCMyyMinEff", m_unitMeasure, UnitMeasure::angle, true );
-    thetaCMyyMinEff->setToolTip( trUtf8("Rotazione degli assi centrali di inerzia della sezione efficace associato al modulo di resistenza flessinoale minimo attorno asse Y"));
-    thetaCMyyMinEff->setRichName( trUtf8("θ<span style=\" vertical-align:sub;\">C,eff,Y,min</span>"));
+    thetaCMyyMinEff->setToolTip( tr("Rotazione degli assi centrali di inerzia della sezione efficace associato al modulo di resistenza flessinoale minimo attorno asse Y"));
+    thetaCMyyMinEff->setRichName( tr("θ<span style=\" vertical-align:sub;\">C,eff,Y,min</span>"));
     addVarToContainer( thetaCMyyMinEff );
 
     WMzzMinEff = new DoublePlus( 0.0, "WMzzMinusEff", m_unitMeasure, UnitMeasure::sectL3, true );
-    WMzzMinEff->setToolTip( trUtf8("Modulo elastico di resistenza flessionale minimo della sezione efficace nel caso di flessione attorno asse Z"));
-    WMzzMinEff->setRichName( trUtf8("W<span style=\"vertical-align:sub;\">eff,Z,min</span>") );
+    WMzzMinEff->setToolTip( tr("Modulo elastico di resistenza flessionale minimo della sezione efficace nel caso di flessione attorno asse Z"));
+    WMzzMinEff->setRichName( tr("W<span style=\"vertical-align:sub;\">eff,Z,min</span>") );
     addVarToContainer( WMzzMinEff );
 
     thetaCMzzMinEff = new DoublePlus( 0.0, "thetaCMzzMinEff", m_unitMeasure, UnitMeasure::angle, true );
-    thetaCMzzMinEff->setToolTip( trUtf8("Rotazione degli assi centrali di inerzia della sezione efficace associato al modulo di resistenza flessinoale minimo attorno asse Z"));
-    thetaCMzzMinEff->setRichName( trUtf8("θ<span style=\" vertical-align:sub;\">C,eff,Z,min</span>"));
+    thetaCMzzMinEff->setToolTip( tr("Rotazione degli assi centrali di inerzia della sezione efficace associato al modulo di resistenza flessinoale minimo attorno asse Z"));
+    thetaCMzzMinEff->setRichName( tr("θ<span style=\" vertical-align:sub;\">C,eff,Z,min</span>"));
     addVarToContainer( thetaCMzzMinEff );
 
     connect( t, &VarPlus::valueChanged, this, static_cast<void(SectionThinContSteel::*)()>(&SectionThinContSteel::updateSectionEff) );

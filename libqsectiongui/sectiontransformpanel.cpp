@@ -35,17 +35,17 @@ public:
         section = NULL;
 
         rot = new DoublePlus( 0.0, "rot", m_unitMeasure, UnitMeasure::angle );
-        rot->setRichName( QObject::trUtf8("α" ));
-        rot->setToolTip( QObject::trUtf8("Angolo di rotazione"));
+        rot->setRichName( QObject::tr("α" ));
+        rot->setToolTip( QObject::tr("Angolo di rotazione"));
         rot->setReadOnly( false );
         addVarToContainer(rot);
 
         trans = new Point2DPlus( "trans", "transY", 0.0, "transZ", 0.0, m_unitMeasure, UnitMeasure::sectL );
-        trans->y->setRichName(QObject::trUtf8("Δy"));
-        trans->y->setToolTip(QObject::trUtf8("Componente y del vettore traslazione"));
+        trans->y->setRichName(QObject::tr("Δy"));
+        trans->y->setToolTip(QObject::tr("Componente y del vettore traslazione"));
         trans->y->setReadOnly( false );
-        trans->z->setRichName(QObject::trUtf8("Δz"));
-        trans->z->setToolTip(QObject::trUtf8("Componente z del vettore traslazione"));
+        trans->z->setRichName(QObject::tr("Δz"));
+        trans->z->setToolTip(QObject::tr("Componente z del vettore traslazione"));
         trans->z->setReadOnly( false );
         addVarToContainer(trans);
 
@@ -71,10 +71,10 @@ SectionTransformPanel::SectionTransformPanel(UnitMeasure * ump, QWidget *parent)
     m_d->ui->setupUi(this);
 
     m_d->connectUI();
-    connect( m_d->ui->translatePButton, SIGNAL(clicked()), this, SLOT(translate()));
-    connect( m_d->ui->rotateAnglePButton, SIGNAL(clicked()), this, SLOT(rotate()));
-    connect( m_d->ui->GTranslatePButton, SIGNAL(clicked()), this, SLOT(GTranslate()));
-    connect( m_d->ui->PTransRotPButton, SIGNAL(clicked()), this, SLOT(PTransRot()));
+    connect( m_d->ui->translatePButton, &QPushButton::clicked, this, &SectionTransformPanel::translate );
+    connect( m_d->ui->rotateAnglePButton, &QPushButton::clicked, this, &SectionTransformPanel::rotate );
+    connect( m_d->ui->GTranslatePButton, &QPushButton::clicked, this, &SectionTransformPanel::GTranslate );
+    connect( m_d->ui->PTransRotPButton, &QPushButton::clicked, this, &SectionTransformPanel::PTransRot );
 }
 
 SectionTransformPanel::~SectionTransformPanel() {

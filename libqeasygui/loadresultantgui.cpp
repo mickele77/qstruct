@@ -27,11 +27,11 @@ LoadResultantGUI::LoadResultantGUI( UnitMeasure * ump, QWidget *parent) :
     m_d->loadModel = new LoadResultant(ump, parent);
     m_d->ui->setupUi(this);
     connectVar();
-    connect( m_d->ui->addFPushButton, SIGNAL(clicked()), this, SLOT(insertLoad()) );
-    connect( m_d->ui->delFPushButton, SIGNAL(clicked()), this, SLOT(removeLoad()) );
-    connect( m_d->ui->dataFromFileTXTPushButton, SIGNAL(clicked()), this, SLOT(loadDataFromFileTXT()) );
-    connect( m_d->ui->dataFromFileXMLPushButton, SIGNAL(clicked()), this, SLOT(loadDataFromFileXML()) );
-    connect( m_d->ui->dataToFileXMLPushButton, SIGNAL(clicked()), this, SLOT(writeDataToFileXML()) );
+    connect( m_d->ui->addFPushButton, &QPushButton::clicked, this, &LoadResultantGUI::insertLoad );
+    connect( m_d->ui->delFPushButton, &QPushButton::clicked, this, &LoadResultantGUI::removeLoad );
+    connect( m_d->ui->dataFromFileTXTPushButton, &QPushButton::clicked, this, &LoadResultantGUI::loadDataFromFileTXT );
+    connect( m_d->ui->dataFromFileXMLPushButton, &QPushButton::clicked, this, &LoadResultantGUI::loadDataFromFileXML );
+    connect( m_d->ui->dataToFileXMLPushButton, &QPushButton::clicked, this, &LoadResultantGUI::writeDataToFileXML );
 }
 
 LoadResultantGUI::~LoadResultantGUI() {
@@ -87,7 +87,7 @@ void LoadResultantGUI::removeLoad() {
 }
 
 void LoadResultantGUI::loadDataFromFileTXT(){
-    QString fileName = QFileDialog::getOpenFileName(this, trUtf8("Apri file TXT"), "", trUtf8("File TXT(%1)").arg("*.txt") );
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Apri file TXT"), "", tr("File TXT(%1)").arg("*.txt") );
     if (!fileName.isEmpty()) {
         QFile file(fileName);
 
@@ -98,14 +98,14 @@ void LoadResultantGUI::loadDataFromFileTXT(){
             m_d->loadModel->loadFromFileTXT( file );
             file.close();
         } else {
-            QMessageBox::warning( this, trUtf8("QStruct"), trUtf8("Non riesco ad aprire il file file %1:\n%2.").arg(fileName).arg(file.errorString()));
+            QMessageBox::warning( this, tr("QStruct"), tr("Non riesco ad aprire il file file %1:\n%2.").arg(fileName).arg(file.errorString()));
             return;
         }
     }
 }
 
 void LoadResultantGUI::loadDataFromFileXML(){
-    QString fileName = QFileDialog::getOpenFileName(this, trUtf8("Apri file XML"), "", trUtf8("File XML (%1)").arg("*.xml") );
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Apri file XML"), "", tr("File XML (%1)").arg("*.xml") );
     if (!fileName.isEmpty()) {
         QFile file(fileName);
 
@@ -117,7 +117,7 @@ void LoadResultantGUI::loadDataFromFileXML(){
             m_d->loadModel->readXml( &reader );
             file.close();
         } else {
-            QMessageBox::warning( this, trUtf8("QStruct"), trUtf8("Non riesco ad aprire il file %1:\n%2.").arg(fileName).arg(file.errorString()));
+            QMessageBox::warning( this, tr("QStruct"), tr("Non riesco ad aprire il file %1:\n%2.").arg(fileName).arg(file.errorString()));
             return;
         }
     }
@@ -126,8 +126,8 @@ void LoadResultantGUI::loadDataFromFileXML(){
 
 void LoadResultantGUI::writeDataToFileXML(){
     QString fileName = QFileDialog::getSaveFileName(this,
-                                                    trUtf8("Salva su file XML"), ".",
-                                                    trUtf8("File XML (%1)").arg("*.xml"));
+                                                    tr("Salva su file XML"), ".",
+                                                    tr("File XML (%1)").arg("*.xml"));
     if (!fileName.isEmpty()){
         QFile file( fileName );
         if (file.open(QIODevice::ReadWrite | QIODevice::Text)) {
@@ -137,7 +137,7 @@ void LoadResultantGUI::writeDataToFileXML(){
             file.flush();
             file.close();
         } else {
-            QMessageBox::warning( this, trUtf8("QStruct"), trUtf8("Non riesco ad aprire il file %1:\n%2.").arg(fileName).arg(file.errorString()));
+            QMessageBox::warning( this, tr("QStruct"), tr("Non riesco ad aprire il file %1:\n%2.").arg(fileName).arg(file.errorString()));
             return;
         }
     }

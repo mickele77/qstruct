@@ -137,7 +137,7 @@ void SectionSteel::loadFromXML( const QXmlStreamAttributes &attrs, MaterialModel
 }
 
 QString SectionSteel::typeSection(){
-    return trUtf8("Sezione in Acciaio");
+    return tr("Sezione in Acciaio");
 }
 
 Steel * SectionSteel::steel(){
@@ -280,14 +280,14 @@ void SectionSteel::updateSectionSteelProfile(){
 
 void SectionSteel::initVar( SectionSteel::ManufactType manType, SectionSteel::SectionShape sectType ){
     *m_typeNameInternal = "SectionSteel";
-    typeName->setValue( trUtf8("Acciaio"));
+    typeName->setValue( tr("Acciaio"));
 
     manufactType = new SectionSteelManufactType( manType, "manufactType" );
-    manufactType->setRichName( trUtf8("Realizzazione"));
+    manufactType->setRichName( tr("Realizzazione"));
     addVarToContainer( manufactType );
 
     sectionShape = new SectionSteelShape( sectType, "sectionShape" );
-    sectionShape->setRichName( trUtf8("Forma"));
+    sectionShape->setRichName( tr("Forma"));
     addVarToContainer( sectionShape );
 
     connect( sectionShape, &SectionSteelShape::valueChanged, this, &SectionSteel::updateSectionSteelProfile );
@@ -304,218 +304,218 @@ void SectionSteel::initVar( SectionSteel::ManufactType manType, SectionSteel::Se
     Syz2DyDz->setReadOnly( true );
 
     translationO = new Point2DPlus( "translationO", "translateOy", 0.0, "translateOz", 0.0, m_unitMeasure, UnitMeasure::sectL );
-    translationO->y->setRichName( trUtf8("Δy<span style=\" vertical-align:sub;\">O</span>"));
-    translationO->z->setRichName( trUtf8("Δz<span style=\" vertical-align:sub;\">O</span>"));
+    translationO->y->setRichName( tr("Δy<span style=\" vertical-align:sub;\">O</span>"));
+    translationO->z->setRichName( tr("Δz<span style=\" vertical-align:sub;\">O</span>"));
     addVarToContainer( translationO );
     connect( translationO, &Point2DPlus::valueChanged, this, &Section::updateQGraphics );
 
     rotationO = new DoublePlus( 0.0, "rotationO", m_unitMeasure, UnitMeasure::angle );
-    rotationO->setRichName( trUtf8("α<span style=\" vertical-align:sub;\">O</span>"));
+    rotationO->setRichName( tr("α<span style=\" vertical-align:sub;\">O</span>"));
     addVarToContainer( rotationO );
     connect( rotationO, &DoublePlus::valueChanged, this, &Section::updateQGraphics );
 
     Iw = new DoublePlus(0.0, "Iw", m_unitMeasure, UnitMeasure::sectL6, true );
-    Iw->setToolTip( trUtf8("Costante di ingobbamento"));
-    Iw->setRichName( trUtf8("I<span style=\" vertical-align:sub;\">w</span>"));
+    Iw->setToolTip( tr("Costante di ingobbamento"));
+    Iw->setRichName( tr("I<span style=\" vertical-align:sub;\">w</span>"));
     addVarToContainer( Iw );
     Iw->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setIw) );
 
     WElMy = new DoublePlus(0.0, "WElMy", m_unitMeasure, UnitMeasure::sectL3 );
     WElMy->setReadOnly( true );
-    WElMy->setToolTip( trUtf8("Modulo elastico di resistenza flessionale, asse y-y"));
-    WElMy->setRichName( trUtf8("W<span style=\" vertical-align:sub;\">el,y</span>"));
+    WElMy->setToolTip( tr("Modulo elastico di resistenza flessionale, asse y-y"));
+    WElMy->setRichName( tr("W<span style=\" vertical-align:sub;\">el,y</span>"));
     addVarToContainer( WElMy );
     WElMy->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setWElMy) );
 
     WElMz = new DoublePlus(0.0, "WElMz", m_unitMeasure, UnitMeasure::sectL3 );
     WElMz->setReadOnly( true );
-    WElMz->setToolTip( trUtf8("Modulo elastico di resistenza flessionale, asse z-z"));
-    WElMz->setRichName( trUtf8("W<span style=\" vertical-align:sub;\">el,z</span>"));
+    WElMz->setToolTip( tr("Modulo elastico di resistenza flessionale, asse z-z"));
+    WElMz->setRichName( tr("W<span style=\" vertical-align:sub;\">el,z</span>"));
     addVarToContainer( WElMz );
     WElMz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setWElMz) );
 
     WPlMy = new DoublePlus(0.0, "WPlMy", m_unitMeasure, UnitMeasure::sectL3 );
     WPlMy->setReadOnly( true );
-    WPlMy->setToolTip( trUtf8("Modulo plastico di resistenza flessionale, asse y-y"));
-    WPlMy->setRichName( trUtf8("W<span style=\" vertical-align:sub;\">pl,y</span>"));
+    WPlMy->setToolTip( tr("Modulo plastico di resistenza flessionale, asse y-y"));
+    WPlMy->setRichName( tr("W<span style=\" vertical-align:sub;\">pl,y</span>"));
     addVarToContainer( WPlMy );
     WPlMy->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setWPlMy) );
 
     WPlMz = new DoublePlus(0.0, "WPlMz", m_unitMeasure, UnitMeasure::sectL3 );
     WPlMz->setReadOnly( true );
-    WPlMz->setToolTip( trUtf8("Modulo plastico di resistenza flessionale, asse z-z"));
-    WPlMz->setRichName( trUtf8("W<span style=\" vertical-align:sub;\">pl,z</span>"));
+    WPlMz->setToolTip( tr("Modulo plastico di resistenza flessionale, asse z-z"));
+    WPlMz->setRichName( tr("W<span style=\" vertical-align:sub;\">pl,z</span>"));
     addVarToContainer( WPlMz );
     WPlMz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setWPlMz) );
 
     AEffN = new DoublePlus(0.0, "AEffN", m_unitMeasure, UnitMeasure::sectL2 );
     AEffN->setReadOnly( true );
-    AEffN->setToolTip( trUtf8("Area efficace"));
-    AEffN->setRichName( trUtf8("A<span style=\" vertical-align:sub;\">eff</span>"));
+    AEffN->setToolTip( tr("Area efficace"));
+    AEffN->setRichName( tr("A<span style=\" vertical-align:sub;\">eff</span>"));
     addVarToContainer( AEffN );
     AEffN->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setEffN) );
 
     GEffN = new Point2DPlus("GEffN", "yGEffNMinus", 0.0, "zGEffNMinus", 0.0, m_unitMeasure, UnitMeasure::sectL );
     addVarToContainer( GEffN );
     GEffN->y->setReadOnly( true );
-    GEffN->y->setToolTip(trUtf8("Ascissa del baricentro della sezione efficace in presenza di solo sforzo di compressione"));
-    GEffN->y->setRichName( trUtf8("y<span style=\" vertical-align:sub;\">G,eff</span>"));
+    GEffN->y->setToolTip(tr("Ascissa del baricentro della sezione efficace in presenza di solo sforzo di compressione"));
+    GEffN->y->setRichName( tr("y<span style=\" vertical-align:sub;\">G,eff</span>"));
     GEffN->z->setReadOnly( true );
-    GEffN->z->setToolTip(trUtf8("Ordinata del baricentro della sezione efficace in presenza di solo sforzo di compressione"));
-    GEffN->z->setRichName( trUtf8("z<span style=\" vertical-align:sub;\">G,eff</span>"));
+    GEffN->z->setToolTip(tr("Ordinata del baricentro della sezione efficace in presenza di solo sforzo di compressione"));
+    GEffN->z->setRichName( tr("z<span style=\" vertical-align:sub;\">G,eff</span>"));
     GEffN->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setEffN) );
 
     WEffMyMax = new DoublePlus(0.0, "WEffMyPlus", m_unitMeasure, UnitMeasure::sectL3 );
     WEffMyMax->setReadOnly( true );
-    WEffMyMax->setToolTip( trUtf8("Massimo modulo di resistenza flessionale della sezione efficace, asse y-y"));
-    WEffMyMax->setRichName( trUtf8("W<span style=\" vertical-align:sub;\">y,eff,max</span>"));
+    WEffMyMax->setToolTip( tr("Massimo modulo di resistenza flessionale della sezione efficace, asse y-y"));
+    WEffMyMax->setRichName( tr("W<span style=\" vertical-align:sub;\">y,eff,max</span>"));
     addVarToContainer( WEffMyMax );
     WEffMyMax->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setWEffMyMax) );
 
     WEffMyMin = new DoublePlus(0.0, "WEffMyMinus", m_unitMeasure, UnitMeasure::sectL3 );
     WEffMyMin->setReadOnly( true );
-    WEffMyMin->setToolTip( trUtf8("Minimo modulo di resistenza felssionale della sezione efficace, asse y-y"));
-    WEffMyMin->setRichName( trUtf8("W<span style=\" vertical-align:sub;\">y,eff,min</span>"));
+    WEffMyMin->setToolTip( tr("Minimo modulo di resistenza felssionale della sezione efficace, asse y-y"));
+    WEffMyMin->setRichName( tr("W<span style=\" vertical-align:sub;\">y,eff,min</span>"));
     addVarToContainer( WEffMyMin );
     WEffMyMin->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setWEffMyMin) );
 
     WEffMzMax = new DoublePlus(0.0, "WEffMzPlus", m_unitMeasure, UnitMeasure::sectL3 );
     WEffMzMax->setReadOnly( true );
-    WEffMzMax->setToolTip( trUtf8("Massimo modulo di resistenza flessionale della sezione efficace, asse z-z"));
-    WEffMzMax->setRichName( trUtf8("W<span style=\" vertical-align:sub;\">z,eff,max</span>"));
+    WEffMzMax->setToolTip( tr("Massimo modulo di resistenza flessionale della sezione efficace, asse z-z"));
+    WEffMzMax->setRichName( tr("W<span style=\" vertical-align:sub;\">z,eff,max</span>"));
     addVarToContainer( WEffMzMax );
     WEffMzMax->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setWEffMzMax) );
 
     WEffMzMin = new DoublePlus(0.0, "WEffMzMinus", m_unitMeasure, UnitMeasure::sectL3 );
     WEffMzMin->setReadOnly( true );
-    WEffMzMin->setToolTip( trUtf8("Minimo modulo di resistenza flessionale della sezione efficace, asse z-z"));
-    WEffMzMin->setRichName( trUtf8("W<span style=\" vertical-align:sub;\">z,eff,min</span>"));
+    WEffMzMin->setToolTip( tr("Minimo modulo di resistenza flessionale della sezione efficace, asse z-z"));
+    WEffMzMin->setRichName( tr("W<span style=\" vertical-align:sub;\">z,eff,min</span>"));
     addVarToContainer( WEffMzMin );
     WEffMzMin->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setWEffMzMin) );
 
     NClass = new QStringPlus("0", "NClass" );
     NClass->setReadOnly( true );
-    NClass->setToolTip( trUtf8("Classe della sezione per compressione semplice"));
-    NClass->setRichName( trUtf8("Classe N"));
+    NClass->setToolTip( tr("Classe della sezione per compressione semplice"));
+    NClass->setRichName( tr("Classe N"));
     addVarToContainer( NClass );
     NClass->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setNClass) );
 
     MyMaxClass = new QStringPlus("0", "MyMaxClass" );
     MyMaxClass->setReadOnly( true );
-    MyMaxClass->setToolTip( trUtf8("Classe della sezione per flessione semplice massima lungo asse y-y"));
-    MyMaxClass->setRichName( trUtf8("Classe My+"));
+    MyMaxClass->setToolTip( tr("Classe della sezione per flessione semplice massima lungo asse y-y"));
+    MyMaxClass->setRichName( tr("Classe My+"));
     addVarToContainer( MyMaxClass );
     MyMaxClass->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setMyMaxClass) );
 
     MyMinClass = new QStringPlus("0", "MyMinClass" );
     MyMinClass->setReadOnly( true );
-    MyMinClass->setToolTip( trUtf8("Classe della sezione per flessione semplice minima lungo l'asse y-y"));
-    MyMinClass->setRichName( trUtf8("Classe My-"));
+    MyMinClass->setToolTip( tr("Classe della sezione per flessione semplice minima lungo l'asse y-y"));
+    MyMinClass->setRichName( tr("Classe My-"));
     addVarToContainer( MyMinClass );
     MyMinClass->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setMyMinClass) );
 
     MyClassLimit = new DoublePlus(0.0, "MyClassLimit", m_unitMeasure, UnitMeasure::loadF );
     MyClassLimit->setReadOnly( true );
-    MyClassLimit->setToolTip( trUtf8("Carico limite per applicazione classe flessione pura y-y (6.2.9.1 (4) dell'EC3)"));
-    MyClassLimit->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">lim,y</span>"));
+    MyClassLimit->setToolTip( tr("Carico limite per applicazione classe flessione pura y-y (6.2.9.1 (4) dell'EC3)"));
+    MyClassLimit->setRichName( tr("N<span style=\" vertical-align:sub;\">lim,y</span>"));
     addVarToContainer( MyClassLimit );
     MyClassLimit->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setMyClassLimit) );
 
     MzMaxClass = new QStringPlus("0", "MzMaxClass" );
     MzMaxClass->setReadOnly( true );
-    MzMaxClass->setToolTip( trUtf8("Classe della sezione per flessione semplice massimo lungo l'asse z-z "));
-    MzMaxClass->setRichName( trUtf8("Classe Mz+"));
+    MzMaxClass->setToolTip( tr("Classe della sezione per flessione semplice massimo lungo l'asse z-z "));
+    MzMaxClass->setRichName( tr("Classe Mz+"));
     addVarToContainer( MzMaxClass );
     MzMaxClass->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setMzMaxClass) );
 
     MzMinClass = new QStringPlus("0", "MzMinClass" );
     MzMinClass->setReadOnly( true );
-    MzMinClass->setToolTip( trUtf8("Classe della sezione per flessione semplice minima lungo l'asse z-z"));
-    MzMinClass->setRichName( trUtf8("Classe Mz-"));
+    MzMinClass->setToolTip( tr("Classe della sezione per flessione semplice minima lungo l'asse z-z"));
+    MzMinClass->setRichName( tr("Classe Mz-"));
     addVarToContainer( MzMinClass );
     MzMinClass->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setMzMinClass) );
 
     MzClassLimit = new DoublePlus(0.0, "MzClassLimit", m_unitMeasure, UnitMeasure::loadF );
     MzClassLimit->setReadOnly( true );
-    MzClassLimit->setToolTip( trUtf8("Carico limite per applicazione classe flessione pura z-z (6.2.9.1 (4) dell'EC3)"));
-    MzClassLimit->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">lim,z</span>"));
+    MzClassLimit->setToolTip( tr("Carico limite per applicazione classe flessione pura z-z (6.2.9.1 (4) dell'EC3)"));
+    MzClassLimit->setRichName( tr("N<span style=\" vertical-align:sub;\">lim,z</span>"));
     addVarToContainer( MzClassLimit );
     MzClassLimit->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setMzClassLimit) );
 
     NULSMax = new DoublePlus(0.0, "NULSPlus", m_unitMeasure, UnitMeasure::loadF );
     NULSMax->setReadOnly( true );
-    NULSMax->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">t,Rd</span>") );
-    NULSMax->setToolTip( trUtf8("Resistenza di calcolo a trazione della sezione lorda"));
+    NULSMax->setRichName( tr("N<span style=\" vertical-align:sub;\">t,Rd</span>") );
+    NULSMax->setToolTip( tr("Resistenza di calcolo a trazione della sezione lorda"));
     addVarToContainer( NULSMax );
     NULSMax->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setNULSMax) );
     NULSMax->addConnectedVar( A );
 
     NULSMin = new DoublePlus(0.0, "NULSMinus", m_unitMeasure, UnitMeasure::loadF );
     NULSMin->setReadOnly( true );
-    NULSMin->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">c,Rd</span>") );
-    NULSMin->setToolTip( trUtf8("Resistenza di calcolo a compressione della sezione lorda"));
+    NULSMin->setRichName( tr("N<span style=\" vertical-align:sub;\">c,Rd</span>") );
+    NULSMin->setToolTip( tr("Resistenza di calcolo a compressione della sezione lorda"));
     addVarToContainer( NULSMin );
     NULSMin->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setNULSMin) );
     NULSMax->addConnectedVars( 2, NClass, A );
 
     MULSyMax = new DoublePlus(0.0, "MULSyMax", m_unitMeasure, UnitMeasure::loadM );
     MULSyMax->setReadOnly( true );
-    MULSyMax->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">c,Rd+,y</span>") );
-    MULSyMax->setToolTip( trUtf8("Momento resistente massimo nel piano perpendicolare all'asse y"));
+    MULSyMax->setRichName( tr("M<span style=\" vertical-align:sub;\">c,Rd+,y</span>") );
+    MULSyMax->setToolTip( tr("Momento resistente massimo nel piano perpendicolare all'asse y"));
     addVarToContainer( MULSyMax );
     MULSyMax->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setMULSyMax) );
     MULSyMax->addConnectedVars( 4, MyMaxClass, WPlMy, WElMy, WEffMyMax );
 
     MULSyMin = new DoublePlus(0.0, "MULSyMin", m_unitMeasure, UnitMeasure::loadM );
     MULSyMin->setReadOnly( true );
-    MULSyMin->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">c,Rd-,y</span>") );
-    MULSyMin->setToolTip( trUtf8("Momento resistente minimo nel piano perpendicolare all'asse y"));
+    MULSyMin->setRichName( tr("M<span style=\" vertical-align:sub;\">c,Rd-,y</span>") );
+    MULSyMin->setToolTip( tr("Momento resistente minimo nel piano perpendicolare all'asse y"));
     addVarToContainer( MULSyMin );
     MULSyMin->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setMULSyMin) );
     MULSyMin->addConnectedVars( 4, MyMinClass, WPlMy, WElMy, WEffMyMin );
 
     MULSzMax = new DoublePlus(0.0, "MULSzMax", m_unitMeasure, UnitMeasure::loadM );
     MULSzMax->setReadOnly( true );
-    MULSzMax->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">c,Rd+,z</span>") );
-    MULSzMax->setToolTip( trUtf8("Momento resistente nel piano perpendicolare all'asse z"));
+    MULSzMax->setRichName( tr("M<span style=\" vertical-align:sub;\">c,Rd+,z</span>") );
+    MULSzMax->setToolTip( tr("Momento resistente nel piano perpendicolare all'asse z"));
     addVarToContainer( MULSzMax );
     MULSzMax->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setMULSzMax) );
     MULSzMax->addConnectedVars( 4, MzMaxClass, WPlMz, WElMz, WEffMzMax );
 
     MULSzMin = new DoublePlus(0.0, "MULSzMin", m_unitMeasure, UnitMeasure::loadM );
     MULSzMin->setReadOnly( true );
-    MULSzMin->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">c,Rd-,z</span>") );
-    MULSzMin->setToolTip( trUtf8("Momento resistente nel piano perpendicolare all'asse z"));
+    MULSzMin->setRichName( tr("M<span style=\" vertical-align:sub;\">c,Rd-,z</span>") );
+    MULSzMin->setToolTip( tr("Momento resistente nel piano perpendicolare all'asse z"));
     addVarToContainer( MULSzMin );
     MULSzMin->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setMULSzMin) );
     MULSzMin->addConnectedVars( 4, MzMinClass, WPlMz, WElMz, WEffMzMin );
 
     AVy = new DoublePlus(0.0, "AVy", m_unitMeasure, UnitMeasure::sectL2 );
     AVy->setReadOnly( true );
-    AVy->setRichName( trUtf8("A<span style=\" vertical-align:sub;\">V,y</span>") );
-    AVy->setToolTip( trUtf8("Area resistente per taglio agente lungo asse y"));
+    AVy->setRichName( tr("A<span style=\" vertical-align:sub;\">V,y</span>") );
+    AVy->setToolTip( tr("Area resistente per taglio agente lungo asse y"));
     addVarToContainer( AVy );
     AVy->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setAVy) );
 
     VULSy = new DoublePlus(0.0, "VULSy", m_unitMeasure, UnitMeasure::loadF );
     VULSy->setReadOnly( true );
-    VULSy->setRichName( trUtf8("V<span style=\" vertical-align:sub;\">c,Rd,y</span>") );
-    VULSy->setToolTip( trUtf8("Resistenza di calcolo per taglio agente lungo asse y"));
+    VULSy->setRichName( tr("V<span style=\" vertical-align:sub;\">c,Rd,y</span>") );
+    VULSy->setToolTip( tr("Resistenza di calcolo per taglio agente lungo asse y"));
     addVarToContainer( VULSy );
     VULSy->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setVULSy) );
     VULSy->addConnectedVar( AVy );
 
     AVz = new DoublePlus(0.0, "AVz", m_unitMeasure, UnitMeasure::sectL2 );
     AVz->setReadOnly( true );
-    AVz->setRichName( trUtf8("A<span style=\" vertical-align:sub;\">V,z</span>") );
-    AVz->setToolTip( trUtf8("Area resistente per taglio agente lungo asse z"));
+    AVz->setRichName( tr("A<span style=\" vertical-align:sub;\">V,z</span>") );
+    AVz->setToolTip( tr("Area resistente per taglio agente lungo asse z"));
     addVarToContainer( AVz );
     AVz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setAVz) );
 
     VULSz = new DoublePlus(0.0, "VULSz", m_unitMeasure, UnitMeasure::loadF );
     VULSz->setReadOnly( true );
-    VULSz->setRichName( trUtf8("V<span style=\" vertical-align:sub;\">c,Rd,z</span>") );
-    VULSz->setToolTip( trUtf8("Resistenza di calcolo per taglio agente lungo asse z"));
+    VULSz->setRichName( tr("V<span style=\" vertical-align:sub;\">c,Rd,z</span>") );
+    VULSz->setToolTip( tr("Resistenza di calcolo per taglio agente lungo asse z"));
     addVarToContainer( VULSz );
     VULSz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionSteel::setVULSz) );
     VULSz->addConnectedVar( AVz );
@@ -1821,42 +1821,42 @@ bool SectionSteel::verifyULSNormal( double lRelY,
     // Controlla se i valori di N, M e T sono oltre i valori di resistenza nel caso di sollecitazione semplice
     if( N > NULSMax->valueNormal() ){
         if( messages ){
-            messages->append( trUtf8("Sforzo normale maggiore della resistenza di calcolo a trazione.\n"));
+            messages->append( tr("Sforzo normale maggiore della resistenza di calcolo a trazione.\n"));
         }
     }
     if( N < NULSMin->valueNormal() ){
         if( messages ){
-            messages->append( trUtf8("Sforzo normale minore della resistenza di calcolo a compressione.\n"));
+            messages->append( tr("Sforzo normale minore della resistenza di calcolo a compressione.\n"));
         }
     }
     if( My > MULSyMax->valueNormal() ){
         if( messages ){
-            messages->append( trUtf8("Momento y-y maggiore del momento resistente massimo y-y.\n"));
+            messages->append( tr("Momento y-y maggiore del momento resistente massimo y-y.\n"));
         }
     }
     if( My < MULSyMin->valueNormal() ){
         if( messages ){
-            messages->append( trUtf8("Momento y-y minore del momento resistente minimo y-y.\n"));
+            messages->append( tr("Momento y-y minore del momento resistente minimo y-y.\n"));
         }
     }
     if( Mz > MULSzMax->valueNormal() ){
         if( messages ){
-            messages->append( trUtf8("Momento z-z maggiore del momento resistente massimo z-z.\n"));
+            messages->append( tr("Momento z-z maggiore del momento resistente massimo z-z.\n"));
         }
     }
     if( Mz < MULSzMin->valueNormal() ){
         if( messages ){
-            messages->append( trUtf8("Momento z-z minore del momento resistente minimo z-z.\n"));
+            messages->append( tr("Momento z-z minore del momento resistente minimo z-z.\n"));
         }
     }
     if( fabs(Vz) > VULSz->valueNormal() ){
         if( messages ){
-            messages->append( trUtf8("Taglio z-z maggiore del taglio resistente z-z.\n"));
+            messages->append( tr("Taglio z-z maggiore del taglio resistente z-z.\n"));
         }
     }
     if( fabs(Vy) > VULSy->valueNormal() ){
         if( messages ){
-            messages->append( trUtf8("Taglio y-y maggiore del taglio resistente y-y.\n"));
+            messages->append( tr("Taglio y-y maggiore del taglio resistente y-y.\n"));
         }
     }
 
@@ -1974,7 +1974,7 @@ bool SectionSteel::verifyULSNormal( double lRelY,
             }
         } else if( cl == 4 ){
             if( messages ){
-                messages->append( trUtf8("Classe 4: non ancora implementata (calcolata come classe 3)\n") );
+                messages->append( tr("Classe 4: non ancora implementata (calcolata come classe 3)\n") );
             }
             double s = pow( fabs(My) / WElMy->valueNormal() + fabs(Mz) / WElMz->valueNormal() + fabs(N) / A->valueNormal(), 2.0) + 3.0 * ( pow(Vy/AVy->valueNormal(),2.0) + pow(Vz/AVz->valueNormal(), 2.0) );
             s = sqrt( s );
@@ -2003,7 +2003,7 @@ bool SectionSteel::verifyULSNormal( double lRelY,
         } else if( cl == 4 ) {
             // TODO
             if(messages ){
-                messages->append( trUtf8("Classe 4: non ancora implementata (calcolata come classe 3)\n") );
+                messages->append( tr("Classe 4: non ancora implementata (calcolata come classe 3)\n") );
             }
             NRd = fydNormal(1) * A->valueNormal();
             MRdY = fydNormal(1) * WElMy->valueNormal();

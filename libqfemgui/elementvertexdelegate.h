@@ -19,12 +19,13 @@
 #ifndef SECTIONSCNCRDELEGATE_H
 #define SECTIONSCNCRDELEGATE_H
 
+#include "femgui_export.h"
 #include <QStyledItemDelegate>
 
 class VertexModel;
 class ElementVertexModel;
 
-class ElementVertexDelegate : public QStyledItemDelegate {
+class EXPORT_FEMGUI_LIB_OPT ElementVertexDelegate : public QStyledItemDelegate {
     Q_OBJECT
 
 public:

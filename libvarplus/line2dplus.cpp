@@ -42,8 +42,8 @@ Line2DPlus::Line2DPlus(  const QString & nn,
                          bool em):
     VarPlus(nn, ump, um, em),
     m_d( new Line2DPlusPrivate(y1Val, z1Val, y2Val, z2Val, ump, um, em) ){
-    connect(m_d->P1, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
-    connect(m_d->P2, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
+    connect(m_d->P1, &Point2DPlus::valueChanged, this, &Line2DPlus::emitValueChanged );
+    connect(m_d->P2, &Point2DPlus::valueChanged, this, &Line2DPlus::emitValueChanged );
 }
 
 Line2DPlus::Line2DPlus( Line2DPlus & vv ):
@@ -51,8 +51,8 @@ Line2DPlus::Line2DPlus( Line2DPlus & vv ):
     m_d( new Line2DPlusPrivate(vv.m_d->P1->y->valueNormal(), vv.m_d->P1->z->valueNormal(),
                                vv.m_d->P2->y->valueNormal(), vv.m_d->P2->z->valueNormal(),
                                vv.m_unitMeasurePointer, vv.m_unitMeasureValue, vv.readOnly()) ){
-    connect(m_d->P1, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
-    connect(m_d->P2, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
+    connect(m_d->P1, &Point2DPlus::valueChanged, this, &Line2DPlus::emitValueChanged );
+    connect(m_d->P2, &Point2DPlus::valueChanged, this, &Line2DPlus::emitValueChanged );
 }
 
 Line2DPlus::~Line2DPlus(){
@@ -154,8 +154,8 @@ QGraphicsItem * Line2DPlus::qGraphicsItem(){
     if( m_d->qGraphicsItem == NULL ){
         m_d->qGraphicsItem = new QGraphicsLineItem;
         updateGraphics();
-        connect( m_d->P1, SIGNAL(valueChanged(QString)), this, SLOT(updateGraphics()) );
-        connect( m_d->P2, SIGNAL(valueChanged(QString)), this, SLOT(updateGraphics()) );
+        connect( m_d->P1, &Point2DPlus::valueChanged, this, &Line2DPlus::updateGraphics );
+        connect( m_d->P2, &Point2DPlus::valueChanged, this, &Line2DPlus::updateGraphics );
     }
     return m_d->qGraphicsItem;
 }

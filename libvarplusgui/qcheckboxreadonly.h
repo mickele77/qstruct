@@ -1,6 +1,8 @@
 #ifndef QCHECKBOXREADONLY_H
 #define QCHECKBOXREADONLY_H
 
+#include "varplusgui_export.h"
+
 #include <QCheckBox>
 #include "qwidgetplus.h"
 
@@ -16,10 +18,10 @@
 *
 */
 
-class QCheckBoxReadOnly : public QCheckBox, public QWidgetPlus {
+class EXPORT_VARPLUSGUI_LIB_OPT QCheckBoxReadOnly : public QCheckBox, public QWidgetPlus {
     Q_OBJECT
 public:
-    explicit QCheckBoxReadOnly(QWidget *parent = 0, VarPlus * v = 0 );
+    explicit QCheckBoxReadOnly(QWidget *parent = 0, VarPlus * v = nullptr );
     ~QCheckBoxReadOnly();
 
     void setVar( VarPlus * v);

@@ -20,6 +20,7 @@
 #ifndef RETAININGWALLQSCOMBINATIONGUI_H
 #define RETAININGWALLQSCOMBINATIONGUI_H
 
+#include "soilgui_export.h"
 #include <QWidget>
 
 namespace Ui {
@@ -35,7 +36,7 @@ class DoublePlus;
 class VarPlus;
 class QString;
 
-class RetainingWallQSCombinationGUI : public QWidget
+class EXPORT_SOILGUI_LIB_OPT RetainingWallQSCombinationGUI : public QWidget
 {
     Q_OBJECT
     

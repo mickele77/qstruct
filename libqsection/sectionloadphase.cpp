@@ -29,44 +29,44 @@ int SectionLoadPhase::phaseNum() {
 }
 
 void SectionLoadPhase::initVar() {
-    name = new QStringPlus( trUtf8("Fase"), "typeName", false );
-    name->setRichName( trUtf8("Fase") );
+    name = new QStringPlus( tr("Fase"), "typeName", false );
+    name->setRichName( tr("Fase") );
     addVarToContainer( name );
 
     NEd = new DoublePlus(0.0, "NEd", m_unitMeasure, UnitMeasure::loadF, false );
-    NEd->setToolTip( QObject::trUtf8("Sforzo normale agente"));
-    NEd->setRichName( QObject::trUtf8("N<span style=\"vertical-align:sub;\">Ed</span>"));
+    NEd->setToolTip( QObject::tr("Sforzo normale agente"));
+    NEd->setRichName( QObject::tr("N<span style=\"vertical-align:sub;\">Ed</span>"));
     addVarToContainer( NEd );
 
     MEdY = new DoublePlus( 0.0, "MEdY", m_unitMeasure, UnitMeasure::loadM, false );
-    MEdY->setRichName( trUtf8("M<span style=\"vertical-align:sub;\">Ed,y</span>") );
+    MEdY->setRichName( tr("M<span style=\"vertical-align:sub;\">Ed,y</span>") );
     addVarToContainer( MEdY );
 
     MEdZ = new DoublePlus( 0.0, "MEdZ", m_unitMeasure, UnitMeasure::loadM, false );
-    MEdZ->setRichName( trUtf8("M<span style=\"vertical-align:sub;\">Ed,z</span>") );
+    MEdZ->setRichName( tr("M<span style=\"vertical-align:sub;\">Ed,z</span>") );
     addVarToContainer( MEdZ );
 
     NCen  = new Point2DPlus( "NCen", "NCenY", 0.0, "NCenZ", 0.0, m_unitMeasure, UnitMeasure::sectL);
     addVarToContainer( NCen );
-    NCen->y->setToolTip( QObject::trUtf8("Ascissa del polo attorno a cui si calcola il momento"));
-    NCen->y->setRichName( QObject::trUtf8("y<span style=\"vertical-align:sub;\">N</span>"));
+    NCen->y->setToolTip( QObject::tr("Ascissa del polo attorno a cui si calcola il momento"));
+    NCen->y->setRichName( QObject::tr("y<span style=\"vertical-align:sub;\">N</span>"));
     NCen->y->setReadOnly( true );
-    NCen->z->setToolTip( QObject::trUtf8("Ordinata del polo attorno a cui si calcola il momento"));
-    NCen->z->setRichName( QObject::trUtf8("z<span style=\"vertical-align:sub;\">N</span>"));
+    NCen->z->setToolTip( QObject::tr("Ordinata del polo attorno a cui si calcola il momento"));
+    NCen->z->setRichName( QObject::tr("z<span style=\"vertical-align:sub;\">N</span>"));
     NCen->z->setReadOnly( true );
 
     l = new DoublePlus(0.0, "l", m_unitMeasure, UnitMeasure::deformation, true );
-    l->setToolTip( QObject::trUtf8("Deformazione assiale corrispondente"));
-    l->setRichName( QObject::trUtf8("λ"));
+    l->setToolTip( QObject::tr("Deformazione assiale corrispondente"));
+    l->setRichName( QObject::tr("λ"));
     addVarToContainer( l );
 
     my = new DoublePlus(0.0, "my", m_unitMeasure, UnitMeasure::curvature, true );
-    my->setToolTip( QObject::trUtf8("Curvatura rispetto ad asse y"));
-    my->setRichName( QObject::trUtf8("μ<span style=\"vertical-align:sub;\">y</span>"));
+    my->setToolTip( QObject::tr("Curvatura rispetto ad asse y"));
+    my->setRichName( QObject::tr("μ<span style=\"vertical-align:sub;\">y</span>"));
     addVarToContainer( my );
 
     mz = new DoublePlus(0.0, "LSPlusmzULS", m_unitMeasure, UnitMeasure::curvature, true );
-    mz->setToolTip( QObject::trUtf8("Curvatura rispetto ad asse z"));
-    mz->setRichName( QObject::trUtf8("μ<span style=\"vertical-align:sub;\">z</span>"));
+    mz->setToolTip( QObject::tr("Curvatura rispetto ad asse z"));
+    mz->setRichName( QObject::tr("μ<span style=\"vertical-align:sub;\">z</span>"));
     addVarToContainer( mz );
 }

@@ -46,7 +46,7 @@ public:
 Point2DPlusModel::Point2DPlusModel(UnitMeasure *ump, UnitMeasure::unitMeasure um, const QString & yH, const QString &zH, QObject *parent):
     TableModelPlus( "Point2DPlusModel", ump, parent),
     m_dd( new Point2DPlusModelPrivate( um, yH, zH) ){
-    connect( m_d->unitMeasure, SIGNAL(stringsChanged(UnitMeasure::unitMeasure)), this, SLOT(updateHeadersUM( UnitMeasure::unitMeasure )) );
+    connect( m_d->unitMeasure, &UnitMeasure::stringsChanged, this, &Point2DPlusModel::updateHeadersUM );
     updateHeaders();
 }
 
@@ -628,7 +628,7 @@ void Point2DPlusModel::calculateSects(const double &l, const double &my, const d
 
 int Point2DPlusModel::where(double y, double z, double l, double my, double mz, QList<double> &eVal) {
     double e = l + my * z + mz * y;
-    qSort( eVal );
+    std::sort( eVal.begin(), eVal.end() );
     for( int i=0; i < eVal.size(); ++i ){
         if( e < eVal.at(i) ){
             return i;

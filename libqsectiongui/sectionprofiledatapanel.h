@@ -20,12 +20,12 @@
 #define SECTIONPROFILEDATAPANEL_H
 
 class SectionProfile;
-
 class SectionProfileDataPanelPrivate;
 
+#include "sectiongui_export.h"
 #include <QWidget>
 
-class SectionProfileDataPanel : public QWidget
+class EXPORT_SECTIONGUI_LIB_OPT SectionProfileDataPanel : public QWidget
 {
     Q_OBJECT
 public:

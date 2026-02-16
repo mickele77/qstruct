@@ -49,7 +49,7 @@ SectionCncr::~SectionCncr(){
 
 void SectionCncr::initVar(){
     *m_typeNameInternal = "SectionCncr";
-    typeName->setValue( trUtf8("Sezione Cls"));
+    typeName->setValue( tr("Sezione Cls"));
 }
 
 void SectionCncr::loadFromXML( const QXmlStreamAttributes &attrs, MaterialModel * mModel, SectionLoadPhaseModel * loadModel ){
@@ -94,7 +94,7 @@ SectionSpace::SectionType SectionCncr::sectionType() {
 }
 
 QString SectionCncr::typeSection(){
-    return trUtf8("Sezione in Cls");
+    return tr("Sezione in Cls");
 }
 
 double SectionCncr::fMinSLSNormal(double l, double my, double mz) {

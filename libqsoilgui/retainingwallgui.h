@@ -25,11 +25,12 @@ class SoilModel;
 class UnitMeasure;
 class VarPlus;
 
+#include "soilgui_export.h"
 #include <QWidget>
 
 class RetainingWallGUIPrivate;
 
-class RetainingWallGUI : public QWidget
+class EXPORT_SOILGUI_LIB_OPT RetainingWallGUI : public QWidget
 {
     Q_OBJECT
 

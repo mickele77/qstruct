@@ -153,33 +153,33 @@ double SectionProfile::Syz2DyDzNormal() {
 
 void SectionProfile::initVar() {
     *m_typeNameInternal = "SectionProfile";
-    typeName->setValue( trUtf8("Sezione Profilo"));
+    typeName->setValue( tr("Sezione Profilo"));
 
     D = new Point2DPlus("D", "yD", 0.0, "zD", 0.0, m_unitMeasure, UnitMeasure::sectL, false );
-    D->setRichName(trUtf8("Coordinate del punto D rispetto a cui è definita la sezione"));
-    D->y->setToolTip( trUtf8("Ascissa del punto D rispetto a cui è definita la sezione"));
-    D->z->setToolTip( trUtf8("Ordinata del punto D rispetto a cui è definita la sezione"));
+    D->setRichName(tr("Coordinate del punto D rispetto a cui è definita la sezione"));
+    D->y->setToolTip( tr("Ascissa del punto D rispetto a cui è definita la sezione"));
+    D->z->setToolTip( tr("Ordinata del punto D rispetto a cui è definita la sezione"));
     D->setRichName( "D");
-    D->y->setRichName( trUtf8("y<span style=\"vertical-align:sub;\">D</span>") );
-    D->z->setRichName( trUtf8("z<span style=\"vertical-align:sub;\">D</span>") );
+    D->y->setRichName( tr("y<span style=\"vertical-align:sub;\">D</span>") );
+    D->z->setRichName( tr("z<span style=\"vertical-align:sub;\">D</span>") );
     addVarToContainer( D );
     connect( D, &VarPlus::valueChanged, this, &Section::sectionChanged );
 
     thetaD = new DoublePlus( 0.0, "thetaD", m_unitMeasure, UnitMeasure::angle, false );
-    thetaD->setToolTip( trUtf8("Angolo di inclinazione dell'asse rispetto a cui è definita la sezione rispetto all'asse y"));
-    thetaD->setRichName( trUtf8("θ<span style=\" vertical-align:sub;\">D,y</span>"));
+    thetaD->setToolTip( tr("Angolo di inclinazione dell'asse rispetto a cui è definita la sezione rispetto all'asse y"));
+    thetaD->setRichName( tr("θ<span style=\" vertical-align:sub;\">D,y</span>"));
     addVarToContainer( thetaD );
     connect( thetaD, &VarPlus::valueChanged, this, &Section::sectionChanged );
 
     SDy = new DoublePlus( 0.0, "SDy", m_unitMeasure, UnitMeasure::sectL3 );
-    SDy->setToolTip( trUtf8("Momento statico rispetto all'asse yD"));
-    SDy->setRichName( trUtf8("S<span style=\"vertical-align:sub;\">D,y</span>") );
+    SDy->setToolTip( tr("Momento statico rispetto all'asse yD"));
+    SDy->setRichName( tr("S<span style=\"vertical-align:sub;\">D,y</span>") );
     addVarToContainer( SDy );
     connect( SDy, &VarPlus::valueChanged, this, &Section::sectionChanged );
 
     SDz = new DoublePlus( 0.0, "SDz", m_unitMeasure, UnitMeasure::sectL3 );
-    SDz->setToolTip( trUtf8("Momento statico rispetto all'asse zD"));
-    SDz->setRichName( trUtf8("S<span style=\"vertical-align:sub;\">D,z</span>") );
+    SDz->setToolTip( tr("Momento statico rispetto all'asse zD"));
+    SDz->setRichName( tr("S<span style=\"vertical-align:sub;\">D,z</span>") );
     addVarToContainer( SDz );
     connect( SDz, &VarPlus::valueChanged, this, &Section::sectionChanged );
 
@@ -189,20 +189,20 @@ void SectionProfile::initVar() {
     Sz->addConnectedVars( 5, D->y, thetaD, A, SDy, SDz );
 
     IDyy = new DoublePlus( 0.0, "IDyy", m_unitMeasure, UnitMeasure::sectL4 );
-    IDyy->setToolTip( trUtf8("Momento di inerzia rispetto all'asse yD"));
-    IDyy->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">D,y</span>") );
+    IDyy->setToolTip( tr("Momento di inerzia rispetto all'asse yD"));
+    IDyy->setRichName( tr("I<span style=\"vertical-align:sub;\">D,y</span>") );
     addVarToContainer( IDyy );
     connect( IDyy, &VarPlus::valueChanged, this, &Section::sectionChanged );
 
     IDzz = new DoublePlus( 0.0, "IDzz", m_unitMeasure, UnitMeasure::sectL4 );
-    IDzz->setToolTip( trUtf8("Momento di inerzia rispetto all'asse zD"));
-    IDzz->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">D,z</span>") );
+    IDzz->setToolTip( tr("Momento di inerzia rispetto all'asse zD"));
+    IDzz->setRichName( tr("I<span style=\"vertical-align:sub;\">D,z</span>") );
     addVarToContainer( IDzz );
     connect( IDzz, &VarPlus::valueChanged, this, &Section::sectionChanged );
 
     IDyz = new DoublePlus( 0.0, "IDyz", m_unitMeasure, UnitMeasure::sectL4 );
-    IDyz->setToolTip( trUtf8("Momento centrifugo rispetto agli assi yD e zD"));
-    IDyz->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">D,yz</span>") );
+    IDyz->setToolTip( tr("Momento centrifugo rispetto agli assi yD e zD"));
+    IDyz->setRichName( tr("I<span style=\"vertical-align:sub;\">D,yz</span>") );
     addVarToContainer( IDyz );
     connect( IDyz, &VarPlus::valueChanged, this, &Section::sectionChanged );
 
@@ -214,26 +214,26 @@ void SectionProfile::initVar() {
     Iyz->addConnectedVars( 9, D->y, D->z, thetaD, A, SDy, SDz, IDyy, IDzz, IDyz );
 
     SDy3DyDz = new DoublePlus( 0.0, "SDy3DyDz", m_unitMeasure, UnitMeasure::sectL5 );
-    SDy3DyDz->setToolTip( trUtf8("Integrale di yD^3 sulla superficie della sezione"));
-    SDy3DyDz->setRichName( trUtf8("∬ y<span style=\"vertical-align:sub;\">D</span><span style=\" vertical-align:super;\">3</span> dA") );
+    SDy3DyDz->setToolTip( tr("Integrale di yD^3 sulla superficie della sezione"));
+    SDy3DyDz->setRichName( tr("∬ y<span style=\"vertical-align:sub;\">D</span><span style=\" vertical-align:super;\">3</span> dA") );
     addVarToContainer( SDy3DyDz );
     connect( SDy3DyDz, &VarPlus::valueChanged, this, &Section::sectionChanged );
 
     SDz3DyDz = new DoublePlus( 0.0, "SDz3DyDz", m_unitMeasure, UnitMeasure::sectL5 );
-    SDz3DyDz->setToolTip( trUtf8("Integrale di zD^3 sulla superficie della sezione"));
-    SDz3DyDz->setRichName( trUtf8("∬ z<span style=\"vertical-align:sub;\">D</span><span style=\" vertical-align:super;\">3</span> dA") );
+    SDz3DyDz->setToolTip( tr("Integrale di zD^3 sulla superficie della sezione"));
+    SDz3DyDz->setRichName( tr("∬ z<span style=\"vertical-align:sub;\">D</span><span style=\" vertical-align:super;\">3</span> dA") );
     addVarToContainer( SDz3DyDz );
     connect( SDz3DyDz, &VarPlus::valueChanged, this, &Section::sectionChanged );
 
     SDy2zDyDz = new DoublePlus( 0.0, "SDy2zDyDz", m_unitMeasure, UnitMeasure::sectL5 );
-    SDy2zDyDz->setToolTip( trUtf8("Integrale di yC^2*zC sulla superficie della sezione"));
-    SDy2zDyDz->setRichName( trUtf8("∬ y<span style=\"vertical-align:sub;\">D</span><span style=\" vertical-align:super;\">2</span>z<span style=\"vertical-align:sub;\">D</span> dA") );
+    SDy2zDyDz->setToolTip( tr("Integrale di yC^2*zC sulla superficie della sezione"));
+    SDy2zDyDz->setRichName( tr("∬ y<span style=\"vertical-align:sub;\">D</span><span style=\" vertical-align:super;\">2</span>z<span style=\"vertical-align:sub;\">D</span> dA") );
     addVarToContainer( SDy2zDyDz );
     connect( SDy2zDyDz, &VarPlus::valueChanged, this, &Section::sectionChanged );
 
     SDyz2DyDz = new DoublePlus( 0.0, "SDyz2DyDz", m_unitMeasure, UnitMeasure::sectL5 );
-    SDyz2DyDz->setToolTip( trUtf8("Integrale di yD*zD^2 sulla superficie della sezione"));
-    SDyz2DyDz->setRichName( trUtf8("∬ y<span style=\"vertical-align:sub;\">D</span>z<span style=\"vertical-align:sub;\">D</span><span style=\" vertical-align:super;\">2</span> dA") );
+    SDyz2DyDz->setToolTip( tr("Integrale di yD*zD^2 sulla superficie della sezione"));
+    SDyz2DyDz->setRichName( tr("∬ y<span style=\"vertical-align:sub;\">D</span>z<span style=\"vertical-align:sub;\">D</span><span style=\" vertical-align:super;\">2</span> dA") );
     addVarToContainer( SDyz2DyDz );
     connect( SDyz2DyDz, &VarPlus::valueChanged, this, &Section::sectionChanged );
 

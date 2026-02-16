@@ -28,7 +28,7 @@ ChangeRichNameDialog::ChangeRichNameDialog(QString * name, QWidget *parent) :
     m_ui->lineEdit->setText( *m_name );
     m_ui->label->setText( *m_name );
 
-    connect( m_ui->lineEdit, SIGNAL(textEdited(QString)), this, SLOT(changeName(QString)));
+    connect( m_ui->lineEdit, &QLineEdit::textEdited, this, &ChangeRichNameDialog::changeName );
 }
 
 ChangeRichNameDialog::~ChangeRichNameDialog() {

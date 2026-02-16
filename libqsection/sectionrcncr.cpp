@@ -210,7 +210,7 @@ void SectionRCncr::readXml(QXmlStreamReader *reader) {
 
 void SectionRCncr::initVar(){
     *m_typeNameInternal = "SectionRCncr";
-    typeName->setValue( trUtf8("C.A."));
+    typeName->setValue( tr("C.A."));
 
     A->setReadOnly( true );
     Sy->setReadOnly( true );
@@ -234,12 +234,12 @@ void SectionRCncr::initVar(){
     connect( m_d->sectionsFRP, &MultiSectionFRPModel::modelChanged, this, &SectionRCncr::sectionChanged );
 
     GCncr = new Point2DPlus("GCncr", "yGCncr", 0.0, "zGCncr", 0.0, m_unitMeasure, UnitMeasure::sectL, true );
-    GCncr->setRichName(trUtf8("Coordinate del baricentro della sezione in cls"));
-    GCncr->y->setToolTip( trUtf8("Ascissa del baricentro della sezione in cls"));
-    GCncr->z->setToolTip( trUtf8("Ordinata del baricentro della sezione in cls"));
+    GCncr->setRichName(tr("Coordinate del baricentro della sezione in cls"));
+    GCncr->y->setToolTip( tr("Ascissa del baricentro della sezione in cls"));
+    GCncr->z->setToolTip( tr("Ordinata del baricentro della sezione in cls"));
     GCncr->setRichName( "G<span style=\"vertical-align:sub;\">c</span>" );
-    GCncr->y->setToolTip( trUtf8("Ascissa del baricentro della sezione in cls"));
-    GCncr->z->setToolTip( trUtf8("Ordinata del baricentro della sezione in cls"));
+    GCncr->y->setToolTip( tr("Ascissa del baricentro della sezione in cls"));
+    GCncr->z->setToolTip( tr("Ordinata del baricentro della sezione in cls"));
     addVarToContainer( GCncr );
     GCncr->y->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionRCncr::setGCncrY) );
     GCncr->z->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&SectionRCncr::setGCncrZ) );
@@ -298,7 +298,7 @@ QString SectionRCncr::typeSectionNormal(){
 }
 
 QString SectionRCncr::typeSection(){
-    return trUtf8("Sezione in C.A.");
+    return tr("Sezione in C.A.");
 }
 
 MultiSectionCncrModel *SectionRCncr::sectionsCncr(){

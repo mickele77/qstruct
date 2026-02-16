@@ -125,11 +125,11 @@ void SectionThin::setMaterial( Material * mat, bool emitAuto ){
 
 void SectionThin::initVar(){
     *m_typeNameInternal = "SectionThin";
-    typeName->setValue( trUtf8("Sottile"));
+    typeName->setValue( tr("Sottile"));
 
     t = new DoublePlus(0.0, "t", m_unitMeasure, UnitMeasure::sectL );
-    t->setRichName( trUtf8("t"));
-    t->setToolTip( trUtf8("Spessore degli elementi (considerato solo se viene spuntato il campo t del singolo elemento)"));
+    t->setRichName( tr("t"));
+    t->setToolTip( tr("Spessore degli elementi (considerato solo se viene spuntato il campo t del singolo elemento)"));
     addVarToContainer( t );
     connect( t, &DoublePlus::valueChanged, this, &SectionThin::setTNormal );
 

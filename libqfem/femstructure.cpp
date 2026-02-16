@@ -77,13 +77,13 @@ public:
 FEMStructure::FEMStructure( SectionModel * sm, Hypothesis * hyp, UnitMeasure * ump, QObject * parent):
     QObject(parent),
     m_d( new FEMStructurePrivate( sm, NULL, hyp, ump, this ) ) {
-    connect( m_d->vertexModel, SIGNAL(vertexChanged(Vertex*)), this, SLOT(updateQGraphics(Vertex*)) );
+    connect( m_d->vertexModel, &VertexModel::vertexChanged, this, &FEMStructure::updateQGraphics );
 }
 
 FEMStructure::FEMStructure( Section * s, Hypothesis * hyp, UnitMeasure * ump, QObject * parent):
     QObject(parent),
     m_d( new FEMStructurePrivate( NULL, s, hyp, ump, this ) ) {
-    connect( m_d->vertexModel, SIGNAL(vertexChanged(Vertex*)), this, SLOT(updateQGraphics(Vertex*)) );
+    connect( m_d->vertexModel, &VertexModel::vertexChanged, this, &FEMStructure::updateQGraphics );
 }
 
 FEMStructure::~FEMStructure(){

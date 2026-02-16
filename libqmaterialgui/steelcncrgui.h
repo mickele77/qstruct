@@ -19,6 +19,7 @@
 #ifndef STEELCNCRGUI_H
 #define STEELCNCRGUI_H
 
+#include "materialgui_export.h"
 #include "materialgui.h"
 
 namespace Ui {
@@ -29,7 +30,7 @@ class SteelCncrGUIPrivate;
 class UnitMeasure;
 class SteelCncr;
 
-class SteelCncrGUI : public MaterialGUI {
+class EXPORT_MATERIALGUI_LIB_OPT SteelCncrGUI : public MaterialGUI {
     Q_OBJECT
 
 public:

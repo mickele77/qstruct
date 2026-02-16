@@ -23,9 +23,10 @@ class SoilModel;
 class SoilSheetModelPrivate;
 class SoilSheet;
 
+#include "soil_export.h"
 #include "tablemodelplus.h"
 
-class SoilSheetModel : public TableModelPlus {
+class EXPORT_SOIL_LIB_OPT SoilSheetModel : public TableModelPlus {
     Q_OBJECT
 public:
     explicit SoilSheetModel(UnitMeasure * ump, SoilModel * sModel, QObject *parent = 0);

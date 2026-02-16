@@ -19,6 +19,7 @@
 #ifndef BEAMGUI_H
 #define BEAMGUI_H
 
+#include "femgui_export.h"
 #include "elementgui.h"
 
 class Element;
@@ -39,7 +40,7 @@ class BeamGUIPrivate;
 *
 */
 
-class BeamGUI : public ElementGUI
+class EXPORT_FEMGUI_LIB_OPT BeamGUI : public ElementGUI
 {
     Q_OBJECT
 public:

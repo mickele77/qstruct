@@ -1,6 +1,8 @@
 #ifndef QLINEEDITVALUE_H
 #define QLINEEDITVALUE_H
 
+#include "varplusgui_export.h"
+
 #include <QLineEdit>
 #include "qwidgetplus.h"
 
@@ -16,10 +18,10 @@
 *
 */
 
-class QLineEditValue : public QLineEdit, public QWidgetPlus {
+class EXPORT_VARPLUSGUI_LIB_OPT QLineEditValue : public QLineEdit, public QWidgetPlus {
     Q_OBJECT
 public:
-    explicit QLineEditValue(QWidget *parent = 0, VarPlus * v = 0 );
+    explicit QLineEditValue(QWidget *parent = 0, VarPlus * v = nullptr );
     ~QLineEditValue();
 
     void setVar( VarPlus * v);

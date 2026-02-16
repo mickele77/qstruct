@@ -375,7 +375,6 @@ void SimpleSectionRCncrRectGUI::delSteelA() {
 }
 
 void SimpleSectionRCncrRectGUI::setMRd() {
-    qWarning("sectionCHanged");
     m_d->sect->MRd( m_d->MRdPlus, m_d->MRdNEd, m_d->xMRdPlus );
     m_d->sect->MRd( m_d->MRdMinus, m_d->MRdNEd, m_d->xMRdMinus, true );
 }

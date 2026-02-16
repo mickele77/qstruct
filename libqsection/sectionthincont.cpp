@@ -59,13 +59,13 @@ SectionThinContPointsModel *SectionThinCont::pointsModel() {
 
 void SectionThinCont::initVar(){
     *m_typeNameInternal = "SectionThinCont";
-    typeName->setValue( trUtf8("Sottile Continua"));
+    typeName->setValue( tr("Sottile Continua"));
 
     isClosed = new BoolPlus( false, "isClosed" );
-    isClosed->setRichName( trUtf8("Sezione chiusa") );
-    isClosed->setToolTip( trUtf8("Il parametro specifica se la sezione sottile è chiusa o meno"));
+    isClosed->setRichName( tr("Sezione chiusa") );
+    isClosed->setToolTip( tr("Il parametro specifica se la sezione sottile è chiusa o meno"));
     addVarToContainer( isClosed );
-    connect( isClosed, SIGNAL(valueChanged(QString)), this, SLOT(updateSectionModels()));
+    connect( isClosed, &BoolPlus::valueChanged, this, &SectionThinCont::updateSectionModels );
 
     connect( t, &DoublePlus::valueChanged, this, &SectionThinCont::setTNormal );
 

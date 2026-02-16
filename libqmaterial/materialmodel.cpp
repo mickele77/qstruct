@@ -86,11 +86,11 @@ MaterialModel::MaterialModel(UnitMeasure * ump, QObject *parent) :
     TableModelPlus("MaterialModel", ump, parent ),
     m_dd( new MaterialModelPrivate() ){
     QList<QString> headerList;
-    headerList << trUtf8("Id")
-               << trUtf8("Nome")
-               << trUtf8("Tipo")
-               << trUtf8("E") + " [" + m_d->unitMeasure->string(UnitMeasure::tension ) + "]"
-               << trUtf8("G") + " [" + m_d->unitMeasure->string(UnitMeasure::tension ) + "]";
+    headerList << tr("Id")
+               << tr("Nome")
+               << tr("Tipo")
+               << tr("E") + " [" + m_d->unitMeasure->string(UnitMeasure::tension ) + "]"
+               << tr("G") + " [" + m_d->unitMeasure->string(UnitMeasure::tension ) + "]";
     m_d->setHeaders( headerList );
 }
 
@@ -148,7 +148,7 @@ void MaterialModel::insertMaterial( Material * addedMat, int position ){
         position = m_dd->materialContainer->size();
     if( addedMat ){
         m_dd->insertMaterial( position, addedMat );
-        connect( addedMat, SIGNAL(materialChanged()), this, SIGNAL(modelChanged()) );
+        connect( addedMat, &Material::materialChanged, this, &MaterialModel::modelChanged );
         insertRowsPrivate( position );
         setVarValueRow( position, addedMat->id, addedMat->name, addedMat->typeName, addedMat->E, addedMat->G );
         setVarReadOnly( position, 1, false );
@@ -170,7 +170,7 @@ Material * MaterialModel::createMaterial( UnitMeasure * ump, MaterialModel::Mate
     case FRPMaterial:
         return new FRP( ump );
     default:
-        Material * mat = new Material( ump, trUtf8("Materiale") );
+        Material * mat = new Material( ump, tr("Materiale") );
         mat->E->setValueNormal( 2.1e+11);
         mat->nu->setValueNormal( 0.30 );
         mat->G->setValueNormal( mat->E->valueNormal() / (2.0 * (1.0 + mat->nu->valueNormal() )));
@@ -207,13 +207,13 @@ void MaterialModel::removeRows(int position, int count ){
 
     for (int row = position; row < (position+count); row++){
         if( m_dd->materialContainer->at(position)->isUsed()){
-            QString title = trUtf8("Materiale in uso");
-            QString message = trUtf8("Materiale usato da almeno una sezione.");
+            QString title = tr("Materiale in uso");
+            QString message = tr("Materiale usato da almeno una sezione.");
             qWarning() << title;
             qWarning() << message;
         } else {
             // scolleghiamo il materiale
-            disconnect( m_dd->materialContainer->at(position), SIGNAL(materialChanged()), this, SIGNAL(modelChanged()) );
+            disconnect( m_dd->materialContainer->at(position), &Material::materialChanged, this, &MaterialModel::modelChanged );
             // rimuoviamo la riga
             removeRowsPrivate( position );
             // ... e il materiale

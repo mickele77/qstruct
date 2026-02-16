@@ -294,63 +294,63 @@ MaterialModel::MaterialType Timber::materialType() {
 
 void Timber::initVar(){
     *m_typeNameInternal = "Timber";
-    typeName->setValue( trUtf8("Legno"));
+    typeName->setValue( tr("Legno"));
 
     gammaWk = new DoublePlus( 0.0, "gammaWk", m_unitMeasure, UnitMeasure::loadFVolume );
-    gammaWk->setRichName( trUtf8("γ<span style=\" vertical-align:sub;\">W,k</span>") );
-    gammaWk->setToolTip( trUtf8("Peso specifico caratteristico"));
+    gammaWk->setRichName( tr("γ<span style=\" vertical-align:sub;\">W,k</span>") );
+    gammaWk->setToolTip( tr("Peso specifico caratteristico"));
     addVarToContainer( gammaWk );
 
-    gammaW->setRichName( trUtf8("γ<span style=\" vertical-align:sub;\">W,m</span>") );
-    gammaW->setToolTip( trUtf8("Peso specifico medio"));
+    gammaW->setRichName( tr("γ<span style=\" vertical-align:sub;\">W,m</span>") );
+    gammaW->setToolTip( tr("Peso specifico medio"));
 
     fmk = new DoublePlus( 0.0, "fmk", m_unitMeasure, UnitMeasure::tension );
-    fmk->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">m,k</span>") );
+    fmk->setRichName( tr("f<span style=\" vertical-align:sub;\">m,k</span>") );
     addVarToContainer( fmk );
 
     ft0k = new DoublePlus( 0.0, "ft0k", m_unitMeasure, UnitMeasure::tension );
-    ft0k->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">t,0,k</span>") );
+    ft0k->setRichName( tr("f<span style=\" vertical-align:sub;\">t,0,k</span>") );
     addVarToContainer( ft0k );
 
     ft90k = new DoublePlus( 0.0, "ft90k", m_unitMeasure, UnitMeasure::tension );
-    ft90k->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">t,90,k</span>") );
+    ft90k->setRichName( tr("f<span style=\" vertical-align:sub;\">t,90,k</span>") );
     addVarToContainer( ft90k );
 
     fc0k = new DoublePlus( 0.0, "fc0k", m_unitMeasure, UnitMeasure::tension );
-    fc0k->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">c,0,k</span>") );
+    fc0k->setRichName( tr("f<span style=\" vertical-align:sub;\">c,0,k</span>") );
     addVarToContainer( fc0k );
 
     fc90k = new DoublePlus( 0.0, "fc90k", m_unitMeasure, UnitMeasure::tension );
-    fc90k->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">c,90,k</span>") );
+    fc90k->setRichName( tr("f<span style=\" vertical-align:sub;\">c,90,k</span>") );
     addVarToContainer( fc90k );
 
     fvk = new DoublePlus( 0.0, "fvk", m_unitMeasure, UnitMeasure::tension );
-    fvk->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">v,k</span>") );
+    fvk->setRichName( tr("f<span style=\" vertical-align:sub;\">v,k</span>") );
     addVarToContainer( fvk );
 
     E0m = E;
     E0m->setName( "E0m" );
-    E0m->setRichName( trUtf8("E<span style=\" vertical-align:sub;\">0,m</span>") );
+    E0m->setRichName( tr("E<span style=\" vertical-align:sub;\">0,m</span>") );
 
     E0k = new DoublePlus( 0.0, "E0k", m_unitMeasure, UnitMeasure::tension );
-    E0k->setRichName( trUtf8("E<span style=\" vertical-align:sub;\">0,k</span>") );
+    E0k->setRichName( tr("E<span style=\" vertical-align:sub;\">0,k</span>") );
     addVarToContainer( E0k );
 
     E90m = new DoublePlus( 0.0, "E90m", m_unitMeasure, UnitMeasure::tension );
-    E90m->setRichName( trUtf8("E<span style=\" vertical-align:sub;\">90,m</span>") );
+    E90m->setRichName( tr("E<span style=\" vertical-align:sub;\">90,m</span>") );
     addVarToContainer( E90m );
 
     Gm = G;
     Gm->setName("Gm");
-    Gm->setRichName( trUtf8("G<span style=\" vertical-align:sub;\">m</span>") );
+    Gm->setRichName( tr("G<span style=\" vertical-align:sub;\">m</span>") );
 
     num = new DoublePlus( 0.0, "num", m_unitMeasure, UnitMeasure::noDimension );
     num->setReadOnly( true );
-    num->setRichName( trUtf8("G<span style=\" vertical-align:sub;\">m</span>") );
+    num->setRichName( tr("G<span style=\" vertical-align:sub;\">m</span>") );
     addVarToContainer( num );
     setNum();
-    connect( E0m, SIGNAL(valueChanged(QString)), this, SLOT(setNum()) );
-    connect( Gm, SIGNAL(valueChanged(QString)), this, SLOT(setNum()) );
+    connect( E0m, &DoublePlus::valueChanged, this, static_cast<void (Timber::*)()> (&Timber::setNum) );
+    connect( Gm, &DoublePlus::valueChanged, this, static_cast<void (Timber::*)()> (&Timber::setNum) );
 
     timberType = new TimberTypePlus( Timber::solid, "timberType" );
     timberType->setRichName("Tipologia legno");
@@ -369,7 +369,7 @@ void Timber::initVar(){
             m_d->kmod->at( i )->at(j)->setRichName("k<span style=\" vertical-align:sub;\">mod</span>");
             m_d->kmod->at( i )->at(j)->setReadOnly();
             addVarToContainer( m_d->kmod->at( i )->at(j) );
-            connect( m_d->kmod->at( i )->at(j), SIGNAL(readOnlyChanged(bool)), this, SLOT(setKmod()) );
+            connect( m_d->kmod->at( i )->at(j), &DoublePlus::readOnlyChanged, this, static_cast<void (Timber::*)() >(&Timber::setKmod) );
         }
     }
     setKmod( false );
@@ -378,10 +378,10 @@ void Timber::initVar(){
     for(int i=0; i < 3; i++ ){
         QString name = "gammaM_" + QString::number(i);
         m_d->gammaM->append( new DoublePlus(1.0, name, m_unitMeasure, UnitMeasure::noDimension, true ) );
-        m_d->gammaM->at( i )->setRichName(trUtf8("γ<span style=\" vertical-align:sub;\">M</span>"));
+        m_d->gammaM->at( i )->setRichName(tr("γ<span style=\" vertical-align:sub;\">M</span>"));
         m_d->gammaM->at( i )->setReadOnly();
         addVarToContainer( m_d->gammaM->at( i ) );
-        connect( m_d->gammaM->at( i ), SIGNAL(readOnlyChanged(bool)), this, SLOT(setGammaM()) );
+        connect( m_d->gammaM->at( i ), &DoublePlus::readOnlyChanged, this, static_cast<void (Timber::*)() >(&Timber::setGammaM) );
     }
     setGammaM( false );
 }
@@ -719,28 +719,28 @@ class TimberTypePlusPrivate{
 public:
     TimberTypePlusPrivate(Timber::TimberType tt):
         value(tt){
-        enumList.append( TimberTypeEnumVal( Timber::solid, trUtf8("massiccio"), trUtf8("legno massiccio") ) );
-        enumList.append( TimberTypeEnumVal( Timber::glulam, trUtf8("lamellare"), trUtf8("legno lamellare incollato") ) );
-        enumList.append( TimberTypeEnumVal( Timber::LVL, trUtf8("microlamellare"), trUtf8("microlamellare") ) );
-        enumList.append( TimberTypeEnumVal( Timber::plywood_1, trUtf8("compensato EN 636-1"), trUtf8("compensato - EN 636 parte 1") ) );
-        enumList.append( TimberTypeEnumVal( Timber::plywood_2, trUtf8("compensato EN 636-2"), trUtf8("compensato - EN 636 parte 2") ) );
-        enumList.append( TimberTypeEnumVal( Timber::plywood_3, trUtf8("compensato EN 636-3"), trUtf8("compensato - EN 636 parte 3") ) );
-        enumList.append( TimberTypeEnumVal( Timber::OSB_2, trUtf8("OSB/2"), trUtf8("scaglie orientate - EN 300 OSB/2") ) );
-        enumList.append( TimberTypeEnumVal( Timber::OSB_3, trUtf8("OSB/3"), trUtf8("scaglie orientate - EN 300 OSB/3") ) );
-        enumList.append( TimberTypeEnumVal( Timber::OSB_4, trUtf8("OSB/4"), trUtf8("scaglie orientate - EN 300 OSB/4") ) );
-        enumList.append( TimberTypeEnumVal( Timber::particle_4, trUtf8("truciolare EN 312-4"), trUtf8("particelle (truciolare) - EN 312 parte 4") ) );
-        enumList.append( TimberTypeEnumVal( Timber::particle_5, trUtf8("truciolare EN 312-5"), trUtf8("particelle (truciolare) - EN 312 parte 5") ) );
-        enumList.append( TimberTypeEnumVal( Timber::particle_6, trUtf8("truciolare EN 312-6"), trUtf8("particelle (truciolare) - EN 312 parte 6") ) );
-        enumList.append( TimberTypeEnumVal( Timber::particle_7, trUtf8("truciolare EN 312-7"), trUtf8("particelle (truciolare) - EN 312 parte 7") ) );
-        enumList.append( TimberTypeEnumVal( Timber::HBLA, trUtf8("HB.LA"), trUtf8("fibre alta densita' - EN 622-2 HB.LA") ) );
-        enumList.append( TimberTypeEnumVal( Timber::HBLA1, trUtf8("HB.LA1"), trUtf8("fibre alta densita' - EN 622-2 HB.LA1") ) );
-        enumList.append( TimberTypeEnumVal( Timber::HBLA2, trUtf8("HB.LA2"), trUtf8("fibre alta densita' - EN 622-2 HB.LA2") ) );
-        enumList.append( TimberTypeEnumVal( Timber::MBHLA1, trUtf8("MBH.LA1"), trUtf8("fibre media densita' - EN 622-3 MBH.LA1") ) );
-        enumList.append( TimberTypeEnumVal( Timber::MBHLA2, trUtf8("MBH.LA2"), trUtf8("fibre media densita' - EN 622-3 MBH.LA2") ) );
-        enumList.append( TimberTypeEnumVal( Timber::MBHHLS1, trUtf8("MBH.HLS1"), trUtf8("fibre media densita' - EN 622-3 MBH.HLS1") ) );
-        enumList.append( TimberTypeEnumVal( Timber::MBHHLS2, trUtf8("MBH.HLS2"), trUtf8("fibre media densita' - EN 622-3 MBH.HLS2") ) );
-        enumList.append( TimberTypeEnumVal( Timber::MDFLA, trUtf8("MDF.LA"), trUtf8("fibre - EN 622-5 MDF.LA") ) );
-        enumList.append( TimberTypeEnumVal( Timber::MDFHLS, trUtf8("MDF.HLS"), trUtf8("fibre - EN 622-5 MDF.HLS") ) );
+        enumList.append( TimberTypeEnumVal( Timber::solid, tr("massiccio"), tr("legno massiccio") ) );
+        enumList.append( TimberTypeEnumVal( Timber::glulam, tr("lamellare"), tr("legno lamellare incollato") ) );
+        enumList.append( TimberTypeEnumVal( Timber::LVL, tr("microlamellare"), tr("microlamellare") ) );
+        enumList.append( TimberTypeEnumVal( Timber::plywood_1, tr("compensato EN 636-1"), tr("compensato - EN 636 parte 1") ) );
+        enumList.append( TimberTypeEnumVal( Timber::plywood_2, tr("compensato EN 636-2"), tr("compensato - EN 636 parte 2") ) );
+        enumList.append( TimberTypeEnumVal( Timber::plywood_3, tr("compensato EN 636-3"), tr("compensato - EN 636 parte 3") ) );
+        enumList.append( TimberTypeEnumVal( Timber::OSB_2, tr("OSB/2"), tr("scaglie orientate - EN 300 OSB/2") ) );
+        enumList.append( TimberTypeEnumVal( Timber::OSB_3, tr("OSB/3"), tr("scaglie orientate - EN 300 OSB/3") ) );
+        enumList.append( TimberTypeEnumVal( Timber::OSB_4, tr("OSB/4"), tr("scaglie orientate - EN 300 OSB/4") ) );
+        enumList.append( TimberTypeEnumVal( Timber::particle_4, tr("truciolare EN 312-4"), tr("particelle (truciolare) - EN 312 parte 4") ) );
+        enumList.append( TimberTypeEnumVal( Timber::particle_5, tr("truciolare EN 312-5"), tr("particelle (truciolare) - EN 312 parte 5") ) );
+        enumList.append( TimberTypeEnumVal( Timber::particle_6, tr("truciolare EN 312-6"), tr("particelle (truciolare) - EN 312 parte 6") ) );
+        enumList.append( TimberTypeEnumVal( Timber::particle_7, tr("truciolare EN 312-7"), tr("particelle (truciolare) - EN 312 parte 7") ) );
+        enumList.append( TimberTypeEnumVal( Timber::HBLA, tr("HB.LA"), tr("fibre alta densita' - EN 622-2 HB.LA") ) );
+        enumList.append( TimberTypeEnumVal( Timber::HBLA1, tr("HB.LA1"), tr("fibre alta densita' - EN 622-2 HB.LA1") ) );
+        enumList.append( TimberTypeEnumVal( Timber::HBLA2, tr("HB.LA2"), tr("fibre alta densita' - EN 622-2 HB.LA2") ) );
+        enumList.append( TimberTypeEnumVal( Timber::MBHLA1, tr("MBH.LA1"), tr("fibre media densita' - EN 622-3 MBH.LA1") ) );
+        enumList.append( TimberTypeEnumVal( Timber::MBHLA2, tr("MBH.LA2"), tr("fibre media densita' - EN 622-3 MBH.LA2") ) );
+        enumList.append( TimberTypeEnumVal( Timber::MBHHLS1, tr("MBH.HLS1"), tr("fibre media densita' - EN 622-3 MBH.HLS1") ) );
+        enumList.append( TimberTypeEnumVal( Timber::MBHHLS2, tr("MBH.HLS2"), tr("fibre media densita' - EN 622-3 MBH.HLS2") ) );
+        enumList.append( TimberTypeEnumVal( Timber::MDFLA, tr("MDF.LA"), tr("fibre - EN 622-5 MDF.LA") ) );
+        enumList.append( TimberTypeEnumVal( Timber::MDFHLS, tr("MDF.HLS"), tr("fibre - EN 622-5 MDF.HLS") ) );
     };
     int valueIndex(){
         for( int i=0; i < enumList.size(); ++i){
@@ -878,8 +878,8 @@ class WoodEssencePlusPrivate{
 public:
     WoodEssencePlusPrivate(Timber::WoodEssence we):
         value(we){
-        enumList.append( WoodEssenceEnumVal( Timber::softwoods, "SoftWoods", trUtf8("Conifere") ) );
-        enumList.append( WoodEssenceEnumVal( Timber::hardwoods, "HardWoods", trUtf8("Latifoglie") ) );
+        enumList.append( WoodEssenceEnumVal( Timber::softwoods, "SoftWoods", tr("Conifere") ) );
+        enumList.append( WoodEssenceEnumVal( Timber::hardwoods, "HardWoods", tr("Latifoglie") ) );
     };
     int valueIndex(){
         for( int i=0; i < enumList.size(); ++i){

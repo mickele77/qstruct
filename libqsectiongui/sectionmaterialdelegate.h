@@ -21,11 +21,11 @@
 
 class SectionLoadPhaseModel;
 
+#include "sectiongui_export.h"
 #include "materialmodel.h"
-
 #include <QStyledItemDelegate>
 
-class SectionMaterialDelegate : public QStyledItemDelegate {
+class EXPORT_SECTIONGUI_LIB_OPT SectionMaterialDelegate : public QStyledItemDelegate {
     Q_OBJECT
 
 public:

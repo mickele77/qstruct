@@ -25,7 +25,7 @@
 
 class QGraphicsItemViewerPrivate;
 
-class EXPORT_QSTRUCTUTILITY_LIB_OPT QGraphicsItemViewer : public QGraphicsView
+class EXPORT_STRUCTUTILITY_LIB_OPT QGraphicsItemViewer : public QGraphicsView
 {
     Q_OBJECT
 public:

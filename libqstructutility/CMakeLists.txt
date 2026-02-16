@@ -2,7 +2,7 @@
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 IF( BUILD_SHARED_LIBS AND WIN32 )
-  add_definitions( -DBUILD_QSTRUCTUTILITY_LIB )
+  add_definitions( -DBUILD_STRUCTUTILITY_LIB )
 ENDIF( BUILD_SHARED_LIBS AND WIN32 )
 
 # Find the required modules

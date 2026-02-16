@@ -75,7 +75,7 @@ SoilModel::SoilModel(UnitMeasure * ump, QObject *parent) :
     TableModelPlus( "SoilModel", ump, parent ),
     m_dd( new SoilModelPrivate() ) {
     QList<QString> headers;
-    headers << trUtf8("Id") << trUtf8("Nome") << trUtf8("Tipo");
+    headers << tr("Id") << tr("Nome") << tr("Tipo");
     setHeaders( headers );
 }
 
@@ -234,8 +234,8 @@ void SoilModel::setCurrentSoil( int i ){
 Soil * SoilModel::createSoil( UnitMeasure * um, SoilModel::SoilType st ){
     switch( st ){
     case clay:
-        return new Soil( um, trUtf8("Argilla"), Soil::clay );
+        return new Soil( um, tr("Argilla"), Soil::clay );
     default:
-        return new Soil( um, trUtf8("Sabbia"), Soil::sand );
+        return new Soil( um, tr("Sabbia"), Soil::sand );
     }
 }

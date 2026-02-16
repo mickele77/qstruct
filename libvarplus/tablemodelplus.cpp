@@ -28,7 +28,7 @@
 TableModelPlus::TableModelPlus(const QString & modName, UnitMeasure * ump, QObject *parent) :
     QAbstractTableModel(parent),
     m_d( new TableModelPlusPrivate(modName, ump ) ) {
-    connect( &(m_d->mapper), SIGNAL(mapped(QString)), this, SLOT(updateData(QString)) );
+    connect( &(m_d->mapper), &QSignalMapper::mappedString, this, &TableModelPlus::updateData );
 }
 
 QString TableModelPlus::modelName() {
@@ -88,7 +88,7 @@ QVariant TableModelPlus::data(const QModelIndex &index, int role) const {
         int dataType = m_d->displayedDataType( index.row(), index.column() );
         if( dataType == DisplayPointer ){
             if( (role == Qt::DisplayRole) || (role == Qt::EditRole)){
-                return qVariantFromValue( m_d->pointer(index.row(), index.column()) );
+                return QVariant::fromValue( m_d->pointer(index.row(), index.column()) );
             }
         }
         VarPlus * var = m_d->var( index.row(), index.column() );
@@ -226,22 +226,22 @@ bool TableModelPlus::setVar(TableModelPlus::DisplayedData dataType, int r, int c
         if( oldVar ){
             m_d->mapper.removeMappings( oldVar );
             if( oldDataType == DisplayValueRO || oldDataType == DisplayValueROInv ){
-                disconnect( oldVar, SIGNAL(readOnlyChanged(bool)), &(m_d->mapper), SLOT(map()) );
+                disconnect( oldVar, &VarPlus::readOnlyChanged, &(m_d->mapper), static_cast< void (QSignalMapper::*) (void) > (&QSignalMapper::map) );
             }
             if( oldDataType == DisplayValue || oldDataType == DisplayValueRO || oldDataType == DisplayValueROInv ){
-                disconnect( oldVar, SIGNAL(valueChanged(QString)), &(m_d->mapper), SLOT(map()) );
+                disconnect( oldVar, &VarPlus::valueChanged, &(m_d->mapper), static_cast< void (QSignalMapper::*) (void) > (&QSignalMapper::map) );
             }
             if( (oldDataType == DisplayName) || (oldDataType == DisplayNameUnitMeasure) ){
-                disconnect( oldVar, SIGNAL(nameChanged(QString)), &(m_d->mapper), SLOT(map()) );
+                disconnect( oldVar, &VarPlus::nameChanged, &(m_d->mapper), static_cast< void (QSignalMapper::*) (void) > (&QSignalMapper::map) );
             }
             if( (oldDataType == DisplayRichName) || (oldDataType == DisplayRichNameUnitMeasure) ){
-                disconnect( oldVar, SIGNAL(richNameChanged(QString)), &(m_d->mapper), SLOT(map()) );
+                disconnect( oldVar, &VarPlus::richNameChanged, &(m_d->mapper), static_cast< void (QSignalMapper::*) (void) > (&QSignalMapper::map) );
             }
             if( (oldDataType == DisplayUnitMeasureRichString) || (oldDataType == DisplayRichNameUnitMeasure) ){
-                disconnect( oldVar, SIGNAL(unitMeasureRichStringChanged(QString)), &(m_d->mapper), SLOT(map()) );
+                disconnect( oldVar, &VarPlus::unitMeasureRichStringChanged, &(m_d->mapper), static_cast< void (QSignalMapper::*) (void) > (&QSignalMapper::map) );
             }
             if( (oldDataType == DisplayUnitMeasureString) || (oldDataType == DisplayNameUnitMeasure) ){
-                disconnect( oldVar, SIGNAL(unitMeasureStringChanged(QString)), &(m_d->mapper), SLOT(map()) );
+                disconnect( oldVar, &VarPlus::unitMeasureStringChanged, &(m_d->mapper), static_cast< void (QSignalMapper::*) (void) > (&QSignalMapper::map) );
             }
         }
 
@@ -250,22 +250,22 @@ bool TableModelPlus::setVar(TableModelPlus::DisplayedData dataType, int r, int c
         if( var ){
             m_d->mapper.setMapping( var, QString("%1,%2").arg( QString::number(r),QString::number(c)) );
             if( dataType == DisplayValueRO || dataType == DisplayValueROInv ){
-                connect( var, SIGNAL(readOnlyChanged(bool)), &(m_d->mapper), SLOT(map()) );
+                connect( var, &VarPlus::readOnlyChanged, &(m_d->mapper), static_cast< void (QSignalMapper::*) (void) > (&QSignalMapper::map) );
             }
             if( dataType == DisplayValue || dataType == DisplayValueRO || dataType == DisplayValueROInv ){
-                connect( var, SIGNAL(valueChanged(QString)), &(m_d->mapper), SLOT(map()) );
+                connect( var, &VarPlus::valueChanged, &(m_d->mapper), static_cast< void (QSignalMapper::*) (void) > (&QSignalMapper::map) );
             }
             if( (dataType == DisplayName) || (dataType == DisplayNameUnitMeasure) ){
-                connect( var, SIGNAL(nameChanged(QString)), &(m_d->mapper), SLOT(map()) );
+                connect( var, &VarPlus::nameChanged, &(m_d->mapper), static_cast< void (QSignalMapper::*) (void) > (&QSignalMapper::map) );
             }
             if( (dataType == DisplayRichName) || (dataType == DisplayRichNameUnitMeasure) ){
-                connect( var, SIGNAL(richNameChanged(QString)), &(m_d->mapper), SLOT(map()) );
+                connect( var, &VarPlus::richNameChanged, &(m_d->mapper), static_cast< void (QSignalMapper::*) (void) > (&QSignalMapper::map) );
             }
             if( (dataType == DisplayUnitMeasureRichString) || (dataType == DisplayRichNameUnitMeasure) ){
-                connect( var, SIGNAL(unitMeasureRichStringChanged(QString)), &(m_d->mapper), SLOT(map()) );
+                connect( var, &VarPlus::unitMeasureRichStringChanged, &(m_d->mapper), static_cast< void (QSignalMapper::*) (void) > (&QSignalMapper::map) );
             }
             if( (dataType == DisplayUnitMeasureString) || (dataType == DisplayNameUnitMeasure) ){
-                connect( var, SIGNAL(unitMeasureStringChanged(QString)), &(m_d->mapper), SLOT(map()) );
+                connect( var, &VarPlus::unitMeasureStringChanged, &(m_d->mapper), static_cast< void (QSignalMapper::*) (void) > (&QSignalMapper::map) );
             }
         }
 

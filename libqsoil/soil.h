@@ -28,6 +28,7 @@ class SoilKTheoryPlus;
 class SoilEQCategory;
 class SoilPrivate;
 
+#include "soil_export.h"
 #include <QObject>
 #include "varpluscontainer.h"
 
@@ -40,7 +41,7 @@ class SoilPrivate;
 *
 * @author Michele Mocciola*/
 
-class Soil: public QObject, public VarPlusContainer
+class EXPORT_SOIL_LIB_OPT Soil: public QObject, public VarPlusContainer
 {
 public:
     enum SoilType {
@@ -292,7 +293,7 @@ class  SoilTypePlusPrivate;
 *
 */
 
-class SoilTypePlus : public EnumPlus
+class EXPORT_SOIL_LIB_OPT SoilTypePlus : public EnumPlus
 {
     Q_OBJECT
 public:
@@ -342,7 +343,7 @@ class SoilKTheoryPlusPrivate;
 *
 */
 
-class SoilKTheoryPlus : public EnumPlus
+class EXPORT_SOIL_LIB_OPT SoilKTheoryPlus : public EnumPlus
 {
     Q_OBJECT
 public:
@@ -392,7 +393,7 @@ class SoilEQCategoryPrivate;
 *
 */
 
-class SoilEQCategory : public EnumPlus
+class EXPORT_SOIL_LIB_OPT SoilEQCategory : public EnumPlus
 {
     Q_OBJECT
 public:

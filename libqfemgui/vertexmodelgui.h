@@ -19,6 +19,7 @@
 #ifndef VERTEXMODELGUI_H
 #define VERTEXMODELGUI_H
 
+#include "femgui_export.h"
 #include <QWidget>
 
 namespace Ui {
@@ -26,7 +27,7 @@ class VertexModelGUI;
 }
 class FEMStructure;
 
-class VertexModelGUI : public QWidget
+class EXPORT_FEMGUI_LIB_OPT VertexModelGUI : public QWidget
 {
     Q_OBJECT
 public:

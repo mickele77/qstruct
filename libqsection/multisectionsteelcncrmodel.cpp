@@ -61,7 +61,7 @@ void MultiSectionSteelCncrModel::insertSection( Section * addedSectGen, int posi
         setVarValue( position, 2, addedSect->P->y);
         setVarValue( position, 3, addedSect->P->z);
         connect( addedSect, &Section::sectionChanged, this, &MultiSectionModelBase::modelChanged );
-        connect( addedSect, SIGNAL(materialChanged(Material*,Material*)), this, SLOT(updateMaterial()) );
+        connect( addedSect, &SectionSteelCncr::materialChanged, this, &MultiSectionSteelCncrModel::updateMaterial );
 
         if( m_qGraphicsItem != NULL ){
             addedSect->qGraphicsItem()->setParentItem( m_qGraphicsItem );
@@ -73,11 +73,11 @@ void MultiSectionSteelCncrModel::insertSection( Section * addedSectGen, int posi
 
 void MultiSectionSteelCncrModel::updateHeaders(){
     QList<QString> headerList;
-    headerList << trUtf8("A [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL2 ) );
-    headerList << trUtf8("Materiale");
-    headerList << trUtf8("y [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL ) );
-    headerList << trUtf8("z [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL ) );
-    headerList << trUtf8("Fase");
+    headerList << tr("A [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL2 ) );
+    headerList << tr("Materiale");
+    headerList << tr("y [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL ) );
+    headerList << tr("z [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL ) );
+    headerList << tr("Fase");
     setHeaders( headerList );
 }
 
@@ -86,7 +86,7 @@ Section * MultiSectionSteelCncrModel::createSection(){
     if( steelCncrMat != NULL ){
         SteelCncr * steelCncr = dynamic_cast<SteelCncr *>(steelCncrMat);
         if( steelCncr ){
-            return new SectionSteelCncr( m_d->unitMeasure, steelCncr, trUtf8("Acciaio") );
+            return new SectionSteelCncr( m_d->unitMeasure, steelCncr, tr("Acciaio") );
         }
     }
     return NULL;

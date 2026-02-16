@@ -19,13 +19,14 @@
 #ifndef CALCRESULTGUI_H
 #define CALCRESULTGUI_H
 
+#include "femgui_export.h"
 #include <QWidget>
 
 class CalcResultsGUIPrivate;
 class FEMStructure;
 class GLItem;
 
-class CalcResultsGUI : public QWidget
+class EXPORT_FEMGUI_LIB_OPT CalcResultsGUI : public QWidget
 {
     Q_OBJECT
     

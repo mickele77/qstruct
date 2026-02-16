@@ -52,7 +52,7 @@ int MultiSectionSteelModel::loadPhaseColumn() {
 Section * MultiSectionSteelModel::createSection(){
     Steel * steel = dynamic_cast<Steel *>(m_materialModel->firstMaterial( MaterialModel::SteelMaterial ));
     if( steel != NULL ){
-        return new SectionSteel( m_d->unitMeasure, steel, SectionSteel::sectionRolled, SectionSteel::sectionI, trUtf8("Acciaio") );
+        return new SectionSteel( m_d->unitMeasure, steel, SectionSteel::sectionRolled, SectionSteel::sectionI, tr("Acciaio") );
     }
     return NULL;
 }
@@ -72,8 +72,8 @@ void MultiSectionSteelModel::insertSection( Section * addedSectGen, int position
         setVarValue( position, 3, addedSect->translationO->y );
         setVarValue( position, 4, addedSect->translationO->z );
 
-        connect( addedSect, SIGNAL(sectionChanged()), this, SIGNAL(modelChanged()) );
-        connect( addedSect, SIGNAL(materialChanged(Material*,Material*)), this, SLOT(updateMaterial()) );
+        connect( addedSect, &SectionSteel::sectionChanged, this, &MultiSectionSteelModel::modelChanged );
+        connect( addedSect, &SectionSteel::materialChanged, this, &MultiSectionSteelModel::updateMaterial );
 
         if( m_qGraphicsItem != NULL ){
             addedSect->qGraphicsItem()->setParentItem( m_qGraphicsItem );
@@ -85,12 +85,12 @@ void MultiSectionSteelModel::insertSection( Section * addedSectGen, int position
 
 void MultiSectionSteelModel::updateHeaders(){
     QList<QString> headerList;
-    headerList << trUtf8("Nome");
-    headerList << trUtf8("Mat.");
-    headerList << trUtf8("α [%1]").arg( m_d->unitMeasure->string(UnitMeasure::angle ) );
-    headerList << trUtf8("y [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL ) );
-    headerList << trUtf8("z [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL ) );
-    headerList << trUtf8("Fase" );
+    headerList << tr("Nome");
+    headerList << tr("Mat.");
+    headerList << tr("α [%1]").arg( m_d->unitMeasure->string(UnitMeasure::angle ) );
+    headerList << tr("y [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL ) );
+    headerList << tr("z [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL ) );
+    headerList << tr("Fase" );
     setHeaders( headerList );
 }
 

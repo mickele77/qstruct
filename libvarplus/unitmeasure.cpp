@@ -59,148 +59,148 @@ public:
     void setDefaultData(){
         addData( "noDimension",
                  UnitMeasure::noDimension,
-                 QObject::trUtf8("Grandezza adimensionale (-)"),
+                 QObject::tr("Grandezza adimensionale (-)"),
                  1.0,
-                 QObject::trUtf8("-"),
-                 QObject::trUtf8("-") );
+                 QObject::tr("-"),
+                 QObject::tr("-") );
         addData( "percent",
                  UnitMeasure::percent,
-                 QObject::trUtf8("Grandezza adimensionale percentuale (%)"),
+                 QObject::tr("Grandezza adimensionale percentuale (%)"),
                  100.0,
-                 QObject::trUtf8("%"),
-                 QObject::trUtf8("%") );
+                 QObject::tr("%"),
+                 QObject::tr("%") );
         addData( "length",
                  UnitMeasure::length,
-                 QObject::trUtf8("Lunghezza (m)" ),
+                 QObject::tr("Lunghezza (m)" ),
                  1.0,
-                 QObject::trUtf8("m"),
-                 QObject::trUtf8("m") );
+                 QObject::tr("m"),
+                 QObject::tr("m") );
         addData( "area",
                  UnitMeasure::area,
-                 QObject::trUtf8("Area (m<span style=\" vertical-align:super;\">2</span>)" ),
+                 QObject::tr("Area (m<span style=\" vertical-align:super;\">2</span>)" ),
                  1.0,
-                 QObject::trUtf8("m²"),
-                 QObject::trUtf8("m<span style=\" vertical-align:super;\">2</span>") );
+                 QObject::tr("m²"),
+                 QObject::tr("m<span style=\" vertical-align:super;\">2</span>") );
         addData( "volume",
                  UnitMeasure::volume,
-                 QObject::trUtf8("Volume (m<span style=\" vertical-align:super;\">3</span>)"),
+                 QObject::tr("Volume (m<span style=\" vertical-align:super;\">3</span>)"),
                  1.0,
-                 QObject::trUtf8("m³"),
-                 QObject::trUtf8("m<span style=\" vertical-align:super;\">3</span>") );
+                 QObject::tr("m³"),
+                 QObject::tr("m<span style=\" vertical-align:super;\">3</span>") );
         addData( "angle",
                  UnitMeasure::angle,
-                 QObject::trUtf8("Angolo (rad)"),
+                 QObject::tr("Angolo (rad)"),
                  180.0/M_PI,
-                 QObject::trUtf8("°"),
-                 QObject::trUtf8("°") );
+                 QObject::tr("°"),
+                 QObject::tr("°") );
         addData( "time",
                  UnitMeasure::time,
-                 QObject::trUtf8("Tempo (sec)"),
+                 QObject::tr("Tempo (sec)"),
                  1.0,
-                 QObject::trUtf8("s"),
-                 QObject::trUtf8("s") );
+                 QObject::tr("s"),
+                 QObject::tr("s") );
         addData( "tension",
                  UnitMeasure::tension,
-                 QObject::trUtf8("Tensione (Pa)"),
+                 QObject::tr("Tensione (Pa)"),
                  1.0e-6,
-                 QObject::trUtf8("MPa"),
-                 QObject::trUtf8("MPa") );
+                 QObject::tr("MPa"),
+                 QObject::tr("MPa") );
         addData( "deformation",
                  UnitMeasure::deformation,
-                 QObject::trUtf8("Deformazione (-)"),
+                 QObject::tr("Deformazione (-)"),
                  1.0e+2,
-                 QObject::trUtf8("%"),
-                 QObject::trUtf8("%") );
+                 QObject::tr("%"),
+                 QObject::tr("%") );
         addData( "curvature",
                  UnitMeasure::curvature,
-                 QObject::trUtf8("Curvatura (m<span style=\" vertical-align:super;\">-1</span>)"),
+                 QObject::tr("Curvatura (m<span style=\" vertical-align:super;\">-1</span>)"),
                  1.0e-1,
-                 QObject::trUtf8("% mm⁻¹"),
-                 QObject::trUtf8("% mm<span style=\" vertical-align:super;\">-1</span>") );
+                 QObject::tr("% mm⁻¹"),
+                 QObject::tr("% mm<span style=\" vertical-align:super;\">-1</span>") );
         addData( "sectL",
                  UnitMeasure::sectL,
-                 QObject::trUtf8("Dimensioni e coordinate sezione (in m)"),
+                 QObject::tr("Dimensioni e coordinate sezione (in m)"),
                  1.0e+3,
-                 QObject::trUtf8("mm"),
-                 QObject::trUtf8("mm") );
+                 QObject::tr("mm"),
+                 QObject::tr("mm") );
         addData( "sectL2",
                  UnitMeasure::sectL2,
-                 QObject::trUtf8("Area sezione (m<span style=\" vertical-align:super;\">2</span>)"),
+                 QObject::tr("Area sezione (m<span style=\" vertical-align:super;\">2</span>)"),
                  1.0e+6,
-                 QObject::trUtf8("mm²"),
-                 QObject::trUtf8("mm<span style=\" vertical-align:super;\">2</span>") );
+                 QObject::tr("mm²"),
+                 QObject::tr("mm<span style=\" vertical-align:super;\">2</span>") );
         addData( "sectL3",
                  UnitMeasure::sectL3,
-                 QObject::trUtf8("Volume trave, momento statico sezione (m<span style=\" vertical-align:super;\">3</span>)"),
+                 QObject::tr("Volume trave, momento statico sezione (m<span style=\" vertical-align:super;\">3</span>)"),
                  1.0e+9,
-                 QObject::trUtf8("mm³"),
-                 QObject::trUtf8("mm<span style=\" vertical-align:super;\">3</span>") );
+                 QObject::tr("mm³"),
+                 QObject::tr("mm<span style=\" vertical-align:super;\">3</span>") );
         addData( "sectL4",
                  UnitMeasure::sectL4,
-                 QObject::trUtf8("Momento di inerzia sezione (m<span style=\" vertical-align:super;\">4</span>)"),
+                 QObject::tr("Momento di inerzia sezione (m<span style=\" vertical-align:super;\">4</span>)"),
                  1.0e+12,
-                 QObject::trUtf8("mm⁴"),
-                 QObject::trUtf8("mm<span style=\" vertical-align:super;\">4</span>") );
+                 QObject::tr("mm⁴"),
+                 QObject::tr("mm<span style=\" vertical-align:super;\">4</span>") );
         addData( "sectL5",
                  UnitMeasure::sectL5,
-                 QObject::trUtf8("Integrale del tipo ∫y3 dxdy su sezione (m<span style=\" vertical-align:super;\">5</span>)"),
+                 QObject::tr("Integrale del tipo ∫y3 dxdy su sezione (m<span style=\" vertical-align:super;\">5</span>)"),
                  1.0e+15,
-                 QObject::trUtf8("mm⁵"),
-                 QObject::trUtf8("mm<span style=\" vertical-align:super;\">5</span>") );
+                 QObject::tr("mm⁵"),
+                 QObject::tr("mm<span style=\" vertical-align:super;\">5</span>") );
         addData( "sectL6",
                  UnitMeasure::sectL6,
-                 QObject::trUtf8("Costante di ingobbamento (m<span style=\" vertical-align:super;\">6</span>)"),
+                 QObject::tr("Costante di ingobbamento (m<span style=\" vertical-align:super;\">6</span>)"),
                  1.0e+18,
-                 QObject::trUtf8("mm⁶"),
-                 QObject::trUtf8("mm<span style=\" vertical-align:super;\">6</span>") );
+                 QObject::tr("mm⁶"),
+                 QObject::tr("mm<span style=\" vertical-align:super;\">6</span>") );
         addData( "alphaTemp",
                  UnitMeasure::alphaTemp,
-                 QObject::trUtf8("Coefficiente dilatazione termica (K<span style=\" vertical-align:super;\">-1</span>)"),
+                 QObject::tr("Coefficiente dilatazione termica (K<span style=\" vertical-align:super;\">-1</span>)"),
                  1.0,
-                 QObject::trUtf8("K⁻¹"),
-                 QObject::trUtf8("K<span style=\" vertical-align:super;\">-1</span>") );
+                 QObject::tr("K⁻¹"),
+                 QObject::tr("K<span style=\" vertical-align:super;\">-1</span>") );
         addData( "loadF",
                  UnitMeasure::loadF,
-                 QObject::trUtf8("Forza (N)"),
+                 QObject::tr("Forza (N)"),
                  1.0e-3,
-                 QObject::trUtf8("kN"),
-                 QObject::trUtf8("kN") );
+                 QObject::tr("kN"),
+                 QObject::tr("kN") );
         addData( "loadFLine",
                  UnitMeasure::loadFLine,
-                 QObject::trUtf8("Forza riferita a lunghezza (N/m)"),
+                 QObject::tr("Forza riferita a lunghezza (N/m)"),
                  1.0e-3,
-                 QObject::trUtf8("kN/m"),
-                 QObject::trUtf8("kN/m") );
+                 QObject::tr("kN/m"),
+                 QObject::tr("kN/m") );
         addData( "loadFArea",
                  UnitMeasure::loadFArea,
-                 QObject::trUtf8("Forza riferita a superficie (N/m<span style=\" vertical-align:super;\">2</span>)"),
+                 QObject::tr("Forza riferita a superficie (N/m<span style=\" vertical-align:super;\">2</span>)"),
                  1.0e-3,
-                 QObject::trUtf8("kN/m²"),
-                 QObject::trUtf8("kN/m<span style=\" vertical-align:super;\">2</span>") );
+                 QObject::tr("kN/m²"),
+                 QObject::tr("kN/m<span style=\" vertical-align:super;\">2</span>") );
         addData( "loadFVolume",
                  UnitMeasure::loadFVolume,
-                 QObject::trUtf8("Forza riferita a volume (N/m<span style=\" vertical-align:super;\">3</span>)"),
+                 QObject::tr("Forza riferita a volume (N/m<span style=\" vertical-align:super;\">3</span>)"),
                  1.0e-3,
-                 QObject::trUtf8("kN/m²"),
-                 QObject::trUtf8("kN/m<span style=\" vertical-align:super;\">2</span>") );
+                 QObject::tr("kN/m²"),
+                 QObject::tr("kN/m<span style=\" vertical-align:super;\">2</span>") );
         addData( "loadM",
                  UnitMeasure::loadM,
-                 QObject::trUtf8("Coppia, momento (forza per lunghezza) (N m)"),
+                 QObject::tr("Coppia, momento (forza per lunghezza) (N m)"),
                  1.0e-3,
-                 QObject::trUtf8("kN m"),
-                 QObject::trUtf8("kN m") );
+                 QObject::tr("kN m"),
+                 QObject::tr("kN m") );
         addData( "loadMLine",
                  UnitMeasure::loadMLine,
-                 QObject::trUtf8("Coppia riferita a lunghezza (N m/m)"),
+                 QObject::tr("Coppia riferita a lunghezza (N m/m)"),
                  1.0e-3,
-                 QObject::trUtf8("kN m/m"),
-                 QObject::trUtf8("kN m/m") );
+                 QObject::tr("kN m/m"),
+                 QObject::tr("kN m/m") );
         addData( "SCE",
                  UnitMeasure::SCE,
-                 QObject::trUtf8("Energia specifica di frattura (N/m)"),
+                 QObject::tr("Energia specifica di frattura (N/m)"),
                  1.0e-3,
-                 QObject::trUtf8("N/mm"),
-                 QObject::trUtf8("N/mm") );
+                 QObject::tr("N/mm"),
+                 QObject::tr("N/mm") );
     };
     UnitMeasurePrivate & operator=(UnitMeasurePrivate & val){
         if( this != &val ){

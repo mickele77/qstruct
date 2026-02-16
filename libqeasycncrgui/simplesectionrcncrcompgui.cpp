@@ -19,82 +19,82 @@ public:
         VarPlusContainer( ump, "SimpleSectionRCncrCompGUIPrivate", ""),
         ui(new Ui::SimpleSectionRCncrCompGUI) {
         MRdNEd = new DoublePlus( 0.0, "MRdNEd", m_unitMeasure, UnitMeasure::loadF, true );
-        MRdNEd->setRichName( QObject::trUtf8("N<span style=\" vertical-align:sub;\">Ed</span>") );
-        MRdNEd->setToolTip( QObject::trUtf8("Verifica a pressoflessione - Sforzo normale agente") );
+        MRdNEd->setRichName( QObject::tr("N<span style=\" vertical-align:sub;\">Ed</span>") );
+        MRdNEd->setToolTip( QObject::tr("Verifica a pressoflessione - Sforzo normale agente") );
         MRdNEd->setReadOnly( false );
         addVarToContainer(MRdNEd);
 
         MChiNEd = new DoublePlus( 0.0, "MChiNEd", m_unitMeasure, UnitMeasure::loadF, true );
-        MChiNEd->setRichName( QObject::trUtf8("N<span style=\" vertical-align:sub;\">Ed</span>") );
-        MChiNEd->setToolTip( QObject::trUtf8("Diagramma momento-curvatura - Sforzo normale agente") );
+        MChiNEd->setRichName( QObject::tr("N<span style=\" vertical-align:sub;\">Ed</span>") );
+        MChiNEd->setToolTip( QObject::tr("Diagramma momento-curvatura - Sforzo normale agente") );
         MChiNEd->setReadOnly( false );
         addVarToContainer(MChiNEd);
 
         MRdPlus = new DoublePlus( 0.0, "MRdPlus", m_unitMeasure, UnitMeasure::loadM, true );
-        MRdPlus->setRichName( QObject::trUtf8("M<span style=\" vertical-align:sub;\">Rd,+</span>") );
-        MRdPlus->setToolTip( QObject::trUtf8("Verifica a pressoflessione - Momento resistente positivo"));
+        MRdPlus->setRichName( QObject::tr("M<span style=\" vertical-align:sub;\">Rd,+</span>") );
+        MRdPlus->setToolTip( QObject::tr("Verifica a pressoflessione - Momento resistente positivo"));
         MRdPlus->setReadOnly( true );
         addVarToContainer(MRdPlus);
 
         xMRdPlus = new DoublePlus( 0.0, "xMRdPlus", m_unitMeasure, UnitMeasure::sectL, true );
-        xMRdPlus->setRichName( QObject::trUtf8("x<span style=\" vertical-align:sub;\">MRd,+</span>") );
-        xMRdPlus->setToolTip( QObject::trUtf8("Verifica a pressoflessione - Distanza dell'asse neutro dal lembo superiore compresso"));
+        xMRdPlus->setRichName( QObject::tr("x<span style=\" vertical-align:sub;\">MRd,+</span>") );
+        xMRdPlus->setToolTip( QObject::tr("Verifica a pressoflessione - Distanza dell'asse neutro dal lembo superiore compresso"));
         xMRdPlus->setReadOnly( true );
         addVarToContainer(xMRdPlus);
 
         MRdMinus = new DoublePlus( 0.0, "MRdMinus", m_unitMeasure, UnitMeasure::loadM, true );
-        MRdMinus->setRichName( QObject::trUtf8("M<span style=\" vertical-align:sub;\">Rd,-</span>") );
-        MRdMinus->setToolTip( QObject::trUtf8("Verifica a pressoflessione - Momento resistente negativo"));
+        MRdMinus->setRichName( QObject::tr("M<span style=\" vertical-align:sub;\">Rd,-</span>") );
+        MRdMinus->setToolTip( QObject::tr("Verifica a pressoflessione - Momento resistente negativo"));
         MRdMinus->setReadOnly( true );
         addVarToContainer(MRdMinus);
 
         xMRdMinus = new DoublePlus( 0.0, "xMRdMinus", m_unitMeasure, UnitMeasure::sectL, true );
-        xMRdMinus->setRichName( QObject::trUtf8("x<span style=\" vertical-align:sub;\">MRd,-</span>") );
-        xMRdMinus->setToolTip( QObject::trUtf8("Verifica a pressoflessione - Distanza dell'asse neutro dal lembo inferiore compresso"));
+        xMRdMinus->setRichName( QObject::tr("x<span style=\" vertical-align:sub;\">MRd,-</span>") );
+        xMRdMinus->setToolTip( QObject::tr("Verifica a pressoflessione - Distanza dell'asse neutro dal lembo inferiore compresso"));
         xMRdMinus->setReadOnly( true );
         addVarToContainer(xMRdMinus);
 
         SLSNEk = new DoublePlus( 0.0, "SLSNEk", m_unitMeasure, UnitMeasure::loadF, false );
-        SLSNEk->setRichName( QObject::trUtf8("N<span style=\" vertical-align:sub;\">Ek</span>") );
-        SLSNEk->setToolTip( QObject::trUtf8("Verifica a pressoflessione SLE - Sforzo normale agente"));
+        SLSNEk->setRichName( QObject::tr("N<span style=\" vertical-align:sub;\">Ek</span>") );
+        SLSNEk->setToolTip( QObject::tr("Verifica a pressoflessione SLE - Sforzo normale agente"));
         addVarToContainer(SLSNEk);
 
         SLSMEk = new DoublePlus( 0.0, "SLSMEk", m_unitMeasure, UnitMeasure::loadM, false );
-        SLSMEk->setRichName( QObject::trUtf8("M<span style=\" vertical-align:sub;\">Ek</span>") );
-        SLSMEk->setToolTip( QObject::trUtf8("Verifica a pressoflessione SLE - Momento agente"));
+        SLSMEk->setRichName( QObject::tr("M<span style=\" vertical-align:sub;\">Ek</span>") );
+        SLSMEk->setToolTip( QObject::tr("Verifica a pressoflessione SLE - Momento agente"));
         addVarToContainer(SLSMEk);
 
         SLSAlphaE = new DoublePlus( 15.0, "SLSAlphaE", m_unitMeasure, UnitMeasure::noDimension, false );
-        SLSAlphaE->setRichName( QObject::trUtf8("α<span style=\" vertical-align:sub;\">e</span>") );
-        SLSAlphaE->setToolTip( QObject::trUtf8("Verifica a pressoflessione SLE - Coefficiente di omogeneizzazione"));
+        SLSAlphaE->setRichName( QObject::tr("α<span style=\" vertical-align:sub;\">e</span>") );
+        SLSAlphaE->setToolTip( QObject::tr("Verifica a pressoflessione SLE - Coefficiente di omogeneizzazione"));
         addVarToContainer(SLSAlphaE);
 
         SLSSigmaCUp = new DoublePlus( 0.0, "SLSSigmaCUp", m_unitMeasure, UnitMeasure::tension, true );
-        SLSSigmaCUp->setRichName( QObject::trUtf8("σ<span style=\" vertical-align:sub;\">c,sup</span>") );
-        SLSSigmaCUp->setToolTip( QObject::trUtf8("Verifica a pressoflessione SLE - Tensione minima nel cls"));
+        SLSSigmaCUp->setRichName( QObject::tr("σ<span style=\" vertical-align:sub;\">c,sup</span>") );
+        SLSSigmaCUp->setToolTip( QObject::tr("Verifica a pressoflessione SLE - Tensione minima nel cls"));
         SLSSigmaCUp->setReadOnly( true );
         addVarToContainer(SLSSigmaCUp);
 
         SLSSigmaCDown = new DoublePlus( 0.0, "SLSSigmaCDown", m_unitMeasure, UnitMeasure::tension, true );
-        SLSSigmaCDown->setRichName( QObject::trUtf8("σ<span style=\" vertical-align:sub;\">c,inf</span>") );
-        SLSSigmaCDown->setToolTip( QObject::trUtf8("Verifica a pressoflessione SLE - Tensione massima nel cls"));
+        SLSSigmaCDown->setRichName( QObject::tr("σ<span style=\" vertical-align:sub;\">c,inf</span>") );
+        SLSSigmaCDown->setToolTip( QObject::tr("Verifica a pressoflessione SLE - Tensione massima nel cls"));
         SLSSigmaCDown->setReadOnly( true );
         addVarToContainer(SLSSigmaCDown);
 
         SLSx = new DoublePlus( 0.0, "SLSx", m_unitMeasure, UnitMeasure::sectL, true );
-        SLSx->setRichName( QObject::trUtf8("x") );
-        SLSx->setToolTip( QObject::trUtf8("Verifica a pressoflessione SLE - Distanza dell'asse neutro dal lembo superiore compresso"));
+        SLSx->setRichName( QObject::tr("x") );
+        SLSx->setToolTip( QObject::tr("Verifica a pressoflessione SLE - Distanza dell'asse neutro dal lembo superiore compresso"));
         SLSx->setReadOnly( true );
         addVarToContainer(SLSx);
 
         bVULS = new DoublePlus( 0.0, "bVULS", m_unitMeasure, UnitMeasure::sectL, true );
-        bVULS->setRichName( QObject::trUtf8("b<span style=\" vertical-align:sub;\">w</span>") );
-        bVULS->setToolTip( QObject::trUtf8("Verifica a taglio - Larghezza minima dell'area tesa"));
+        bVULS->setRichName( QObject::tr("b<span style=\" vertical-align:sub;\">w</span>") );
+        bVULS->setToolTip( QObject::tr("Verifica a taglio - Larghezza minima dell'area tesa"));
         addVarToContainer(bVULS);
 
         dVULS = new DoublePlus( 0.0, "dVULS", m_unitMeasure, UnitMeasure::sectL, true );
-        dVULS->setRichName( QObject::trUtf8("d") );
-        dVULS->setToolTip( QObject::trUtf8("Verifica a taglio - Altezza utile"));
+        dVULS->setRichName( QObject::tr("d") );
+        dVULS->setToolTip( QObject::tr("Verifica a taglio - Altezza utile"));
         addVarToContainer(dVULS);
     }
     ~SimpleSectionRCncrCompGUIPrivate(){
@@ -144,25 +144,25 @@ SimpleSectionRCncrCompGUI::SimpleSectionRCncrCompGUI(UnitMeasure * ump, QWidget 
     m_d->ui->setupUi(this);
     connectVar();
 
-    connect( m_d->ui->MChiPushButton, SIGNAL(clicked()), this, SLOT(calcMChi()));
-    connect( m_d->ui->NRdMRdPushButton, SIGNAL(clicked()), this, SLOT(calcNRdMRd()));
+    connect( m_d->ui->MChiPushButton, &QPushButton::clicked, this, &SimpleSectionRCncrCompGUI::calcMChi );
+    connect( m_d->ui->NRdMRdPushButton, &QPushButton::clicked, this, &SimpleSectionRCncrCompGUI::calcNRdMRd );
 
     m_d->ui->cncrRectTableView->horizontalHeader()->setSectionResizeMode( QHeaderView::Stretch );
-    connect( m_d->ui->addCncrRectPushButton, SIGNAL(clicked()), this, SLOT(addCncrRect()));
-    connect( m_d->ui->delCncrRectPushButton, SIGNAL(clicked()), this, SLOT(delCncrRect()));
+    connect( m_d->ui->addCncrRectPushButton, &QPushButton::clicked, this, &SimpleSectionRCncrCompGUI::addCncrRect );
+    connect( m_d->ui->delCncrRectPushButton, &QPushButton::clicked, this, &SimpleSectionRCncrCompGUI::delCncrRect );
 
     m_d->ui->steelATableView->horizontalHeader()->setSectionResizeMode( QHeaderView::Stretch );
-    connect( m_d->ui->addSteelAPushButton, SIGNAL(clicked()), this, SLOT(addSteelA()));
-    connect( m_d->ui->delSteelAPushButton, SIGNAL(clicked()), this, SLOT(delSteelA()));
+    connect( m_d->ui->addSteelAPushButton, &QPushButton::clicked, this, &SimpleSectionRCncrCompGUI::addSteelA );
+    connect( m_d->ui->delSteelAPushButton, &QPushButton::clicked, this, &SimpleSectionRCncrCompGUI::delSteelA );
 
-    connect( m_d->sect, SIGNAL(sectionChanged()), this, SLOT(setMRd()) );
-    connect( m_d->MRdNEd, SIGNAL(valueChanged(QString)), this, SLOT(setMRd()) );
+    connect( m_d->sect, &SimpleSectionRCncrComp::sectionChanged, this, &SimpleSectionRCncrCompGUI::setMRd );
+    connect( m_d->MRdNEd, &DoublePlus::valueChanged, this, &SimpleSectionRCncrCompGUI::setMRd );
     setMRd();
 
-    connect( m_d->sect, SIGNAL(sectionChanged()), this, SLOT(setSLSValues()) );
-    connect( m_d->SLSMEk, SIGNAL(valueChanged(QString)), this, SLOT(setSLSValues()) );
-    connect( m_d->SLSNEk, SIGNAL(valueChanged(QString)), this, SLOT(setSLSValues()) );
-    connect( m_d->SLSAlphaE, SIGNAL(valueChanged(QString)), this, SLOT(setSLSValues()) );
+    connect( m_d->sect, &SimpleSectionRCncrComp::sectionChanged, this, &SimpleSectionRCncrCompGUI::setSLSValues );
+    connect( m_d->SLSMEk, &DoublePlus::valueChanged, this, &SimpleSectionRCncrCompGUI::setSLSValues );
+    connect( m_d->SLSNEk, &DoublePlus::valueChanged, this, &SimpleSectionRCncrCompGUI::setSLSValues );
+    connect( m_d->SLSAlphaE, &DoublePlus::valueChanged, this, &SimpleSectionRCncrCompGUI::setSLSValues );
     setSLSValues();
 }
 
@@ -171,13 +171,13 @@ SimpleSectionRCncrCompGUI::~SimpleSectionRCncrCompGUI() {
 }
 
 void SimpleSectionRCncrCompGUI::calcMChi() {
-    QCustomPlotDialog d( trUtf8("Momento/Curvatura"), this );
+    QCustomPlotDialog d( tr("Momento/Curvatura"), this );
     d.setCurveData( 0, m_d->sect->MChiDiagram( m_d->MChiNEd ) );
     d.exec();
 }
 
 void SimpleSectionRCncrCompGUI::calcNRdMRd() {
-    QCustomPlotDialog d( trUtf8("Diagramma N-M"), this );
+    QCustomPlotDialog d( tr("Diagramma N-M"), this );
     d.setCurveData( 0, m_d->sect->NRdMRd() );
     d.setXAxisInverted( true );
     d.exec();
@@ -192,7 +192,7 @@ void SimpleSectionRCncrCompGUI::addCncrRect() {
                 selRows.append( (*i).row() );
             }
         }
-        qSort( selRows );
+       std::sort( selRows.begin(), selRows.end() );
         if( selRows.isEmpty() ){
             m_d->sect->cncrRectModel()->insertRows( 0, 1 );
         } else {
@@ -226,7 +226,7 @@ void SimpleSectionRCncrCompGUI::addSteelA() {
                 selRows.append( (*i).row() );
             }
         }
-        qSort( selRows );
+        std::sort( selRows.begin(), selRows.end() );
         if( selRows.isEmpty() ){
             m_d->sect->steelAModel()->insertRows( 0, 1 );
         } else {

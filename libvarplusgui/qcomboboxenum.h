@@ -1,6 +1,8 @@
 #ifndef QCOMBOBOXENUM_H
 #define QCOMBOBOXENUM_H
 
+#include "varplusgui_export.h"
+
 #include <QComboBox>
 #include "qwidgetenumplus.h"
 
@@ -16,10 +18,10 @@
 *
 */
 
-class QComboBoxEnum: public QComboBox, public QWidgetEnumPlus {
+class EXPORT_VARPLUSGUI_LIB_OPT QComboBoxEnum: public QComboBox, public QWidgetEnumPlus {
     Q_OBJECT
 public:
-    QComboBoxEnum( QWidget * parent = 0, EnumPlus * v = 0);
+    QComboBoxEnum( QWidget * parent = 0, EnumPlus * v = nullptr );
     ~QComboBoxEnum();
 
     void setVar( EnumPlus * v);

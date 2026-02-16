@@ -19,6 +19,7 @@
 #ifndef SECTIONMODELGUI_H
 #define SECTIONMODELGUI_H
 
+#include "sectiongui_export.h"
 #include <QWidget>
 
 namespace Ui {
@@ -26,7 +27,7 @@ class SectionModelGUI;
 }
 #include "sectionmodel.h"
 
-class SectionModelGUI : public QWidget
+class EXPORT_SECTIONGUI_LIB_OPT SectionModelGUI : public QWidget
 {
     Q_OBJECT
 public:

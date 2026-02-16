@@ -1,6 +1,8 @@
 #ifndef QLABELUNITMEASURE_H
 #define QLABELUNITMEASURE_H
 
+#include "varplusgui_export.h"
+
 #include <QLabel>
 #include "qwidgetplus.h"
 
@@ -16,10 +18,10 @@
 *
 */
 
-class QLabelUnitMeasure : public QLabel, public QWidgetPlus {
+class EXPORT_VARPLUSGUI_LIB_OPT QLabelUnitMeasure : public QLabel, public QWidgetPlus {
     Q_OBJECT
 public:
-    explicit QLabelUnitMeasure(QWidget *parent = 0, VarPlus * v = 0 );
+    explicit QLabelUnitMeasure(QWidget *parent = 0, VarPlus * v = nullptr );
     ~QLabelUnitMeasure();
 
     void setVar( VarPlus * v);

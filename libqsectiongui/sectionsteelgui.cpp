@@ -74,27 +74,27 @@ QVariant StandardSectionSteelModel::headerData ( int section, Qt::Orientation or
         if( orientation == Qt::Horizontal){
             switch( section ){
             case(0) :
-                return QVariant( trUtf8("id") );
+                return QVariant( tr("id") );
             case(1) :
-                return QVariant( trUtf8("nome") );
+                return QVariant( tr("nome") );
             case(2) :
-                return QVariant( trUtf8("A") + " [" + m_unitMeasure->string(UnitMeasure::sectL2) + "]" );
+                return QVariant( tr("A") + " [" + m_unitMeasure->string(UnitMeasure::sectL2) + "]" );
             case(3) :
-                return QVariant( trUtf8("Iy") + " [" + m_unitMeasure->string(UnitMeasure::sectL4) + "]" );
+                return QVariant( tr("Iy") + " [" + m_unitMeasure->string(UnitMeasure::sectL4) + "]" );
             case(4) :
-                return QVariant( trUtf8("iy") + " [" + m_unitMeasure->string(UnitMeasure::sectL) + "]" );
+                return QVariant( tr("iy") + " [" + m_unitMeasure->string(UnitMeasure::sectL) + "]" );
             case(5) :
-                return QVariant( trUtf8("WEly") + " [" + m_unitMeasure->string(UnitMeasure::sectL3) + "]" );
+                return QVariant( tr("WEly") + " [" + m_unitMeasure->string(UnitMeasure::sectL3) + "]" );
             case(6) :
-                return QVariant( trUtf8("WPly") + " [" + m_unitMeasure->string(UnitMeasure::sectL3) + "]" );
+                return QVariant( tr("WPly") + " [" + m_unitMeasure->string(UnitMeasure::sectL3) + "]" );
             case(7) :
-                return QVariant( trUtf8("Iz") + " [" + m_unitMeasure->string(UnitMeasure::sectL4) + "]" );
+                return QVariant( tr("Iz") + " [" + m_unitMeasure->string(UnitMeasure::sectL4) + "]" );
             case(8) :
-                return QVariant( trUtf8("iz") + " [" + m_unitMeasure->string(UnitMeasure::sectL) + "]" );
+                return QVariant( tr("iz") + " [" + m_unitMeasure->string(UnitMeasure::sectL) + "]" );
             case(9) :
-                return QVariant( trUtf8("WElz") + " [" + m_unitMeasure->string(UnitMeasure::sectL3) + "]" );
+                return QVariant( tr("WElz") + " [" + m_unitMeasure->string(UnitMeasure::sectL3) + "]" );
             case(10) :
-                return QVariant( trUtf8("WPlz") + " [" + m_unitMeasure->string(UnitMeasure::sectL3) + "]" );
+                return QVariant( tr("WPlz") + " [" + m_unitMeasure->string(UnitMeasure::sectL3) + "]" );
             }
         } else if( orientation == Qt::Vertical){
             return QVariant(section+1);
@@ -321,11 +321,11 @@ SectionSteelGUI::SectionSteelGUI(UnitMeasure * um, MaterialModel * matModel, con
     initVar();
     m_d->dataSetModel = new SectionSteelDataSetModel( um, m_d->beamlRelY, m_d->beamChiY, m_d->beamlRelZ, m_d->beamChiZ, m_d->torsDeformability, m_d->beamL0LT );
     m_d->ui->dataSetTableView->setModel( m_d->dataSetModel );
-    connect( m_d->ui->dataSetClearPButton, SIGNAL(clicked()), this, SLOT(dataSetClear()));
-    connect( m_d->ui->dataSetLoadFromFilePButton, SIGNAL(clicked()), this, SLOT(dataSetLoadFromFile()));
-    connect( m_d->ui->dataSetVerifyULSAllPButton, SIGNAL(clicked()), this, SLOT(dataSetVerifyULSAll()));
-    connect( m_d->ui->dataSetFromFormToTablePButton, SIGNAL(clicked()), this, SLOT(dataSetFromGUIToTable()));
-    connect( m_d->ui->dataSetFromTableToFormPButton, SIGNAL(clicked()), this, SLOT(dataSetFromTableToGUI()));
+    connect( m_d->ui->dataSetClearPButton, &QPushButton::clicked, this, &SectionSteelGUI::dataSetClear );
+    connect( m_d->ui->dataSetLoadFromFilePButton, &QPushButton::clicked, this, &SectionSteelGUI::dataSetLoadFromFile );
+    connect( m_d->ui->dataSetVerifyULSAllPButton, &QPushButton::clicked, this, &SectionSteelGUI::dataSetVerifyULSAll );
+    connect( m_d->ui->dataSetFromFormToTablePButton, &QPushButton::clicked, this, &SectionSteelGUI::dataSetFromGUIToTable );
+    connect( m_d->ui->dataSetFromTableToFormPButton, &QPushButton::clicked, this, &SectionSteelGUI::dataSetFromTableToGUI );
 
     m_d->sectsToView = new QList<QGraphicsPolygonItem *>;
 
@@ -337,8 +337,8 @@ SectionSteelGUI::SectionSteelGUI(UnitMeasure * um, MaterialModel * matModel, con
         m_d->dbSectionSteelFileName = settings.value("dbSectionSteelFileName", QApplication::applicationDirPath() + "/../resources/sectionsteel.db").toString();
         dbSectionSteel.setDatabaseName( m_d->dbSectionSteelFileName );
         if (!dbSectionSteel.open() ) {
-            QMessageBox::critical(0, trUtf8("Non riesco ad aprire il database delle sezioni in acciaio"),
-                                  trUtf8("Non riesco a trovare il file sectionsteel.db"), QMessageBox::Cancel);
+            QMessageBox::critical(0, tr("Non riesco ad aprire il database delle sezioni in acciaio"),
+                                  tr("Non riesco a trovare il file sectionsteel.db"), QMessageBox::Cancel);
         } else {
             loadStandardComboBox();
         }
@@ -348,12 +348,12 @@ SectionSteelGUI::SectionSteelGUI(UnitMeasure * um, MaterialModel * matModel, con
 
     m_d->ui->MULSyMULSzAccuracySBox->setMinimum( 4 );
     m_d->ui->MULSyMULSzAccuracySBox->setValue( 8 );
-    connect( m_d->ui->MULSyMULSzPButton, SIGNAL(clicked()), this, SLOT(plotMULSyMULSz()));
+    connect( m_d->ui->MULSyMULSzPButton, &QPushButton::clicked, this, &SectionSteelGUI::plotMULSyMULSz );
     m_d->ui->MULSNAccuracySBox->setMinimum( 2 );
     m_d->ui->MULSNAccuracySBox->setValue( 8 );
-    connect( m_d->ui->MULSNPButton, SIGNAL(clicked()), this, SLOT(plotMULSN()));
+    connect( m_d->ui->MULSNPButton, &QPushButton::clicked, this, &SectionSteelGUI::plotMULSN );
 
-    connect( m_d->ui->classDIagramPButton, SIGNAL(clicked()), this, SLOT(plotClassDiagram()));
+    connect( m_d->ui->classDIagramPButton, &QPushButton::clicked, this, &SectionSteelGUI::plotClassDiagram );
 
     m_materialComboBox = m_d->ui->steelComboBox;
     connect( m_materialComboBox, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionGUI::setMaterialFromComboBox );
@@ -371,124 +371,126 @@ SectionSteelGUI::~SectionSteelGUI() {
 
 void SectionSteelGUI::initVar(){
     m_d->beamL0y = new DoublePlus(0.0, "beamL0y", m_unitMeasure, UnitMeasure::length, false );
-    m_d->beamL0y->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">0,y</span>"));
-    m_d->beamL0y->setToolTip( trUtf8("Distanza tra ritegni flessionali; inflessione nel piano y-y"));
+    m_d->beamL0y->setRichName( tr("L<span style=\" vertical-align:sub;\">0,y</span>"));
+    m_d->beamL0y->setToolTip( tr("Distanza tra ritegni flessionali; inflessione nel piano y-y"));
     addVarToContainer( m_d->beamL0y );
     VarPlusGUI::connectVar( m_d->beamL0y, m_d->ui->beamL0yLabel, m_d->ui->beamL0yLEdit, m_d->ui->beamL0yUMLabel);
 
     m_d->beamL0z = new DoublePlus(0.0, "beamL0z", m_unitMeasure, UnitMeasure::length, false );
-    m_d->beamL0z->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">0,z</span>"));
-    m_d->beamL0z->setToolTip( trUtf8("Distanza tra ritegni flessionali; inflessione nel piano z-z"));
+    m_d->beamL0z->setRichName( tr("L<span style=\" vertical-align:sub;\">0,z</span>"));
+    m_d->beamL0z->setToolTip( tr("Distanza tra ritegni flessionali; inflessione nel piano z-z"));
     addVarToContainer( m_d->beamL0z );
     VarPlusGUI::connectVar( m_d->beamL0z, m_d->ui->beamL0zLabel, m_d->ui->beamL0zLEdit, m_d->ui->beamL0zUMLabel);
 
     m_d->torsDeformability = new SectionSteelTorsionalDeformability( SectionSteel::torsDeformable, "torsionalDeformability" );
-    m_d->torsDeformability->setRichName( trUtf8("Deformabilità   torsionale"));
+    m_d->torsDeformability->setRichName( tr("Deformabilità   torsionale"));
     addVarToContainer(m_d->torsDeformability);
     VarPlusGUI::connectEnumVar( m_d->torsDeformability, m_d->ui->beamMxDeformabilityLabel, m_d->ui->beamMxDeformabilityComboBox );
 
     m_d->beamL0LT = new DoublePlus(0.0, "beamL0lt", m_unitMeasure, UnitMeasure::length, false );
-    m_d->beamL0LT->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">0,LT</span>"));
-    m_d->beamL0LT->setToolTip( trUtf8("Distanza tra ritegni torsionali"));
+    m_d->beamL0LT->setRichName( tr("L<span style=\" vertical-align:sub;\">0,LT</span>"));
+    m_d->beamL0LT->setToolTip( tr("Distanza tra ritegni torsionali"));
     addVarToContainer( m_d->beamL0LT );
     VarPlusGUI::connectVar( m_d->beamL0LT, m_d->ui->beamL0LTLabel, m_d->ui->beamL0LTLEdit, m_d->ui->beamL0LTUMLabel );
 
     m_d->beamlY = new DoublePlus( 0.0, "beamlY", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->beamlY->setRichName( trUtf8("λ<span style=\" vertical-align:sub;\">y</span>"));
-    m_d->beamlY->setToolTip( trUtf8("Snellezza della trave per instabilità  nel piano y-y"));
+    m_d->beamlY->setRichName( tr("λ<span style=\" vertical-align:sub;\">y</span>"));
+    m_d->beamlY->setToolTip( tr("Snellezza della trave per instabilità  nel piano y-y"));
     addVarToContainer( m_d->beamlY );
     VarPlusGUI::connectVar( m_d->beamlY, m_d->ui->beamlYLabel, m_d->ui->beamlYLEdit, m_d->ui->beamlYUMLabel, m_d->ui->beamlYCheckBox );
-    connect( m_d->beamlY, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamlY()));
-    connect( m_d->beamL0y, SIGNAL(valueChanged(QString)), this, SLOT(setBeamlY()));
+    connect( m_d->beamlY, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setBeamlY );
+    connect( m_d->beamL0y, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamlY );
 
     m_d->beamNCrY = new DoublePlus( 0.0, "beamNCrY", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->beamNCrY->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">cr,y</span>"));
-    m_d->beamNCrY->setToolTip( trUtf8("Carico critico euleriano; inflessione in y-y"));
+    m_d->beamNCrY->setRichName( tr("N<span style=\" vertical-align:sub;\">cr,y</span>"));
+    m_d->beamNCrY->setToolTip( tr("Carico critico euleriano; inflessione in y-y"));
     addVarToContainer( m_d->beamNCrY );
     VarPlusGUI::connectVar( m_d->beamNCrY, m_d->ui->beamNCrYLabel, m_d->ui->beamNCrYLEdit, m_d->ui->beamNCrYUMLabel, m_d->ui->beamNCrYCheckBox );
-    connect( m_d->beamNCrY, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamNCrY()));
-    connect( m_d->beamL0y, SIGNAL(valueChanged(QString)), this, SLOT(setBeamNCrY()));
+    connect( m_d->beamNCrY, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setBeamNCrY );
+    connect( m_d->beamL0y, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamNCrY );
 
     m_d->beamlRelY = new DoublePlus( 0.0, "beamlRelY", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->beamlRelY->setRichName( trUtf8("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">y</span>"));
-    m_d->beamlRelY->setToolTip( trUtf8("Snellezza relativa della trave per instabilità  nel piano y-y"));
+    m_d->beamlRelY->setRichName( tr("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">y</span>"));
+    m_d->beamlRelY->setToolTip( tr("Snellezza relativa della trave per instabilità  nel piano y-y"));
     addVarToContainer( m_d->beamlRelY );
     VarPlusGUI::connectVar( m_d->beamlRelY, m_d->ui->beamlRelYLabel, m_d->ui->beamlRelYLEdit, m_d->ui->beamlRelYUMLabel, m_d->ui->beamlRelYCheckBox );
-    connect( m_d->beamlRelY, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamlRelY()));
-    connect( m_d->beamNCrY, SIGNAL(valueChanged(QString)), this, SLOT(setBeamlRelY()));
+    connect( m_d->beamlRelY, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setBeamlRelY );
+    connect( m_d->beamNCrY, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamlRelY );
 
     m_d->beamChiY = new DoublePlus( 0.0, "beamChiY", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->beamChiY->setRichName( trUtf8("χ<span style=\" vertical-align:sub;\">y</span>"));
-    m_d->beamChiY->setToolTip( trUtf8("Fattore di riduzione per instabilità  compressione, asse y-y"));
+    m_d->beamChiY->setRichName( tr("χ<span style=\" vertical-align:sub;\">y</span>"));
+    m_d->beamChiY->setToolTip( tr("Fattore di riduzione per instabilità  compressione, asse y-y"));
     addVarToContainer( m_d->beamChiY );
     VarPlusGUI::connectVar( m_d->beamChiY, m_d->ui->beamChiYLabel, m_d->ui->beamChiYLEdit, m_d->ui->beamChiYUMLabel, m_d->ui->beamChiYCheckBox );
-    connect( m_d->beamChiY, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamChiY()));
-    connect( m_d->beamlRelY, SIGNAL(valueChanged(QString)), this, SLOT(setBeamChiY()));
+    connect( m_d->beamChiY, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setBeamChiY );
+    connect( m_d->beamlRelY, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamChiY );
 
     m_d->beamNULSBucklY = new DoublePlus( 0.0, "beamNULSBucklY", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->beamNULSBucklY->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">b,Rd,y</span>"));
-    m_d->beamNULSBucklY->setToolTip( trUtf8("Resistenza di progetto della trave per instabilità  a compressione; inflessione attorno ad asse z-z"));
+    m_d->beamNULSBucklY->setRichName( tr("N<span style=\" vertical-align:sub;\">b,Rd,y</span>"));
+    m_d->beamNULSBucklY->setToolTip( tr("Resistenza di progetto della trave per instabilità  a compressione; inflessione attorno ad asse z-z"));
     addVarToContainer( m_d->beamNULSBucklY );
     VarPlusGUI::connectVar( m_d->beamNULSBucklY, m_d->ui->beamNULSBucklYLabel, m_d->ui->beamNULSBucklYLEdit, m_d->ui->beamNULSBucklYUMLabel, m_d->ui->beamNULSBucklYCheckBox );
-    connect( m_d->beamChiY, SIGNAL(valueChanged(QString)), this, SLOT(setBeamNULSBucklY()));
+    connect( m_d->beamChiY, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamNULSBucklY );
+    connect( m_d->beamNULSBucklY, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setBeamNULSBucklY );
 
     m_d->beamlZ = new DoublePlus( 0.0, "beamlZ", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->beamlZ->setRichName( trUtf8("λ<span style=\" vertical-align:sub;\">z</span>"));
-    m_d->beamlZ->setToolTip( trUtf8("Snellezza della trave per instabilità  nel piano z-z"));
+    m_d->beamlZ->setRichName( tr("λ<span style=\" vertical-align:sub;\">z</span>"));
+    m_d->beamlZ->setToolTip( tr("Snellezza della trave per instabilità  nel piano z-z"));
     addVarToContainer( m_d->beamlZ );
     VarPlusGUI::connectVar( m_d->beamlZ, m_d->ui->beamlZLabel, m_d->ui->beamlZLEdit, m_d->ui->beamlZUMLabel,  m_d->ui->beamlZCheckBox );
-    connect( m_d->beamlZ, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamlZ()));
-    connect( m_d->beamL0z, SIGNAL(valueChanged(QString)), this, SLOT(setBeamlZ()));
+    connect( m_d->beamlZ, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setBeamlZ );
+    connect( m_d->beamL0z, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamlZ );
 
     m_d->beamNCrZ = new DoublePlus( 0.0, "beamNCrZ", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->beamNCrZ->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">cr,z</span>"));
-    m_d->beamNCrZ->setToolTip( trUtf8("Carico critico euleriano della trave; inflessione in z-z"));
+    m_d->beamNCrZ->setRichName( tr("N<span style=\" vertical-align:sub;\">cr,z</span>"));
+    m_d->beamNCrZ->setToolTip( tr("Carico critico euleriano della trave; inflessione in z-z"));
     addVarToContainer( m_d->beamNCrZ );
     VarPlusGUI::connectVar( m_d->beamNCrZ, m_d->ui->beamNCrZLabel, m_d->ui->beamNCrZLEdit, m_d->ui->beamNCrZUMLabel, m_d->ui->beamNCrZCheckBox );
-    connect( m_d->beamNCrZ, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamNCrZ()));
-    connect( m_d->beamL0z, SIGNAL(valueChanged(QString)), this, SLOT(setBeamNCrZ()));
+    connect( m_d->beamNCrZ, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setBeamNCrZ );
+    connect( m_d->beamL0z, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamNCrZ );
 
     m_d->beamlRelZ = new DoublePlus( 0.0, "beamlRelZ", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->beamlRelZ->setRichName( trUtf8("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">y</span>"));
-    m_d->beamlRelZ->setToolTip( trUtf8("Snellezza relativa della trave per instabilità  nel piano y-y"));
+    m_d->beamlRelZ->setRichName( tr("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">y</span>"));
+    m_d->beamlRelZ->setToolTip( tr("Snellezza relativa della trave per instabilità  nel piano y-y"));
     addVarToContainer( m_d->beamlRelZ );
     VarPlusGUI::connectVar( m_d->beamlRelZ, m_d->ui->beamlRelZLabel, m_d->ui->beamlRelZLEdit, m_d->ui->beamlRelZUMLabel, m_d->ui->beamlRelZCheckBox );
-    connect( m_d->beamlRelZ, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamlRelZ()));
-    connect( m_d->beamNCrZ, SIGNAL(valueChanged(QString)), this, SLOT(setBeamlRelZ()));
+    connect( m_d->beamlRelZ, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setBeamlRelZ );
+    connect( m_d->beamNCrZ, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamlRelZ );
 
     m_d->beamChiZ = new DoublePlus( 0.0, "beamChiZ", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->beamChiZ->setRichName( trUtf8("χ<span style=\" vertical-align:sub;\">z</span>"));
-    m_d->beamChiZ->setToolTip( trUtf8("Fattore di riduzione per instabilità a compressione, asse z-z"));
+    m_d->beamChiZ->setRichName( tr("χ<span style=\" vertical-align:sub;\">z</span>"));
+    m_d->beamChiZ->setToolTip( tr("Fattore di riduzione per instabilità a compressione, asse z-z"));
     addVarToContainer( m_d->beamChiZ );
     VarPlusGUI::connectVar( m_d->beamChiZ, m_d->ui->beamChiZLabel, m_d->ui->beamChiZLEdit, m_d->ui->beamChiZUMLabel, m_d->ui->beamChiZCheckBox );
-    connect( m_d->beamChiZ, SIGNAL(readOnlyChanged(bool)), this, SLOT(setBeamChiZ()));
-    connect( m_d->beamlRelZ, SIGNAL(valueChanged(QString)), this, SLOT(setBeamChiZ()));
+    connect( m_d->beamChiZ, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setBeamChiZ );
+    connect( m_d->beamlRelZ, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamChiZ );
 
     m_d->beamNULSBucklZ = new DoublePlus( 0.0, "beamNULSBucklZ", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->beamNULSBucklZ->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">b,Rd,z</span>"));
-    m_d->beamNULSBucklZ->setToolTip( trUtf8("Resistenza di progetto della trave per instabilità a compressione; inflessione attorno ad asse z-z"));
+    m_d->beamNULSBucklZ->setRichName( tr("N<span style=\" vertical-align:sub;\">b,Rd,z</span>"));
+    m_d->beamNULSBucklZ->setToolTip( tr("Resistenza di progetto della trave per instabilità a compressione; inflessione attorno ad asse z-z"));
     addVarToContainer( m_d->beamNULSBucklZ );
     VarPlusGUI::connectVar( m_d->beamNULSBucklZ, m_d->ui->beamNULSBucklZLabel, m_d->ui->beamNULSBucklZLEdit, m_d->ui->beamNULSBucklZUMLabel, m_d->ui->beamNULSBucklZCheckBox );
-    connect( m_d->beamChiZ, SIGNAL(valueChanged(QString)), this, SLOT(setBeamNULSBucklZ()));
+    connect( m_d->beamChiZ, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamNULSBucklZ );
+    connect( m_d->beamNULSBucklZ, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setBeamNULSBucklZ );
 
     m_d->NEd = new DoublePlus(0.0, "NSd", m_unitMeasure, UnitMeasure::loadF, false );
-    m_d->NEd->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">Sd</span>"));
+    m_d->NEd->setRichName( tr("N<span style=\" vertical-align:sub;\">Sd</span>"));
     addVarToContainer( m_d->NEd );
     VarPlusGUI::connectVar( m_d->NEd, m_d->ui->NSdLabel, m_d->ui->NSdLEdit, m_d->ui->NSdUMLabel );
 
     m_d->MEdY = new DoublePlus(0.0, "MSdY", m_unitMeasure, UnitMeasure::loadM  );
-    m_d->MEdY->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">Sd,y</span>"));
+    m_d->MEdY->setRichName( tr("M<span style=\" vertical-align:sub;\">Sd,y</span>"));
     addVarToContainer( m_d->MEdY );
     VarPlusGUI::connectVar(m_d->MEdY, m_d->ui->MSdYLabel, m_d->ui->MSdYLEdit, m_d->ui->MSdYUMLabel );
 
     m_d->MEdZ = new DoublePlus(0.0, "MSdZ", m_unitMeasure, UnitMeasure::loadM  );
-    m_d->MEdZ->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">Sd,z</span>"));
+    m_d->MEdZ->setRichName( tr("M<span style=\" vertical-align:sub;\">Sd,z</span>"));
     addVarToContainer( m_d->MEdZ );
     VarPlusGUI::connectVar(m_d->MEdZ, m_d->ui->MSdZLabel, m_d->ui->MSdZLEdit, m_d->ui->MSdZUMLabel );
 
     m_d->cenMEd = new Point2DPlus( "cenMSd", "yMSd", 0.0, "zMSd", 0.0, m_unitMeasure, UnitMeasure::sectL );
-    m_d->cenMEd->y->setRichName( trUtf8("y<span style=\" vertical-align:sub;\">M</span>"));
-    m_d->cenMEd->z->setRichName( trUtf8("z<span style=\" vertical-align:sub;\">M</span>"));
+    m_d->cenMEd->y->setRichName( tr("y<span style=\" vertical-align:sub;\">M</span>"));
+    m_d->cenMEd->z->setRichName( tr("z<span style=\" vertical-align:sub;\">M</span>"));
     addVarToContainer( m_d->cenMEd );
     m_d->cenMEd->y->setReadOnly( true );
     VarPlusGUI::connectVar(m_d->cenMEd->y, m_d->ui->yMSdLabel, m_d->ui->yMSdLEdit, m_d->ui->yMSdUMLabel, m_d->ui->yMSdCheckBox );
@@ -496,218 +498,221 @@ void SectionSteelGUI::initVar(){
     VarPlusGUI::connectVar(m_d->cenMEd->z, m_d->ui->zMSdLabel, m_d->ui->zMSdLEdit, m_d->ui->zMSdUMLabel, m_d->ui->zMSdCheckBox );
 
     m_d->beamMSdYDistribution = new SectionSteelMomentDistribution( SectionSteel::momentLinear, "beamMSdYDistribution"  );
-    m_d->beamMSdYDistribution->setRichName( trUtf8("Distribuzione momento y-y"));
-    m_d->beamMSdYDistribution->setToolTip( trUtf8("Distribuzione del momento nella trave, asse y-y"));
+    m_d->beamMSdYDistribution->setRichName( tr("Distribuzione momento y-y"));
+    m_d->beamMSdYDistribution->setToolTip( tr("Distribuzione del momento nella trave, asse y-y"));
     addVarToContainer( m_d->beamMSdYDistribution );
     VarPlusGUI::connectEnumVar( m_d->beamMSdYDistribution, m_d->ui->beamMSdYDistributionLabel, m_d->ui->beamMSdYDistributionComboBox );
 
     m_d->beamMEdYH1 = new DoublePlus( 0.0, "beamMSdYH1", m_unitMeasure, UnitMeasure::loadM );
-    m_d->beamMEdYH1->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">H,1,y</span>"));
-    m_d->beamMEdYH1->setToolTip( trUtf8("Momento nel primo estremo della trave, y-y"));
+    m_d->beamMEdYH1->setRichName( tr("M<span style=\" vertical-align:sub;\">H,1,y</span>"));
+    m_d->beamMEdYH1->setToolTip( tr("Momento nel primo estremo della trave, y-y"));
     addVarToContainer( m_d->beamMEdYH1 );
     VarPlusGUI::connectVar( m_d->beamMEdYH1, m_d->ui->beamMSdYH1Label, m_d->ui->beamMSdYH1LEdit, m_d->ui->beamMSdYH1UMLabel );
 
     m_d->beamMEdYS = new DoublePlus( 0.0, "beamMSdYS", m_unitMeasure, UnitMeasure::loadM );
-    m_d->beamMEdYS->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">S,y</span>"));
-    m_d->beamMEdYS->setToolTip( trUtf8("Momento massimo interno della trave, y-y"));
+    m_d->beamMEdYS->setRichName( tr("M<span style=\" vertical-align:sub;\">S,y</span>"));
+    m_d->beamMEdYS->setToolTip( tr("Momento massimo interno della trave, y-y"));
     addVarToContainer( m_d->beamMEdYS );
     VarPlusGUI::connectVar( m_d->beamMEdYS, m_d->ui->beamMSdYSLabel, m_d->ui->beamMSdYSLEdit, m_d->ui->beamMSdYSUMLabel );
 
     m_d->beamMEdYH2 = new DoublePlus( 0.0, "beamMSdYH2", m_unitMeasure, UnitMeasure::loadM );
-    m_d->beamMEdYH2->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">H,2,y</span>"));
-    m_d->beamMEdYH2->setToolTip( trUtf8("Momento nel secondo estremo della trave, y-y"));
+    m_d->beamMEdYH2->setRichName( tr("M<span style=\" vertical-align:sub;\">H,2,y</span>"));
+    m_d->beamMEdYH2->setToolTip( tr("Momento nel secondo estremo della trave, y-y"));
     addVarToContainer( m_d->beamMEdYH2 );
     VarPlusGUI::connectVar( m_d->beamMEdYH2, m_d->ui->beamMSdYH2Label, m_d->ui->beamMSdYH2LEdit, m_d->ui->beamMSdYH2UMLabel );
 
     m_d->beamMEdZDistribution = new SectionSteelMomentDistribution( SectionSteel::momentLinear, "beamMSdZDistribution"  );
-    m_d->beamMEdZDistribution->setRichName( trUtf8("Distribuzione momento z-z"));
-    m_d->beamMEdZDistribution->setToolTip( trUtf8("Distribuzione del momento nella trave, asse z-z"));
+    m_d->beamMEdZDistribution->setRichName( tr("Distribuzione momento z-z"));
+    m_d->beamMEdZDistribution->setToolTip( tr("Distribuzione del momento nella trave, asse z-z"));
     addVarToContainer( m_d->beamMEdZDistribution );
     VarPlusGUI::connectEnumVar( m_d->beamMEdZDistribution, m_d->ui->beamMSdZDistributionLabel, m_d->ui->beamMSdZDistributionComboBox );
 
     m_d->beamMEdZH1 = new DoublePlus( 0.0, "beamMSdZH1", m_unitMeasure, UnitMeasure::loadM );
-    m_d->beamMEdZH1->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">H,1,z</span>"));
-    m_d->beamMEdZH1->setToolTip( trUtf8("Momento nel primo estremo della trave, z-z"));
+    m_d->beamMEdZH1->setRichName( tr("M<span style=\" vertical-align:sub;\">H,1,z</span>"));
+    m_d->beamMEdZH1->setToolTip( tr("Momento nel primo estremo della trave, z-z"));
     addVarToContainer( m_d->beamMEdZH1 );
     VarPlusGUI::connectVar( m_d->beamMEdZH1, m_d->ui->beamMSdZH1Label, m_d->ui->beamMSdZH1LEdit, m_d->ui->beamMSdZH1UMLabel );
 
     m_d->beamMEdZS = new DoublePlus( 0.0, "beamMSdZS", m_unitMeasure, UnitMeasure::loadM );
-    m_d->beamMEdZS->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">S,z</span>"));
-    m_d->beamMEdZS->setToolTip( trUtf8("Momento massimo interno della trave, z-z"));
+    m_d->beamMEdZS->setRichName( tr("M<span style=\" vertical-align:sub;\">S,z</span>"));
+    m_d->beamMEdZS->setToolTip( tr("Momento massimo interno della trave, z-z"));
     addVarToContainer( m_d->beamMEdZS );
     VarPlusGUI::connectVar( m_d->beamMEdZS, m_d->ui->beamMSdZSLabel, m_d->ui->beamMSdZSLEdit, m_d->ui->beamMSdZSUMLabel );
 
     m_d->beamMEdZH2 = new DoublePlus( 0.0, "beamMSdYH2", m_unitMeasure, UnitMeasure::loadM );
-    m_d->beamMEdZH2->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">H,2,y</span>"));
-    m_d->beamMEdZH2->setToolTip( trUtf8("Momento nel secondo estremo della trave, y-y"));
+    m_d->beamMEdZH2->setRichName( tr("M<span style=\" vertical-align:sub;\">H,2,y</span>"));
+    m_d->beamMEdZH2->setToolTip( tr("Momento nel secondo estremo della trave, y-y"));
     addVarToContainer( m_d->beamMEdZH2 );
     VarPlusGUI::connectVar( m_d->beamMEdZH2, m_d->ui->beamMSdZH2Label, m_d->ui->beamMSdZH2LEdit, m_d->ui->beamMSdZH2UMLabel );
 
     m_d->beamMEdLTDistribution = new SectionSteelMomentDistribution( SectionSteel::momentLinear, "beamMSdLTDistribution"  );
-    m_d->beamMEdLTDistribution->setRichName( trUtf8("Distribuzione momento y-y"));
-    m_d->beamMEdLTDistribution->setToolTip( trUtf8("Distribuzione del momento nella trave, asse y-y"));
+    m_d->beamMEdLTDistribution->setRichName( tr("Distribuzione momento y-y"));
+    m_d->beamMEdLTDistribution->setToolTip( tr("Distribuzione del momento nella trave, asse y-y"));
     addVarToContainer( m_d->beamMEdLTDistribution );
     VarPlusGUI::connectEnumVar( m_d->beamMEdLTDistribution, m_d->ui->beamMSdLTDistributionLabel, m_d->ui->beamMSdLTDistributionComboBox );
 
     m_d->beamMEdLTH1 = new DoublePlus( 0.0, "beamMSdLTH1", m_unitMeasure, UnitMeasure::loadM );
-    m_d->beamMEdLTH1->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">H,1,y</span>"));
-    m_d->beamMEdLTH1->setToolTip( trUtf8("Momento nel primo estremo della trave, y-y"));
+    m_d->beamMEdLTH1->setRichName( tr("M<span style=\" vertical-align:sub;\">H,1,y</span>"));
+    m_d->beamMEdLTH1->setToolTip( tr("Momento nel primo estremo della trave, y-y"));
     addVarToContainer( m_d->beamMEdLTH1 );
     VarPlusGUI::connectVar( m_d->beamMEdLTH1, m_d->ui->beamMSdLTH1Label, m_d->ui->beamMSdLTH1LEdit, m_d->ui->beamMSdLTH1UMLabel );
 
     m_d->beamMEdLTS = new DoublePlus( 0.0, "beamMSdLTS", m_unitMeasure, UnitMeasure::loadM );
-    m_d->beamMEdLTS->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">S,y</span>"));
-    m_d->beamMEdLTS->setToolTip( trUtf8("Momento massimo interno della trave, y-y"));
+    m_d->beamMEdLTS->setRichName( tr("M<span style=\" vertical-align:sub;\">S,y</span>"));
+    m_d->beamMEdLTS->setToolTip( tr("Momento massimo interno della trave, y-y"));
     addVarToContainer( m_d->beamMEdLTS );
     VarPlusGUI::connectVar( m_d->beamMEdLTS, m_d->ui->beamMSdLTSLabel, m_d->ui->beamMSdLTSLEdit, m_d->ui->beamMSdLTSUMLabel );
 
     m_d->beamMEdLTH2 = new DoublePlus( 0.0, "beamMSdLTH2", m_unitMeasure, UnitMeasure::loadM );
-    m_d->beamMEdLTH2->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">H,2,y</span>"));
-    m_d->beamMEdLTH2->setToolTip( trUtf8("Momento nel secondo estremo della trave, y-y"));
+    m_d->beamMEdLTH2->setRichName( tr("M<span style=\" vertical-align:sub;\">H,2,y</span>"));
+    m_d->beamMEdLTH2->setToolTip( tr("Momento nel secondo estremo della trave, y-y"));
     addVarToContainer( m_d->beamMEdLTH2 );
     VarPlusGUI::connectVar( m_d->beamMEdLTH2, m_d->ui->beamMSdLTH2Label, m_d->ui->beamMSdLTH2LEdit, m_d->ui->beamMSdLTH2UMLabel );
 
     m_d->beamMCr = new DoublePlus(0.0, "beamMCr", m_unitMeasure, UnitMeasure::loadM, true );
-    m_d->beamMCr->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">cr</span>"));
-    m_d->beamMCr->setToolTip( trUtf8("Momento critico per instabilità flessotorsionale"));
+    m_d->beamMCr->setRichName( tr("M<span style=\" vertical-align:sub;\">cr</span>"));
+    m_d->beamMCr->setToolTip( tr("Momento critico per instabilità flessotorsionale"));
     addVarToContainer( m_d->beamMCr );
     VarPlusGUI::connectVar( m_d->beamMCr, m_d->ui->beamMCrLTLabel, m_d->ui->beamMCrLTLEdit, m_d->ui->beamMCrLTUMLabel, m_d->ui->beamMCrLTCheckBox );
-    connect( m_d->beamL0LT, SIGNAL(valueChanged(QString)), this, SLOT(setBeamMCr()));
-    connect( m_d->beamMEdLTH1, SIGNAL(valueChanged(QString)), this, SLOT(setBeamMCr()));
-    connect( m_d->beamMEdLTH2, SIGNAL(valueChanged(QString)), this, SLOT(setBeamMCr()));
+    connect( m_d->beamL0LT, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamMCr );
+    connect( m_d->beamMEdLTH1, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamMCr );
+    connect( m_d->beamMEdLTH2, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamMCr );
+    connect( m_d->beamMCr, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setBeamMCr );
 
     m_d->beamlRelLT = new DoublePlus( 0.0, "beamlRelLT", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->beamlRelLT->setRichName( trUtf8("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">LT</span>"));
-    m_d->beamlRelLT->setToolTip( trUtf8("Snellezza relativa per instabilità flessotorsionale"));
+    m_d->beamlRelLT->setRichName( tr("<span style=\" text-decoration: overline;\">λ</span><span style=\" vertical-align:sub;\">LT</span>"));
+    m_d->beamlRelLT->setToolTip( tr("Snellezza relativa per instabilità flessotorsionale"));
     addVarToContainer( m_d->beamlRelLT );
     VarPlusGUI::connectVar( m_d->beamlRelLT, m_d->ui->beamlRelLTLabel, m_d->ui->beamlRelLTLEdit, m_d->ui->beamlRelLTUMLabel, m_d->ui->beamlRelLTCheckBox );
-    connect( m_d->beamMCr, SIGNAL(valueChanged(QString)), this, SLOT(setBeamlRelLT()));
+    connect( m_d->beamMCr, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamlRelLT );
+    connect( m_d->beamlRelLT, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setBeamlRelLT );
 
     m_d->beamChiLT = new DoublePlus( 1.0, "beamChiLT", m_unitMeasure, UnitMeasure::noDimension, true );
-    m_d->beamChiLT->setRichName( trUtf8("χ<span style=\" vertical-align:sub;\">LT</span>"));
-    m_d->beamChiLT->setToolTip( trUtf8("Fattore di riduzione per instabilità flessotorsionale"));
+    m_d->beamChiLT->setRichName( tr("χ<span style=\" vertical-align:sub;\">LT</span>"));
+    m_d->beamChiLT->setToolTip( tr("Fattore di riduzione per instabilità flessotorsionale"));
     addVarToContainer( m_d->beamChiLT );
     VarPlusGUI::connectVar( m_d->beamChiLT, m_d->ui->beamChiLTLabel, m_d->ui->beamChiLTLEdit, m_d->ui->beamChiLTUMLabel, m_d->ui->beamChiLTCheckBox );
-    connect( m_d->beamlRelLT, SIGNAL(valueChanged(QString)), this, SLOT(setBeamChiLT()));
-    connect( m_d->beamMEdLTDistribution, SIGNAL(valueChanged(QString)), this, SLOT(setBeamChiLT()));
-    connect( m_d->beamMEdLTH1, SIGNAL(valueChanged(QString)), this, SLOT(setBeamChiLT()));
-    connect( m_d->beamMEdLTH2, SIGNAL(valueChanged(QString)), this, SLOT(setBeamChiLT()));
+    connect( m_d->beamlRelLT, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamChiLT );
+    connect( m_d->beamMEdLTDistribution, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamChiLT );
+    connect( m_d->beamMEdLTH1, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamChiLT );
+    connect( m_d->beamMEdLTH2, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamChiLT );
+    connect( m_d->beamChiLT, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setBeamChiLT );
 
     m_d->VSdZ = new DoublePlus(0.0, "VSdZ", m_unitMeasure, UnitMeasure::loadF  );
-    m_d->VSdZ->setRichName( trUtf8("V<span style=\" vertical-align:sub;\">Sd,z</span>"));
+    m_d->VSdZ->setRichName( tr("V<span style=\" vertical-align:sub;\">Sd,z</span>"));
     addVarToContainer( m_d->VSdZ );
     VarPlusGUI::connectVar( m_d->VSdZ, m_d->ui->VSdZLabel, m_d->ui->VSdZLEdit, m_d->ui->VSdZUMLabel );
 
     m_d->VSdY = new DoublePlus(0.0, "VSdY", m_unitMeasure, UnitMeasure::loadF  );
-    m_d->VSdY->setRichName( trUtf8("V<span style=\" vertical-align:sub;\">Sd,y</span>"));
+    m_d->VSdY->setRichName( tr("V<span style=\" vertical-align:sub;\">Sd,y</span>"));
     addVarToContainer( m_d->VSdY );
     VarPlusGUI::connectVar( m_d->VSdY, m_d->ui->VSdYLabel, m_d->ui->VSdYLEdit, m_d->ui->VSdYUMLabel );
 
     m_d->resultSd = new DoublePlus(0.0, "result", m_unitMeasure, UnitMeasure::noDimension  );
-    m_d->resultSd->setRichName( trUtf8("Risultato"));
+    m_d->resultSd->setRichName( tr("Risultato"));
     addVarToContainer( m_d->resultSd );
     VarPlusGUI::connectVar( m_d->resultSd, m_d->ui->resultSdULSLabel, m_d->ui->resultSdULSLEdit );
 
-    connect(m_d->ui->verifyPushButton, SIGNAL(clicked()), this, SLOT(verifyULS()));
+    connect(m_d->ui->verifyPushButton, &QPushButton::clicked, this, &SectionSteelGUI::verifyULS );
 
     m_d->NMULSN = new DoublePlus(0.0, "NMULSN", m_unitMeasure, UnitMeasure::loadF  );
-    m_d->NMULSN->setToolTip( trUtf8("Sforzo normale agente") );
-    m_d->NMULSN->setRichName( trUtf8("N<span style=\"vertical-align:sub;\">Sd</span>"));
+    m_d->NMULSN->setToolTip( tr("Sforzo normale agente") );
+    m_d->NMULSN->setRichName( tr("N<span style=\"vertical-align:sub;\">Sd</span>"));
     addVarToContainer( m_d->NMULSN );
     VarPlusGUI::connectVar( m_d->NMULSN, m_d->ui->NMULSNLabel, m_d->ui->NMULSNLEdit, m_d->ui->NMULSNUMLabel );
 
     m_d->alphaMULSN = new DoublePlus(0.0, "alphaMULSN", m_unitMeasure, UnitMeasure::angle  );
-    m_d->alphaMULSN->setToolTip( trUtf8("Inclinazione piano di deformazione rispetto al piano yz") );
-    m_d->alphaMULSN->setRichName( trUtf8("àŽÂ±<span style=\" vertical-align:sub;\">Sd</span>"));
+    m_d->alphaMULSN->setToolTip( tr("Inclinazione piano di deformazione rispetto al piano yz") );
+    m_d->alphaMULSN->setRichName( tr("àŽÂ±<span style=\" vertical-align:sub;\">Sd</span>"));
     addVarToContainer( m_d->alphaMULSN );
     VarPlusGUI::connectVar( m_d->alphaMULSN, m_d->ui->alphaMULSNLabel, m_d->ui->alphaMULSNLEdit, m_d->ui->alphaMULSNUMLabel );
 
     m_d->cenMULSN = new Point2DPlus( "cenMULSN", "xCenMULSN", 0.0, "yCenMULSN", 0.0, m_unitMeasure, UnitMeasure::sectL, true );
     addVarToContainer( m_d->cenMULSN );
-    m_d->cenMULSN->y->setToolTip( trUtf8("Ascissa del polo attorno a cui si calcola il momento"));
-    m_d->cenMULSN->y->setRichName( trUtf8("y<span style=\"vertical-align:sub;\">M</span>"));
+    m_d->cenMULSN->y->setToolTip( tr("Ascissa del polo attorno a cui si calcola il momento"));
+    m_d->cenMULSN->y->setRichName( tr("y<span style=\"vertical-align:sub;\">M</span>"));
     VarPlusGUI::connectVar( m_d->cenMULSN->y, m_d->ui->yCenMULSNLabel, m_d->ui->yCenMULSNLEdit, m_d->ui->yCenULSNUMLabel, m_d->ui->yCenMULSNCheckBox );
-    m_d->cenMULSN->z->setToolTip( trUtf8("Ordinata del polo attorno a cui si calcola il momento"));
-    m_d->cenMULSN->z->setRichName( trUtf8("z<span style=\"vertical-align:sub;\">M</span>"));
+    m_d->cenMULSN->z->setToolTip( tr("Ordinata del polo attorno a cui si calcola il momento"));
+    m_d->cenMULSN->z->setRichName( tr("z<span style=\"vertical-align:sub;\">M</span>"));
     VarPlusGUI::connectVar( m_d->cenMULSN->z, m_d->ui->zCenMULSNLabel, m_d->ui->zCenMULSNLEdit, m_d->ui->zCenMULSNUMLabel, m_d->ui->zCenMULSNCheckBox );
-    connect( m_d->cenMULSN->y, SIGNAL(readOnlyChanged(bool)), this, SLOT(setYCenMULSN()));
-    connect( m_d->cenMULSN->z, SIGNAL(readOnlyChanged(bool)), this, SLOT(setZCenMULSN()));
+    connect( m_d->cenMULSN->y, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setYCenMULSN );
+    connect( m_d->cenMULSN->z, &DoublePlus::readOnlyChanged, this, &SectionSteelGUI::setZCenMULSN );
 
     m_d->MyULSN = new DoublePlus(0.0, "MyULSN", m_unitMeasure, UnitMeasure::loadM, true  );
-    m_d->MyULSN->setToolTip( trUtf8("Componente y del momento resistente"));
-    m_d->MyULSN->setRichName( trUtf8("M<span style=\"vertical-align:sub;\">Rd,y</span>"));
+    m_d->MyULSN->setToolTip( tr("Componente y del momento resistente"));
+    m_d->MyULSN->setRichName( tr("M<span style=\"vertical-align:sub;\">Rd,y</span>"));
     addVarToContainer( m_d->MyULSN );
     VarPlusGUI::connectVar( m_d->MyULSN, m_d->ui->MyULSNLabel, m_d->ui->MyULSNLEdit, m_d->ui->MyULSNUMLabel );
 
     m_d->MzULSN = new DoublePlus(0.0, "MULSz", m_unitMeasure, UnitMeasure::loadM, true  );
-    m_d->MzULSN->setToolTip( trUtf8("Componente z del momento resistente"));
-    m_d->MzULSN->setRichName( trUtf8("M<span style=\"vertical-align:sub;\">Rd,z</span>"));
+    m_d->MzULSN->setToolTip( tr("Componente z del momento resistente"));
+    m_d->MzULSN->setRichName( tr("M<span style=\"vertical-align:sub;\">Rd,z</span>"));
     addVarToContainer( m_d->MzULSN );
     VarPlusGUI::connectVar( m_d->MzULSN, m_d->ui->MzULSNLabel, m_d->ui->MzULSNLEdit, m_d->ui->MzULSNUMLabel );
 
     m_d->lPlast = new DoublePlus( 0.0, "lPlast", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->lPlast->setRichName( trUtf8("λ<span style=\" vertical-align:sub;\">p</span>") );
+    m_d->lPlast->setRichName( tr("λ<span style=\" vertical-align:sub;\">p</span>") );
     addVarToContainer( m_d->lPlast );
     VarPlusGUI::connectVar( m_d->lPlast, m_d->ui->lPlastLabel, m_d->ui->lPlastLEdit, m_d->ui->lPlastUMLabel );
 
     m_d->myPlast = new DoublePlus( 0.0, "myPlast", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->myPlast->setRichName( trUtf8("μ<span style=\" vertical-align:sub;\">p,y</span>") );
+    m_d->myPlast->setRichName( tr("μ<span style=\" vertical-align:sub;\">p,y</span>") );
     addVarToContainer( m_d->myPlast );
     VarPlusGUI::connectVar( m_d->myPlast, m_d->ui->myPlastLabel, m_d->ui->myPlastLEdit, m_d->ui->myPlastUMLabel );
 
     m_d->mzPlast = new DoublePlus( 0.0, "mzPlast", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->mzPlast->setRichName( trUtf8("μ<span style=\" vertical-align:sub;\">p,z</span>") );
+    m_d->mzPlast->setRichName( tr("μ<span style=\" vertical-align:sub;\">p,z</span>") );
     addVarToContainer( m_d->mzPlast );
     VarPlusGUI::connectVar( m_d->mzPlast, m_d->ui->mzPlastLabel, m_d->ui->mzPlastLEdit, m_d->ui->mzPlastUMLabel );
 
     m_d->NPlast = new DoublePlus( 0.0, "NPlast", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->NPlast->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">p</span>") );
+    m_d->NPlast->setRichName( tr("N<span style=\" vertical-align:sub;\">p</span>") );
     addVarToContainer( m_d->NPlast );
     VarPlusGUI::connectVar( m_d->NPlast, m_d->ui->NPlastLabel, m_d->ui->NPlastLEdit, m_d->ui->NPlastUMLabel );
 
     m_d->MyPlast = new DoublePlus( 0.0, "MyPlast", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->MyPlast->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">p,y</span>") );
+    m_d->MyPlast->setRichName( tr("M<span style=\" vertical-align:sub;\">p,y</span>") );
     addVarToContainer( m_d->MyPlast );
     VarPlusGUI::connectVar( m_d->MyPlast, m_d->ui->MyPlastLabel, m_d->ui->MyPlastLEdit, m_d->ui->MyPlastUMLabel );
 
     m_d->MzPlast = new DoublePlus( 0.0, "MzPlast", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->MzPlast->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">p,z</span>") );
+    m_d->MzPlast->setRichName( tr("M<span style=\" vertical-align:sub;\">p,z</span>") );
     addVarToContainer( m_d->MzPlast );
     VarPlusGUI::connectVar( m_d->MzPlast, m_d->ui->MzPlastLabel, m_d->ui->MzPlastLEdit, m_d->ui->MzPlastUMLabel );
 
-    connect( m_d->ui->calculateNMyMzPlastPButton, SIGNAL(clicked()), this, SLOT(setNMyMzPlast()));
+    connect( m_d->ui->calculateNMyMzPlastPButton, &QPushButton::clicked, this, &SectionSteelGUI::setNMyMzPlast );
 
     m_d->lElastPlast = new DoublePlus( 0.0, "lElastPlast", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->lElastPlast->setRichName( trUtf8("λ<span style=\" vertical-align:sub;\">ep</span>") );
+    m_d->lElastPlast->setRichName( tr("λ<span style=\" vertical-align:sub;\">ep</span>") );
     addVarToContainer( m_d->lElastPlast );
     VarPlusGUI::connectVar( m_d->lElastPlast, m_d->ui->lElastPlastLabel, m_d->ui->lElastPlastLEdit, m_d->ui->lElastPlastUMLabel );
 
     m_d->myElastPlast = new DoublePlus( 0.0, "myElastPlast", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->myElastPlast->setRichName( trUtf8("μ<span style=\" vertical-align:sub;\">ep,y</span>") );
+    m_d->myElastPlast->setRichName( tr("μ<span style=\" vertical-align:sub;\">ep,y</span>") );
     addVarToContainer( m_d->myElastPlast );
     VarPlusGUI::connectVar( m_d->myElastPlast, m_d->ui->myElastPlastLabel, m_d->ui->myElastPlastLEdit, m_d->ui->myElastPlastUMLabel );
 
     m_d->mzElastPlast = new DoublePlus( 0.0, "mzElastPlast", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->mzElastPlast->setRichName( trUtf8("μ<span style=\" vertical-align:sub;\">ep,z</span>") );
+    m_d->mzElastPlast->setRichName( tr("μ<span style=\" vertical-align:sub;\">ep,z</span>") );
     addVarToContainer( m_d->mzElastPlast );
     VarPlusGUI::connectVar( m_d->mzElastPlast, m_d->ui->mzElastPlastLabel, m_d->ui->mzElastPlastLEdit, m_d->ui->mzElastPlastUMLabel );
 
     m_d->NElastPlast = new DoublePlus( 0.0, "NElastPlast", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->NElastPlast->setRichName( trUtf8("N<span style=\" vertical-align:sub;\">ep</span>") );
+    m_d->NElastPlast->setRichName( tr("N<span style=\" vertical-align:sub;\">ep</span>") );
     addVarToContainer( m_d->NElastPlast );
     VarPlusGUI::connectVar( m_d->NElastPlast, m_d->ui->NElastPlastLabel, m_d->ui->NElastPlastLEdit, m_d->ui->NElastPlastUMLabel );
 
     m_d->MyElastPlast = new DoublePlus( 0.0, "MyElastPlast", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->MyElastPlast->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">ep,y</span>") );
+    m_d->MyElastPlast->setRichName( tr("M<span style=\" vertical-align:sub;\">ep,y</span>") );
     addVarToContainer( m_d->MyElastPlast );
     VarPlusGUI::connectVar( m_d->MyElastPlast, m_d->ui->MyElastPlastLabel, m_d->ui->MyElastPlastLEdit, m_d->ui->MyElastPlastUMLabel );
 
     m_d->MzElastPlast = new DoublePlus( 0.0, "MzElastPlast", m_unitMeasure, UnitMeasure::loadF, true );
-    m_d->MzElastPlast->setRichName( trUtf8("M<span style=\" vertical-align:sub;\">ep,z</span>") );
+    m_d->MzElastPlast->setRichName( tr("M<span style=\" vertical-align:sub;\">ep,z</span>") );
     addVarToContainer( m_d->MzElastPlast );
     VarPlusGUI::connectVar( m_d->MzElastPlast, m_d->ui->MzElastPlastLabel, m_d->ui->MzElastPlastLEdit, m_d->ui->MzElastPlastUMLabel );
 
-    connect( m_d->ui->calculateNMyMzElastPlastPButton, SIGNAL(clicked()), this, SLOT(setNMyMzElastPlast()));
+    connect( m_d->ui->calculateNMyMzElastPlastPButton, &QPushButton::clicked, this, &SectionSteelGUI::setNMyMzElastPlast );
 }
 
 void SectionSteelGUI::loadStandardComboBox(){
@@ -721,19 +726,19 @@ void SectionSteelGUI::loadStandardComboBox(){
         m_d->ui->type1FilterStandardComboBox->insertItem((i+1), name, data );
     }
 
-    connect( m_d->ui->type1FilterStandardComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateType2StandardComboBox()) );
+    connect( m_d->ui->type1FilterStandardComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionSteelGUI::updateType2StandardComboBox );
     updateType2StandardComboBox();
 
-    connect( m_d->ui->type1FilterStandardComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateType3StandardComboBox()) );
-    connect( m_d->ui->type2FilterStandardComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateType3StandardComboBox()) );
+    connect( m_d->ui->type1FilterStandardComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionSteelGUI::updateType3StandardComboBox );
+    connect( m_d->ui->type2FilterStandardComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionSteelGUI::updateType3StandardComboBox );
     updateType3StandardComboBox();
 
-    connect( m_d->ui->type1FilterStandardComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateStandardModel()) );
-    connect( m_d->ui->type2FilterStandardComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateStandardModel()) );
-    connect( m_d->ui->type3FilterStandardComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateStandardModel()) );
+    connect( m_d->ui->type1FilterStandardComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionSteelGUI::updateStandardModel );
+    connect( m_d->ui->type2FilterStandardComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionSteelGUI::updateStandardModel );
+    connect( m_d->ui->type3FilterStandardComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionSteelGUI::updateStandardModel );
     updateStandardModel();
 
-    connect( m_d->ui->loadStandardPButton, SIGNAL(clicked()), this, SLOT(loadStandardData()));
+    connect( m_d->ui->loadStandardPButton, &QPushButton::clicked, this, &SectionSteelGUI::loadStandardData );
 }
 
 void SectionSteelGUI::updateType2StandardComboBox(){
@@ -913,21 +918,21 @@ void SectionSteelGUI::setSection(Section * s){
 
         clearSectsToView();
 
-        disconnect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamlY()));
-        disconnect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamNCrY()));
-        disconnect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamlRelY()));
-        disconnect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamChiY()));
-        disconnect( m_d->section->NULSMin, SIGNAL(valueChanged(QString)), this, SLOT(setBeamNULSBucklY()));
-        disconnect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamlZ()));
-        disconnect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamNCrZ()));
-        disconnect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamlRelZ()));
-        disconnect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamNCrZ()));
-        disconnect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamChiZ()));
-        disconnect( m_d->section->NULSMin, SIGNAL(valueChanged(QString)), this, SLOT(setBeamNULSBucklZ()));
-        disconnect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamChiLT()));
-        disconnect( m_d->section->G->y, SIGNAL(valueChanged(QString)), this, SLOT(setYCenMSd()));
-        disconnect( m_d->section->G->z, SIGNAL(valueChanged(QString)), this, SLOT(setZCenMSd()));
-        disconnect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(clearSectsToView()));
+        disconnect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamlY );
+        disconnect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamNCrY );
+        disconnect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamlRelY );
+        disconnect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamChiY );
+        disconnect( m_d->section->NULSMin, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamNULSBucklY );
+        disconnect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamlZ );
+        disconnect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamNCrZ );
+        disconnect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamlRelZ );
+        disconnect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamNCrZ );
+        disconnect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamChiZ );
+        disconnect( m_d->section->NULSMin, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamNULSBucklZ );
+        disconnect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamChiLT );
+        disconnect( m_d->section->G->y, &DoublePlus::valueChanged, this, &SectionSteelGUI::setYCenMSd );
+        disconnect( m_d->section->G->z, &DoublePlus::valueChanged, this, &SectionSteelGUI::setZCenMSd );
+        disconnect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::clearSectsToView );
 
         disconnect( m_materialComboBox, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionGUI::setMaterialFromComboBox );
         m_materialComboBox->setCurrentIndex( -1 );
@@ -997,37 +1002,37 @@ void SectionSteelGUI::setSection(Section * s){
         }
         connect( m_materialComboBox, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionGUI::setMaterialFromComboBox );
 
-        connect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamlY()));
+        connect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamlY );
         setBeamlY();
-        connect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamNCrY()));
+        connect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamNCrY );
         setBeamNCrY();
-        connect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamlRelY()));
+        connect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamlRelY );
         setBeamlRelY();
-        connect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamChiY()));
+        connect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamChiY );
         setBeamChiY();
-        connect( m_d->section->NULSMin, SIGNAL(valueChanged(QString)), this, SLOT(setBeamNULSBucklY()));
+        connect( m_d->section->NULSMin, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamNULSBucklY );
         setBeamNULSBucklY();
-        connect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamlZ()));
+        connect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamlZ );
         setBeamlZ();
-        connect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamNCrZ()));
+        connect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamNCrZ );
         setBeamNCrZ();
-        connect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamlRelZ()));
+        connect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamlRelZ );
         setBeamlRelZ();
-        connect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamNCrZ()));
+        connect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamNCrZ );
         setBeamNCrZ();
-        connect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamChiZ()));
+        connect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamChiZ );
         setBeamChiZ();
-        connect( m_d->section->NULSMin, SIGNAL(valueChanged(QString)), this, SLOT(setBeamNULSBucklZ()));
+        connect( m_d->section->NULSMin, &DoublePlus::valueChanged, this, &SectionSteelGUI::setBeamNULSBucklZ );
         setBeamNULSBucklZ();
-        connect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(setBeamChiLT()));
+        connect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::setBeamChiLT );
         setBeamChiLT();
 
-        connect( m_d->section->G->y, SIGNAL(valueChanged(QString)), this, SLOT(setYCenMSd()));
+        connect( m_d->section->G->y, &DoublePlus::valueChanged, this, &SectionSteelGUI::setYCenMSd );
         setYCenMSd();
-        connect( m_d->section->G->z, SIGNAL(valueChanged(QString)), this, SLOT(setZCenMSd()));
+        connect( m_d->section->G->z, &DoublePlus::valueChanged, this, &SectionSteelGUI::setZCenMSd );
         setZCenMSd();
 
-        connect( m_d->section, SIGNAL(sectionChanged()), this, SLOT(clearSectsToView()));
+        connect( m_d->section, &SectionSteel::sectionChanged, this, &SectionSteelGUI::clearSectsToView );
 
         connect( m_d->section, &Section::aboutToBeDeleted, this, &SectionSteelGUI::setSectionNULL );
     } else {
@@ -1164,7 +1169,7 @@ void SectionSteelGUI::calculateMULS(){
 
 void SectionSteelGUI::plotMULSyMULSz(){
     if( m_d->section != NULL ){
-        QCustomPlotDialog d( trUtf8("Interazione My-Mz"), this );
+        QCustomPlotDialog d( tr("Interazione My-Mz"), this );
         d.setCurveData( 0, m_d->section->MULSyMULSz(m_d->NMULSN, m_d->cenMULSN, m_d->ui->MULSyMULSzAccuracySBox->value()) );
         d.exec();
     }
@@ -1188,7 +1193,7 @@ void SectionSteelGUI::setZCenMULSN(){
 
 void SectionSteelGUI::plotMULSN(){
     if( m_d->section ){
-        QCustomPlotDialog d( trUtf8("Interazione N-M"), this );
+        QCustomPlotDialog d( tr("Interazione N-M"), this );
         d.setCurveData( 0, m_d->section->MULSN( m_d->cenMULSN, m_d->alphaMULSN, m_d->ui->MULSNAccuracySBox->value()) );
         d.exec();
     }
@@ -1344,7 +1349,7 @@ void SectionSteelGUI::dataSetLoadFromFile(){
         QFile file(fileName);
 
         if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            QMessageBox::warning( this, trUtf8("QStruct"), trUtf8("Non riesco ad aprire il file file %1:\n%2.").arg(fileName).arg(file.errorString()));
+            QMessageBox::warning( this, tr("QStruct"), tr("Non riesco ad aprire il file file %1:\n%2.").arg(fileName).arg(file.errorString()));
             return;
         }
         m_d->dataSetModel->clear();

@@ -3,9 +3,10 @@
 
 class QCustomPlotDialogPrivate;
 
+#include "qcustomplot_export.h"
 #include <QDialog>
 
-class QCustomPlotDialog : public QDialog {
+class QCP_LIB_DECL QCustomPlotDialog : public QDialog {
     Q_OBJECT
 public:
     explicit QCustomPlotDialog(const QString &title, QWidget *parent = 0);

@@ -70,15 +70,15 @@ CalcResultsGUI::CalcResultsGUI( FEMStructure * str, QWidget *parent) :
     m_d( new CalcResultsGUIPrivate( str ) ) {
     m_d->ui->setupUi(this);
     m_d->ui->deformedScaleDSBox->setValue( 20.0 );
-    connect( m_d->ui->calculatePButton, SIGNAL(clicked()), this, SLOT(calculate()));
+    connect( m_d->ui->calculatePButton, &QPushButton::clicked, this, &CalcResultsGUI::calculate );
 
-    connect( m_d->ui->deformedPButton, SIGNAL(clicked()), this, SLOT(addGLItemDeformed()));
+    connect( m_d->ui->deformedPButton, &QPushButton::clicked, this, &CalcResultsGUI::addGLItemDeformed );
 
     m_d->connectBeamFPLocalTypeComboBox();
-    connect( m_d->ui->beamFPLocalTypeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setFPLocalScale(int)) );
-    connect( m_d->ui->beamFPLocalPButton, SIGNAL(clicked()), this, SLOT(addGLItemBeamFPLocal()) );
+    connect( m_d->ui->beamFPLocalTypeComboBox, static_cast<void (QComboBox::*)(int)> (&QComboBox::currentIndexChanged), this, &CalcResultsGUI::setFPLocalScale );
+    connect( m_d->ui->beamFPLocalPButton, &QPushButton::clicked, this, &CalcResultsGUI::addGLItemBeamFPLocal );
 
-    connect( m_d->ui->clearPostProPButton, SIGNAL(clicked()), this, SLOT(clearGLItem()) );
+    connect( m_d->ui->clearPostProPButton, &QPushButton::clicked, this, &CalcResultsGUI::clearGLItem );
 }
 
 CalcResultsGUI::~CalcResultsGUI() {

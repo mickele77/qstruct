@@ -109,28 +109,28 @@ void SoilSheet::loadFromXML( const QXmlStreamAttributes &attrs, SoilModel * sMod
 
 void SoilSheet::initVar() {
     soilDownZ  = new DoublePlus( 0.8, "soilDownZ", m_unitMeasure, UnitMeasure::length );
-    soilDownZ->setToolTip( trUtf8("Z del terreno verso valle"));
-    soilDownZ->setRichName( trUtf8("z"));
+    soilDownZ->setToolTip( tr("Z del terreno verso valle"));
+    soilDownZ->setRichName( tr("z"));
     addVarToContainer( soilDownZ );
 
     soilDownDelta = new DoublePlus( 0.0, "soilDownDelta", m_unitMeasure, UnitMeasure::angle );
-    soilDownDelta->setToolTip( trUtf8("Coefficiente di attrito muro-terrano verso valle"));
-    soilDownDelta->setRichName( trUtf8("δ"));
+    soilDownDelta->setToolTip( tr("Coefficiente di attrito muro-terrano verso valle"));
+    soilDownDelta->setRichName( tr("δ"));
     soilDownDelta->setReadOnly( true );
     addVarToContainer( soilDownDelta );
 
     soilUpZ  = new DoublePlus( 6.8, "soilUpZ", m_unitMeasure, UnitMeasure::length );
-    soilUpZ->setToolTip( trUtf8("Z del terreno verso monte"));
-    soilUpZ->setRichName( trUtf8("z"));
+    soilUpZ->setToolTip( tr("Z del terreno verso monte"));
+    soilUpZ->setRichName( tr("z"));
     addVarToContainer( soilUpZ );
 
     soilUpDelta = new DoublePlus( 0.0, "soilUpDelta", m_unitMeasure, UnitMeasure::angle );
-    soilUpDelta->setToolTip( trUtf8("Coefficiente di attrito muro-terrano verso monte"));
-    soilUpDelta->setRichName( trUtf8("δ"));
+    soilUpDelta->setToolTip( tr("Coefficiente di attrito muro-terrano verso monte"));
+    soilUpDelta->setRichName( tr("δ"));
     soilUpDelta->setReadOnly( false );
     addVarToContainer( soilUpDelta );
-    connect( soilDownDelta, SIGNAL(readOnlyChanged(bool)), this, SLOT(setSoilDelta()));
-    connect( soilUpDelta, SIGNAL(readOnlyChanged(bool)), this, SLOT(setSoilDelta()));
+    connect( soilDownDelta, &DoublePlus::readOnlyChanged, this, &SoilSheet::setSoilDelta );
+    connect( soilUpDelta, &DoublePlus::readOnlyChanged, this, &SoilSheet::setSoilDelta );
 
     setSoilDelta();
 }
@@ -148,12 +148,12 @@ void SoilSheet::setSoilDown( Soil * s ){
         Soil * oldSoil = m_d->soilDown;
         if( m_d->soilDown ){
             m_d->soilDown->removeIsUsedBy( this );
-            disconnect( m_d->soilDown->phiPrimeK, SIGNAL(valueChanged(QString)), this, SLOT(setSoilDelta()));
+            disconnect( m_d->soilDown->phiPrimeK, &DoublePlus::valueChanged, this, &SoilSheet::setSoilDelta );
         }
         m_d->soilDown = s;
         if( m_d->soilDown ){
             m_d->soilDown->setIsUsedBy( this );
-            connect( m_d->soilDown->phiPrimeK, SIGNAL(valueChanged(QString)), this, SLOT(setSoilDelta()));
+            connect( m_d->soilDown->phiPrimeK, &DoublePlus::valueChanged, this, &SoilSheet::setSoilDelta );
         }
         emit soilDownChanged( oldSoil, m_d->soilDown );
     }
@@ -168,12 +168,12 @@ void SoilSheet::setSoilUp( Soil * s ){
         Soil * oldSoil = m_d->soilUp;
         if( m_d->soilUp ){
             m_d->soilUp->removeIsUsedBy( this );
-            disconnect( m_d->soilUp->phiPrimeK, SIGNAL(valueChanged(QString)), this, SLOT(setSoilDelta()));
+            disconnect( m_d->soilUp->phiPrimeK, &DoublePlus::valueChanged, this, &SoilSheet::setSoilDelta );
         }
         m_d->soilUp = s;
         if( m_d->soilUp ){
             m_d->soilUp->setIsUsedBy( this );
-            connect( m_d->soilUp->phiPrimeK, SIGNAL(valueChanged(QString)), this, SLOT(setSoilDelta()));
+            connect( m_d->soilUp->phiPrimeK, &DoublePlus::valueChanged, this, &SoilSheet::setSoilDelta );
         }
         emit soilUpChanged( oldSoil, m_d->soilUp );
     }

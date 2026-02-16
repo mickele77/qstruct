@@ -38,21 +38,21 @@ SoilModelGUI::SoilModelGUI(SoilModel * m, QWidget *parent) :
 
     // Connects buttons
     QMenu * newSoilMenu = new QMenu(this);
-    QAction * clayAct = newSoilMenu->addAction( trUtf8("Argilla"));
-    connect( clayAct, SIGNAL(triggered()), this, SLOT(insertClay()));
-    QAction * sandAct = newSoilMenu->addAction( trUtf8("Sabbia"));
-    connect( sandAct, SIGNAL(triggered()), this, SLOT(insertSand()));
+    QAction * clayAct = newSoilMenu->addAction( tr("Argilla"));
+    connect( clayAct, &QAction::triggered, this, &SoilModelGUI::insertClay );
+    QAction * sandAct = newSoilMenu->addAction( tr("Sabbia"));
+    connect( sandAct, &QAction::triggered, this, &SoilModelGUI::insertSand );
     m_ui->newPButton->setMenu( newSoilMenu );
 
-    connect( m_ui->delPButton, SIGNAL(clicked()), this, SLOT( remove()) );
-    connect( m_ui->defaultPButton, SIGNAL(clicked()), this, SLOT(setDefault()) );
+    connect( m_ui->delPButton, &QPushButton::clicked, this, &SoilModelGUI::remove );
+    connect( m_ui->defaultPButton, &QPushButton::clicked, this, &SoilModelGUI::setDefault );
 
     // Rifinisce l'aspetto di tableView
     m_ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     // m_ui->tableView->hideColumn(0);
     // m_ui->tableView->hideColumn(1);
 
-    connect( m_ui->tableView->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(setCurrent()));
+    connect( m_ui->tableView->selectionModel(), &QItemSelectionModel::currentRowChanged, this, &SoilModelGUI::setCurrent );
 }
 
 SoilModelGUI::~SoilModelGUI(){
@@ -86,8 +86,8 @@ void SoilModelGUI::remove(){
             int row = listRows.at(i).row();
             if( row >= 0 && row < m_model->soilCount() ) {
                 if( m_model->soil( row )->isUsed() ){
-                    QString title = m_model->soil(row)->name->valueStr() + trUtf8(" già in uso");
-                    QString message = trUtf8("Non si può rimuovere ") + m_model->soil(row)->name->valueStr() + trUtf8(" poiché è usato da una o più sezioni");
+                    QString title = m_model->soil(row)->name->valueStr() + tr(" già in uso");
+                    QString message = tr("Non si può rimuovere ") + m_model->soil(row)->name->valueStr() + tr(" poiché è usato da una o più sezioni");
                     QMessageBox::critical(0, title, message, QMessageBox::Ok);
                 } else {
                     m_model->removeRows( row );

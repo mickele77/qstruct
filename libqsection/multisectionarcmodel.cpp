@@ -98,7 +98,7 @@ void MultiSectionArcModel::insertSection( Section * addedSectGen, int position )
         setVar( DisplayValue, position, 3, addedSect->C->z);
         setVar( DisplayValue, position, 4, addedSect->startAngle);
         setVar( DisplayValue, position, 5, addedSect->sweepAngle);
-        connect( addedSect, SIGNAL(sectionChanged()), this, SIGNAL(modelChanged()) );
+        connect( addedSect, &SectionArc::sectionChanged, this, &MultiSectionArcModel::modelChanged);
         connect( addedSect->t, &DoublePlus::readOnlyChanged, this, &MultiSectionArcModel::setTNormalSignal );
 
         if( m_qGraphicsItem != NULL ){

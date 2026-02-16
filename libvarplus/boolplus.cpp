@@ -56,9 +56,9 @@ QString BoolPlus::valueNormalStr() {
 
 QString BoolPlus::valueStr() {
     if( m_value )
-        return trUtf8("sì");
+        return tr("sì");
     else
-        return trUtf8("no");
+        return tr("no");
 }
 
 void BoolPlus::setValueNormal( bool vv, bool emitAuto ){
@@ -70,6 +70,10 @@ void BoolPlus::setValueNormal( bool vv, bool emitAuto ){
             emit valueChangedBool( m_value );
         }
     }
+}
+
+void BoolPlus::setValueNormal(bool vv) {
+    setValueNormal( vv, true );
 }
 
 void BoolPlus::setValue( bool vv, bool emitAuto ){
@@ -84,8 +88,8 @@ void BoolPlus::setValueNormal( const QString & vvStr, bool emitAuto ){
 }
 
 void BoolPlus::setValue( const QString & vvStr, bool emitAuto ){
-    if( vvStr.toUpper() == trUtf8("SÌ"))
+    if( vvStr.toUpper() == tr("SÌ"))
         setValueNormal( true, emitAuto );
-    if( vvStr.toUpper() == trUtf8("NO"))
+    if( vvStr.toUpper() == tr("NO"))
         setValueNormal( false, emitAuto );
 }

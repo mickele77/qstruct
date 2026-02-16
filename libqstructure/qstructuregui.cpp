@@ -145,22 +145,22 @@ void QStructureGUI::createActions(){
     m_d->newFileAct = new QAction(tr("&Nuovo"), this);
     m_d->newFileAct->setShortcut(tr("Ctrl+N"));
     m_d->newFileAct->setStatusTip(tr("Crea un nuovo progetto"));
-    connect(m_d->newFileAct, SIGNAL(triggered()), this, SLOT(newFile()) );
+    connect(m_d->newFileAct, &QAction::triggered, this, &QStructureGUI::newFile );
 
     m_d->openFileAct = new QAction(tr("&Apri"), this);
     m_d->openFileAct->setShortcut(tr("Ctrl+A"));
     m_d->openFileAct->setStatusTip(tr("Apre un file esistente"));
-    connect(m_d->openFileAct, SIGNAL(triggered()), this, SLOT(openFile()));
+    connect(m_d->openFileAct, &QAction::triggered, this, &QStructureGUI::openFile );
 
     m_d->saveAct = new QAction(tr("&Salva"), this);
     m_d->saveAct->setShortcut(tr("Ctrl+S"));
     m_d->saveAct->setStatusTip(tr("Salva il progetto corrente"));
-    connect(m_d->saveAct, SIGNAL(triggered()), this, SLOT(save()));
+    connect(m_d->saveAct, &QAction::triggered, this, &QStructureGUI::save );
 
     m_d->saveAsAct = new QAction(tr("Salva con &nome..."), this);
     m_d->saveAsAct->setShortcut(tr("Ctrl+Shift+S"));
     m_d->saveAsAct->setStatusTip(tr("Salva il progetto corrente specificando il file di destinazione"));
-    connect(m_d->saveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
+    connect(m_d->saveAsAct, &QAction::triggered, this, &QStructureGUI::saveAs );
 
     for (int i = 0; i < MaxRecentFiles; ++i) {
         m_d->recentFileActions[i] = new QAction(this);
@@ -171,19 +171,19 @@ void QStructureGUI::createActions(){
     m_d->exitAct = new QAction(tr("&Esci"), this);
     m_d->exitAct->setShortcut(tr("Ctrl+Q"));
     m_d->exitAct->setStatusTip(tr("Esci dall'applicazione"));
-    connect(m_d->exitAct, SIGNAL(triggered()), this, SLOT(close()));
+    connect(m_d->exitAct, &QAction::triggered, this, &QStructureGUI::close );
 
-    m_d->editUnitMeasureAct = new QAction( trUtf8("&Unità di misura"), this );
-    m_d->editUnitMeasureAct->setStatusTip(trUtf8("Modifica le unitò dmi misura"));
-    connect( m_d->editUnitMeasureAct, SIGNAL(triggered()), this, SLOT(editUnitMeasure()) );
+    m_d->editUnitMeasureAct = new QAction( tr("&Unità di misura"), this );
+    m_d->editUnitMeasureAct->setStatusTip(tr("Modifica le unitò dmi misura"));
+    connect( m_d->editUnitMeasureAct, &QAction::triggered, this, &QStructureGUI::editUnitMeasure );
 
     m_d->aboutQtAct = new QAction(tr("Informazioni sulle Qt"), this);
     m_d->aboutQtAct->setStatusTip(tr("Mostra informazioni sulle librerie Qt"));
-    connect(m_d->aboutQtAct, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+    connect(m_d->aboutQtAct, &QAction::triggered, qApp, &QApplication::aboutQt );
 
     m_d->aboutAct = new QAction(tr("&Informazioni su QStruct"), this);
     m_d->aboutAct->setStatusTip(tr("Mostra informazioni su QStruct"));
-    connect(m_d->aboutAct, SIGNAL(triggered()), this, SLOT(about()));
+    connect(m_d->aboutAct, &QAction::triggered, this, &QStructureGUI::about );
 }
 
 void QStructureGUI::updateRecentFileActions() {
@@ -217,7 +217,7 @@ void QStructureGUI::updateRecentFileActions() {
 }
 
 void QStructureGUI::createMenus(){
-    m_d->fileMenu = menuBar()->addMenu(trUtf8("&File"));
+    m_d->fileMenu = menuBar()->addMenu(tr("&File"));
     m_d->fileMenu->addAction( m_d->newFileAct );
     m_d->fileMenu->addAction( m_d->openFileAct );
     m_d->fileMenu->addAction( m_d->saveAct );
@@ -229,18 +229,18 @@ void QStructureGUI::createMenus(){
     m_d->fileMenu->addSeparator();
     m_d->fileMenu->addAction( m_d->exitAct );
 
-    m_d->viewMenu = menuBar()->addMenu( trUtf8("Visualizza"));
+    m_d->viewMenu = menuBar()->addMenu( tr("Visualizza"));
 
-    m_d->toolsMenu = menuBar()->addMenu( trUtf8("Strumenti"));
+    m_d->toolsMenu = menuBar()->addMenu( tr("Strumenti"));
     m_d->toolsMenu->addAction( m_d->editUnitMeasureAct );
 
-    m_d->helpMenu = menuBar()->addMenu(trUtf8("&Aiuto"));
+    m_d->helpMenu = menuBar()->addMenu(tr("&Aiuto"));
     m_d->helpMenu->addAction( m_d->aboutQtAct );
     m_d->helpMenu->addAction( m_d->aboutAct );
 }
 
 void QStructureGUI::createToolBars(){
-    m_d->modulesToolBar = new QToolBar(trUtf8("Moduli"), this );
+    m_d->modulesToolBar = new QToolBar(tr("Moduli"), this );
     m_d->modulesToolBar->setObjectName( "Modules");
     addToolBar( Qt::LeftToolBarArea, m_d->modulesToolBar );
     m_d->modulesToolBar->setFloatable( false );
@@ -267,8 +267,8 @@ void QStructureGUI::closeEvent(QCloseEvent *event)
 bool QStructureGUI::okToContinue()
 {
     if (isWindowModified()) {
-        int r = QMessageBox::warning(this, trUtf8("QStruct"),
-                                     trUtf8("Il progetto è stato modificato.\n"
+        int r = QMessageBox::warning(this, tr("QStruct"),
+                                     tr("Il progetto è stato modificato.\n"
                                             "Vuoi salvare i cambiamenti?"),
                                      QMessageBox::Yes | QMessageBox::No
                                      | QMessageBox::Cancel);
@@ -291,8 +291,8 @@ void QStructureGUI::newFile() {
 void QStructureGUI::openFile() {
     if (okToContinue()) {
         QString fileName = QFileDialog::getOpenFileName(this,
-                                                        trUtf8("Apri il progetto"), ".",
-                                                        trUtf8("File progetto QStruct(*.qst)"));
+                                                        tr("Apri il progetto"), ".",
+                                                        tr("File progetto QStruct(*.qst)"));
         setCurrentFile( fileName, true );
     }
 }
@@ -336,8 +336,8 @@ bool QStructureGUI::saveCurrentFile(){
 
 bool QStructureGUI::saveAs(){
     QString fileName = QFileDialog::getSaveFileName(this,
-                                                    trUtf8("Salva il progetto"), ".",
-                                                    trUtf8("File progetto QStruct(*.qst)"));
+                                                    tr("Salva il progetto"), ".",
+                                                    tr("File progetto QStruct(*.qst)"));
 
     if (fileName.isEmpty()){
         return false;
@@ -377,7 +377,7 @@ bool QStructureGUI::setCurrentFile(const QString &fileName, bool readContent ) {
         }
 
         // aggiorna il titolo della finestra
-        QString shownName = trUtf8("Senza titolo");
+        QString shownName = tr("Senza titolo");
         if( m_d->currentFile.isOpen() ){
             shownName = m_d->currentFile.fileName();
             m_d->recentFiles.removeAll(fileName);
@@ -391,8 +391,8 @@ bool QStructureGUI::setCurrentFile(const QString &fileName, bool readContent ) {
         setModified(false);
         return true;
     } else {
-        setWindowTitle(QString("%1[*] - %2").arg(trUtf8("Senza titolo"))
-                       .arg(trUtf8("QStruct")));
+        setWindowTitle(QString("%1[*] - %2").arg(tr("Senza titolo"))
+                       .arg(tr("QStruct")));
         setModified(false);
         return false;
     }
@@ -404,8 +404,8 @@ void QStructureGUI::editUnitMeasure(){
 }
 
 void QStructureGUI::about() {
-    QMessageBox::about(this, trUtf8("Informazioni su QStruct"),
-                       trUtf8("<h2>QStruct</h2>"
+    QMessageBox::about(this, tr("Informazioni su QStruct"),
+                       tr("<h2>QStruct</h2>"
                               "<p>Copyright &copy; 2014-2017 Michele Mocciola."
                               "<p>Un software per il calcolo strutturale"
                               " rilasciato sotto licenza GPL v3." ));
@@ -450,7 +450,7 @@ void QStructureGUI::populateModulesList(){
     addModule( new EasyCncrModule(m_d->structure->unitMeasure(), this ) );
     addModule( new EasyModule(m_d->structure->unitMeasure(), this ) );
 
-    connect( m_d->modulesActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(changeCurrentModule()) );
+    connect( m_d->modulesActionGroup, &QActionGroup::triggered, this, &QStructureGUI::changeCurrentModule );
 
     m_d->modulesActionGroup->actions().at(0)->setChecked( true );
 }

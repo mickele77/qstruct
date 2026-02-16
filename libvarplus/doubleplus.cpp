@@ -151,6 +151,10 @@ void DoublePlus::setValueNormal( double vv, bool emitAuto ){
     }
 }
 
+void DoublePlus::setValueNormal(double vv) {
+    setValueNormal( vv, true );
+}
+
 void DoublePlus::setValue( double vv, bool emitAuto ){
     setValueNormal( vv / m_unitMeasurePointer->scale(m_unitMeasureValue ), emitAuto);
 }

@@ -19,13 +19,14 @@
 #ifndef CHANGERICHNAMEDIALOG_H
 #define CHANGERICHNAMEDIALOG_H
 
+#include "materialgui_export.h"
 #include <QDialog>
 
 namespace Ui {
     class ChangeRichNameDialog;
 }
 
-class ChangeRichNameDialog : public QDialog
+class EXPORT_MATERIALGUI_LIB_OPT ChangeRichNameDialog : public QDialog
 {
     Q_OBJECT
 

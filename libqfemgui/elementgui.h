@@ -19,11 +19,12 @@
 #ifndef ELEMENTGUI_H
 #define ELEMENTGUI_H
 
+#include "femgui_export.h"
 #include <QWidget>
 
 class Element;
 
-class ElementGUI : public QWidget
+class EXPORT_FEMGUI_LIB_OPT ElementGUI : public QWidget
 {
     Q_OBJECT
 public:

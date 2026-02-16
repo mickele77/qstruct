@@ -19,6 +19,7 @@
 #ifndef SECTIONCLASSDIAGRAMGUI_H
 #define SECTIONCLASSDIAGRAMGUI_H
 
+#include "sectiongui_export.h"
 #include <QDialog>
 
 namespace Ui {
@@ -26,7 +27,7 @@ class SectionClassDiagramGUI;
 }
 class SectionSteel;
 
-class SectionClassDiagramGUI : public QDialog
+class EXPORT_SECTIONGUI_LIB_OPT SectionClassDiagramGUI : public QDialog
 {
     Q_OBJECT
 public:

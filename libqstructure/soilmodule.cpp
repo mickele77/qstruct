@@ -48,12 +48,12 @@ SoilModule::SoilModule(UnitMeasure * um,
     m_d->GUI = new SoilGUI( um, this );
     layout()->addWidget( m_d->GUI );
 
-    QDockWidget * dock = new QDockWidget(richName() + " - " + trUtf8("Lista"));
+    QDockWidget * dock = new QDockWidget(richName() + " - " + tr("Lista"));
     dock->setObjectName( "SoilDock" );
     dock->setWidget( new SoilModelGUI( soilModel, this ) );
     m_panels->append(  dock );
 
-    connect( soilModel, SIGNAL(currentChanged(Soil*)), this, SLOT(setCurrentSoil(Soil*)));
+    connect( soilModel, &SoilModel::currentChanged, this, &SoilModule::setCurrentSoil );
 }
 
 QString SoilModule::name(){
@@ -61,7 +61,7 @@ QString SoilModule::name(){
 }
 
 QString SoilModule::richName(){
-    return trUtf8("Terreno");
+    return tr("Terreno");
 }
 
 QIcon SoilModule::icon(){

@@ -22,6 +22,7 @@
 class SectionGeometricDataPanelPrivate;
 class Section;
 
+#include "sectiongui_export.h"
 #include <QWidget>
 
 /**
@@ -36,7 +37,7 @@ class Section;
 *
 */
 
-class SectionGeometricDataPanel : public QWidget
+class EXPORT_SECTIONGUI_LIB_OPT SectionGeometricDataPanel : public QWidget
 {
     Q_OBJECT
 public:

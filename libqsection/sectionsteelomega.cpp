@@ -41,32 +41,32 @@ public:
         np = 5;
 
         h = p[0];
-        h->setToolTip( QObject::trUtf8("Altezza"));
-        h->setRichName( QObject::trUtf8("h"));
+        h->setToolTip( QObject::tr("Altezza"));
+        h->setRichName( QObject::tr("h"));
         h->setUnitMeasure( UnitMeasure::sectL );
         h->setEnabled( true );
 
         b = p[1];
-        b->setToolTip( QObject::trUtf8("Base"));
-        b->setRichName( QObject::trUtf8("b"));
+        b->setToolTip( QObject::tr("Base"));
+        b->setRichName( QObject::tr("b"));
         b->setUnitMeasure( UnitMeasure::sectL );
         b->setEnabled( true );
 
         c = p[2];
-        c->setToolTip( QObject::trUtf8("Ala"));
-        c->setRichName( QObject::trUtf8("c"));
+        c->setToolTip( QObject::tr("Ala"));
+        c->setRichName( QObject::tr("c"));
         c->setUnitMeasure( UnitMeasure::sectL );
         c->setEnabled( true );
 
         t = p[3];
-        t->setToolTip( QObject::trUtf8("Spessore"));
-        t->setRichName( QObject::trUtf8("t"));
+        t->setToolTip( QObject::tr("Spessore"));
+        t->setRichName( QObject::tr("t"));
         t->setUnitMeasure( UnitMeasure::sectL );
         t->setEnabled( true );
 
         ri = p[4];
-        ri->setToolTip( QObject::trUtf8("Raggio interno di piegatura"));
-        ri->setRichName( QObject::trUtf8("r<span style=\" vertical-align:sub;\">i</span>"));
+        ri->setToolTip( QObject::tr("Raggio interno di piegatura"));
+        ri->setRichName( QObject::tr("r<span style=\" vertical-align:sub;\">i</span>"));
         ri->setUnitMeasure( UnitMeasure::sectL );
         ri->setEnabled( true );
 

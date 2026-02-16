@@ -19,13 +19,14 @@
 #ifndef MATERIALDEFAULTGUI_H
 #define MATERIALDEFAULTGUI_H
 
+#include "materialgui_export.h"
 #include "materialgui.h"
 
 namespace Ui {
     class MaterialDefaultGUI;
 }
 
-class MaterialDefaultGUI : public MaterialGUI {
+class EXPORT_MATERIALGUI_LIB_OPT MaterialDefaultGUI : public MaterialGUI {
     Q_OBJECT
 public:
     MaterialDefaultGUI(UnitMeasure *, QWidget *parent = 0);

@@ -22,15 +22,15 @@ SectionLoadPhaseModel::SectionLoadPhaseModel( UnitMeasure * ump, QObject * paren
     TableModelPlus("SectionLoadPhaseModel", ump, parent ),
     m_dd(new SectionLoadPhaseModelPrivate()){
     QList<QString> headerList;
-    headerList << trUtf8("Denominazione");
-    headerList << trUtf8("N [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadF) );
-    headerList << trUtf8("yN [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL) );
-    headerList << trUtf8("zN [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL) );
-    headerList << trUtf8("My [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadM) );
-    headerList << trUtf8("Mz [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadM) );
-    headerList << trUtf8("λ [%1]").arg( m_d->unitMeasure->string(UnitMeasure::deformation) );
-    headerList << trUtf8("μy [%1]").arg( m_d->unitMeasure->string(UnitMeasure::curvature) );
-    headerList << trUtf8("μz [%1]").arg( m_d->unitMeasure->string(UnitMeasure::curvature) );
+    headerList << tr("Denominazione");
+    headerList << tr("N [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadF) );
+    headerList << tr("yN [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL) );
+    headerList << tr("zN [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL) );
+    headerList << tr("My [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadM) );
+    headerList << tr("Mz [%1]").arg( m_d->unitMeasure->string(UnitMeasure::loadM) );
+    headerList << tr("λ [%1]").arg( m_d->unitMeasure->string(UnitMeasure::deformation) );
+    headerList << tr("μy [%1]").arg( m_d->unitMeasure->string(UnitMeasure::curvature) );
+    headerList << tr("μz [%1]").arg( m_d->unitMeasure->string(UnitMeasure::curvature) );
     setHeaders( headerList );
 }
 
@@ -54,7 +54,7 @@ void SectionLoadPhaseModel::insertRows(int position, int count) {
     for( int row =position; row < (position+count); ++row ){
 
         SectionLoadPhase * addedPhase = new SectionLoadPhase( m_d->unitMeasure, this, "SectionLoadPhase" );
-        addedPhase->name->setValue( trUtf8("Fase %1").arg(row+1) );
+        addedPhase->name->setValue( tr("Fase %1").arg(row+1) );
 
         m_dd->phases.insert( row, addedPhase );
         insertRowsPrivate( position );

@@ -35,14 +35,14 @@ TimberConnectionModelGUI::TimberConnectionModelGUI(TimberConnectionModel * m, QW
     // Assignes model to tableView
     m_ui->tableView->setModel( m_model );
 
-    connect( m_ui->newPButton, SIGNAL(clicked()), this, SLOT(insertTimberConnection()));
-    connect( m_ui->delPButton, SIGNAL(clicked()), this, SLOT( remove()) );
+    connect( m_ui->newPButton, &QPushButton::clicked, this, &TimberConnectionModelGUI::insertTimberConnection );
+    connect( m_ui->delPButton, &QPushButton::clicked, this, &TimberConnectionModelGUI::remove );
 
     // Rifinisce l'aspetto di tableView
     m_ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     // m_ui->tableView->hideColumn(0);
 
-    connect( m_ui->tableView->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(setCurrent()));
+    connect( m_ui->tableView->selectionModel(), &QItemSelectionModel::currentRowChanged, this, &TimberConnectionModelGUI::setCurrent );
 }
 
 TimberConnectionModelGUI::~TimberConnectionModelGUI(){

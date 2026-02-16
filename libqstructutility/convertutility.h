@@ -26,6 +26,6 @@ class QString;
 double convertPhi( const QString & );
 double convertArea( const QString & );
 
-QString EXPORT_QSTRUCTUTILITY_LIB_OPT escapedXmlAttribute(const QString &str);
+QString EXPORT_STRUCTUTILITY_LIB_OPT escapedXmlAttribute(const QString &str);
 
 #endif // CONVERTUTILITY_H

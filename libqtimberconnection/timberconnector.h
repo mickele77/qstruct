@@ -51,7 +51,7 @@ public:
         WithoutPredrilledHole    /**< senza preforo */
     };
 
-    TimberConnector( UnitMeasure * ump, double ffyk, double ffuk, double dd, QObject * parent = 0 );
+    TimberConnector( UnitMeasure * ump, double ffyk, double ffuk, double dd, QObject * parent = nullptr );
 
     /** Tensione caratteristica di snervamento del connettore */
     DoublePlus * fyk;

@@ -850,8 +850,8 @@ void SectionRCncrGUI::copyToClipboardMULSyMULSz(){
 void SectionRCncrGUI::copyToFileMULSyMULSz(){
     if( m_d->section ){
         QString fileName = QFileDialog::getSaveFileName(this,
-                                                        trUtf8("Salva su file TXT"), ".",
-                                                        trUtf8("File TXT(*.txt)"));
+                                                        tr("Salva su file TXT"), ".",
+                                                        tr("File TXT(*.txt)"));
         if (fileName.isEmpty()){
             return;
         }
@@ -873,7 +873,7 @@ void SectionRCncrGUI::copyToFileMULSyMULSz(){
 
 void SectionRCncrGUI::plotMULSyMULSz(){
     if( m_d->section ){
-        QCustomPlotDialog d( trUtf8("Interazione My-Mz"), this );
+        QCustomPlotDialog d( tr("Interazione My-Mz"), this );
         QPolygonF plotData = m_d->section->MULSyMULSz(m_d->NULS, m_d->NCenULS, m_d->ui->MULSyMULSzAccuracySBox->value());
         for( QPolygonF::iterator i = plotData.begin(); i != plotData.end(); ++i ){
             (*i) *= m_d->MULSyMULSzKRed->valueNormal();
@@ -897,8 +897,8 @@ void SectionRCncrGUI::copyToClipboardMULSN(){
 void SectionRCncrGUI::copyToFileMULSN(){
     if( m_d->section ){
         QString fileName = QFileDialog::getSaveFileName(this,
-                                                        trUtf8("Salva su file TXT"), ".",
-                                                        trUtf8("File TXT(*.txt)"));
+                                                        tr("Salva su file TXT"), ".",
+                                                        tr("File TXT(*.txt)"));
         if (fileName.isEmpty()){
             return;
         }
@@ -920,7 +920,7 @@ void SectionRCncrGUI::copyToFileMULSN(){
 
 void SectionRCncrGUI::plotMULSN(){
     if( m_d->section ){
-        QCustomPlotDialog d( trUtf8("Interazione N-M"), this );
+        QCustomPlotDialog d( tr("Interazione N-M"), this );
         d.setCurveData( 0, m_d->section->MULSN( m_d->NCenULS, m_d->alphaULS, m_d->ui->MULSNAccuracySBox->value()) );
         d.setXAxisInverted( true );
         d.exec();

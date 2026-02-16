@@ -166,7 +166,7 @@ SectionModule::SectionModule(UnitMeasure * ump,
     m_d->dockSectionViewerPanel->setWidget( m_d->sectionViewer );
     m_panels->append(  m_d->dockSectionViewerPanel );
 
-    connect( m_d->sectionModelGUI, SIGNAL(currentChanged(Section *)), this, SLOT(setCurrentSection(Section *)));
+    connect( m_d->sectionModelGUI, &SectionModelGUI::currentChanged, this, &SectionModule::setCurrentSection );
 }
 
 QString SectionModule::name(){

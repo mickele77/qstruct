@@ -43,17 +43,17 @@ public:
     void createButtons( MaterialModelGUI * parent ) {
         // Connects buttons
         QMenu * newMaterialMenu = new QMenu(parent);
-        QAction * cncrAct = newMaterialMenu->addAction( trUtf8("Calcestruzzo"));
+        QAction * cncrAct = newMaterialMenu->addAction( tr("Calcestruzzo"));
         matActions.insert( cncrAct, MaterialModel::ConcreteMaterial );
-        QAction * steelCncrAct = newMaterialMenu->addAction( trUtf8("Acciaio per c.a."));
+        QAction * steelCncrAct = newMaterialMenu->addAction( tr("Acciaio per c.a."));
         matActions.insert( steelCncrAct, MaterialModel::SteelCncrMaterial );
-        QAction * frpAct = newMaterialMenu->addAction( trUtf8("FRP"));
+        QAction * frpAct = newMaterialMenu->addAction( tr("FRP"));
         matActions.insert( frpAct, MaterialModel::FRPMaterial );
-        QAction * steelAct = newMaterialMenu->addAction( trUtf8("Acciaio"));
+        QAction * steelAct = newMaterialMenu->addAction( tr("Acciaio"));
         matActions.insert( steelAct, MaterialModel::SteelMaterial );
-        QAction * timberAct = newMaterialMenu->addAction( trUtf8("Legno"));
+        QAction * timberAct = newMaterialMenu->addAction( tr("Legno"));
         matActions.insert( timberAct, MaterialModel::TimberMaterial );
-        QAction * matAct = newMaterialMenu->addAction( trUtf8("Generico"));
+        QAction * matAct = newMaterialMenu->addAction( tr("Generico"));
         matActions.insert( matAct, MaterialModel::GenericMaterial );
         ui->newPButton->setMenu( newMaterialMenu );
     }
@@ -67,7 +67,7 @@ public:
                     rowList.append( rowListSelected.at(i).row() );
                 }
             }
-            qSort( rowList.begin(), rowList.end() );
+            std::sort( rowList.begin(), rowList.end() );
 
             if( rowList.size() > 0 ){
                 model->insertRows( type, rowList.first(), rowList.size());
@@ -101,13 +101,13 @@ MaterialModelGUI::MaterialModelGUI(MaterialModel * m, QWidget *parent) :
         connect( *i, &QAction::triggered, this, &MaterialModelGUI::insertMaterial );
     }
 
-    connect( m_d->ui->delPButton, SIGNAL(clicked()), this, SLOT( removeMaterials()) );
+    connect( m_d->ui->delPButton, &QPushButton::clicked, this, &MaterialModelGUI::removeMaterials );
 
     // Rifinisce l'aspetto di tableView
     m_d->ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     m_d->ui->tableView->hideColumn(0);
 
-    connect( m_d->ui->tableView->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(setCurrentChanged()) );
+    connect( m_d->ui->tableView->selectionModel(), &QItemSelectionModel::currentRowChanged, this, &MaterialModelGUI::setCurrentChanged );
 }
 
 MaterialModelGUI::~MaterialModelGUI(){
@@ -126,14 +126,14 @@ void MaterialModelGUI::removeMaterials(){
             rowList.append( rowListSelected.at(i).row() );
         }
     }
-    qSort( rowList.begin(), rowList.end() );
+    std::sort( rowList.begin(), rowList.end() );
 
     for( int i=(rowList.size()-1); i >= 0; i-- ){
         int row = rowList.at(i);
         if( row >= 0 && row < m_d->model->count() ) {
             if( m_d->model->material( row )->isUsed() ){
-                QString title = trUtf8("Materiale referenziato");
-                QString message = trUtf8("Non si può rimuovere %1 perché è usato da una o più sezioni.").arg( m_d->model->material(row)->name->valueStr() );
+                QString title = tr("Materiale referenziato");
+                QString message = tr("Non si può rimuovere %1 perché è usato da una o più sezioni.").arg( m_d->model->material(row)->name->valueStr() );
                 QMessageBox::critical(0, title, message, QMessageBox::Ok);
             } else {
                 m_d->model->removeRows( row );

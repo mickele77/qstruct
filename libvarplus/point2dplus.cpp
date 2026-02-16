@@ -19,8 +19,8 @@ Point2DPlus::Point2DPlus( const QString & nn,
     VarPlus(nn, ump, um, rOnly),
     y(new DoublePlus( yVal, yN, ump, um, rOnly )),
     z(new DoublePlus( zVal, zN, ump, um, rOnly )){
-    connect(y, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
-    connect(z, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
+    connect(y, &DoublePlus::valueChanged, this, &Point2DPlus::emitValueChanged );
+    connect(z, &DoublePlus::valueChanged, this, &Point2DPlus::emitValueChanged );
 }
 
 Point2DPlus::Point2DPlus( const QXmlStreamAttributes & attrs,
@@ -33,16 +33,16 @@ Point2DPlus::Point2DPlus( const QXmlStreamAttributes & attrs,
     y(new DoublePlus( 0.0, yN, ump, um, em )),
     z(new DoublePlus( 0.0, zN, ump, um, em )){
     loadFromXML( attrs );
-    connect(y, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
-    connect(z, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
+    connect(y, &DoublePlus::valueChanged, this, &Point2DPlus::emitValueChanged );
+    connect(z, &DoublePlus::valueChanged, this, &Point2DPlus::emitValueChanged );
 }
 
 Point2DPlus::Point2DPlus( Point2DPlus & vv ):
     VarPlus( vv ),
     y(new DoublePlus( vv.y->valueNormal(), vv.y->name(), vv.m_unitMeasurePointer, vv.m_unitMeasureValue, vv.m_readOnly )),
     z(new DoublePlus( vv.z->valueNormal(), vv.z->name(), vv.m_unitMeasurePointer, vv.m_unitMeasureValue, vv.m_readOnly )){
-    connect(y, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
-    connect(z, SIGNAL(valueChanged(QString)), this, SLOT(emitValueChanged()));
+    connect(y, &DoublePlus::valueChanged, this, &Point2DPlus::emitValueChanged );
+    connect(z, &DoublePlus::valueChanged, this, &Point2DPlus::emitValueChanged );
 }
 
 Point2DPlus::~Point2DPlus(){
@@ -207,4 +207,3 @@ void Point2DPlus::updateValue(bool emitAuto) {
     y->updateValue( emitAuto );
     z->updateValue( emitAuto );
 }
-

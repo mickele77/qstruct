@@ -68,12 +68,12 @@ MultiSectionGUI::MultiSectionGUI(UnitMeasure* ump, MaterialModel * matModel, QWi
     m_d->ui->transformationTab->layout()->addWidget( m_d->transformationPanel );
 
     m_d->ui->sectionLineTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    connect( m_d->ui->addSectionLinePButton, SIGNAL(clicked()), this, SLOT(addSectionLine()));
-    connect( m_d->ui->removeSectionLinePButton, SIGNAL(clicked()), this, SLOT(removeSectionLine()));
+    connect( m_d->ui->addSectionLinePButton, &QPushButton::clicked, this, &MultiSectionGUI::addSectionLine );
+    connect( m_d->ui->removeSectionLinePButton, &QPushButton::clicked, this, &MultiSectionGUI::removeSectionLine );
 
     m_d->ui->sectionArcTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    connect( m_d->ui->addSectionArcPButton, SIGNAL(clicked()), this, SLOT(addSectionArc()));
-    connect( m_d->ui->removeSectionArcPButton, SIGNAL(clicked()), this, SLOT(removeSectionArc()));
+    connect( m_d->ui->addSectionArcPButton, &QPushButton::clicked, this, &MultiSectionGUI::addSectionArc );
+    connect( m_d->ui->removeSectionArcPButton, &QPushButton::clicked, this, &MultiSectionGUI::removeSectionArc );
 
     m_materialComboBox = m_d->ui->materialComboBox;
     connect( m_materialComboBox, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SectionGUI::setMaterialFromComboBox );

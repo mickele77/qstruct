@@ -96,7 +96,7 @@ public:
 SectionModel::SectionModel(UnitMeasure * ump, MaterialModel * matModel, QObject *parent) :
     TableModelPlus( "SectionModel", ump, parent ),
     m_dd( new SectionModelPrivate( matModel )) {
-    connect( m_d->unitMeasure, SIGNAL(stringsChanged(UnitMeasure::unitMeasure)), this, SLOT(updateHeadersUM(UnitMeasure::unitMeasure)) );
+    connect( m_d->unitMeasure, &UnitMeasure::stringsChanged, this, &SectionModel::updateHeadersUM );
     updateHeaders();
 }
 
@@ -106,20 +106,20 @@ int SectionModel::materialColumn() {
 
 void SectionModel::updateHeaders(){
     QList<QString> headerList;
-    headerList << trUtf8("Nome")
-               << trUtf8("Tipo")
-               << trUtf8("A [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL2 ) )
-               << trUtf8("Materiale");
+    headerList << tr("Nome")
+               << tr("Tipo")
+               << tr("A [%1]").arg( m_d->unitMeasure->string(UnitMeasure::sectL2 ) )
+               << tr("Materiale");
     setHeaders( headerList );
 }
 
 void SectionModel::updateHeadersUM( UnitMeasure::unitMeasure u ){
     if( u == UnitMeasure::sectL2 ){
         QList<QString> headerList;
-        headerList << trUtf8("Nome")
-                   << trUtf8("Tipo")
-                   << trUtf8("A") + " [" + m_d->unitMeasure->string(UnitMeasure::sectL2) + "]"
-                   << trUtf8("Materiale");
+        headerList << tr("Nome")
+                   << tr("Tipo")
+                   << tr("A") + " [" + m_d->unitMeasure->string(UnitMeasure::sectL2) + "]"
+                   << tr("Materiale");
         setHeaders( headerList );
     }
 }
@@ -138,7 +138,7 @@ QVariant SectionModel::data(const QModelIndex &index, int role) const {
     if( (index.isValid()) &&  (index.column() == m_dd->materialColumn) && (role == Qt::DisplayRole || role == Qt::EditRole) ){
         if( index.row() >= 0 && index.row() < m_dd->sectionContainer.size()  ){
             Section * sect = m_dd->sectionContainer.at(index.row());
-            return qVariantFromValue( (void *) sect->material() );
+            return QVariant::fromValue( (void *) sect->material() );
         }
     }
     return TableModelPlus::data(index, role);
@@ -212,8 +212,8 @@ void SectionModel::insertSection( Section * addedSect, int position ){
         insertRowsPrivate( position );
 
         setVarValueRow( position, addedSect->name, addedSect->typeName, addedSect->A, NULL );
-        connect( addedSect, SIGNAL(sectionChanged()), this, SIGNAL(modelChanged()) );
-        connect( addedSect, SIGNAL(materialChanged(Material*,Material*)), this, SLOT(updateMaterial()) );
+        connect( addedSect, &Section::sectionChanged, this, &SectionModel::modelChanged );
+        connect( addedSect, &Section::materialChanged, this, &SectionModel::updateMaterial );
 
         emit modelChanged();
     }
@@ -235,7 +235,7 @@ Section * SectionModel::createSection( SectionSpace::SectionType type ){
         Material * cncr = m_dd->materialModel->firstMaterial( MaterialModel::ConcreteMaterial );
         if( cncr != NULL ){
             if( dynamic_cast<Concrete *>(cncr) != NULL){
-                return new SectionCncr( m_d->unitMeasure, dynamic_cast<Concrete *>(cncr), trUtf8("Sezione in Cls") );
+                return new SectionCncr( m_d->unitMeasure, dynamic_cast<Concrete *>(cncr), tr("Sezione in Cls") );
             }
         }
         break;
@@ -244,20 +244,20 @@ Section * SectionModel::createSection( SectionSpace::SectionType type ){
         Material * steelCncr = m_dd->materialModel->firstMaterial( MaterialModel::SteelCncrMaterial );
         if( steelCncr != NULL ){
             if( dynamic_cast<SteelCncr *>(steelCncr) != NULL){
-                return new SectionSteelCncr( m_d->unitMeasure, dynamic_cast<SteelCncr *>(steelCncr), trUtf8("Armatura C.A:") );
+                return new SectionSteelCncr( m_d->unitMeasure, dynamic_cast<SteelCncr *>(steelCncr), tr("Armatura C.A:") );
             }
         }
         break;
     }
     case SectionSpace::RCncrSection:{
-        return new SectionRCncr( m_d->unitMeasure, m_dd->materialModel, trUtf8("Sezione in C.A.") );
+        return new SectionRCncr( m_d->unitMeasure, m_dd->materialModel, tr("Sezione in C.A.") );
         break;
     }
     case SectionSpace::SteelSection:{
         Material * steel = m_dd->materialModel->firstMaterial( MaterialModel::SteelMaterial );
         if( steel != NULL ){
             if( dynamic_cast<Steel *>(steel) != NULL){
-                return new SectionSteel( m_d->unitMeasure, dynamic_cast<Steel *>(steel), SectionSteel::sectionRolled, SectionSteel::sectionI, trUtf8("Sezione in Acciaio") );
+                return new SectionSteel( m_d->unitMeasure, dynamic_cast<Steel *>(steel), SectionSteel::sectionRolled, SectionSteel::sectionI, tr("Sezione in Acciaio") );
             }
         }
         break;
@@ -266,7 +266,7 @@ Section * SectionModel::createSection( SectionSpace::SectionType type ){
         Material * timber = m_dd->materialModel->firstMaterial( MaterialModel::TimberMaterial );
         if( timber != NULL ){
             if( dynamic_cast<Timber *>(timber) != NULL){
-                return new SectionTimber( m_d->unitMeasure, dynamic_cast<Timber *>(timber), trUtf8("Sezione in Legno") );
+                return new SectionTimber( m_d->unitMeasure, dynamic_cast<Timber *>(timber), tr("Sezione in Legno") );
             }
         }
         break;
@@ -274,56 +274,56 @@ Section * SectionModel::createSection( SectionSpace::SectionType type ){
     case SectionSpace::ArcSection:{
         Material * mat = m_dd->materialModel->firstMaterial();
         if( mat != NULL ){
-            return new SectionArc( m_d->unitMeasure, mat, trUtf8("Sez. sottile ad arco") );
+            return new SectionArc( m_d->unitMeasure, mat, tr("Sez. sottile ad arco") );
         }
         break;
     }
     case SectionSpace::LineSection:{
         Material * mat = m_dd->materialModel->firstMaterial();
         if( mat != NULL ){
-            return new SectionLine( m_d->unitMeasure, mat, trUtf8("Sez. sottile rettilinea") );
+            return new SectionLine( m_d->unitMeasure, mat, tr("Sez. sottile rettilinea") );
         }
         break;
     }
     case SectionSpace::ThinSection:{
         Material * mat = m_dd->materialModel->firstMaterial();
         if( mat != NULL ){
-            return new SectionThin( m_d->unitMeasure, mat, trUtf8("Sezione sottile") );
+            return new SectionThin( m_d->unitMeasure, mat, tr("Sezione sottile") );
         }
         break;
     }
     case SectionSpace::ThinSectionCont:{
         Material * mat = m_dd->materialModel->firstMaterial();
         if( mat != NULL ){
-            return new SectionThinCont( m_d->unitMeasure, mat, trUtf8("Sezione sottile continua") );
+            return new SectionThinCont( m_d->unitMeasure, mat, tr("Sezione sottile continua") );
         }
         break;
     }
     case SectionSpace::ThinSectionContSteel:{
         Material * steel = m_dd->materialModel->firstMaterial(MaterialModel::SteelMaterial);
         if( steel != NULL ){
-            return new SectionThinContSteel( m_d->unitMeasure, dynamic_cast<Steel *>(steel), trUtf8("Sezione piegata a freddo") );
+            return new SectionThinContSteel( m_d->unitMeasure, dynamic_cast<Steel *>(steel), tr("Sezione piegata a freddo") );
         }
         break;
     }
     case SectionSpace::ProfileSection:{
         Material * mat = m_dd->materialModel->firstMaterial();
         if( mat != NULL ){
-            return new SectionProfile( m_d->unitMeasure, mat, trUtf8("Sezione Profilo") );
+            return new SectionProfile( m_d->unitMeasure, mat, tr("Sezione Profilo") );
         }
         break;
     }
     case SectionSpace::PointsSection:{
         Material * mat = m_dd->materialModel->firstMaterial();
         if( mat != NULL ){
-            return new SectionPoints( m_d->unitMeasure, mat, trUtf8("Sezione Punti") );
+            return new SectionPoints( m_d->unitMeasure, mat, tr("Sezione Punti") );
         }
         break;
     }
     default:
         Material * mat = m_dd->materialModel->firstMaterial();
         if( mat != NULL ){
-            return new Section( m_d->unitMeasure, mat, trUtf8("Sezione") );
+            return new Section( m_d->unitMeasure, mat, tr("Sezione") );
         }
         break;
     }
@@ -384,14 +384,14 @@ void SectionModel::removeRows(int position, int count) {
 
     for (int row = position; row < (position+count); row++){
         if( m_dd->sectionContainer.at(position)->isUsed()){
-            QString title = trUtf8("Sezione già in uso");
-            QString message = trUtf8("Sezioned usata da almeno un elemento.");
+            QString title = tr("Sezione già in uso");
+            QString message = tr("Sezioned usata da almeno un elemento.");
             qWarning() << title;
             qWarning() << message;
         } else {
             // scolleghiamo la sezione
-            disconnect( m_dd->sectionContainer.at(position), SIGNAL(materialChanged(Material*,Material*)), this, SLOT(updateMaterial()) );
-            disconnect( m_dd->sectionContainer.at(position), SIGNAL(sectionChanged()), this, SIGNAL(modelChanged()) );
+            disconnect( m_dd->sectionContainer.at(position), &Section::materialChanged, this, &SectionModel::updateMaterial );
+            disconnect( m_dd->sectionContainer.at(position), &Section::sectionChanged, this, &SectionModel::modelChanged );
 
             // ok, procediamo a cancellare la riga
             removeRowsPrivate( position );

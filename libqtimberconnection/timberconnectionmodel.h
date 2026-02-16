@@ -20,6 +20,7 @@
 #define TIMBERCONNECTIONMODEL_H
 
 #include "timberconnection_export.h"
+
 #include "tablemodelplus.h"
 
 class TimberConnectionModelPrivate;
@@ -30,7 +31,7 @@ class MaterialModel;
 class EXPORT_TIMBERCONNECTION_LIB_OPT TimberConnectionModel : public TableModelPlus {
     Q_OBJECT
 public:
-    explicit TimberConnectionModel(UnitMeasure * ump, MaterialModel * matModel, QObject *parent = 0);
+    explicit TimberConnectionModel(UnitMeasure * ump, MaterialModel * matModel, QObject *parent = nullptr);
 
     void writeXml( QXmlStreamWriter * writer );
     void readXml( QXmlStreamReader * reader );

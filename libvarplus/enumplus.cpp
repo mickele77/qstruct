@@ -11,3 +11,7 @@ EnumPlus::EnumPlus( EnumPlus & v ):
 int EnumPlus::valueInt(){
     return valueNormalInt();
 }
+
+void EnumPlus::setValueInt(int v ) {
+    setValueInt( v, true );
+}

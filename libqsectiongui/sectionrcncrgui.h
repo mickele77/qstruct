@@ -19,6 +19,7 @@
 #ifndef SECTIONRCNCRGUI_H
 #define SECTIONRCNCRGUI_H
 
+#include "sectiongui_export.h"
 #include "sectiongui.h"
 
 namespace Ui {
@@ -35,7 +36,7 @@ class QModelIndex;
 class QGraphicsScene;
 class QGraphicsPolygonItem;
 
-class SectionRCncrGUI : public SectionGUI {
+class EXPORT_SECTIONGUI_LIB_OPT SectionRCncrGUI : public SectionGUI {
     Q_OBJECT
 
 public:

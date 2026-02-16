@@ -89,20 +89,20 @@ SectionThinSimple & SectionLine::operator=( SectionThinSimple & v ){
 
 void SectionLine::initVar() {
     *m_typeNameInternal = "SectionLine";
-    typeName->setValue( trUtf8("Linea"));
+    typeName->setValue( tr("Linea"));
 
     P1 = new Point2DPlus( "P1", "y1", 0.0, "z1", 0.0, m_unitMeasure, UnitMeasure::sectL ) ;
-    P1->y->setRichName( trUtf8("y<span style=\" vertical-align:sub;\">1</span>"));
-    P1->y->setToolTip( trUtf8("Ascissa del punto iniziale del segmento"));
-    P1->z->setRichName( trUtf8("z<span style=\" vertical-align:sub;\">1</span>"));
-    P1->z->setToolTip( trUtf8("Ordinata del punto iniziale del segmento"));
+    P1->y->setRichName( tr("y<span style=\" vertical-align:sub;\">1</span>"));
+    P1->y->setToolTip( tr("Ascissa del punto iniziale del segmento"));
+    P1->z->setRichName( tr("z<span style=\" vertical-align:sub;\">1</span>"));
+    P1->z->setToolTip( tr("Ordinata del punto iniziale del segmento"));
     addVarToContainer( P1 );
 
     P2 = new Point2DPlus( "P2", "y1", 0.0, "z1", 0.0, m_unitMeasure, UnitMeasure::sectL ) ;
-    P2->y->setRichName( trUtf8("y<span style=\" vertical-align:sub;\">2</span>"));
-    P2->y->setToolTip( trUtf8("Ascissa del punto finale del segmento"));
-    P2->z->setRichName( trUtf8("z<span style=\" vertical-align:sub;\">2</span>"));
-    P2->z->setToolTip( trUtf8("Ordinata del punto finale del segmento"));
+    P2->y->setRichName( tr("y<span style=\" vertical-align:sub;\">2</span>"));
+    P2->y->setToolTip( tr("Ascissa del punto finale del segmento"));
+    P2->z->setRichName( tr("z<span style=\" vertical-align:sub;\">2</span>"));
+    P2->z->setToolTip( tr("Ordinata del punto finale del segmento"));
     addVarToContainer( P2 );
 
     L->setReadOnly( true );

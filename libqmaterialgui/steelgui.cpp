@@ -63,8 +63,8 @@ SteelGUI::SteelGUI(UnitMeasure * um, const QString & settingsFile, QWidget *pare
         m_d->dbSteelFileName = settings.value("dbSteelFileName", QApplication::applicationDirPath() + "/../resources/steel.db").toString();
         dbSteel.setDatabaseName(m_d->dbSteelFileName);
         if (!dbSteel.open() ) {
-            QMessageBox::critical(0, trUtf8("Non riesco ad aprire il database degli acciai da carpenteria"),
-                                  trUtf8("Non riesco a trovare il file") + " " + "steel.db", QMessageBox::Cancel);
+            QMessageBox::critical(0, tr("Non riesco ad aprire il database degli acciai da carpenteria"),
+                                  tr("Non riesco a trovare il file") + " " + "steel.db", QMessageBox::Cancel);
         } else {
             loadStandardComboBox();
         }
@@ -85,16 +85,16 @@ void SteelGUI::loadStandardComboBox(){
         m_d->ui->standardTypeCBox->insertItem((i+1), name, data );
     }
     m_d->ui->standardNameCBox->setCurrentIndex( 0 );
-    connect( m_d->ui->standardTypeCBox, SIGNAL( currentIndexChanged(QString)), this, SLOT( updateStandardUNICBox()));
-    connect( m_d->ui->standardTypeCBox, SIGNAL( currentIndexChanged(QString)), this, SLOT( updateStandardNameCBox()));
+    connect( m_d->ui->standardTypeCBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SteelGUI::updateStandardUNICBox );
+    connect( m_d->ui->standardTypeCBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SteelGUI::updateStandardNameCBox );
 
     // Aggiunge i dati in standardUNICBox
     updateStandardUNICBox();
-    connect( m_d->ui->standardUNICBox, SIGNAL( currentIndexChanged(QString)), this, SLOT( updateStandardNameCBox()));
+    connect( m_d->ui->standardUNICBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SteelGUI::updateStandardNameCBox );
     // Aggiunge i dati in standardNameComboBox
     updateStandardNameCBox();
 
-    connect( m_d->ui->loadStandardPButton, SIGNAL(clicked()), this, SLOT(loadStandardData()));
+    connect( m_d->ui->loadStandardPButton, &QPushButton::clicked, this, &SteelGUI::loadStandardData );
 }
 
 SteelGUI::~SteelGUI() {

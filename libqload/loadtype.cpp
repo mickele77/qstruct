@@ -38,10 +38,10 @@ class LoadTypePrivate{
 public:
     LoadTypePrivate(LoadType::Type v):
         value(v){
-        enumList.append( enumVal( LoadType::loadPoint, "loadPoint", trUtf8("Puntuale") ) );
-        enumList.append( enumVal( LoadType::loadLine, "SectionBiLinear", trUtf8("Distribuito lineare")) );
-        enumList.append( enumVal( LoadType::loadArea, "loadArea", trUtf8("Distribuito superficiale")) );
-        enumList.append( enumVal( LoadType::loadVolume, "loadVolume", trUtf8("Volume")) );
+        enumList.append( enumVal( LoadType::loadPoint, "loadPoint", tr("Puntuale") ) );
+        enumList.append( enumVal( LoadType::loadLine, "SectionBiLinear", tr("Distribuito lineare")) );
+        enumList.append( enumVal( LoadType::loadArea, "loadArea", tr("Distribuito superficiale")) );
+        enumList.append( enumVal( LoadType::loadVolume, "loadVolume", tr("Volume")) );
     };
     int valueIndex(){
         for( int i=0; i < enumList.size(); ++i){
@@ -165,16 +165,16 @@ int LoadType::enumCountStatic(){
 QString LoadType::enumStrStatic( int v ){
     switch( v ){
     case 0:
-        return trUtf8("Puntuale");
+        return tr("Puntuale");
         break;
     case 1:
-        return trUtf8("Distribuito lineare");
+        return tr("Distribuito lineare");
         break;
     case 2:
-        return trUtf8("Distribuito superficiale");
+        return tr("Distribuito superficiale");
         break;
     case 3:
-        return trUtf8("Volume");
+        return tr("Volume");
         break;
     default:
         return QString();

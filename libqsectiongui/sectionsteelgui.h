@@ -19,6 +19,7 @@
 #ifndef SECTIONSTEELGUI_H
 #define SECTIONSTEELGUI_H
 
+#include "sectiongui_export.h"
 #include <QString>
 
 class SectionData {
@@ -46,7 +47,7 @@ public:
 class QSqlQueryModel;
 class UnitMeasure;
 
-class StandardSectionSteelModel: public QAbstractTableModel{
+class EXPORT_SECTIONGUI_LIB_OPT StandardSectionSteelModel: public QAbstractTableModel{
     Q_OBJECT
 private:
     QList<SectionData> * m_dataContainer;
@@ -87,7 +88,7 @@ class QStringPlus;
 class SectionSteelMomentDistribution;
 class SectionSteelTorsionalDeformability;
 
-class SectionSteelGUI : public SectionGUI {
+class EXPORT_SECTIONGUI_LIB_OPT SectionSteelGUI : public SectionGUI {
     Q_OBJECT
 
 public:

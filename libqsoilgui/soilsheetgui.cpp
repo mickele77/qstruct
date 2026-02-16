@@ -117,11 +117,11 @@ void SoilSheetGUI::populateSoilComboBox() {
 }
 
 void SoilSheetGUI::showEvent ( QShowEvent * ){
-    disconnect( m_d->ui->soilDownNameComboBox, SIGNAL(currentIndexChanged(int)), this,SLOT(setSoilDown(int)));
-    disconnect( m_d->ui->soilUpNameComboBox, SIGNAL(currentIndexChanged(int)), this,SLOT(setSoilUp(int)));
+    disconnect( m_d->ui->soilDownNameComboBox, static_cast<void (QComboBox::*) (int)> (&QComboBox::currentIndexChanged), this, &SoilSheetGUI::setSoilDown );
+    disconnect( m_d->ui->soilUpNameComboBox, static_cast<void (QComboBox::*) (int)> (&QComboBox::currentIndexChanged), this, &SoilSheetGUI::setSoilUp );
     populateSoilComboBox();
-    connect( m_d->ui->soilDownNameComboBox, SIGNAL(currentIndexChanged(int)), this,SLOT(setSoilDown(int)));
-    connect( m_d->ui->soilUpNameComboBox, SIGNAL(currentIndexChanged(int)), this,SLOT(setSoilUp(int)));
+    connect( m_d->ui->soilDownNameComboBox, static_cast<void (QComboBox::*) (int)> (&QComboBox::currentIndexChanged), this, &SoilSheetGUI::setSoilDown );
+    connect( m_d->ui->soilUpNameComboBox, static_cast<void (QComboBox::*) (int)> (&QComboBox::currentIndexChanged), this, &SoilSheetGUI::setSoilUp );
 }
 
 void SoilSheetGUI::setSoilDown(int index ) {

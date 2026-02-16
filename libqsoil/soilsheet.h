@@ -27,6 +27,7 @@ class BoolPlus;
 class Point2DPlus;
 class QGraphicsItem;
 
+#include "soil_export.h"
 #include "varpluscontainer.h"
 #include <QObject>
 
@@ -41,7 +42,7 @@ class QGraphicsItem;
 *
 */
 
-class SoilSheet : public QObject, public VarPlusContainer
+class EXPORT_SOIL_LIB_OPT SoilSheet : public QObject, public VarPlusContainer
 {
     Q_OBJECT
 public:

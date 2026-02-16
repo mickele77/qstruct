@@ -19,13 +19,14 @@
 #ifndef MATERIALMODELGUI_H
 #define MATERIALMODELGUI_H
 
+#include "materialgui_export.h"
 #include <QWidget>
 
 class MaterialModelGUIPrivate;
 
 #include "materialmodel.h"
 
-class MaterialModelGUI : public QWidget
+class EXPORT_MATERIALGUI_LIB_OPT MaterialModelGUI : public QWidget
 {
     Q_OBJECT
 public:

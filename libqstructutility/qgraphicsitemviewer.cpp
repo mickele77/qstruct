@@ -37,7 +37,7 @@ QGraphicsItemViewer::QGraphicsItemViewer( QWidget * parent):
     m_d( new QGraphicsItemViewerPrivate() ){
     setScene( new QGraphicsScene( this ) );
 
-    connect( scene(), SIGNAL(changed(QList<QRectF>)), this, SLOT(viewAll()));
+    connect( scene(), &QGraphicsScene::changed, this, &QGraphicsItemViewer::viewAll );
 
     QTransform trans;
     trans.scale( 1.0, -1.0 );

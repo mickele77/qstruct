@@ -60,7 +60,7 @@ TimberConnectionGUI::TimberConnectionGUI( UnitMeasure * ump, MaterialModel * mat
     m_d->ui->setupUi(this);
 
     initVar();
-    connect( m_d->ui->verifyPButton, SIGNAL(clicked()), this, SLOT(verify()));
+    connect( m_d->ui->verifyPButton, &QPushButton::clicked, this, &TimberConnectionGUI::verify );
 }
 
 TimberConnectionGUI::~TimberConnectionGUI() {
@@ -115,10 +115,10 @@ void TimberConnectionGUI::setConnection( TimberConnection * con ){
         VarPlusGUI::disconnectVar( m_d->ui->nVEfLabel, m_d->ui->nVEfLEdit, m_d->ui->nVEfUMLabel, m_d->ui->nVEfCheckBox );
         VarPlusGUI::disconnectVar( m_d->ui->FVRdTotLabel, m_d->ui->FVRdTotLEdit, m_d->ui->FVRdTotUMLabel, m_d->ui->FVRdTotCheckBox );
 
-        disconnect( m_d->connection->connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setVisibleGBox()));
-        disconnect( m_d->ui->timber1CBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setTimber1(int)));
-        disconnect( m_d->ui->timber2CBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setTimber2(int)));
-        disconnect( m_d->ui->steelCBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setSteel(int)));
+        disconnect( m_d->connection->connectionType, &TimberConnectionType::valueChanged, this, &TimberConnectionGUI::setVisibleGBox );
+        disconnect( m_d->ui->timber1CBox, static_cast<void (QComboBoxEnum::*)(int)>(&QComboBoxEnum::currentIndexChanged), this, &TimberConnectionGUI::setTimber1 );
+        disconnect( m_d->ui->timber2CBox, static_cast<void (QComboBoxEnum::*)(int)>(&QComboBoxEnum::currentIndexChanged), this, &TimberConnectionGUI::setTimber2 );
+        disconnect( m_d->ui->steelCBox, static_cast<void (QComboBoxEnum::*)(int)>(&QComboBoxEnum::currentIndexChanged), this, &TimberConnectionGUI::setSteel );
     }
 
     m_d->connection = con;
@@ -170,11 +170,11 @@ void TimberConnectionGUI::setConnection( TimberConnection * con ){
         VarPlusGUI::connectVar( m_d->connection->nVEf, m_d->ui->nVEfLabel, m_d->ui->nVEfLEdit, m_d->ui->nVEfUMLabel, m_d->ui->nVEfCheckBox );
         VarPlusGUI::connectVar( m_d->connection->FVRdTot, m_d->ui->FVRdTotLabel, m_d->ui->FVRdTotLEdit, m_d->ui->FVRdTotUMLabel, m_d->ui->FVRdTotCheckBox );
 
-        connect( m_d->connection->connectionType, SIGNAL(valueChanged(QString)), this, SLOT(setVisibleGBox()));
+        connect( m_d->connection->connectionType, &TimberConnectionType::valueChanged, this, &TimberConnectionGUI::setVisibleGBox );
         setVisibleGBox();
-        connect( m_d->ui->timber1CBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setTimber1(int)));
-        connect( m_d->ui->timber2CBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setTimber2(int)));
-        connect( m_d->ui->steelCBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setSteel(int)));
+        connect( m_d->ui->timber1CBox, static_cast<void (QComboBoxEnum::*)(int)>(&QComboBoxEnum::currentIndexChanged), this, &TimberConnectionGUI::setTimber1 );
+        connect( m_d->ui->timber2CBox, static_cast<void (QComboBoxEnum::*)(int)>(&QComboBoxEnum::currentIndexChanged), this, &TimberConnectionGUI::setTimber2 );
+        connect( m_d->ui->steelCBox, static_cast<void (QComboBoxEnum::*)(int)>(&QComboBoxEnum::currentIndexChanged), this, &TimberConnectionGUI::setSteel );
     }
 }
 
@@ -207,8 +207,8 @@ void TimberConnectionGUI::showEvent ( QShowEvent * event ){
             m_d->ui->timber2CBox->setCurrentIndex( m_d->ui->timber2CBox->findData( QVariant( m_d->connection->timber2()->id->valueNormal()) ) );
         }
     }
-    connect( m_d->ui->timber1CBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setTimber1(int)));
-    connect( m_d->ui->timber2CBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setTimber2(int)));
+    connect( m_d->ui->timber1CBox, static_cast<void (QComboBoxEnum::*)(int)>(&QComboBoxEnum::currentIndexChanged), this, &TimberConnectionGUI::setTimber1 );
+    connect( m_d->ui->timber2CBox, static_cast<void (QComboBoxEnum::*)(int)>(&QComboBoxEnum::currentIndexChanged), this, &TimberConnectionGUI::setTimber2 );
 
     matList = m_d->materialModel->materialsList( MaterialModel::SteelMaterial );
     m_d->ui->steelCBox->clear();
@@ -220,33 +220,33 @@ void TimberConnectionGUI::showEvent ( QShowEvent * event ){
             m_d->ui->steelCBox->setCurrentIndex( m_d->ui->steelCBox->findData( QVariant( m_d->connection->steel()->id->valueNormal() ) ) );
         }
     }
-    connect( m_d->ui->steelCBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setSteel(int)));
+    connect( m_d->ui->steelCBox, static_cast<void (QComboBoxEnum::*)(int)>(&QComboBoxEnum::currentIndexChanged), this, &TimberConnectionGUI::setSteel );
 }
 
 void TimberConnectionGUI::hideEvent ( QHideEvent * ){
-    disconnect( m_d->ui->timber1CBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setTimber1(int)));
-    disconnect( m_d->ui->timber2CBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setTimber2(int)));
-    disconnect( m_d->ui->steelCBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setSteel(int)));
+    disconnect( m_d->ui->timber1CBox, static_cast<void (QComboBoxEnum::*)(int)>(&QComboBoxEnum::currentIndexChanged), this, &TimberConnectionGUI::setTimber1 );
+    disconnect( m_d->ui->timber2CBox, static_cast<void (QComboBoxEnum::*)(int)>(&QComboBoxEnum::currentIndexChanged), this, &TimberConnectionGUI::setTimber2 );
+    disconnect( m_d->ui->steelCBox, static_cast<void (QComboBoxEnum::*)(int)>(&QComboBoxEnum::currentIndexChanged), this, &TimberConnectionGUI::setSteel );
 }
 
 void TimberConnectionGUI::initVar() {
     m_d->FAxEd = new DoublePlus( 0.0, "FAxEd", m_unitMeasure, UnitMeasure::loadF );
-    m_d->FAxEd->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">Ax,Ed</span>") );
-    m_d->FAxEd->setToolTip( trUtf8("Carico assiale agente"));
+    m_d->FAxEd->setRichName( tr("F<span style=\" vertical-align:sub;\">Ax,Ed</span>") );
+    m_d->FAxEd->setToolTip( tr("Carico assiale agente"));
     m_d->FAxEd->setReadOnly( false );
     addVarToContainer( m_d->FAxEd );
     VarPlusGUI::connectVar( m_d->FAxEd, m_d->ui->FAxEdLabel, m_d->ui->FAxEdLEdit, m_d->ui->FAxEdUMLabel );
 
     m_d->FVEd = new DoublePlus( 0.0, "FVEd", m_unitMeasure, UnitMeasure::loadF );
-    m_d->FVEd->setRichName( trUtf8("F<span style=\" vertical-align:sub;\">v,Ed</span>") );
-    m_d->FVEd->setToolTip( trUtf8("Carico trasversale agente"));
+    m_d->FVEd->setRichName( tr("F<span style=\" vertical-align:sub;\">v,Ed</span>") );
+    m_d->FVEd->setToolTip( tr("Carico trasversale agente"));
     m_d->FVEd->setReadOnly( false );
     addVarToContainer( m_d->FVEd );
     VarPlusGUI::connectVar(m_d->FVEd, m_d->ui->FVEdLabel, m_d->ui->FVEdLEdit, m_d->ui->FVEdUMLabel );
 
     m_d->result = new DoublePlus( 0.0, "result", m_unitMeasure, UnitMeasure::noDimension );
-    m_d->result->setRichName( trUtf8("Risultato") );
-    m_d->result->setToolTip( trUtf8("Livello di sollecitazione della connessione (per essere verificato deve essere minore di 1)"));
+    m_d->result->setRichName( tr("Risultato") );
+    m_d->result->setToolTip( tr("Livello di sollecitazione della connessione (per essere verificato deve essere minore di 1)"));
     m_d->result->setReadOnly( false );
     addVarToContainer( m_d->result );
     VarPlusGUI::connectVar( m_d->result, m_d->ui->resultLabel, m_d->ui->resultLEdit );
@@ -275,7 +275,7 @@ void TimberConnectionGUI::setSteel( int currIndex ){
 
 void TimberConnectionGUI::setVisibleGBox() {
     if( m_d->connection->connectionType->valueNormal() == TimberConnection::TTDoubleShear ||
-            m_d->connection->connectionType->valueNormal() == TimberConnection::TTSingleShear ){
+        m_d->connection->connectionType->valueNormal() == TimberConnection::TTSingleShear ){
         m_d->ui->timber2GBox->setVisible( true );
         m_d->ui->steelGBox->setVisible( false );
     } else if( m_d->connection->connectionType->valueNormal() == TimberConnection::TSDoubleShearCentralSteel ||
@@ -291,9 +291,9 @@ void TimberConnectionGUI::verify() {
         QString mes;
 
         if( m_d->connection->verify( m_d->FAxEd,
-                                  m_d->FVEd,
-                                  m_d->result,
-                                  &mes) ) {
+                                    m_d->FVEd,
+                                    m_d->result,
+                                    &mes) ) {
             m_d->ui->resultLEdit->setStyleSheet( "* {background-color: rgb(0, 255, 0)}" );
         } else {
             m_d->ui->resultLEdit->setStyleSheet( "* {background-color: rgb(255, 0, 0)}" );

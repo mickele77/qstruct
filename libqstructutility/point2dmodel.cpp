@@ -637,7 +637,7 @@ void Point2DModel::calculateSects(const double &l, const double &my, const doubl
 
 int Point2DModel::where(double y, double z, double l, double my, double mz, QList<double> &eVal) {
     double e = l + my * z + mz * y;
-    qSort( eVal );
+    std::sort( eVal.begin(), eVal.end() );
     for( int i=0; i < eVal.size(); ++i ){
         if( e < eVal.at(i) ){
             return i;

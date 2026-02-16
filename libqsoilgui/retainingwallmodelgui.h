@@ -19,6 +19,7 @@
 #ifndef RETAININGWALLMODELGUI_H
 #define RETAININGWALLMODELGUI_H
 
+#include "soilgui_export.h"
 #include <QWidget>
 
 namespace Ui {
@@ -27,7 +28,7 @@ class RetainingWallModelGUI;
 
 class RetainingWallModel;
 
-class RetainingWallModelGUI : public QWidget
+class EXPORT_SOILGUI_LIB_OPT RetainingWallModelGUI : public QWidget
 {
     Q_OBJECT
 public:

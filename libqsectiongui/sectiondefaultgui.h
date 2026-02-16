@@ -23,11 +23,12 @@ class UnitMeasure;
 class MaterialModel;
 class Section;
 
+#include "sectiongui_export.h"
 #include "sectiongui.h"
 
 class SectionDefaultGUIPrivate;
 
-class SectionDefaultGUI : public SectionGUI
+class EXPORT_SECTIONGUI_LIB_OPT SectionDefaultGUI : public SectionGUI
 {
     Q_OBJECT
 

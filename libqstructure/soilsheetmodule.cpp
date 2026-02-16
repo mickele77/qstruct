@@ -57,17 +57,17 @@ SoilSheetModule::SoilSheetModule(UnitMeasure * ump,
 
     layout()->addWidget( m_d->GUI );
 
-    QDockWidget * modelDock = new QDockWidget(richName() + " - " + trUtf8("Lista"));
+    QDockWidget * modelDock = new QDockWidget(richName() + " - " + tr("Lista"));
     modelDock->setObjectName( "SoilSheetModel" );
     modelDock->setWidget( m_d->modelGUI );
     m_panels->append(  modelDock );
 
-    QDockWidget * viewerDock = new QDockWidget(richName() + " - " + trUtf8("Disegno"));
+    QDockWidget * viewerDock = new QDockWidget(richName() + " - " + tr("Disegno"));
     viewerDock->setObjectName( "SoilSheetViewer" );
     viewerDock->setWidget( m_d->graphicsItemViewer );
     m_panels->append(  viewerDock );
 
-    connect( soilSheetModel, SIGNAL(currentChanged(SoilSheet*)), this, SLOT(setCurrentSoilSheet(SoilSheet*)));
+    connect( soilSheetModel, &SoilSheetModel::currentChanged, this, &SoilSheetModule::setCurrentSoilSheet );
 }
 
 QString SoilSheetModule::name(){
@@ -75,7 +75,7 @@ QString SoilSheetModule::name(){
 }
 
 QString SoilSheetModule::richName(){
-    return trUtf8("Paratie");
+    return tr("Paratie");
 }
 
 QIcon SoilSheetModule::icon(){

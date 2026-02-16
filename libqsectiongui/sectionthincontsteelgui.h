@@ -19,12 +19,13 @@
 #ifndef SECTIONTHINCONTSTEELGUI_H
 #define SECTIONTHINCONTSTEELGUI_H
 
+#include "sectiongui_export.h"
 #include "sectiongui.h"
 
 class MaterialModel;
 class SectionThinContSteelGUIPrivate;
 
-class SectionThinContSteelGUI : public SectionGUI
+class EXPORT_SECTIONGUI_LIB_OPT SectionThinContSteelGUI : public SectionGUI
 {
     Q_OBJECT
 

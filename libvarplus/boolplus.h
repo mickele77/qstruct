@@ -44,7 +44,8 @@ public slots:
     void setValue( const QString &, bool emitAuto = true );
     void setValueNormal( const QString &, bool emitAuto = true );
     void setValue( bool, bool emitAuto = true );
-    void setValueNormal( bool, bool emitAuto = true );
+    void setValueNormal( bool, bool emitAuto );
+    void setValueNormal( bool );
 
 signals:
     void valueChangedBool( bool );

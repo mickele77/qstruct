@@ -24,12 +24,12 @@ class Soil;
 class SoilModel;
 class UnitMeasure;
 class VarPlus;
-
-#include <QWidget>
-
 class SoilSheetGUIPrivate;
 
-class SoilSheetGUI : public QWidget
+#include "soilgui_export.h"
+#include <QWidget>
+
+class EXPORT_SOILGUI_LIB_OPT SoilSheetGUI : public QWidget
 {
     Q_OBJECT
 

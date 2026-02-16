@@ -21,7 +21,7 @@
 #include "femstructure.h"
 #include "femstructureviewer.h"
 #include "glgroup.h"
-#include "glwindow.h"
+#include "glwidget.h"
 #include "vertexmodel.h"
 #include "elementmodel.h"
 
@@ -53,9 +53,15 @@ QFem2DGUI::QFem2DGUI( FEMStructure * str, QWidget *parent ) :
     m_structure->elementModel()->glItem()->setGroup( m_d->scene );
     m_structure->vertexModel()->glItem()->setGroup( m_d->scene );
 
-    GLWindow * viewer = new GLWindow( m_d->scene );
-    QWidget * viewerWidget = QWidget::createWindowContainer( viewer );
-    ((QGridLayout *) layout() )->addWidget( viewerWidget , 0, 0 );
+    QSurfaceFormat format;
+    format.setRenderableType(QSurfaceFormat::OpenGL);
+    format.setProfile(QSurfaceFormat::CoreProfile);
+ //   format.setVersion(3,3);
+
+    GLWidget * glViewer = new GLWidget( m_d->scene, this );
+    glViewer->setFormat(format);
+
+    ((QGridLayout *) layout() )->addWidget( glViewer, 0, 0 );
 
     // ((QGridLayout *) layout() )->addWidget( new FEMStructureViewer(m_structure, this ), 1, 0 );
 }

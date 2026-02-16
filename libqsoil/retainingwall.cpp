@@ -143,213 +143,213 @@ void RetainingWall::loadFromXML( const QXmlStreamAttributes &attrs, SoilModel * 
 
 void RetainingWall::initVar() {
     soilDownZ  = new DoublePlus( 0.8, "soilDownZ", m_unitMeasure, UnitMeasure::length );
-    soilDownZ->setToolTip( trUtf8("Z del terreno verso valle"));
-    soilDownZ->setRichName( trUtf8("z"));
+    soilDownZ->setToolTip( tr("Z del terreno verso valle"));
+    soilDownZ->setRichName( tr("z"));
     addVarToContainer( soilDownZ );
 
     soilDownDelta = new DoublePlus( 0.0, "soilDownDelta", m_unitMeasure, UnitMeasure::angle );
-    soilDownDelta->setToolTip( trUtf8("Coefficiente di attrito muro-terrano verso valle"));
-    soilDownDelta->setRichName( trUtf8("δ"));
+    soilDownDelta->setToolTip( tr("Coefficiente di attrito muro-terrano verso valle"));
+    soilDownDelta->setRichName( tr("δ"));
     soilDownDelta->setReadOnly( true );
     addVarToContainer( soilDownDelta );
 
     soilUpZ  = new DoublePlus( 6.8, "soilUpZ", m_unitMeasure, UnitMeasure::length );
-    soilUpZ->setToolTip( trUtf8("Z del terreno verso monte"));
-    soilUpZ->setRichName( trUtf8("z"));
-    connect( soilUpZ, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
+    soilUpZ->setToolTip( tr("Z del terreno verso monte"));
+    soilUpZ->setRichName( tr("z"));
+    connect( soilUpZ, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( soilUpZ );
 
     soilUpI = new DoublePlus( 0.0, "soilUpI", m_unitMeasure, UnitMeasure::angle );
-    soilUpI->setToolTip( trUtf8("Inclinazione del piano di campagna verso monte"));
-    soilUpI->setRichName( trUtf8("i"));
+    soilUpI->setToolTip( tr("Inclinazione del piano di campagna verso monte"));
+    soilUpI->setRichName( tr("i"));
     addVarToContainer( soilUpI );
 
     soilUpDelta = new DoublePlus( 0.0, "soilUpDelta", m_unitMeasure, UnitMeasure::angle );
-    soilUpDelta->setToolTip( trUtf8("Coefficiente di attrito muro-terrano verso monte"));
-    soilUpDelta->setRichName( trUtf8("δ"));
+    soilUpDelta->setToolTip( tr("Coefficiente di attrito muro-terrano verso monte"));
+    soilUpDelta->setRichName( tr("δ"));
     soilUpDelta->setReadOnly( false );
     addVarToContainer( soilUpDelta );
-    connect( soilDownDelta, SIGNAL(readOnlyChanged(bool)), this, SLOT(setSoilDelta()));
-    connect( soilUpDelta, SIGNAL(readOnlyChanged(bool)), this, SLOT(setSoilDelta()));
+    connect( soilDownDelta, &DoublePlus::readOnlyChanged, this, &RetainingWall::setSoilDelta );
+    connect( soilUpDelta, &DoublePlus::readOnlyChanged, this, &RetainingWall::setSoilDelta );
 
     baseAlpha = new DoublePlus( 0.0, "baseAlpha", m_unitMeasure, UnitMeasure::angle );
-    baseAlpha->setToolTip( trUtf8("Inclinazione della fondazione rispetto al piano orizzontale"));
-    baseAlpha->setRichName( trUtf8("α"));
-    connect( baseAlpha, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()) );
+    baseAlpha->setToolTip( tr("Inclinazione della fondazione rispetto al piano orizzontale"));
+    baseAlpha->setRichName( tr("α"));
+    connect( baseAlpha, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( baseAlpha );
 
     toeGammaW = new DoublePlus( 2.4e+4, "toeGammaW", m_unitMeasure, UnitMeasure::loadFVolume );;
-    toeGammaW->setToolTip( trUtf8("Peso specifico del materiale della mensola di valle"));
-    toeGammaW->setRichName( trUtf8("γ"));
+    toeGammaW->setToolTip( tr("Peso specifico del materiale della mensola di valle"));
+    toeGammaW->setRichName( tr("γ"));
     toeGammaW->setReadOnly( true );
     addVarToContainer( toeGammaW );
 
     toeHLeft = new DoublePlus( 0.8, "toeHLeft", m_unitMeasure, UnitMeasure::length );
-    toeHLeft->setToolTip( trUtf8("Spessore della mensola di valle, verso valle (misurata in verticale)"));
-    toeHLeft->setRichName( trUtf8("H<span style=\" vertical-align:sub;\">l</span>"));
+    toeHLeft->setToolTip( tr("Spessore della mensola di valle, verso valle (misurata in verticale)"));
+    toeHLeft->setRichName( tr("H<span style=\" vertical-align:sub;\">l</span>"));
     addVarToContainer( toeHLeft );
 
     toeHRight = new DoublePlus( 0.8, "toeHRight", m_unitMeasure, UnitMeasure::length );
-    toeHRight->setToolTip( trUtf8("Spessore della mensola di valle, verso monte (misurata in verticale)"));
-    toeHRight->setRichName( trUtf8("H<span style=\" vertical-align:sub;\">r</span>"));
+    toeHRight->setToolTip( tr("Spessore della mensola di valle, verso monte (misurata in verticale)"));
+    toeHRight->setRichName( tr("H<span style=\" vertical-align:sub;\">r</span>"));
     toeHRight->setReadOnly( true );
-    connect( toeHRight, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
-    connect( toeHLeft, SIGNAL(valueChanged(QString)), this, SLOT(setToeHRight()));
-    connect( toeHRight, SIGNAL(readOnlyChanged(bool)), this, SLOT(setToeHRight()));
+    connect( toeHRight, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
+    connect( toeHLeft, &DoublePlus::valueChanged, this, &RetainingWall::setToeHRight );
+    connect( toeHRight, &DoublePlus::readOnlyChanged, this, &RetainingWall::setToeHRight );
     addVarToContainer( toeHRight );
 
     toeB = new DoublePlus( 0.8, "toeB", m_unitMeasure, UnitMeasure::length );
-    toeB->setToolTip( trUtf8("Lunghezza della mensola di valle (misurata in orizzontale)"));
-    toeB->setRichName( trUtf8("B"));
-    connect( toeB, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
+    toeB->setToolTip( tr("Lunghezza della mensola di valle (misurata in orizzontale)"));
+    toeB->setRichName( tr("B"));
+    connect( toeB, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( toeB );
 
     toeD = new DoublePlus( 1.0, "toeD", m_unitMeasure, UnitMeasure::length );
-    toeD->setToolTip( trUtf8("Profondit�   della mensola di valle"));
-    toeD->setRichName( trUtf8("d"));
+    toeD->setToolTip( tr("Profondit�   della mensola di valle"));
+    toeD->setRichName( tr("d"));
     toeD->setReadOnly( true );
     addVarToContainer( toeD );
 
     heelGammaW = new DoublePlus( 2.4e+4, "heelGammaW", m_unitMeasure, UnitMeasure::loadFVolume );;
-    heelGammaW->setToolTip( trUtf8("Peso specifico del materiale della mensola di monte"));
-    heelGammaW->setRichName( trUtf8("γ"));
+    heelGammaW->setToolTip( tr("Peso specifico del materiale della mensola di monte"));
+    heelGammaW->setRichName( tr("γ"));
     heelGammaW->setReadOnly( true );
     addVarToContainer( heelGammaW );
 
     heelHLeft = new DoublePlus( 0.8, "heelHLeft", m_unitMeasure, UnitMeasure::length );
-    heelHLeft->setToolTip( trUtf8("Spessore della mensola di monte, verso valle (misurata in verticale)"));
-    heelHLeft->setRichName( trUtf8("H<span style=\" vertical-align:sub;\">l</span>"));
+    heelHLeft->setToolTip( tr("Spessore della mensola di monte, verso valle (misurata in verticale)"));
+    heelHLeft->setRichName( tr("H<span style=\" vertical-align:sub;\">l</span>"));
     addVarToContainer( heelHLeft );
 
     heelHRight = new DoublePlus( 0.8, "heelHRight", m_unitMeasure, UnitMeasure::length );
-    heelHRight->setToolTip( trUtf8("Spessore della mensola di monte, verso monte (misurata in verticale)"));
-    heelHRight->setRichName( trUtf8("H<span style=\" vertical-align:sub;\">r</span>"));
+    heelHRight->setToolTip( tr("Spessore della mensola di monte, verso monte (misurata in verticale)"));
+    heelHRight->setRichName( tr("H<span style=\" vertical-align:sub;\">r</span>"));
     heelHRight->setReadOnly( true );
-    connect( heelHRight, SIGNAL(valueChanged(QString)),this, SLOT(updateSections()));
-    connect( heelHLeft, SIGNAL(valueChanged(QString)), this, SLOT(setHeelHRight()));
-    connect( heelHRight, SIGNAL(readOnlyChanged(bool)),this, SLOT(setHeelHRight()));
+    connect( heelHRight, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
+    connect( heelHLeft, &DoublePlus::valueChanged, this, &RetainingWall::setHeelHRight );
+    connect( heelHRight, &DoublePlus::readOnlyChanged,this, &RetainingWall::setHeelHRight );
     addVarToContainer( heelHRight );
 
     heelB = new DoublePlus( 3.0, "heelB", m_unitMeasure, UnitMeasure::length );
-    heelB->setToolTip( trUtf8("Lunghezza della mensola di monte (misurata in orizzontale)"));
-    heelB->setRichName( trUtf8("B"));
-    connect( heelB, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
+    heelB->setToolTip( tr("Lunghezza della mensola di monte (misurata in orizzontale)"));
+    heelB->setRichName( tr("B"));
+    connect( heelB, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( heelB );
 
     heelD = new DoublePlus( 1.0, "heelD", m_unitMeasure, UnitMeasure::length );
-    heelD->setToolTip( trUtf8("Profondità   della mensola di monte"));
-    heelD->setRichName( trUtf8("d"));
+    heelD->setToolTip( tr("Profondità   della mensola di monte"));
+    heelD->setRichName( tr("d"));
     heelD->setReadOnly( true );
     addVarToContainer( heelD );
 
     keyGammaW = new DoublePlus( 2.4e+4, "keyGammaW", m_unitMeasure, UnitMeasure::loadFVolume );;
-    keyGammaW->setToolTip( trUtf8("Peso specifico del materiale del dente"));
-    keyGammaW->setRichName( trUtf8("γ"));
+    keyGammaW->setToolTip( tr("Peso specifico del materiale del dente"));
+    keyGammaW->setRichName( tr("γ"));
     keyGammaW->setReadOnly( true );
     addVarToContainer( keyGammaW );
 
     keyY = new DoublePlus( 0.0, "keyY", m_unitMeasure, UnitMeasure::length );;
-    keyY->setToolTip( trUtf8("Ascissa del primo punto del dente"));
-    keyY->setRichName( trUtf8("y"));
-    connect( keyY, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
+    keyY->setToolTip( tr("Ascissa del primo punto del dente"));
+    keyY->setRichName( tr("y"));
+    connect( keyY, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( keyY );
 
     keyH = new DoublePlus( 0.0, "keyH", m_unitMeasure, UnitMeasure::length );
-    keyH->setToolTip( trUtf8("Altezza del dente"));
-    keyH->setRichName( trUtf8("H"));
-    connect( keyH, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
+    keyH->setToolTip( tr("Altezza del dente"));
+    keyH->setRichName( tr("H"));
+    connect( keyH, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( keyH );
 
     keyB = new DoublePlus( 0.0, "keyB", m_unitMeasure, UnitMeasure::length );
-    keyB->setToolTip( trUtf8("Spessore del dente"));
-    keyB->setRichName( trUtf8("B"));
-    connect( keyB, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
+    keyB->setToolTip( tr("Spessore del dente"));
+    keyB->setRichName( tr("B"));
+    connect( keyB, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( keyB );
 
     keyD = new DoublePlus( 1.0, "keyD", m_unitMeasure, UnitMeasure::length );
-    keyD->setToolTip( trUtf8("Profondit�  del dente"));
-    keyD->setRichName( trUtf8("d"));
+    keyD->setToolTip( tr("Profondità  del dente"));
+    keyD->setRichName( tr("d"));
     keyD->setReadOnly( true );
     addVarToContainer( keyD );
 
     counterfortGammaW = new DoublePlus( 2.4e+4, "counterfortGammaW", m_unitMeasure, UnitMeasure::loadFVolume );;
-    counterfortGammaW->setToolTip( trUtf8("Peso specifico del materiale costituente il muro"));
-    counterfortGammaW->setRichName( trUtf8("γ"));
+    counterfortGammaW->setToolTip( tr("Peso specifico del materiale costituente il muro"));
+    counterfortGammaW->setRichName( tr("γ"));
     counterfortGammaW->setReadOnly( true );
     addVarToContainer( counterfortGammaW );
 
     counterfortBBottom = new DoublePlus( 0.0, "counterfortBBottom", m_unitMeasure, UnitMeasure::length );
-    counterfortBBottom->setToolTip( trUtf8("Larghezza dello sperone in basso"));
-    counterfortBBottom->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">bot</span>"));
-    connect( counterfortBBottom, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
+    counterfortBBottom->setToolTip( tr("Larghezza dello sperone in basso"));
+    counterfortBBottom->setRichName( tr("L<span style=\" vertical-align:sub;\">bot</span>"));
+    connect( counterfortBBottom, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( counterfortBBottom );
 
     counterfortBTop = new DoublePlus( 0.0, "counterfortBTop", m_unitMeasure, UnitMeasure::length );
-    counterfortBTop->setToolTip( trUtf8("Larghezza dello sperone in alto"));
-    counterfortBTop->setRichName( trUtf8("L<span style=\" vertical-align:sub;\">top</span>"));
-    connect( counterfortBTop, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
+    counterfortBTop->setToolTip( tr("Larghezza dello sperone in alto"));
+    counterfortBTop->setRichName( tr("L<span style=\" vertical-align:sub;\">top</span>"));
+    connect( counterfortBTop, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( counterfortBTop );
 
     counterfortH = new DoublePlus( 2.5, "counterfortH", m_unitMeasure, UnitMeasure::length );
-    counterfortH->setToolTip( trUtf8("Altezza dello sperone"));
-    counterfortH->setRichName( trUtf8("H"));
+    counterfortH->setToolTip( tr("Altezza dello sperone"));
+    counterfortH->setRichName( tr("H"));
     counterfortH->setReadOnly( true );
-    connect( counterfortH, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
+    connect( counterfortH, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( counterfortH );
 
     counterfortT = new DoublePlus( 0.3, "counterfortT", m_unitMeasure, UnitMeasure::length );
-    counterfortT->setToolTip( trUtf8("Spessore dello sperone"));
-    counterfortT->setRichName( trUtf8("t"));
+    counterfortT->setToolTip( tr("Spessore dello sperone"));
+    counterfortT->setRichName( tr("t"));
     addVarToContainer( counterfortT );
 
     stemGammaW = new DoublePlus( 2.4e+4, "stemGammaW", m_unitMeasure, UnitMeasure::loadFVolume );;
-    stemGammaW->setToolTip( trUtf8("Peso specifico del materiale costituente il muro"));
-    stemGammaW->setRichName( trUtf8("γ"));
+    stemGammaW->setToolTip( tr("Peso specifico del materiale costituente il muro"));
+    stemGammaW->setRichName( tr("γ"));
     addVarToContainer( stemGammaW );
-    connect( stemGammaW, SIGNAL(valueChanged(QString)), this, SLOT(setGammaW()));
-    connect( heelGammaW, SIGNAL(readOnlyChanged(bool)), this, SLOT(setGammaW()));
-    connect( toeGammaW, SIGNAL(readOnlyChanged(bool)), this, SLOT(setGammaW()));
-    connect( keyGammaW, SIGNAL(readOnlyChanged(bool)), this, SLOT(setGammaW()));
-    connect( counterfortGammaW, SIGNAL(readOnlyChanged(bool)), this, SLOT(setGammaW()));
+    connect( stemGammaW, &DoublePlus::valueChanged, this, &RetainingWall::setGammaW );
+    connect( heelGammaW, &DoublePlus::readOnlyChanged, this, &RetainingWall::setGammaW );
+    connect( toeGammaW, &DoublePlus::readOnlyChanged, this, &RetainingWall::setGammaW );
+    connect( keyGammaW, &DoublePlus::readOnlyChanged, this, &RetainingWall::setGammaW );
+    connect( counterfortGammaW, &DoublePlus::readOnlyChanged, this, &RetainingWall::setGammaW );
 
     stemBeta = new DoublePlus( 0.0, "stemB", m_unitMeasure, UnitMeasure::angle );
-    stemBeta->setToolTip( trUtf8("Angolo rispetto alla verticale del paramento del muro verso monte"));
-    stemBeta->setRichName( trUtf8("β"));
-    connect( stemBeta, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
+    stemBeta->setToolTip( tr("Angolo rispetto alla verticale del paramento del muro verso monte"));
+    stemBeta->setRichName( tr("β"));
+    connect( stemBeta, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( stemBeta );
 
     stemTBottom = new DoublePlus( 0.8, "stemTBottom", m_unitMeasure, UnitMeasure::length );
-    stemTBottom->setToolTip( trUtf8("Spessore del muro in basso"));
-    stemTBottom->setRichName( trUtf8("t<span style=\" vertical-align:sub;\">bot</span>"));
-    connect( stemTBottom, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
+    stemTBottom->setToolTip( tr("Spessore del muro in basso"));
+    stemTBottom->setRichName( tr("t<span style=\" vertical-align:sub;\">bot</span>"));
+    connect( stemTBottom, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( stemTBottom );
 
     stemTTop = new DoublePlus( 0.4, "stemTTop", m_unitMeasure, UnitMeasure::length );
-    stemTTop->setToolTip( trUtf8("Spessore del muro in alto"));
-    stemTTop->setRichName( trUtf8("t<span style=\" vertical-align:sub;\">top</span>"));
-    connect( stemTTop, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
+    stemTTop->setToolTip( tr("Spessore del muro in alto"));
+    stemTTop->setRichName( tr("t<span style=\" vertical-align:sub;\">top</span>"));
+    connect( stemTTop, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( stemTTop );
 
     stemH = new DoublePlus( 6.8, "stemH", m_unitMeasure, UnitMeasure::length );
-    stemH->setToolTip( trUtf8("Altezza del muro"));
-    stemH->setRichName( trUtf8("H"));
-    connect( stemH, SIGNAL(valueChanged(QString)), this, SLOT(updateSections()));
+    stemH->setToolTip( tr("Altezza del muro"));
+    stemH->setRichName( tr("H"));
+    connect( stemH, &DoublePlus::valueChanged, this, &RetainingWall::updateSections );
     addVarToContainer( stemH );
 
     stemD = new DoublePlus( 1.0, "stemD", m_unitMeasure, UnitMeasure::length );
-    stemD->setToolTip( trUtf8("Profondit�  del muro"));
-    stemD->setRichName( trUtf8("d"));
-    connect( stemD, SIGNAL(valueChanged(QString)), this, SLOT(setD()) );
+    stemD->setToolTip( tr("Profondità  del muro"));
+    stemD->setRichName( tr("d"));
+    connect( stemD, &DoublePlus::valueChanged, this, &RetainingWall::setD );
     addVarToContainer( stemD );
-    connect( stemD, SIGNAL(valueChanged(QString)), this, SLOT(setD()));
-    connect( heelD, SIGNAL(readOnlyChanged(bool)), this, SLOT(setD()));
-    connect( toeD, SIGNAL(readOnlyChanged(bool)), this, SLOT(setD()));
-    connect( keyD, SIGNAL(readOnlyChanged(bool)), this, SLOT(setD()));
+    connect( stemD, &DoublePlus::valueChanged, this, &RetainingWall::setD );
+    connect( heelD, &DoublePlus::readOnlyChanged, this, &RetainingWall::setD );
+    connect( toeD, &DoublePlus::readOnlyChanged, this, &RetainingWall::setD );
+    connect( keyD, &DoublePlus::readOnlyChanged, this, &RetainingWall::setD );
 
-    connect( stemH, SIGNAL(valueChanged(QString)), this, SLOT(setCounterfortH()));
-    connect( toeHRight, SIGNAL(valueChanged(QString)), this, SLOT(setCounterfortH()));
-    connect( baseAlpha, SIGNAL(valueChanged(QString)), this, SLOT(setCounterfortH()));
-    connect( counterfortH, SIGNAL(readOnlyChanged(bool)), this, SLOT(setCounterfortH()));
+    connect( stemH, &DoublePlus::valueChanged, this, &RetainingWall::setCounterfortH );
+    connect( toeHRight, &DoublePlus::valueChanged, this, &RetainingWall::setCounterfortH );
+    connect( baseAlpha, &DoublePlus::valueChanged, this, &RetainingWall::setCounterfortH );
+    connect( counterfortH, &DoublePlus::readOnlyChanged, this, &RetainingWall::setCounterfortH );
 
     setHeelHRight();
     setToeHRight();
@@ -373,12 +373,12 @@ void RetainingWall::setSoilDown( Soil * s ){
         Soil * oldSoil = m_d->soilDown;
         if( m_d->soilDown ){
             m_d->soilDown->removeIsUsedBy( this );
-            disconnect( m_d->soilDown->phiPrimeK, SIGNAL(valueChanged(QString)), this, SLOT(setSoilDelta()));
+            disconnect( m_d->soilDown->phiPrimeK, &DoublePlus::valueChanged, this, &RetainingWall::setSoilDelta );
         }
         m_d->soilDown = s;
         if( m_d->soilDown ){
             m_d->soilDown->setIsUsedBy( this );
-            connect( m_d->soilDown->phiPrimeK, SIGNAL(valueChanged(QString)), this, SLOT(setSoilDelta()));
+            connect( m_d->soilDown->phiPrimeK, &DoublePlus::valueChanged, this, &RetainingWall::setSoilDelta );
         }
         emit soilDownChanged( oldSoil, m_d->soilDown );
     }
@@ -393,12 +393,12 @@ void RetainingWall::setSoilUp( Soil * s ){
         Soil * oldSoil = m_d->soilUp;
         if( m_d->soilUp ){
             m_d->soilUp->removeIsUsedBy( this );
-            disconnect( m_d->soilUp->phiPrimeK, SIGNAL(valueChanged(QString)), this, SLOT(setSoilDelta()));
+            disconnect( m_d->soilUp->phiPrimeK, &DoublePlus::valueChanged, this, &RetainingWall::setSoilDelta );
         }
         m_d->soilUp = s;
         if( m_d->soilUp ){
             m_d->soilUp->setIsUsedBy( this );
-            connect( m_d->soilUp->phiPrimeK, SIGNAL(valueChanged(QString)), this, SLOT(setSoilDelta()));
+            connect( m_d->soilUp->phiPrimeK, &DoublePlus::valueChanged, this, &RetainingWall::setSoilDelta );
         }
         emit soilUpChanged( oldSoil, m_d->soilUp );
     }
@@ -1609,8 +1609,8 @@ class RWEarthQuakeDirectionPrivate{
 public:
     RWEarthQuakeDirectionPrivate(RetainingWall::EarthQuakeDirection v):
         value(v){
-        enumList.append( enumVal( RetainingWall::EQup, "EQup", trUtf8("In alto")) );
-        enumList.append( enumVal( RetainingWall::EQdown, "EQdown", trUtf8("In basso")) );
+        enumList.append( enumVal( RetainingWall::EQup, "EQup", tr("In alto")) );
+        enumList.append( enumVal( RetainingWall::EQdown, "EQdown", tr("In basso")) );
     };
     ~RWEarthQuakeDirectionPrivate(){
     };

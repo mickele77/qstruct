@@ -23,7 +23,7 @@
 
 #include "qstructutility_export.h"
 
-class EXPORT_QSTRUCTUTILITY_LIB_OPT Point2DModel: private QPolygonF {
+class EXPORT_STRUCTUTILITY_LIB_OPT Point2DModel: private QPolygonF {
 public:
     explicit Point2DModel();
 

@@ -74,88 +74,88 @@ double Steel::fULSNormal(double e) {
 void Steel::initVar(  ){
     *m_typeNameInternal = "Steel";
 
-    typeName->setValue( trUtf8("Acciaio"));
+    typeName->setValue( tr("Acciaio"));
     G->setReadOnly( true );
     alpha->setValueNormal( 1.2e-5, false );
     gammaW->setValueNormal( 7.850e+4, false );
 
     fyk = new DoublePlus( 0.0, "fyk", m_unitMeasure, UnitMeasure::tension );
     fyk->setReadOnly( false );
-    fyk->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">yk</span>") );
+    fyk->setRichName( tr("f<span style=\" vertical-align:sub;\">yk</span>") );
     addVarToContainer( fyk );
 
 
     fyk40 = new DoublePlus( 0.0, "fyk40", m_unitMeasure, UnitMeasure::tension );
     fyk40->setReadOnly( false );
-    fyk40->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">yk,40</span>") );
+    fyk40->setRichName( tr("f<span style=\" vertical-align:sub;\">yk,40</span>") );
     addVarToContainer( fyk40 );
 
     ftk = new DoublePlus( 0.0, "ftk", m_unitMeasure, UnitMeasure::tension );
     ftk->setReadOnly( false );
-    ftk->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">tk</span>") );
+    ftk->setRichName( tr("f<span style=\" vertical-align:sub;\">tk</span>") );
     addVarToContainer( ftk );
 
     ftk40 = new DoublePlus( 0.0, "ftk40", m_unitMeasure, UnitMeasure::tension );
     ftk40->setReadOnly( false );
-    ftk40->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">tk,40</span>") );
+    ftk40->setRichName( tr("f<span style=\" vertical-align:sub;\">tk,40</span>") );
     addVarToContainer( ftk40 );
 
     m_gammaS[0] = new DoublePlus( 1.05, "gammaS0", m_unitMeasure, UnitMeasure::noDimension );
     m_gammaS[0]->setReadOnly( false );
-    m_gammaS[0]->setRichName( trUtf8("γ<span style=\" vertical-align:sub;\">M0</span>") );
-    m_gammaS[0]->setToolTip( trUtf8("Resistenza delle Sezioni di Classe 1-2-3-4"));
+    m_gammaS[0]->setRichName( tr("γ<span style=\" vertical-align:sub;\">M0</span>") );
+    m_gammaS[0]->setToolTip( tr("Resistenza delle Sezioni di Classe 1-2-3-4"));
     addVarToContainer( m_gammaS[0]);
 
     m_gammaS[1] = new DoublePlus( 1.05, "gammaS1", m_unitMeasure, UnitMeasure::noDimension );
     m_gammaS[1]->setReadOnly( false );
-    m_gammaS[1]->setRichName( trUtf8("γ<span style=\" vertical-align:sub;\">M1</span>") );
-    m_gammaS[1]->setToolTip( trUtf8("Resistenza all'instabilità  delle membrature. Per ponti stradali e ferroviari assumere 1.10."));
+    m_gammaS[1]->setRichName( tr("γ<span style=\" vertical-align:sub;\">M1</span>") );
+    m_gammaS[1]->setToolTip( tr("Resistenza all'instabilità  delle membrature. Per ponti stradali e ferroviari assumere 1.10."));
     addVarToContainer( m_gammaS[1]);
 
     m_gammaS[2] = new DoublePlus( 1.25, "gammaS2", m_unitMeasure, UnitMeasure::noDimension );
     m_gammaS[2]->setReadOnly( false );
-    m_gammaS[2]->setRichName( trUtf8("γ<span style=\" vertical-align:sub;\">M2</span>") );
-    m_gammaS[2]->setToolTip( trUtf8("Resistenza, nei riguardi della frattura, delle sezioni tese (indebolite dai fori)"));
+    m_gammaS[2]->setRichName( tr("γ<span style=\" vertical-align:sub;\">M2</span>") );
+    m_gammaS[2]->setToolTip( tr("Resistenza, nei riguardi della frattura, delle sezioni tese (indebolite dai fori)"));
     addVarToContainer( m_gammaS[2]);
 
     m_fyd[0] = new DoublePlus( 0.0, "fyd0", m_unitMeasure, UnitMeasure::tension );
     m_fyd[0]->setReadOnly( true );
-    m_fyd[0]->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">yd0</span>"));
+    m_fyd[0]->setRichName( tr("f<span style=\" vertical-align:sub;\">yd0</span>"));
     addVarToContainer( m_fyd[0]);
     m_fyd[0]->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Steel::setFyd_0) );
     m_fyd[0]->addConnectedVars(2, fyk, m_gammaS[0]);
 
     m_fyd[1] = new DoublePlus( 0.0, "fyd1", m_unitMeasure, UnitMeasure::tension );
     m_fyd[1]->setReadOnly( true );
-    m_fyd[1]->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">yd1</span>"));
+    m_fyd[1]->setRichName( tr("f<span style=\" vertical-align:sub;\">yd1</span>"));
     addVarToContainer( m_fyd[1]);
     m_fyd[1]->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Steel::setFyd_1) );
     m_fyd[1]->addConnectedVars(2, fyk, m_gammaS[1]);
 
     m_fyd[2] = new DoublePlus( 0.0, "ftd2", m_unitMeasure, UnitMeasure::tension );
     m_fyd[2]->setReadOnly( true );
-    m_fyd[2]->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">td2</span>"));
+    m_fyd[2]->setRichName( tr("f<span style=\" vertical-align:sub;\">td2</span>"));
     addVarToContainer( m_fyd[2]);
     m_fyd[2]->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Steel::setFyd_2) );
     m_fyd[2]->addConnectedVars(2, fyk, m_gammaS[2]);
 
     m_fyd40[0] = new DoublePlus( 0.0, "fyd0_40", m_unitMeasure, UnitMeasure::tension );
     m_fyd40[0]->setReadOnly( true );
-    m_fyd40[0]->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">yd0,40</span>"));
+    m_fyd40[0]->setRichName( tr("f<span style=\" vertical-align:sub;\">yd0,40</span>"));
     addVarToContainer( m_fyd40[0]);
     m_fyd40[0]->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Steel::setFyd40_0) );
     m_fyd40[0]->addConnectedVars(2, fyk40, m_gammaS[0]);
 
     m_fyd40[1] = new DoublePlus( 0.0, "fyd1_40", m_unitMeasure, UnitMeasure::tension );
     m_fyd40[1]->setReadOnly( true );
-    m_fyd40[1]->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">yd1,40</span>"));
+    m_fyd40[1]->setRichName( tr("f<span style=\" vertical-align:sub;\">yd1,40</span>"));
     addVarToContainer( m_fyd40[1]);
     m_fyd40[1]->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Steel::setFyd40_1) );
     m_fyd40[1]->addConnectedVars(2, fyk40, m_gammaS[1]);
 
     m_fyd40[2] = new DoublePlus( 0.0, "ftd2_40", m_unitMeasure, UnitMeasure::tension );
     m_fyd40[2]->setReadOnly( true );
-    m_fyd40[2]->setRichName( trUtf8("f<span style=\" vertical-align:sub;\">td2,40</span>"));
+    m_fyd40[2]->setRichName( tr("f<span style=\" vertical-align:sub;\">td2,40</span>"));
     addVarToContainer( m_fyd40[2]);
     m_fyd40[2]->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Steel::setFyd40_2) );
     m_fyd40[2]->addConnectedVars(2, fyk40, m_gammaS[2]);

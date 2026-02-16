@@ -47,7 +47,7 @@ Section::Section( UnitMeasure * ump, Material * mat, const QString & n, QObject 
 }
 
 Section::Section(UnitMeasure *ump, const QXmlStreamAttributes &attrs, MaterialModel *mModel, SectionLoadPhaseModel * lModel, QObject *parent):
-    VarPlusContainerPlus( ump, "Section", trUtf8("Sezione"), parent ),
+    VarPlusContainerPlus( ump, "Section", tr("Sezione"), parent ),
     m_material( NULL ),
     m_loadPhase( NULL ){
     initVar();
@@ -250,95 +250,95 @@ void Section::initVar(){
     connect( this, &Section::materialChanged, this, &Section::sectionChanged );
     connect( this, &Section::containerChanged, this, &Section::sectionChanged );
 
-    typeName = new QStringPlus( trUtf8("Sezione"), "typeName", true );
-    typeName->setRichName( trUtf8("Tipo") );
+    typeName = new QStringPlus( tr("Sezione"), "typeName", true );
+    typeName->setRichName( tr("Tipo") );
 
     applyRoundOff = new BoolPlus( true, "applyRoundOff" );
-    applyRoundOff->setToolTip( trUtf8("Applica l'arrotondamento"));
-    applyRoundOff->setRichName( trUtf8("Arrotondamento"));
+    applyRoundOff->setToolTip( tr("Applica l'arrotondamento"));
+    applyRoundOff->setRichName( tr("Arrotondamento"));
     addVarToContainer( applyRoundOff );
 
     A = new DoublePlus(0.0, "A", m_unitMeasure, UnitMeasure::sectL2 );
-    A->setToolTip( trUtf8("Area della sezione"));
-    A->setRichName( trUtf8("A"));
+    A->setToolTip( tr("Area della sezione"));
+    A->setRichName( tr("A"));
     addVarToContainer( A );
     A->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setA) );
 
     pW = new DoublePlus(0.0, "pW", m_unitMeasure, UnitMeasure::loadFLine, true );
-    pW->setToolTip( trUtf8("Peso unitario travi"));
-    pW->setRichName( trUtf8("p<span style=\"vertical-align:sub;\">W</span>"));
+    pW->setToolTip( tr("Peso unitario travi"));
+    pW->setRichName( tr("p<span style=\"vertical-align:sub;\">W</span>"));
     addVarToContainer( pW );
     pW->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setPW) );
     pW->addConnectedVar( A );
 
     Sy = new DoublePlus( 0.0, "Sy", m_unitMeasure, UnitMeasure::sectL3 );
-    Sy->setToolTip( trUtf8("Momento statico rispetto all'asse y"));
-    Sy->setRichName( trUtf8("S<span style=\"vertical-align:sub;\">y</span>") );
+    Sy->setToolTip( tr("Momento statico rispetto all'asse y"));
+    Sy->setRichName( tr("S<span style=\"vertical-align:sub;\">y</span>") );
     addVarToContainer( Sy );
     Sy->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setSy) );
 
     Sz = new DoublePlus( 0.0, "Sz", m_unitMeasure, UnitMeasure::sectL3 );
-    Sz->setToolTip( trUtf8("Momento statico rispetto all'asse z"));
-    Sz->setRichName( trUtf8("S<span style=\"vertical-align:sub;\">z</span>") );
+    Sz->setToolTip( tr("Momento statico rispetto all'asse z"));
+    Sz->setRichName( tr("S<span style=\"vertical-align:sub;\">z</span>") );
     addVarToContainer( Sz );
     Sz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setSz) );
 
     Iyy = new DoublePlus( 0.0, "Iyy", m_unitMeasure, UnitMeasure::sectL4 );
-    Iyy->setToolTip( trUtf8("Momento di inerzia rispetto all'asse y"));
-    Iyy->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">y</span>") );
+    Iyy->setToolTip( tr("Momento di inerzia rispetto all'asse y"));
+    Iyy->setRichName( tr("I<span style=\"vertical-align:sub;\">y</span>") );
     addVarToContainer( Iyy );
     Iyy->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setIyy) );
 
     Izz = new DoublePlus( 0.0, "Izz", m_unitMeasure, UnitMeasure::sectL4 );
-    Izz->setToolTip( trUtf8("Momento di inerzia rispetto all'asse z"));
-    Izz->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">z</span>") );
+    Izz->setToolTip( tr("Momento di inerzia rispetto all'asse z"));
+    Izz->setRichName( tr("I<span style=\"vertical-align:sub;\">z</span>") );
     addVarToContainer( Izz );
     Izz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setIzz) );
 
     Ixx = new DoublePlus( 0.0, "Ixx", m_unitMeasure, UnitMeasure::sectL4, true );
-    Ixx->setToolTip( trUtf8("Momento di inerzia rispetto all'asse x (e.g. momento di inerzia polare rispetto all'origine')"));
-    Ixx->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">x</span>") );
+    Ixx->setToolTip( tr("Momento di inerzia rispetto all'asse x (e.g. momento di inerzia polare rispetto all'origine')"));
+    Ixx->setRichName( tr("I<span style=\"vertical-align:sub;\">x</span>") );
     addVarToContainer( Ixx );
     Ixx->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setIxx) );
     Ixx->addConnectedVars( 2, Iyy, Izz );
 
     Iyz = new DoublePlus( 0.0, "Iyz", m_unitMeasure, UnitMeasure::sectL4 );
-    Iyz->setToolTip( trUtf8("Momento centrifugo rispetto agli assi y e z"));
-    Iyz->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">yz</span>") );
+    Iyz->setToolTip( tr("Momento centrifugo rispetto agli assi y e z"));
+    Iyz->setRichName( tr("I<span style=\"vertical-align:sub;\">yz</span>") );
     addVarToContainer( Iyz );
     Iyz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setIyz) );
 
     Sy3DyDz = new DoublePlus( 0.0, "Sy3DyDz", m_unitMeasure, UnitMeasure::sectL5 );
-    Sy3DyDz->setToolTip( trUtf8("Integrale di y^3 sulla superficie della sezione"));
-    Sy3DyDz->setRichName( trUtf8("∬ y<span style=\" vertical-align:super;\">3</span> dA") );
+    Sy3DyDz->setToolTip( tr("Integrale di y^3 sulla superficie della sezione"));
+    Sy3DyDz->setRichName( tr("∬ y<span style=\" vertical-align:super;\">3</span> dA") );
     addVarToContainer( Sy3DyDz );
     Sy3DyDz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setSy3DyDz) );
 
     Sz3DyDz = new DoublePlus( 0.0, "Sz3DyDz", m_unitMeasure, UnitMeasure::sectL5 );
-    Sz3DyDz->setToolTip( trUtf8("Integrale di z^3 sulla superficie della sezione"));
-    Sz3DyDz->setRichName( trUtf8("∬ z<span style=\" vertical-align:super;\">3</span> dA") );
+    Sz3DyDz->setToolTip( tr("Integrale di z^3 sulla superficie della sezione"));
+    Sz3DyDz->setRichName( tr("∬ z<span style=\" vertical-align:super;\">3</span> dA") );
     addVarToContainer( Sz3DyDz );
     Sz3DyDz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setSz3DyDz) );
 
     Sy2zDyDz = new DoublePlus( 0.0, "Sy2zDyDz", m_unitMeasure, UnitMeasure::sectL5 );
-    Sy2zDyDz->setToolTip( trUtf8("Integrale di y^2*z sulla superficie della sezione"));
-    Sy2zDyDz->setRichName( trUtf8("∬ y<span style=\" vertical-align:super;\">2</span>z dA") );
+    Sy2zDyDz->setToolTip( tr("Integrale di y^2*z sulla superficie della sezione"));
+    Sy2zDyDz->setRichName( tr("∬ y<span style=\" vertical-align:super;\">2</span>z dA") );
     addVarToContainer( Sy2zDyDz );
     Sy2zDyDz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setSy2zDyDz) );
 
     Syz2DyDz = new DoublePlus( 0.0, "Syz2DyDz", m_unitMeasure, UnitMeasure::sectL5 );
-    Syz2DyDz->setToolTip( trUtf8("Integrale di y*z^2 sulla superficie della sezione"));
-    Syz2DyDz->setRichName( trUtf8("∬ yz<span style=\" vertical-align:super;\">2</span> dA") );
+    Syz2DyDz->setToolTip( tr("Integrale di y*z^2 sulla superficie della sezione"));
+    Syz2DyDz->setRichName( tr("∬ yz<span style=\" vertical-align:super;\">2</span> dA") );
     addVarToContainer( Syz2DyDz );
     Syz2DyDz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setSyz2DyDz) );
 
     G = new Point2DPlus("G", "yG", 0.0, "zG", 0.0, m_unitMeasure, UnitMeasure::sectL, true );
-    G->setRichName(trUtf8("Coordinate del baricentro della sezione"));
-    G->y->setToolTip( trUtf8("Ascissa del baricentro della sezione"));
-    G->z->setToolTip( trUtf8("Ordinata del baricentro della sezione"));
+    G->setRichName(tr("Coordinate del baricentro della sezione"));
+    G->y->setToolTip( tr("Ascissa del baricentro della sezione"));
+    G->z->setToolTip( tr("Ordinata del baricentro della sezione"));
     G->setRichName( "G");
-    G->y->setRichName( trUtf8("y<span style=\"vertical-align:sub;\">G</span>") );
-    G->z->setRichName( trUtf8("z<span style=\"vertical-align:sub;\">G</span>") );
+    G->y->setRichName( tr("y<span style=\"vertical-align:sub;\">G</span>") );
+    G->z->setRichName( tr("z<span style=\"vertical-align:sub;\">G</span>") );
     addVarToContainer( G );
     G->y->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setGy) );
     G->y->addConnectedVars( 2, A, Sz );
@@ -346,96 +346,96 @@ void Section::initVar(){
     G->z->addConnectedVars( 2, A, Sy );
 
     IGyy = new DoublePlus( 0.0, "IGy", m_unitMeasure, UnitMeasure::sectL4, true );
-    IGyy->setToolTip( trUtf8("Momento di inerzia rispetto all'asse y, nel baricentro"));
-    IGyy->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">G,yy</span>") );
+    IGyy->setToolTip( tr("Momento di inerzia rispetto all'asse y, nel baricentro"));
+    IGyy->setRichName( tr("I<span style=\"vertical-align:sub;\">G,yy</span>") );
     addVarToContainer( IGyy );
     IGyy->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setIGyy) );
     IGyy->addConnectedVars(6, A, Sy, Sz, Iyy, Izz, Iyz );
 
     IGzz = new DoublePlus( 0.0, "IGzz", m_unitMeasure, UnitMeasure::sectL4, true );
-    IGzz->setToolTip( trUtf8("Momento di inerzia rispetto all'asse z nel baricentro"));
-    IGzz->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">G,zz</span>") );
+    IGzz->setToolTip( tr("Momento di inerzia rispetto all'asse z nel baricentro"));
+    IGzz->setRichName( tr("I<span style=\"vertical-align:sub;\">G,zz</span>") );
     addVarToContainer( IGzz );
     IGzz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setIGzz) );
     IGzz->addConnectedVars(6, A, Sy, Sz, Iyy, Izz, Iyz );
 
     IGyz = new DoublePlus( 0.0, "IGyz", m_unitMeasure, UnitMeasure::sectL4, true );
-    IGyz->setToolTip( trUtf8("Momento di inerzia centrifugo rispetto agli assi y e z, nel baricentro"));
-    IGyz->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">G,yz</span>") );
+    IGyz->setToolTip( tr("Momento di inerzia centrifugo rispetto agli assi y e z, nel baricentro"));
+    IGyz->setRichName( tr("I<span style=\"vertical-align:sub;\">G,yz</span>") );
     addVarToContainer( IGyz );
     IGyz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setIGyz) );
     IGyz->addConnectedVars(6, A, Sy, Sz, Iyy, Izz, Iyz );
 
     IGxx = new DoublePlus( 0.0, "IGxx", m_unitMeasure, UnitMeasure::sectL4, true );
-    IGxx->setToolTip( trUtf8("Momento di inerzia baricentrico rispetto all'asse x (e.g. momento di inerzia polare rispetto al baricentro)"));
-    IGxx->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">G,xx</span>") );
+    IGxx->setToolTip( tr("Momento di inerzia baricentrico rispetto all'asse x (e.g. momento di inerzia polare rispetto al baricentro)"));
+    IGxx->setRichName( tr("I<span style=\"vertical-align:sub;\">G,xx</span>") );
     addVarToContainer( IGxx );
     IGxx->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setIGxx) );
     IGxx->addConnectedVars(2, IGyy, IGzz );
 
     thetaC = new DoublePlus( 0.0, "thetaC", m_unitMeasure, UnitMeasure::angle, true );
-    thetaC->setToolTip( trUtf8("Angolo di inclinazione dell'asse centrale di inerzia Y rispetto all'asse y"));
-    thetaC->setRichName( trUtf8("θ<span style=\" vertical-align:sub;\">G,Y</span>"));
+    thetaC->setToolTip( tr("Angolo di inclinazione dell'asse centrale di inerzia Y rispetto all'asse y"));
+    thetaC->setRichName( tr("θ<span style=\" vertical-align:sub;\">G,Y</span>"));
     addVarToContainer( thetaC );
     thetaC->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setThetaC) );
     thetaC->addConnectedVars(3, IGyy, IGzz, IGyz );
 
     ICyy = new DoublePlus( 0.0, "ICyy", m_unitMeasure, UnitMeasure::sectL4, true );
-    ICyy->setToolTip( trUtf8("Momento centrale di inerzia - asse Y"));
-    ICyy->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">C,YY</span>") );
+    ICyy->setToolTip( tr("Momento centrale di inerzia - asse Y"));
+    ICyy->setRichName( tr("I<span style=\"vertical-align:sub;\">C,YY</span>") );
     addVarToContainer( ICyy );
     ICyy->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setICyy) );
     ICyy->addConnectedVars(3, IGyy, IGzz, IGyz );
 
     ICzz = new DoublePlus( 0.0, "ICzz", m_unitMeasure, UnitMeasure::sectL4, true );
-    ICzz->setToolTip( trUtf8("Momento centrale di inerzia - asse Z"));
-    ICzz->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">C,ZZ</span>") );
+    ICzz->setToolTip( tr("Momento centrale di inerzia - asse Z"));
+    ICzz->setRichName( tr("I<span style=\"vertical-align:sub;\">C,ZZ</span>") );
     addVarToContainer( ICzz );
     ICzz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setICzz) );
     ICzz->addConnectedVars(3, IGyy, IGzz, IGyz );
 
     ICyz = new DoublePlus( 0.0, "ICyz", m_unitMeasure, UnitMeasure::sectL4, true );
-    ICyz->setToolTip( trUtf8("Momento centrifugo rispetto agli assi centrali di inerzia (dovrebbe essere sempre nullo, lo calcoliamo per controllo)"));
-    ICyz->setRichName( trUtf8("I<span style=\"vertical-align:sub;\">C,YZ</span>") );
+    ICyz->setToolTip( tr("Momento centrifugo rispetto agli assi centrali di inerzia (dovrebbe essere sempre nullo, lo calcoliamo per controllo)"));
+    ICyz->setRichName( tr("I<span style=\"vertical-align:sub;\">C,YZ</span>") );
     addVarToContainer( ICyz );
     ICyz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setICyz) );
     ICyz->addConnectedVars( 7, G, A, Sy, Sz, Iyy, Izz, Iyz );
 
     iy = new DoublePlus(0.0, "iy", m_unitMeasure, UnitMeasure::sectL, true );
-    iy->setToolTip( trUtf8("Raggio di inerzia, asse y"));
-    iy->setRichName( trUtf8("i<span style=\" vertical-align:sub;\">y</span>"));
+    iy->setToolTip( tr("Raggio di inerzia, asse y"));
+    iy->setRichName( tr("i<span style=\" vertical-align:sub;\">y</span>"));
     addVarToContainer( iy );
     iy->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setiy) );
     iy->addConnectedVars( 2, A, Iyy );
 
     iz = new DoublePlus(0.0, "iz", m_unitMeasure, UnitMeasure::sectL, true );
-    iz->setToolTip( trUtf8("Raggio di inerzia, asse z"));
-    iz->setRichName( trUtf8("i<span style=\" vertical-align:sub;\">z</span>"));
+    iz->setToolTip( tr("Raggio di inerzia, asse z"));
+    iz->setRichName( tr("i<span style=\" vertical-align:sub;\">z</span>"));
     addVarToContainer( iz );
     iz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setiz) );
     iz->addConnectedVars( 2, A, Izz );
 
     ty = new DoublePlus(1.2, "ty", m_unitMeasure, UnitMeasure::noDimension, false );
-    ty->setToolTip( trUtf8("Fattore di taglio, asse y"));
-    ty->setRichName( trUtf8("t<span style=\" vertical-align:sub;\">y</span>"));
+    ty->setToolTip( tr("Fattore di taglio, asse y"));
+    ty->setRichName( tr("t<span style=\" vertical-align:sub;\">y</span>"));
     addVarToContainer( ty );
     ty->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setty) );
 
     tz = new DoublePlus(1.2, "tz", m_unitMeasure, UnitMeasure::noDimension, false );
-    tz->setToolTip( trUtf8("Fattore di taglio, asse z"));
-    tz->setRichName( trUtf8("t<span style=\" vertical-align:sub;\">z</span>"));
+    tz->setToolTip( tr("Fattore di taglio, asse z"));
+    tz->setRichName( tr("t<span style=\" vertical-align:sub;\">z</span>"));
     addVarToContainer( tz );
     tz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::settz) );
 
     tyz = new DoublePlus(0.0, "tyz", m_unitMeasure, UnitMeasure::noDimension, false );
-    tyz->setToolTip( trUtf8("Fattore di taglio misto, assi y e z"));
-    tyz->setRichName( trUtf8("t<span style=\" vertical-align:sub;\">yz</span>"));
+    tyz->setToolTip( tr("Fattore di taglio misto, assi y e z"));
+    tyz->setRichName( tr("t<span style=\" vertical-align:sub;\">yz</span>"));
     addVarToContainer( tyz );
     tyz->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::settyz) );
 
     IT = new DoublePlus(0.0, "IT", m_unitMeasure, UnitMeasure::sectL4, false );
-    IT->setToolTip( trUtf8("Fattore di rigidezza torsionale"));
-    IT->setRichName( trUtf8("I<span style=\" vertical-align:sub;\">T</span>"));
+    IT->setToolTip( tr("Fattore di rigidezza torsionale"));
+    IT->setRichName( tr("I<span style=\" vertical-align:sub;\">T</span>"));
     addVarToContainer( IT );
     IT->setUpdateValueMethod( this, static_cast<void(VarPlusContainer::*)(bool)>(&Section::setIT) );
 

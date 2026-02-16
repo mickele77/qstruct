@@ -79,17 +79,17 @@ ConcreteGUI::ConcreteGUI(UnitMeasure * um, const QString & settingsFile, QWidget
 
     // set value of phi
     m_d->phiSteelCncr = new DoublePlus(32.0e-3, "phi", um, UnitMeasure::sectL );
-    m_d->phiSteelCncr->setRichName( trUtf8("Ø"));
+    m_d->phiSteelCncr->setRichName( tr("Ø"));
     addVarToContainer( m_d->phiSteelCncr );
     VarPlusGUI::connectVar( m_d->phiSteelCncr, m_d->ui->phiLabel, m_d->ui->phiLEdit, m_d->ui->phiUMLabel );
 
     m_d->fbk = new DoublePlus(0.0, "fbk", um, UnitMeasure::tension );
-    m_d->fbk->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">bk</span>"));
+    m_d->fbk->setRichName( tr("f<span style=\"vertical-align:sub;\">bk</span>"));
     addVarToContainer( m_d->fbk );
     VarPlusGUI::connectVar( m_d->fbk, m_d->ui->fbkLabel, m_d->ui->fbkLEdit, m_d->ui->fbkUMLabel );
 
     m_d->fbd = new DoublePlus(0.0, "fbd", um, UnitMeasure::tension );
-    m_d->fbd->setRichName( trUtf8("f<span style=\"vertical-align:sub;\">bd</span>"));
+    m_d->fbd->setRichName( tr("f<span style=\"vertical-align:sub;\">bd</span>"));
     addVarToContainer( m_d->fbd );
     VarPlusGUI::connectVar( m_d->fbd, m_d->ui->fbdLabel, m_d->ui->fbdLEdit, m_d->ui->fbdUMLabel );
 }
@@ -104,7 +104,7 @@ void ConcreteGUI::loadStandardComboBox(){
         QString name = queryModel.record(i).value("name").toString();
         m_d->ui->standardCncrCBox->insertItem((i+1), name, cncrData );
     }
-    connect( m_d->ui->loadStandardPButton, SIGNAL(clicked()), this, SLOT( loadStandardData()) );
+    connect( m_d->ui->loadStandardPButton, &QPushButton::clicked, this, &ConcreteGUI::loadStandardData );
 }
 
 ConcreteGUI::~ConcreteGUI(){
@@ -162,17 +162,17 @@ void ConcreteGUI::setMaterial( Material * cncr ){
         listQRB << m_d->ui->modelSLURB1 << m_d->ui->modelSLURB2 << m_d->ui->modelSLURB3;
         VarPlusGUI::disconnectEnumVar( listQRB );
 
-        disconnect( m_d->cncr->fctk, SIGNAL(valueChanged(QString)), this, SLOT( setFb()) );
-        disconnect( m_d->cncr->modelfEpsSection, SIGNAL(valueChanged(QString)), this, SLOT(plot()));
+        disconnect( m_d->cncr->fctk, &DoublePlus::valueChanged, this, &ConcreteGUI::setFb );
+        disconnect( m_d->cncr->modelfEpsSection, &ConcreteModelfEpsSection::valueChanged, this, &ConcreteGUI::plot );
 
-        disconnect( m_d->cncr->epsC2, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
-        disconnect( m_d->cncr->epsC3, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
-        disconnect( m_d->cncr->epsC4, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
+        disconnect( m_d->cncr->epsC2, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
+        disconnect( m_d->cncr->epsC3, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
+        disconnect( m_d->cncr->epsC4, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
 
-        disconnect( m_d->cncr->epsCU2, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
-        disconnect( m_d->cncr->epsCU3, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
-        disconnect( m_d->cncr->epsCU4, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
-        disconnect( m_d->cncr->fcd, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
+        disconnect( m_d->cncr->epsCU2, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
+        disconnect( m_d->cncr->epsCU3, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
+        disconnect( m_d->cncr->epsCU4, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
+        disconnect( m_d->cncr->fcd, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
 
         disconnect( m_d->cncr, &Material::aboutToBeDeleted, this, &MaterialGUI::setMaterialNULL );
     }
@@ -225,20 +225,20 @@ void ConcreteGUI::setMaterial( Material * cncr ){
         VarPlusGUI::connectEnumVar( m_d->cncr->modelfEpsSection, listQRB);
 
         // set value of phi
-        connect( m_d->cncr->fctk, SIGNAL(valueChanged(QString)), this, SLOT( setFb()) );
+        connect( m_d->cncr->fctk, &DoublePlus::valueChanged, this, &ConcreteGUI::setFb );
         setFb();
 
         // sets slots to redraw model diagram
-        connect( m_d->cncr->modelfEpsSection, SIGNAL(valueChanged(QString)), this, SLOT(plot()));
+        connect( m_d->cncr->modelfEpsSection, &ConcreteModelfEpsSection::valueChanged, this, &ConcreteGUI::plot );
 
-        connect( m_d->cncr->epsC2, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
-        connect( m_d->cncr->epsC3, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
-        connect( m_d->cncr->epsC4, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
+        connect( m_d->cncr->epsC2, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
+        connect( m_d->cncr->epsC3, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
+        connect( m_d->cncr->epsC4, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
 
-        connect( m_d->cncr->epsCU2, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
-        connect( m_d->cncr->epsCU3, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
-        connect( m_d->cncr->epsCU4, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
-        connect( m_d->cncr->fcd, SIGNAL(valueChanged(QString)), this, SLOT(replot()) );
+        connect( m_d->cncr->epsCU2, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
+        connect( m_d->cncr->epsCU3, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
+        connect( m_d->cncr->epsCU4, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
+        connect( m_d->cncr->fcd, &DoublePlus::valueChanged, this, &ConcreteGUI::replot );
         plot();
 
         connect( m_d->cncr, &Material::aboutToBeDeleted, this, &MaterialGUI::setMaterialNULL );

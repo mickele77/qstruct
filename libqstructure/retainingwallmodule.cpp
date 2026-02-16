@@ -57,17 +57,17 @@ RetainingWallModule::RetainingWallModule(UnitMeasure * ump,
 
     layout()->addWidget( m_d->GUI );
 
-    QDockWidget * modelDock = new QDockWidget(richName() + " - " + trUtf8("Lista"));
+    QDockWidget * modelDock = new QDockWidget(richName() + " - " + tr("Lista"));
     modelDock->setObjectName( "RetainingWallModel" );
     modelDock->setWidget( m_d->modelGUI );
     m_panels->append(  modelDock );
 
-    QDockWidget * viewerDock = new QDockWidget(richName() + " - " + trUtf8("Disegno"));
+    QDockWidget * viewerDock = new QDockWidget(richName() + " - " + tr("Disegno"));
     viewerDock->setObjectName( "RetainingWallViewer" );
     viewerDock->setWidget( m_d->graphicsItemViewer );
     m_panels->append(  viewerDock );
 
-    connect( retainingWallModel, SIGNAL(currentChanged(RetainingWall*)), this, SLOT(setCurrentRetainingWall(RetainingWall*)));
+    connect( retainingWallModel, &RetainingWallModel::currentChanged, this, &RetainingWallModule::setCurrentRetainingWall );
 }
 
 QString RetainingWallModule::name(){
@@ -75,7 +75,7 @@ QString RetainingWallModule::name(){
 }
 
 QString RetainingWallModule::richName(){
-    return trUtf8("SostegnoMuro");
+    return tr("SostegnoMuro");
 }
 
 QIcon RetainingWallModule::icon(){

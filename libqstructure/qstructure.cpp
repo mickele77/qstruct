@@ -49,7 +49,7 @@ public:
     }
     void addModel( TableModelPlus * m, QStructure * str ){
         models.append( m );
-        QObject::connect( m, SIGNAL(modelChanged()), str, SIGNAL(structureChanged()) );
+        QObject::connect( m, &TableModelPlus::modelChanged, str, &QStructure::structureChanged );
     }
     TableModelPlus * model( QString mName  ){
         for( QList<TableModelPlus *>::iterator i=models.begin(); i != models.end(); ++i){

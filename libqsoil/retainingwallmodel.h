@@ -24,9 +24,10 @@ class SoilModel;
 class RetainingWallModelPrivate;
 class RetainingWall;
 
+#include "soil_export.h"
 #include "tablemodelplus.h"
 
-class RetainingWallModel : public TableModelPlus {
+class EXPORT_SOIL_LIB_OPT RetainingWallModel : public TableModelPlus {
     Q_OBJECT
 public:
     explicit RetainingWallModel(UnitMeasure * ump, SoilModel * sModel, QObject *parent = 0);

@@ -143,7 +143,7 @@ SectionSteelDataSetModel::SectionSteelDataSetModel(UnitMeasure * ump,
     m_torsDef(torsDef),
     m_L0LT(L0LT){
     updateHeaders();
-    connect( ump, SIGNAL(stringsChanged(UnitMeasure::unitMeasure)), this, SLOT(updateHeaders()) );
+    connect( ump, &UnitMeasure::stringsChanged, this, &SectionSteelDataSetModel::updateHeaders );
 }
 
 void SectionSteelDataSetModel::writeXml( QXmlStreamWriter * writer ){
@@ -331,32 +331,32 @@ void SectionSteelDataSetModel::setSection( SectionSteel * sect ){
 
 void SectionSteelDataSetModel::updateHeaders(){
     QList<QString> headers;
-    headers << trUtf8("Trave");
-    headers << trUtf8("Sezione");
-    headers << trUtf8("N") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadF) + QString("]");
-    headers << trUtf8("Tz") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadF) + QString("]");
-    headers << trUtf8("Ty") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadF) + QString("]");
-    headers << trUtf8("yM") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::sectL) + QString("]");
-    headers << trUtf8("zM") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::sectL) + QString("]");
-    headers << trUtf8("My")  + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
-    headers << trUtf8("Mz")  + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
-    headers << trUtf8("Mx") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
-    headers << trUtf8("MyDist");
-    headers << trUtf8("MyH1") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
-    headers << trUtf8("MyS") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
-    headers << trUtf8("MyH2") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
-    headers << trUtf8("MzDist");
-    headers << trUtf8("MzH1") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
-    headers << trUtf8("MzS") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
-    headers << trUtf8("MzH2") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
-    headers << trUtf8("MLTDist");
-    headers << trUtf8("MLTH1") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
-    headers << trUtf8("MLTS") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
-    headers << trUtf8("MLTH2") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
-    headers << trUtf8("MCr") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
-    headers << trUtf8("lLT") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::noDimension) + QString("]");
-    headers << trUtf8("ChiLT") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::noDimension) + QString("]");
-    headers << trUtf8("Risultato") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::noDimension) + QString("]");
+    headers << tr("Trave");
+    headers << tr("Sezione");
+    headers << tr("N") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadF) + QString("]");
+    headers << tr("Tz") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadF) + QString("]");
+    headers << tr("Ty") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadF) + QString("]");
+    headers << tr("yM") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::sectL) + QString("]");
+    headers << tr("zM") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::sectL) + QString("]");
+    headers << tr("My")  + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
+    headers << tr("Mz")  + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
+    headers << tr("Mx") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
+    headers << tr("MyDist");
+    headers << tr("MyH1") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
+    headers << tr("MyS") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
+    headers << tr("MyH2") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
+    headers << tr("MzDist");
+    headers << tr("MzH1") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
+    headers << tr("MzS") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
+    headers << tr("MzH2") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
+    headers << tr("MLTDist");
+    headers << tr("MLTH1") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
+    headers << tr("MLTS") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
+    headers << tr("MLTH2") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
+    headers << tr("MCr") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::loadM) + QString("]");
+    headers << tr("lLT") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::noDimension) + QString("]");
+    headers << tr("ChiLT") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::noDimension) + QString("]");
+    headers << tr("Risultato") + QString(" [") + m_d->unitMeasure->string( UnitMeasure::noDimension) + QString("]");
     setHeaders( headers );
 }
 

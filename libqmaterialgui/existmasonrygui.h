@@ -19,13 +19,14 @@
 #ifndef EXISTMASONRYGUI_H
 #define EXISTMASONRYGUI_H
 
+#include "materialgui_export.h"
 #include <QDialog>
 
 namespace Ui {
     class ExistMasonryGUI;
 }
 
-class ExistMasonryGUI : public QDialog {
+class EXPORT_MATERIALGUI_LIB_OPT ExistMasonryGUI : public QDialog {
     Q_OBJECT
 public:
     ExistMasonryGUI(QWidget *parent = 0);

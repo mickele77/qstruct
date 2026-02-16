@@ -11,13 +11,13 @@ public:
     SteelA( UnitMeasure * ump, double AVal=0.0, double dVal=0.0 ):
         VarPlusContainer( ump, "SteelA", ""){
         A = new DoublePlus( AVal, "A", m_unitMeasure, UnitMeasure::sectL2 );
-        A->setRichName(QObject::trUtf8("A"));
-        A->setToolTip( QObject::trUtf8("Area dell'armatura"));
+        A->setRichName(QObject::tr("A"));
+        A->setToolTip( QObject::tr("Area dell'armatura"));
         addVarToContainer(A);
 
         d = new DoublePlus( dVal, "d", m_unitMeasure, UnitMeasure::sectL );
-        d->setRichName(QObject::trUtf8("d"));
-        d->setToolTip( QObject::trUtf8("Altezza utile dell'armatura"));
+        d->setRichName(QObject::tr("d"));
+        d->setToolTip( QObject::tr("Altezza utile dell'armatura"));
         addVarToContainer(d);
     }
     DoublePlus * A;
@@ -35,8 +35,8 @@ public:
 void SteelAModel::updateHeaders(UnitMeasure::unitMeasure um ){
     if( um == UnitMeasure::sectL2 || um == UnitMeasure::sectL) {
         QList<QString> headers;
-        headers << trUtf8("A [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL2 ) );
-        headers << trUtf8("d [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
+        headers << tr("A [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL2 ) );
+        headers << tr("d [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
         setHeaders( headers );
     }
 }
@@ -76,11 +76,11 @@ void SteelAModel::insertSteelA( SteelA * addedA, int position ){
         position = m_dd->AList.size();
 
     if( addedA ){
-        connect( addedA->A, SIGNAL(valueChanged(QString)), this, SIGNAL(modelChanged()) );
-        connect( addedA->d, SIGNAL(valueChanged(QString)), this, SIGNAL(modelChanged()) );
+        connect( addedA->A, &DoublePlus::valueChanged, this, &SteelAModel::modelChanged );
+        connect( addedA->d, &DoublePlus::valueChanged, this, &SteelAModel::modelChanged );
         m_dd->AList.insert( position, addedA );
-        connect( addedA->d, SIGNAL(valueChanged(QString)), this, SLOT(updateDMax()) );
-        connect( addedA->d, SIGNAL(valueChanged(QString)), this, SLOT(updateDMin()) );
+        connect( addedA->d, &DoublePlus::valueChanged, this, &SteelAModel::updateDMax );
+        connect( addedA->d, &DoublePlus::valueChanged, this, &SteelAModel::updateDMin );
         updateDMax();
         updateDMin();
         insertRowsPrivate( position );
@@ -105,10 +105,10 @@ void SteelAModel::readXml(QXmlStreamReader *reader) {
 SteelAModel::SteelAModel( UnitMeasure * ump, QObject *parent ):
     TableModelPlus( "SteelAModel", ump, parent ),
     m_dd( new SteelAModelPrivate() ){
-    connect( m_d->unitMeasure, SIGNAL(stringsChanged(UnitMeasure::unitMeasure)), this, SLOT(updateHeaders(UnitMeasure::unitMeasure)) );
+    connect( m_d->unitMeasure, &UnitMeasure::stringsChanged, this, &SteelAModel::updateHeaders );
     QList<QString> headers;
-    headers << trUtf8("A [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL2 ) );
-    headers << trUtf8("d [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
+    headers << tr("A [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL2 ) );
+    headers << tr("d [%1]").arg( m_d->unitMeasure->string( UnitMeasure::sectL ) );
     setHeaders( headers );
 }
 
